@@ -1,0 +1,1939 @@
+ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccS0k2Px.s 			page 1
+
+
+   1              		.cpu cortex-m0
+   2              		.fpu softvfp
+   3              		.eabi_attribute 20, 1
+   4              		.eabi_attribute 21, 1
+   5              		.eabi_attribute 23, 3
+   6              		.eabi_attribute 24, 1
+   7              		.eabi_attribute 25, 1
+   8              		.eabi_attribute 26, 1
+   9              		.eabi_attribute 30, 6
+  10              		.eabi_attribute 34, 0
+  11              		.eabi_attribute 18, 4
+  12              		.code	16
+  13              		.file	"i2cfunctions.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.section	.text.I2CReadBytes,"ax",%progbits
+  18              		.align	2
+  19              		.global	I2CReadBytes
+  20              		.code	16
+  21              		.thumb_func
+  22              		.type	I2CReadBytes, %function
+  23              	I2CReadBytes:
+  24              	.LFB33:
+  25              		.file 1 ".\\i2cfunctions.c"
+   1:.\i2cfunctions.c **** /* ========================================
+   2:.\i2cfunctions.c ****  *
+   3:.\i2cfunctions.c ****  * Copyright Samuel Walsh, 2014
+   4:.\i2cfunctions.c ****  * All Rights Reserved
+   5:.\i2cfunctions.c ****  * UNPUBLISHED, LICENSED SOFTWARE.
+   6:.\i2cfunctions.c ****  *
+   7:.\i2cfunctions.c ****  * CONFIDENTIAL AND PROPRIETARY INFORMATION
+   8:.\i2cfunctions.c ****  * WHICH IS THE PROPERTY OF Samuel Walsh.
+   9:.\i2cfunctions.c ****  *
+  10:.\i2cfunctions.c ****  * ========================================
+  11:.\i2cfunctions.c **** */
+  12:.\i2cfunctions.c **** 
+  13:.\i2cfunctions.c **** /* [] END OF FILE */
+  14:.\i2cfunctions.c **** 
+  15:.\i2cfunctions.c **** #include <project.h>
+  16:.\i2cfunctions.c **** 
+  17:.\i2cfunctions.c **** 
+  18:.\i2cfunctions.c **** void I2CReadBytes(uint8_t devAddr, uint8_t regAddr, uint8_t length, uint8_t *value) {
+  26              		.loc 1 18 0
+  27              		.cfi_startproc
+  28 0000 90B5     		push	{r4, r7, lr}
+  29              		.cfi_def_cfa_offset 12
+  30              		.cfi_offset 4, -12
+  31              		.cfi_offset 7, -8
+  32              		.cfi_offset 14, -4
+  33 0002 85B0     		sub	sp, sp, #20
+  34              		.cfi_def_cfa_offset 32
+  35 0004 00AF     		add	r7, sp, #0
+  36              		.cfi_def_cfa_register 7
+  37 0006 3B60     		str	r3, [r7]
+  38 0008 FB1D     		add	r3, r7, #7
+  39 000a 1870     		strb	r0, [r3]
+ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccS0k2Px.s 			page 2
+
+
+  40 000c BB1D     		add	r3, r7, #6
+  41 000e 1970     		strb	r1, [r3]
+  42 0010 7B1D     		add	r3, r7, #5
+  43 0012 1A70     		strb	r2, [r3]
+  19:.\i2cfunctions.c **** 	uint8_t i=0;
+  44              		.loc 1 19 0
+  45 0014 3B1C     		mov	r3, r7
+  46 0016 0F33     		add	r3, r3, #15
+  47 0018 0022     		mov	r2, #0
+  48 001a 1A70     		strb	r2, [r3]
+  20:.\i2cfunctions.c **** 	I2C_MASTER_I2CMasterSendStart(devAddr, I2C_MASTER_I2C_WRITE_XFER_MODE);
+  49              		.loc 1 20 0
+  50 001c FB1D     		add	r3, r7, #7
+  51 001e 1B78     		ldrb	r3, [r3]
+  52 0020 181C     		mov	r0, r3
+  53 0022 0021     		mov	r1, #0
+  54 0024 FFF7FEFF 		bl	I2C_MASTER_I2CMasterSendStart
+  21:.\i2cfunctions.c **** 	I2C_MASTER_I2CMasterWriteByte(regAddr);
+  55              		.loc 1 21 0
+  56 0028 BB1D     		add	r3, r7, #6
+  57 002a 1B78     		ldrb	r3, [r3]
+  58 002c 181C     		mov	r0, r3
+  59 002e FFF7FEFF 		bl	I2C_MASTER_I2CMasterWriteByte
+  22:.\i2cfunctions.c **** 	I2C_MASTER_I2CMasterSendRestart(devAddr, I2C_MASTER_I2C_READ_XFER_MODE);
+  60              		.loc 1 22 0
+  61 0032 FB1D     		add	r3, r7, #7
+  62 0034 1B78     		ldrb	r3, [r3]
+  63 0036 181C     		mov	r0, r3
+  64 0038 0121     		mov	r1, #1
+  65 003a FFF7FEFF 		bl	I2C_MASTER_I2CMasterSendRestart
+  23:.\i2cfunctions.c **** 	while (i++ < (length-1)) {
+  66              		.loc 1 23 0
+  67 003e 08E0     		b	.L2
+  68              	.L3:
+  24:.\i2cfunctions.c **** 		*value++ = I2C_MASTER_I2CMasterReadByte(I2C_MASTER_I2C_ACK_DATA);
+  69              		.loc 1 24 0
+  70 0040 3C68     		ldr	r4, [r7]
+  71 0042 631C     		add	r3, r4, #1
+  72 0044 3B60     		str	r3, [r7]
+  73 0046 0020     		mov	r0, #0
+  74 0048 FFF7FEFF 		bl	I2C_MASTER_I2CMasterReadByte
+  75 004c 031C     		mov	r3, r0
+  76 004e DBB2     		uxtb	r3, r3
+  77 0050 2370     		strb	r3, [r4]
+  78              	.L2:
+  23:.\i2cfunctions.c **** 	while (i++ < (length-1)) {
+  79              		.loc 1 23 0 discriminator 1
+  80 0052 3B1C     		mov	r3, r7
+  81 0054 0F33     		add	r3, r3, #15
+  82 0056 1B78     		ldrb	r3, [r3]
+  83 0058 3A1C     		mov	r2, r7
+  84 005a 0F32     		add	r2, r2, #15
+  85 005c 591C     		add	r1, r3, #1
+  86 005e 1170     		strb	r1, [r2]
+  87 0060 1A1C     		mov	r2, r3
+  88 0062 7B1D     		add	r3, r7, #5
+  89 0064 1B78     		ldrb	r3, [r3]
+ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccS0k2Px.s 			page 3
+
+
+  90 0066 013B     		sub	r3, r3, #1
+  91 0068 9A42     		cmp	r2, r3
+  92 006a E9DB     		blt	.L3
+  25:.\i2cfunctions.c **** 	}
+  26:.\i2cfunctions.c **** 	*value = I2C_MASTER_I2CMasterReadByte(I2C_MASTER_I2C_NAK_DATA);
+  93              		.loc 1 26 0
+  94 006c 0120     		mov	r0, #1
+  95 006e FFF7FEFF 		bl	I2C_MASTER_I2CMasterReadByte
+  96 0072 031C     		mov	r3, r0
+  97 0074 DAB2     		uxtb	r2, r3
+  98 0076 3B68     		ldr	r3, [r7]
+  99 0078 1A70     		strb	r2, [r3]
+  27:.\i2cfunctions.c **** 	I2C_MASTER_I2CMasterSendStop();	
+ 100              		.loc 1 27 0
+ 101 007a FFF7FEFF 		bl	I2C_MASTER_I2CMasterSendStop
+  28:.\i2cfunctions.c **** }
+ 102              		.loc 1 28 0
+ 103 007e BD46     		mov	sp, r7
+ 104 0080 05B0     		add	sp, sp, #20
+ 105              		@ sp needed
+ 106 0082 90BD     		pop	{r4, r7, pc}
+ 107              		.cfi_endproc
+ 108              	.LFE33:
+ 109              		.size	I2CReadBytes, .-I2CReadBytes
+ 110              		.section	.text.I2CReadByte,"ax",%progbits
+ 111              		.align	2
+ 112              		.global	I2CReadByte
+ 113              		.code	16
+ 114              		.thumb_func
+ 115              		.type	I2CReadByte, %function
+ 116              	I2CReadByte:
+ 117              	.LFB34:
+  29:.\i2cfunctions.c **** 
+  30:.\i2cfunctions.c **** void I2CReadByte(uint8_t devAddr, uint8_t regAddr, uint8_t *value) {
+ 118              		.loc 1 30 0
+ 119              		.cfi_startproc
+ 120 0000 80B5     		push	{r7, lr}
+ 121              		.cfi_def_cfa_offset 8
+ 122              		.cfi_offset 7, -8
+ 123              		.cfi_offset 14, -4
+ 124 0002 82B0     		sub	sp, sp, #8
+ 125              		.cfi_def_cfa_offset 16
+ 126 0004 00AF     		add	r7, sp, #0
+ 127              		.cfi_def_cfa_register 7
+ 128 0006 3A60     		str	r2, [r7]
+ 129 0008 FB1D     		add	r3, r7, #7
+ 130 000a 021C     		add	r2, r0, #0
+ 131 000c 1A70     		strb	r2, [r3]
+ 132 000e BB1D     		add	r3, r7, #6
+ 133 0010 0A1C     		add	r2, r1, #0
+ 134 0012 1A70     		strb	r2, [r3]
+  31:.\i2cfunctions.c **** 	I2CReadBytes(devAddr, regAddr, 1, value);
+ 135              		.loc 1 31 0
+ 136 0014 FB1D     		add	r3, r7, #7
+ 137 0016 1978     		ldrb	r1, [r3]
+ 138 0018 BB1D     		add	r3, r7, #6
+ 139 001a 1A78     		ldrb	r2, [r3]
+ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccS0k2Px.s 			page 4
+
+
+ 140 001c 3B68     		ldr	r3, [r7]
+ 141 001e 081C     		mov	r0, r1
+ 142 0020 111C     		mov	r1, r2
+ 143 0022 0122     		mov	r2, #1
+ 144 0024 FFF7FEFF 		bl	I2CReadBytes
+  32:.\i2cfunctions.c **** }
+ 145              		.loc 1 32 0
+ 146 0028 BD46     		mov	sp, r7
+ 147 002a 02B0     		add	sp, sp, #8
+ 148              		@ sp needed
+ 149 002c 80BD     		pop	{r7, pc}
+ 150              		.cfi_endproc
+ 151              	.LFE34:
+ 152              		.size	I2CReadByte, .-I2CReadByte
+ 153 002e C046     		.section	.text.I2CReadBits,"ax",%progbits
+ 154              		.align	2
+ 155              		.global	I2CReadBits
+ 156              		.code	16
+ 157              		.thumb_func
+ 158              		.type	I2CReadBits, %function
+ 159              	I2CReadBits:
+ 160              	.LFB35:
+  33:.\i2cfunctions.c **** 
+  34:.\i2cfunctions.c **** void I2CReadBits(uint8_t devAddr, uint8_t regAddr, uint8_t bitStart, uint8_t length, uint8_t *value
+ 161              		.loc 1 34 0
+ 162              		.cfi_startproc
+ 163 0000 90B5     		push	{r4, r7, lr}
+ 164              		.cfi_def_cfa_offset 12
+ 165              		.cfi_offset 4, -12
+ 166              		.cfi_offset 7, -8
+ 167              		.cfi_offset 14, -4
+ 168 0002 85B0     		sub	sp, sp, #20
+ 169              		.cfi_def_cfa_offset 32
+ 170 0004 00AF     		add	r7, sp, #0
+ 171              		.cfi_def_cfa_register 7
+ 172 0006 041C     		mov	r4, r0
+ 173 0008 081C     		mov	r0, r1
+ 174 000a 111C     		mov	r1, r2
+ 175 000c 1A1C     		mov	r2, r3
+ 176 000e FB1D     		add	r3, r7, #7
+ 177 0010 1C70     		strb	r4, [r3]
+ 178 0012 BB1D     		add	r3, r7, #6
+ 179 0014 1870     		strb	r0, [r3]
+ 180 0016 7B1D     		add	r3, r7, #5
+ 181 0018 1970     		strb	r1, [r3]
+ 182 001a 3B1D     		add	r3, r7, #4
+ 183 001c 1A70     		strb	r2, [r3]
+  35:.\i2cfunctions.c ****    	uint8_t mask = ((1 << length) - 1) << (bitStart - length + 1);
+ 184              		.loc 1 35 0
+ 185 001e 3B1D     		add	r3, r7, #4
+ 186 0020 1B78     		ldrb	r3, [r3]
+ 187 0022 0122     		mov	r2, #1
+ 188 0024 111C     		mov	r1, r2
+ 189 0026 9940     		lsl	r1, r1, r3
+ 190 0028 0B1C     		mov	r3, r1
+ 191 002a 5A1E     		sub	r2, r3, #1
+ 192 002c 7B1D     		add	r3, r7, #5
+ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccS0k2Px.s 			page 5
+
+
+ 193 002e 1978     		ldrb	r1, [r3]
+ 194 0030 3B1D     		add	r3, r7, #4
+ 195 0032 1B78     		ldrb	r3, [r3]
+ 196 0034 CB1A     		sub	r3, r1, r3
+ 197 0036 0133     		add	r3, r3, #1
+ 198 0038 9A40     		lsl	r2, r2, r3
+ 199 003a 3B1C     		mov	r3, r7
+ 200 003c 0F33     		add	r3, r3, #15
+ 201 003e 1A70     		strb	r2, [r3]
+  36:.\i2cfunctions.c ****     I2CReadByte(devAddr, regAddr, value);
+ 202              		.loc 1 36 0
+ 203 0040 FB1D     		add	r3, r7, #7
+ 204 0042 1978     		ldrb	r1, [r3]
+ 205 0044 BB1D     		add	r3, r7, #6
+ 206 0046 1A78     		ldrb	r2, [r3]
+ 207 0048 3B6A     		ldr	r3, [r7, #32]
+ 208 004a 081C     		mov	r0, r1
+ 209 004c 111C     		mov	r1, r2
+ 210 004e 1A1C     		mov	r2, r3
+ 211 0050 FFF7FEFF 		bl	I2CReadByte
+  37:.\i2cfunctions.c ****     *value &= mask;
+ 212              		.loc 1 37 0
+ 213 0054 3B6A     		ldr	r3, [r7, #32]
+ 214 0056 1B78     		ldrb	r3, [r3]
+ 215 0058 3A1C     		mov	r2, r7
+ 216 005a 0F32     		add	r2, r2, #15
+ 217 005c 1278     		ldrb	r2, [r2]
+ 218 005e 1340     		and	r3, r2
+ 219 0060 DAB2     		uxtb	r2, r3
+ 220 0062 3B6A     		ldr	r3, [r7, #32]
+ 221 0064 1A70     		strb	r2, [r3]
+  38:.\i2cfunctions.c ****     *value >>= (bitStart - length + 1);
+ 222              		.loc 1 38 0
+ 223 0066 3B6A     		ldr	r3, [r7, #32]
+ 224 0068 1B78     		ldrb	r3, [r3]
+ 225 006a 1A1C     		mov	r2, r3
+ 226 006c 7B1D     		add	r3, r7, #5
+ 227 006e 1978     		ldrb	r1, [r3]
+ 228 0070 3B1D     		add	r3, r7, #4
+ 229 0072 1B78     		ldrb	r3, [r3]
+ 230 0074 CB1A     		sub	r3, r1, r3
+ 231 0076 0133     		add	r3, r3, #1
+ 232 0078 111C     		mov	r1, r2
+ 233 007a 1941     		asr	r1, r1, r3
+ 234 007c 0B1C     		mov	r3, r1
+ 235 007e DAB2     		uxtb	r2, r3
+ 236 0080 3B6A     		ldr	r3, [r7, #32]
+ 237 0082 1A70     		strb	r2, [r3]
+  39:.\i2cfunctions.c **** }
+ 238              		.loc 1 39 0
+ 239 0084 BD46     		mov	sp, r7
+ 240 0086 05B0     		add	sp, sp, #20
+ 241              		@ sp needed
+ 242 0088 90BD     		pop	{r4, r7, pc}
+ 243              		.cfi_endproc
+ 244              	.LFE35:
+ 245              		.size	I2CReadBits, .-I2CReadBits
+ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccS0k2Px.s 			page 6
+
+
+ 246 008a C046     		.section	.text.I2CReadBit,"ax",%progbits
+ 247              		.align	2
+ 248              		.global	I2CReadBit
+ 249              		.code	16
+ 250              		.thumb_func
+ 251              		.type	I2CReadBit, %function
+ 252              	I2CReadBit:
+ 253              	.LFB36:
+  40:.\i2cfunctions.c **** 
+  41:.\i2cfunctions.c **** void I2CReadBit(uint8_t devAddr, uint8_t regAddr, uint8_t bitNum, uint8_t *value) {
+ 254              		.loc 1 41 0
+ 255              		.cfi_startproc
+ 256 0000 80B5     		push	{r7, lr}
+ 257              		.cfi_def_cfa_offset 8
+ 258              		.cfi_offset 7, -8
+ 259              		.cfi_offset 14, -4
+ 260 0002 82B0     		sub	sp, sp, #8
+ 261              		.cfi_def_cfa_offset 16
+ 262 0004 00AF     		add	r7, sp, #0
+ 263              		.cfi_def_cfa_register 7
+ 264 0006 3B60     		str	r3, [r7]
+ 265 0008 FB1D     		add	r3, r7, #7
+ 266 000a 1870     		strb	r0, [r3]
+ 267 000c BB1D     		add	r3, r7, #6
+ 268 000e 1970     		strb	r1, [r3]
+ 269 0010 7B1D     		add	r3, r7, #5
+ 270 0012 1A70     		strb	r2, [r3]
+  42:.\i2cfunctions.c **** 	I2CReadByte(devAddr, regAddr, value);
+ 271              		.loc 1 42 0
+ 272 0014 FB1D     		add	r3, r7, #7
+ 273 0016 1978     		ldrb	r1, [r3]
+ 274 0018 BB1D     		add	r3, r7, #6
+ 275 001a 1A78     		ldrb	r2, [r3]
+ 276 001c 3B68     		ldr	r3, [r7]
+ 277 001e 081C     		mov	r0, r1
+ 278 0020 111C     		mov	r1, r2
+ 279 0022 1A1C     		mov	r2, r3
+ 280 0024 FFF7FEFF 		bl	I2CReadByte
+  43:.\i2cfunctions.c **** 	*value = *value & (1 << bitNum);
+ 281              		.loc 1 43 0
+ 282 0028 3B68     		ldr	r3, [r7]
+ 283 002a 1B78     		ldrb	r3, [r3]
+ 284 002c DBB2     		uxtb	r3, r3
+ 285 002e 7A1D     		add	r2, r7, #5
+ 286 0030 1278     		ldrb	r2, [r2]
+ 287 0032 0121     		mov	r1, #1
+ 288 0034 081C     		mov	r0, r1
+ 289 0036 9040     		lsl	r0, r0, r2
+ 290 0038 021C     		mov	r2, r0
+ 291 003a D2B2     		uxtb	r2, r2
+ 292 003c 1340     		and	r3, r2
+ 293 003e DBB2     		uxtb	r3, r3
+ 294 0040 DAB2     		uxtb	r2, r3
+ 295 0042 3B68     		ldr	r3, [r7]
+ 296 0044 1A70     		strb	r2, [r3]
+  44:.\i2cfunctions.c **** }
+ 297              		.loc 1 44 0
+ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccS0k2Px.s 			page 7
+
+
+ 298 0046 BD46     		mov	sp, r7
+ 299 0048 02B0     		add	sp, sp, #8
+ 300              		@ sp needed
+ 301 004a 80BD     		pop	{r7, pc}
+ 302              		.cfi_endproc
+ 303              	.LFE36:
+ 304              		.size	I2CReadBit, .-I2CReadBit
+ 305              		.section	.text.I2CWriteBytes,"ax",%progbits
+ 306              		.align	2
+ 307              		.global	I2CWriteBytes
+ 308              		.code	16
+ 309              		.thumb_func
+ 310              		.type	I2CWriteBytes, %function
+ 311              	I2CWriteBytes:
+ 312              	.LFB37:
+  45:.\i2cfunctions.c **** 	
+  46:.\i2cfunctions.c **** void I2CWriteBytes(uint8_t devAddr, uint8_t regAddr, uint8_t length, uint8_t *value) {
+ 313              		.loc 1 46 0
+ 314              		.cfi_startproc
+ 315 0000 80B5     		push	{r7, lr}
+ 316              		.cfi_def_cfa_offset 8
+ 317              		.cfi_offset 7, -8
+ 318              		.cfi_offset 14, -4
+ 319 0002 84B0     		sub	sp, sp, #16
+ 320              		.cfi_def_cfa_offset 24
+ 321 0004 00AF     		add	r7, sp, #0
+ 322              		.cfi_def_cfa_register 7
+ 323 0006 3B60     		str	r3, [r7]
+ 324 0008 FB1D     		add	r3, r7, #7
+ 325 000a 1870     		strb	r0, [r3]
+ 326 000c BB1D     		add	r3, r7, #6
+ 327 000e 1970     		strb	r1, [r3]
+ 328 0010 7B1D     		add	r3, r7, #5
+ 329 0012 1A70     		strb	r2, [r3]
+  47:.\i2cfunctions.c **** 	uint8_t i=0;
+ 330              		.loc 1 47 0
+ 331 0014 3B1C     		mov	r3, r7
+ 332 0016 0F33     		add	r3, r3, #15
+ 333 0018 0022     		mov	r2, #0
+ 334 001a 1A70     		strb	r2, [r3]
+  48:.\i2cfunctions.c **** 	I2C_MASTER_I2CMasterSendStart(devAddr, I2C_MASTER_I2C_WRITE_XFER_MODE);
+ 335              		.loc 1 48 0
+ 336 001c FB1D     		add	r3, r7, #7
+ 337 001e 1B78     		ldrb	r3, [r3]
+ 338 0020 181C     		mov	r0, r3
+ 339 0022 0021     		mov	r1, #0
+ 340 0024 FFF7FEFF 		bl	I2C_MASTER_I2CMasterSendStart
+  49:.\i2cfunctions.c **** 	I2C_MASTER_I2CMasterWriteByte(regAddr);
+ 341              		.loc 1 49 0
+ 342 0028 BB1D     		add	r3, r7, #6
+ 343 002a 1B78     		ldrb	r3, [r3]
+ 344 002c 181C     		mov	r0, r3
+ 345 002e FFF7FEFF 		bl	I2C_MASTER_I2CMasterWriteByte
+  50:.\i2cfunctions.c **** 	while (i++ < length) {
+ 346              		.loc 1 50 0
+ 347 0032 06E0     		b	.L8
+ 348              	.L9:
+ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccS0k2Px.s 			page 8
+
+
+  51:.\i2cfunctions.c **** 		I2C_MASTER_I2CMasterWriteByte(*value++);
+ 349              		.loc 1 51 0
+ 350 0034 3B68     		ldr	r3, [r7]
+ 351 0036 5A1C     		add	r2, r3, #1
+ 352 0038 3A60     		str	r2, [r7]
+ 353 003a 1B78     		ldrb	r3, [r3]
+ 354 003c 181C     		mov	r0, r3
+ 355 003e FFF7FEFF 		bl	I2C_MASTER_I2CMasterWriteByte
+ 356              	.L8:
+  50:.\i2cfunctions.c **** 	while (i++ < length) {
+ 357              		.loc 1 50 0 discriminator 1
+ 358 0042 3B1C     		mov	r3, r7
+ 359 0044 0F33     		add	r3, r3, #15
+ 360 0046 1B78     		ldrb	r3, [r3]
+ 361 0048 3A1C     		mov	r2, r7
+ 362 004a 0F32     		add	r2, r2, #15
+ 363 004c 591C     		add	r1, r3, #1
+ 364 004e 1170     		strb	r1, [r2]
+ 365 0050 7A1D     		add	r2, r7, #5
+ 366 0052 1278     		ldrb	r2, [r2]
+ 367 0054 9A42     		cmp	r2, r3
+ 368 0056 EDD8     		bhi	.L9
+  52:.\i2cfunctions.c **** 	}
+  53:.\i2cfunctions.c **** 	I2C_MASTER_I2CMasterSendStop();	
+ 369              		.loc 1 53 0
+ 370 0058 FFF7FEFF 		bl	I2C_MASTER_I2CMasterSendStop
+  54:.\i2cfunctions.c **** }
+ 371              		.loc 1 54 0
+ 372 005c BD46     		mov	sp, r7
+ 373 005e 04B0     		add	sp, sp, #16
+ 374              		@ sp needed
+ 375 0060 80BD     		pop	{r7, pc}
+ 376              		.cfi_endproc
+ 377              	.LFE37:
+ 378              		.size	I2CWriteBytes, .-I2CWriteBytes
+ 379 0062 C046     		.section	.text.I2CWriteByte,"ax",%progbits
+ 380              		.align	2
+ 381              		.global	I2CWriteByte
+ 382              		.code	16
+ 383              		.thumb_func
+ 384              		.type	I2CWriteByte, %function
+ 385              	I2CWriteByte:
+ 386              	.LFB38:
+  55:.\i2cfunctions.c **** 
+  56:.\i2cfunctions.c **** void I2CWriteByte(uint8_t devAddr, uint8_t regAddr, uint8_t value) {
+ 387              		.loc 1 56 0
+ 388              		.cfi_startproc
+ 389 0000 80B5     		push	{r7, lr}
+ 390              		.cfi_def_cfa_offset 8
+ 391              		.cfi_offset 7, -8
+ 392              		.cfi_offset 14, -4
+ 393 0002 82B0     		sub	sp, sp, #8
+ 394              		.cfi_def_cfa_offset 16
+ 395 0004 00AF     		add	r7, sp, #0
+ 396              		.cfi_def_cfa_register 7
+ 397 0006 FB1D     		add	r3, r7, #7
+ 398 0008 1870     		strb	r0, [r3]
+ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccS0k2Px.s 			page 9
+
+
+ 399 000a BB1D     		add	r3, r7, #6
+ 400 000c 1970     		strb	r1, [r3]
+ 401 000e 7B1D     		add	r3, r7, #5
+ 402 0010 1A70     		strb	r2, [r3]
+  57:.\i2cfunctions.c **** 	I2CWriteBytes(devAddr, regAddr, 1, &value);
+ 403              		.loc 1 57 0
+ 404 0012 FB1D     		add	r3, r7, #7
+ 405 0014 1978     		ldrb	r1, [r3]
+ 406 0016 BB1D     		add	r3, r7, #6
+ 407 0018 1A78     		ldrb	r2, [r3]
+ 408 001a 7B1D     		add	r3, r7, #5
+ 409 001c 081C     		mov	r0, r1
+ 410 001e 111C     		mov	r1, r2
+ 411 0020 0122     		mov	r2, #1
+ 412 0022 FFF7FEFF 		bl	I2CWriteBytes
+  58:.\i2cfunctions.c **** }
+ 413              		.loc 1 58 0
+ 414 0026 BD46     		mov	sp, r7
+ 415 0028 02B0     		add	sp, sp, #8
+ 416              		@ sp needed
+ 417 002a 80BD     		pop	{r7, pc}
+ 418              		.cfi_endproc
+ 419              	.LFE38:
+ 420              		.size	I2CWriteByte, .-I2CWriteByte
+ 421              		.section	.text.I2CWriteBits,"ax",%progbits
+ 422              		.align	2
+ 423              		.global	I2CWriteBits
+ 424              		.code	16
+ 425              		.thumb_func
+ 426              		.type	I2CWriteBits, %function
+ 427              	I2CWriteBits:
+ 428              	.LFB39:
+  59:.\i2cfunctions.c **** 
+  60:.\i2cfunctions.c **** void I2CWriteBits(uint8_t devAddr, uint8_t regAddr, uint8_t bitStart, uint8_t length, uint8_t value
+ 429              		.loc 1 60 0
+ 430              		.cfi_startproc
+ 431 0000 90B5     		push	{r4, r7, lr}
+ 432              		.cfi_def_cfa_offset 12
+ 433              		.cfi_offset 4, -12
+ 434              		.cfi_offset 7, -8
+ 435              		.cfi_offset 14, -4
+ 436 0002 85B0     		sub	sp, sp, #20
+ 437              		.cfi_def_cfa_offset 32
+ 438 0004 00AF     		add	r7, sp, #0
+ 439              		.cfi_def_cfa_register 7
+ 440 0006 041C     		mov	r4, r0
+ 441 0008 081C     		mov	r0, r1
+ 442 000a 111C     		mov	r1, r2
+ 443 000c 1A1C     		mov	r2, r3
+ 444 000e FB1D     		add	r3, r7, #7
+ 445 0010 1C70     		strb	r4, [r3]
+ 446 0012 BB1D     		add	r3, r7, #6
+ 447 0014 1870     		strb	r0, [r3]
+ 448 0016 7B1D     		add	r3, r7, #5
+ 449 0018 1970     		strb	r1, [r3]
+ 450 001a 3B1D     		add	r3, r7, #4
+ 451 001c 1A70     		strb	r2, [r3]
+ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccS0k2Px.s 			page 10
+
+
+  61:.\i2cfunctions.c **** 	uint8_t b;
+  62:.\i2cfunctions.c **** 	uint8_t mask = ((1 << length) - 1) << (bitStart - length + 1);
+ 452              		.loc 1 62 0
+ 453 001e 3B1D     		add	r3, r7, #4
+ 454 0020 1B78     		ldrb	r3, [r3]
+ 455 0022 0122     		mov	r2, #1
+ 456 0024 111C     		mov	r1, r2
+ 457 0026 9940     		lsl	r1, r1, r3
+ 458 0028 0B1C     		mov	r3, r1
+ 459 002a 5A1E     		sub	r2, r3, #1
+ 460 002c 7B1D     		add	r3, r7, #5
+ 461 002e 1978     		ldrb	r1, [r3]
+ 462 0030 3B1D     		add	r3, r7, #4
+ 463 0032 1B78     		ldrb	r3, [r3]
+ 464 0034 CB1A     		sub	r3, r1, r3
+ 465 0036 0133     		add	r3, r3, #1
+ 466 0038 9A40     		lsl	r2, r2, r3
+ 467 003a 3B1C     		mov	r3, r7
+ 468 003c 0F33     		add	r3, r3, #15
+ 469 003e 1A70     		strb	r2, [r3]
+  63:.\i2cfunctions.c **** 	I2CReadByte(devAddr, regAddr, &b);
+ 470              		.loc 1 63 0
+ 471 0040 FB1D     		add	r3, r7, #7
+ 472 0042 1978     		ldrb	r1, [r3]
+ 473 0044 BB1D     		add	r3, r7, #6
+ 474 0046 1A78     		ldrb	r2, [r3]
+ 475 0048 3B1C     		mov	r3, r7
+ 476 004a 0E33     		add	r3, r3, #14
+ 477 004c 081C     		mov	r0, r1
+ 478 004e 111C     		mov	r1, r2
+ 479 0050 1A1C     		mov	r2, r3
+ 480 0052 FFF7FEFF 		bl	I2CReadByte
+  64:.\i2cfunctions.c **** 	value <<= (bitStart - length + 1);
+ 481              		.loc 1 64 0
+ 482 0056 3B1C     		mov	r3, r7
+ 483 0058 2033     		add	r3, r3, #32
+ 484 005a 1A78     		ldrb	r2, [r3]
+ 485 005c 7B1D     		add	r3, r7, #5
+ 486 005e 1978     		ldrb	r1, [r3]
+ 487 0060 3B1D     		add	r3, r7, #4
+ 488 0062 1B78     		ldrb	r3, [r3]
+ 489 0064 CB1A     		sub	r3, r1, r3
+ 490 0066 0133     		add	r3, r3, #1
+ 491 0068 9A40     		lsl	r2, r2, r3
+ 492 006a 3B1C     		mov	r3, r7
+ 493 006c 2033     		add	r3, r3, #32
+ 494 006e 1A70     		strb	r2, [r3]
+  65:.\i2cfunctions.c **** 	value &= mask;
+ 495              		.loc 1 65 0
+ 496 0070 3B1C     		mov	r3, r7
+ 497 0072 2033     		add	r3, r3, #32
+ 498 0074 3A1C     		mov	r2, r7
+ 499 0076 2032     		add	r2, r2, #32
+ 500 0078 391C     		mov	r1, r7
+ 501 007a 0F31     		add	r1, r1, #15
+ 502 007c 1278     		ldrb	r2, [r2]
+ 503 007e 0978     		ldrb	r1, [r1]
+ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccS0k2Px.s 			page 11
+
+
+ 504 0080 0A40     		and	r2, r1
+ 505 0082 1A70     		strb	r2, [r3]
+  66:.\i2cfunctions.c **** 	b &= ~(mask);
+ 506              		.loc 1 66 0
+ 507 0084 3B1C     		mov	r3, r7
+ 508 0086 0F33     		add	r3, r3, #15
+ 509 0088 1B78     		ldrb	r3, [r3]
+ 510 008a DB43     		mvn	r3, r3
+ 511 008c DBB2     		uxtb	r3, r3
+ 512 008e 3A1C     		mov	r2, r7
+ 513 0090 0E32     		add	r2, r2, #14
+ 514 0092 1278     		ldrb	r2, [r2]
+ 515 0094 D2B2     		uxtb	r2, r2
+ 516 0096 1340     		and	r3, r2
+ 517 0098 DBB2     		uxtb	r3, r3
+ 518 009a DAB2     		uxtb	r2, r3
+ 519 009c 3B1C     		mov	r3, r7
+ 520 009e 0E33     		add	r3, r3, #14
+ 521 00a0 1A70     		strb	r2, [r3]
+  67:.\i2cfunctions.c **** 	b |= value;
+ 522              		.loc 1 67 0
+ 523 00a2 3B1C     		mov	r3, r7
+ 524 00a4 0E33     		add	r3, r3, #14
+ 525 00a6 1A78     		ldrb	r2, [r3]
+ 526 00a8 3B1C     		mov	r3, r7
+ 527 00aa 2033     		add	r3, r3, #32
+ 528 00ac 1B78     		ldrb	r3, [r3]
+ 529 00ae 1343     		orr	r3, r2
+ 530 00b0 DAB2     		uxtb	r2, r3
+ 531 00b2 3B1C     		mov	r3, r7
+ 532 00b4 0E33     		add	r3, r3, #14
+ 533 00b6 1A70     		strb	r2, [r3]
+  68:.\i2cfunctions.c **** 	I2CWriteByte(devAddr, regAddr, b);	
+ 534              		.loc 1 68 0
+ 535 00b8 3B1C     		mov	r3, r7
+ 536 00ba 0E33     		add	r3, r3, #14
+ 537 00bc 1B78     		ldrb	r3, [r3]
+ 538 00be FA1D     		add	r2, r7, #7
+ 539 00c0 1178     		ldrb	r1, [r2]
+ 540 00c2 BA1D     		add	r2, r7, #6
+ 541 00c4 1278     		ldrb	r2, [r2]
+ 542 00c6 081C     		mov	r0, r1
+ 543 00c8 111C     		mov	r1, r2
+ 544 00ca 1A1C     		mov	r2, r3
+ 545 00cc FFF7FEFF 		bl	I2CWriteByte
+  69:.\i2cfunctions.c **** }
+ 546              		.loc 1 69 0
+ 547 00d0 BD46     		mov	sp, r7
+ 548 00d2 05B0     		add	sp, sp, #20
+ 549              		@ sp needed
+ 550 00d4 90BD     		pop	{r4, r7, pc}
+ 551              		.cfi_endproc
+ 552              	.LFE39:
+ 553              		.size	I2CWriteBits, .-I2CWriteBits
+ 554 00d6 C046     		.section	.text.I2CWriteBit,"ax",%progbits
+ 555              		.align	2
+ 556              		.global	I2CWriteBit
+ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccS0k2Px.s 			page 12
+
+
+ 557              		.code	16
+ 558              		.thumb_func
+ 559              		.type	I2CWriteBit, %function
+ 560              	I2CWriteBit:
+ 561              	.LFB40:
+  70:.\i2cfunctions.c **** 
+  71:.\i2cfunctions.c **** void I2CWriteBit(uint8_t devAddr, uint8_t regAddr, uint8_t bitNum, uint8_t value) {
+ 562              		.loc 1 71 0
+ 563              		.cfi_startproc
+ 564 0000 90B5     		push	{r4, r7, lr}
+ 565              		.cfi_def_cfa_offset 12
+ 566              		.cfi_offset 4, -12
+ 567              		.cfi_offset 7, -8
+ 568              		.cfi_offset 14, -4
+ 569 0002 85B0     		sub	sp, sp, #20
+ 570              		.cfi_def_cfa_offset 32
+ 571 0004 00AF     		add	r7, sp, #0
+ 572              		.cfi_def_cfa_register 7
+ 573 0006 041C     		mov	r4, r0
+ 574 0008 081C     		mov	r0, r1
+ 575 000a 111C     		mov	r1, r2
+ 576 000c 1A1C     		mov	r2, r3
+ 577 000e FB1D     		add	r3, r7, #7
+ 578 0010 1C70     		strb	r4, [r3]
+ 579 0012 BB1D     		add	r3, r7, #6
+ 580 0014 1870     		strb	r0, [r3]
+ 581 0016 7B1D     		add	r3, r7, #5
+ 582 0018 1970     		strb	r1, [r3]
+ 583 001a 3B1D     		add	r3, r7, #4
+ 584 001c 1A70     		strb	r2, [r3]
+  72:.\i2cfunctions.c **** 	uint8_t b;
+  73:.\i2cfunctions.c **** 	I2CReadByte(devAddr, regAddr, &b);
+ 585              		.loc 1 73 0
+ 586 001e FB1D     		add	r3, r7, #7
+ 587 0020 1978     		ldrb	r1, [r3]
+ 588 0022 BB1D     		add	r3, r7, #6
+ 589 0024 1A78     		ldrb	r2, [r3]
+ 590 0026 3B1C     		mov	r3, r7
+ 591 0028 0F33     		add	r3, r3, #15
+ 592 002a 081C     		mov	r0, r1
+ 593 002c 111C     		mov	r1, r2
+ 594 002e 1A1C     		mov	r2, r3
+ 595 0030 FFF7FEFF 		bl	I2CReadByte
+  74:.\i2cfunctions.c **** 	b = (value != 0) ? (b | (1 << bitNum)) : (b & ~(1 << bitNum));
+ 596              		.loc 1 74 0
+ 597 0034 3B1D     		add	r3, r7, #4
+ 598 0036 1B78     		ldrb	r3, [r3]
+ 599 0038 002B     		cmp	r3, #0
+ 600 003a 0ED0     		beq	.L13
+ 601              		.loc 1 74 0 is_stmt 0 discriminator 1
+ 602 003c 7B1D     		add	r3, r7, #5
+ 603 003e 1B78     		ldrb	r3, [r3]
+ 604 0040 0122     		mov	r2, #1
+ 605 0042 111C     		mov	r1, r2
+ 606 0044 9940     		lsl	r1, r1, r3
+ 607 0046 0B1C     		mov	r3, r1
+ 608 0048 DAB2     		uxtb	r2, r3
+ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccS0k2Px.s 			page 13
+
+
+ 609 004a 3B1C     		mov	r3, r7
+ 610 004c 0F33     		add	r3, r3, #15
+ 611 004e 1B78     		ldrb	r3, [r3]
+ 612 0050 DBB2     		uxtb	r3, r3
+ 613 0052 1343     		orr	r3, r2
+ 614 0054 DBB2     		uxtb	r3, r3
+ 615 0056 DBB2     		uxtb	r3, r3
+ 616 0058 0FE0     		b	.L14
+ 617              	.L13:
+ 618              		.loc 1 74 0 discriminator 2
+ 619 005a 7B1D     		add	r3, r7, #5
+ 620 005c 1B78     		ldrb	r3, [r3]
+ 621 005e 0122     		mov	r2, #1
+ 622 0060 111C     		mov	r1, r2
+ 623 0062 9940     		lsl	r1, r1, r3
+ 624 0064 0B1C     		mov	r3, r1
+ 625 0066 DBB2     		uxtb	r3, r3
+ 626 0068 DB43     		mvn	r3, r3
+ 627 006a DBB2     		uxtb	r3, r3
+ 628 006c 3A1C     		mov	r2, r7
+ 629 006e 0F32     		add	r2, r2, #15
+ 630 0070 1278     		ldrb	r2, [r2]
+ 631 0072 D2B2     		uxtb	r2, r2
+ 632 0074 1340     		and	r3, r2
+ 633 0076 DBB2     		uxtb	r3, r3
+ 634 0078 DBB2     		uxtb	r3, r3
+ 635              	.L14:
+ 636              		.loc 1 74 0 discriminator 3
+ 637 007a 3A1C     		mov	r2, r7
+ 638 007c 0F32     		add	r2, r2, #15
+ 639 007e 1370     		strb	r3, [r2]
+  75:.\i2cfunctions.c **** 	I2CWriteByte(devAddr, regAddr, b);
+ 640              		.loc 1 75 0 is_stmt 1 discriminator 3
+ 641 0080 3B1C     		mov	r3, r7
+ 642 0082 0F33     		add	r3, r3, #15
+ 643 0084 1B78     		ldrb	r3, [r3]
+ 644 0086 FA1D     		add	r2, r7, #7
+ 645 0088 1178     		ldrb	r1, [r2]
+ 646 008a BA1D     		add	r2, r7, #6
+ 647 008c 1278     		ldrb	r2, [r2]
+ 648 008e 081C     		mov	r0, r1
+ 649 0090 111C     		mov	r1, r2
+ 650 0092 1A1C     		mov	r2, r3
+ 651 0094 FFF7FEFF 		bl	I2CWriteByte
+  76:.\i2cfunctions.c **** }
+ 652              		.loc 1 76 0 discriminator 3
+ 653 0098 BD46     		mov	sp, r7
+ 654 009a 05B0     		add	sp, sp, #20
+ 655              		@ sp needed
+ 656 009c 90BD     		pop	{r4, r7, pc}
+ 657              		.cfi_endproc
+ 658              	.LFE40:
+ 659              		.size	I2CWriteBit, .-I2CWriteBit
+ 660 009e C046     		.section	.text.I2CWriteWords,"ax",%progbits
+ 661              		.align	2
+ 662              		.global	I2CWriteWords
+ 663              		.code	16
+ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccS0k2Px.s 			page 14
+
+
+ 664              		.thumb_func
+ 665              		.type	I2CWriteWords, %function
+ 666              	I2CWriteWords:
+ 667              	.LFB41:
+  77:.\i2cfunctions.c **** 
+  78:.\i2cfunctions.c **** void I2CWriteWords(uint8_t devAddr, uint8_t regAddr, uint8_t length, uint16_t *value) {
+ 668              		.loc 1 78 0
+ 669              		.cfi_startproc
+ 670 0000 80B5     		push	{r7, lr}
+ 671              		.cfi_def_cfa_offset 8
+ 672              		.cfi_offset 7, -8
+ 673              		.cfi_offset 14, -4
+ 674 0002 84B0     		sub	sp, sp, #16
+ 675              		.cfi_def_cfa_offset 24
+ 676 0004 00AF     		add	r7, sp, #0
+ 677              		.cfi_def_cfa_register 7
+ 678 0006 3B60     		str	r3, [r7]
+ 679 0008 FB1D     		add	r3, r7, #7
+ 680 000a 1870     		strb	r0, [r3]
+ 681 000c BB1D     		add	r3, r7, #6
+ 682 000e 1970     		strb	r1, [r3]
+ 683 0010 7B1D     		add	r3, r7, #5
+ 684 0012 1A70     		strb	r2, [r3]
+  79:.\i2cfunctions.c **** 	uint8_t i=0;
+ 685              		.loc 1 79 0
+ 686 0014 3B1C     		mov	r3, r7
+ 687 0016 0F33     		add	r3, r3, #15
+ 688 0018 0022     		mov	r2, #0
+ 689 001a 1A70     		strb	r2, [r3]
+  80:.\i2cfunctions.c **** 	I2C_MASTER_I2CMasterSendStart(devAddr, I2C_MASTER_I2C_WRITE_XFER_MODE);
+ 690              		.loc 1 80 0
+ 691 001c FB1D     		add	r3, r7, #7
+ 692 001e 1B78     		ldrb	r3, [r3]
+ 693 0020 181C     		mov	r0, r3
+ 694 0022 0021     		mov	r1, #0
+ 695 0024 FFF7FEFF 		bl	I2C_MASTER_I2CMasterSendStart
+  81:.\i2cfunctions.c **** 	I2C_MASTER_I2CMasterWriteByte(regAddr);
+ 696              		.loc 1 81 0
+ 697 0028 BB1D     		add	r3, r7, #6
+ 698 002a 1B78     		ldrb	r3, [r3]
+ 699 002c 181C     		mov	r0, r3
+ 700 002e FFF7FEFF 		bl	I2C_MASTER_I2CMasterWriteByte
+  82:.\i2cfunctions.c **** 	while (i++ < length) {
+ 701              		.loc 1 82 0
+ 702 0032 0EE0     		b	.L16
+ 703              	.L17:
+  83:.\i2cfunctions.c **** 		I2C_MASTER_I2CMasterWriteByte(((uint8_t)*value) >> 8);
+ 704              		.loc 1 83 0
+ 705 0034 3B68     		ldr	r3, [r7]
+ 706 0036 1B88     		ldrh	r3, [r3]
+ 707 0038 DBB2     		uxtb	r3, r3
+ 708 003a 1B12     		asr	r3, r3, #8
+ 709 003c 181C     		mov	r0, r3
+ 710 003e FFF7FEFF 		bl	I2C_MASTER_I2CMasterWriteByte
+  84:.\i2cfunctions.c **** 		I2C_MASTER_I2CMasterWriteByte((uint8_t)*value++);
+ 711              		.loc 1 84 0
+ 712 0042 3B68     		ldr	r3, [r7]
+ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccS0k2Px.s 			page 15
+
+
+ 713 0044 9A1C     		add	r2, r3, #2
+ 714 0046 3A60     		str	r2, [r7]
+ 715 0048 1B88     		ldrh	r3, [r3]
+ 716 004a DBB2     		uxtb	r3, r3
+ 717 004c 181C     		mov	r0, r3
+ 718 004e FFF7FEFF 		bl	I2C_MASTER_I2CMasterWriteByte
+ 719              	.L16:
+  82:.\i2cfunctions.c **** 	while (i++ < length) {
+ 720              		.loc 1 82 0 discriminator 1
+ 721 0052 3B1C     		mov	r3, r7
+ 722 0054 0F33     		add	r3, r3, #15
+ 723 0056 1B78     		ldrb	r3, [r3]
+ 724 0058 3A1C     		mov	r2, r7
+ 725 005a 0F32     		add	r2, r2, #15
+ 726 005c 591C     		add	r1, r3, #1
+ 727 005e 1170     		strb	r1, [r2]
+ 728 0060 7A1D     		add	r2, r7, #5
+ 729 0062 1278     		ldrb	r2, [r2]
+ 730 0064 9A42     		cmp	r2, r3
+ 731 0066 E5D8     		bhi	.L17
+  85:.\i2cfunctions.c **** 	}
+  86:.\i2cfunctions.c **** 	I2C_MASTER_I2CMasterSendStop();		
+ 732              		.loc 1 86 0
+ 733 0068 FFF7FEFF 		bl	I2C_MASTER_I2CMasterSendStop
+  87:.\i2cfunctions.c **** }
+ 734              		.loc 1 87 0
+ 735 006c BD46     		mov	sp, r7
+ 736 006e 04B0     		add	sp, sp, #16
+ 737              		@ sp needed
+ 738 0070 80BD     		pop	{r7, pc}
+ 739              		.cfi_endproc
+ 740              	.LFE41:
+ 741              		.size	I2CWriteWords, .-I2CWriteWords
+ 742 0072 C046     		.section	.text.I2CWriteWord,"ax",%progbits
+ 743              		.align	2
+ 744              		.global	I2CWriteWord
+ 745              		.code	16
+ 746              		.thumb_func
+ 747              		.type	I2CWriteWord, %function
+ 748              	I2CWriteWord:
+ 749              	.LFB42:
+  88:.\i2cfunctions.c **** 
+  89:.\i2cfunctions.c **** void I2CWriteWord(uint8_t devAddr, uint8_t regAddr, uint16_t value) {
+ 750              		.loc 1 89 0
+ 751              		.cfi_startproc
+ 752 0000 80B5     		push	{r7, lr}
+ 753              		.cfi_def_cfa_offset 8
+ 754              		.cfi_offset 7, -8
+ 755              		.cfi_offset 14, -4
+ 756 0002 82B0     		sub	sp, sp, #8
+ 757              		.cfi_def_cfa_offset 16
+ 758 0004 00AF     		add	r7, sp, #0
+ 759              		.cfi_def_cfa_register 7
+ 760 0006 FB1D     		add	r3, r7, #7
+ 761 0008 1870     		strb	r0, [r3]
+ 762 000a BB1D     		add	r3, r7, #6
+ 763 000c 1970     		strb	r1, [r3]
+ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccS0k2Px.s 			page 16
+
+
+ 764 000e 3B1D     		add	r3, r7, #4
+ 765 0010 1A80     		strh	r2, [r3]
+  90:.\i2cfunctions.c **** 	I2CWriteWords(devAddr, regAddr, 1, &value);
+ 766              		.loc 1 90 0
+ 767 0012 FB1D     		add	r3, r7, #7
+ 768 0014 1978     		ldrb	r1, [r3]
+ 769 0016 BB1D     		add	r3, r7, #6
+ 770 0018 1A78     		ldrb	r2, [r3]
+ 771 001a 3B1D     		add	r3, r7, #4
+ 772 001c 081C     		mov	r0, r1
+ 773 001e 111C     		mov	r1, r2
+ 774 0020 0122     		mov	r2, #1
+ 775 0022 FFF7FEFF 		bl	I2CWriteWords
+  91:.\i2cfunctions.c **** }...
+ 776              		.loc 1 91 0
+ 777 0026 BD46     		mov	sp, r7
+ 778 0028 02B0     		add	sp, sp, #8
+ 779              		@ sp needed
+ 780 002a 80BD     		pop	{r7, pc}
+ 781              		.cfi_endproc
+ 782              	.LFE42:
+ 783              		.size	I2CWriteWord, .-I2CWriteWord
+ 784              		.text
+ 785              	.Letext0:
+ 786              		.file 2 "c:\\program files (x86)\\cypress\\psoc creator\\3.1\\psoc creator\\import\\gnu_cs\\arm\\4
+ 787              		.file 3 "c:\\program files (x86)\\cypress\\psoc creator\\3.1\\psoc creator\\import\\gnu_cs\\arm\\4
+ 788              		.section	.debug_info,"",%progbits
+ 789              	.Ldebug_info0:
+ 790 0000 0E040000 		.4byte	0x40e
+ 791 0004 0400     		.2byte	0x4
+ 792 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 793 000a 04       		.byte	0x4
+ 794 000b 01       		.uleb128 0x1
+ 795 000c 96000000 		.4byte	.LASF33
+ 796 0010 01       		.byte	0x1
+ 797 0011 1E000000 		.4byte	.LASF34
+ 798 0015 2F000000 		.4byte	.LASF35
+ 799 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 800 001d 00000000 		.4byte	0
+ 801 0021 00000000 		.4byte	.Ldebug_line0
+ 802 0025 02       		.uleb128 0x2
+ 803 0026 01       		.byte	0x1
+ 804 0027 06       		.byte	0x6
+ 805 0028 31020000 		.4byte	.LASF0
+ 806 002c 03       		.uleb128 0x3
+ 807 002d 00000000 		.4byte	.LASF3
+ 808 0031 02       		.byte	0x2
+ 809 0032 1C       		.byte	0x1c
+ 810 0033 37000000 		.4byte	0x37
+ 811 0037 02       		.uleb128 0x2
+ 812 0038 01       		.byte	0x1
+ 813 0039 08       		.byte	0x8
+ 814 003a 12010000 		.4byte	.LASF1
+ 815 003e 02       		.uleb128 0x2
+ 816 003f 02       		.byte	0x2
+ 817 0040 05       		.byte	0x5
+ 818 0041 ED010000 		.4byte	.LASF2
+ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccS0k2Px.s 			page 17
+
+
+ 819 0045 03       		.uleb128 0x3
+ 820 0046 72010000 		.4byte	.LASF4
+ 821 004a 02       		.byte	0x2
+ 822 004b 26       		.byte	0x26
+ 823 004c 50000000 		.4byte	0x50
+ 824 0050 02       		.uleb128 0x2
+ 825 0051 02       		.byte	0x2
+ 826 0052 07       		.byte	0x7
+ 827 0053 52010000 		.4byte	.LASF5
+ 828 0057 02       		.uleb128 0x2
+ 829 0058 04       		.byte	0x4
+ 830 0059 05       		.byte	0x5
+ 831 005a 16020000 		.4byte	.LASF6
+ 832 005e 02       		.uleb128 0x2
+ 833 005f 04       		.byte	0x4
+ 834 0060 07       		.byte	0x7
+ 835 0061 40010000 		.4byte	.LASF7
+ 836 0065 02       		.uleb128 0x2
+ 837 0066 08       		.byte	0x8
+ 838 0067 05       		.byte	0x5
+ 839 0068 CE010000 		.4byte	.LASF8
+ 840 006c 02       		.uleb128 0x2
+ 841 006d 08       		.byte	0x8
+ 842 006e 07       		.byte	0x7
+ 843 006f A6010000 		.4byte	.LASF9
+ 844 0073 04       		.uleb128 0x4
+ 845 0074 04       		.byte	0x4
+ 846 0075 05       		.byte	0x5
+ 847 0076 696E7400 		.ascii	"int\000"
+ 848 007a 02       		.uleb128 0x2
+ 849 007b 04       		.byte	0x4
+ 850 007c 07       		.byte	0x7
+ 851 007d 99010000 		.4byte	.LASF10
+ 852 0081 03       		.uleb128 0x3
+ 853 0082 BD010000 		.4byte	.LASF11
+ 854 0086 03       		.byte	0x3
+ 855 0087 2A       		.byte	0x2a
+ 856 0088 2C000000 		.4byte	0x2c
+ 857 008c 03       		.uleb128 0x3
+ 858 008d FF010000 		.4byte	.LASF12
+ 859 0091 03       		.byte	0x3
+ 860 0092 36       		.byte	0x36
+ 861 0093 45000000 		.4byte	0x45
+ 862 0097 02       		.uleb128 0x2
+ 863 0098 04       		.byte	0x4
+ 864 0099 04       		.byte	0x4
+ 865 009a 90000000 		.4byte	.LASF13
+ 866 009e 02       		.uleb128 0x2
+ 867 009f 08       		.byte	0x8
+ 868 00a0 04       		.byte	0x4
+ 869 00a1 7D010000 		.4byte	.LASF14
+ 870 00a5 02       		.uleb128 0x2
+ 871 00a6 01       		.byte	0x1
+ 872 00a7 08       		.byte	0x8
+ 873 00a8 1F020000 		.4byte	.LASF15
+ 874 00ac 02       		.uleb128 0x2
+ 875 00ad 04       		.byte	0x4
+ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccS0k2Px.s 			page 18
+
+
+ 876 00ae 07       		.byte	0x7
+ 877 00af C5010000 		.4byte	.LASF16
+ 878 00b3 05       		.uleb128 0x5
+ 879 00b4 24020000 		.4byte	.LASF21
+ 880 00b8 01       		.byte	0x1
+ 881 00b9 12       		.byte	0x12
+ 882 00ba 00000000 		.4byte	.LFB33
+ 883 00be 84000000 		.4byte	.LFE33-.LFB33
+ 884 00c2 01       		.uleb128 0x1
+ 885 00c3 9C       		.byte	0x9c
+ 886 00c4 0D010000 		.4byte	0x10d
+ 887 00c8 06       		.uleb128 0x6
+ 888 00c9 F7010000 		.4byte	.LASF17
+ 889 00cd 01       		.byte	0x1
+ 890 00ce 12       		.byte	0x12
+ 891 00cf 81000000 		.4byte	0x81
+ 892 00d3 02       		.uleb128 0x2
+ 893 00d4 91       		.byte	0x91
+ 894 00d5 67       		.sleb128 -25
+ 895 00d6 06       		.uleb128 0x6
+ 896 00d7 38010000 		.4byte	.LASF18
+ 897 00db 01       		.byte	0x1
+ 898 00dc 12       		.byte	0x12
+ 899 00dd 81000000 		.4byte	0x81
+ 900 00e1 02       		.uleb128 0x2
+ 901 00e2 91       		.byte	0x91
+ 902 00e3 66       		.sleb128 -26
+ 903 00e4 06       		.uleb128 0x6
+ 904 00e5 51020000 		.4byte	.LASF19
+ 905 00e9 01       		.byte	0x1
+ 906 00ea 12       		.byte	0x12
+ 907 00eb 81000000 		.4byte	0x81
+ 908 00ef 02       		.uleb128 0x2
+ 909 00f0 91       		.byte	0x91
+ 910 00f1 65       		.sleb128 -27
+ 911 00f2 06       		.uleb128 0x6
+ 912 00f3 18000000 		.4byte	.LASF20
+ 913 00f7 01       		.byte	0x1
+ 914 00f8 12       		.byte	0x12
+ 915 00f9 0D010000 		.4byte	0x10d
+ 916 00fd 02       		.uleb128 0x2
+ 917 00fe 91       		.byte	0x91
+ 918 00ff 60       		.sleb128 -32
+ 919 0100 07       		.uleb128 0x7
+ 920 0101 6900     		.ascii	"i\000"
+ 921 0103 01       		.byte	0x1
+ 922 0104 13       		.byte	0x13
+ 923 0105 81000000 		.4byte	0x81
+ 924 0109 02       		.uleb128 0x2
+ 925 010a 91       		.byte	0x91
+ 926 010b 6F       		.sleb128 -17
+ 927 010c 00       		.byte	0
+ 928 010d 08       		.uleb128 0x8
+ 929 010e 04       		.byte	0x4
+ 930 010f 81000000 		.4byte	0x81
+ 931 0113 05       		.uleb128 0x5
+ 932 0114 84000000 		.4byte	.LASF22
+ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccS0k2Px.s 			page 19
+
+
+ 933 0118 01       		.byte	0x1
+ 934 0119 1E       		.byte	0x1e
+ 935 011a 00000000 		.4byte	.LFB34
+ 936 011e 2E000000 		.4byte	.LFE34-.LFB34
+ 937 0122 01       		.uleb128 0x1
+ 938 0123 9C       		.byte	0x9c
+ 939 0124 53010000 		.4byte	0x153
+ 940 0128 06       		.uleb128 0x6
+ 941 0129 F7010000 		.4byte	.LASF17
+ 942 012d 01       		.byte	0x1
+ 943 012e 1E       		.byte	0x1e
+ 944 012f 81000000 		.4byte	0x81
+ 945 0133 02       		.uleb128 0x2
+ 946 0134 91       		.byte	0x91
+ 947 0135 77       		.sleb128 -9
+ 948 0136 06       		.uleb128 0x6
+ 949 0137 38010000 		.4byte	.LASF18
+ 950 013b 01       		.byte	0x1
+ 951 013c 1E       		.byte	0x1e
+ 952 013d 81000000 		.4byte	0x81
+ 953 0141 02       		.uleb128 0x2
+ 954 0142 91       		.byte	0x91
+ 955 0143 76       		.sleb128 -10
+ 956 0144 06       		.uleb128 0x6
+ 957 0145 18000000 		.4byte	.LASF20
+ 958 0149 01       		.byte	0x1
+ 959 014a 1E       		.byte	0x1e
+ 960 014b 0D010000 		.4byte	0x10d
+ 961 014f 02       		.uleb128 0x2
+ 962 0150 91       		.byte	0x91
+ 963 0151 70       		.sleb128 -16
+ 964 0152 00       		.byte	0
+ 965 0153 05       		.uleb128 0x5
+ 966 0154 E1010000 		.4byte	.LASF23
+ 967 0158 01       		.byte	0x1
+ 968 0159 22       		.byte	0x22
+ 969 015a 00000000 		.4byte	.LFB35
+ 970 015e 8A000000 		.4byte	.LFE35-.LFB35
+ 971 0162 01       		.uleb128 0x1
+ 972 0163 9C       		.byte	0x9c
+ 973 0164 BD010000 		.4byte	0x1bd
+ 974 0168 06       		.uleb128 0x6
+ 975 0169 F7010000 		.4byte	.LASF17
+ 976 016d 01       		.byte	0x1
+ 977 016e 22       		.byte	0x22
+ 978 016f 81000000 		.4byte	0x81
+ 979 0173 02       		.uleb128 0x2
+ 980 0174 91       		.byte	0x91
+ 981 0175 67       		.sleb128 -25
+ 982 0176 06       		.uleb128 0x6
+ 983 0177 38010000 		.4byte	.LASF18
+ 984 017b 01       		.byte	0x1
+ 985 017c 22       		.byte	0x22
+ 986 017d 81000000 		.4byte	0x81
+ 987 0181 02       		.uleb128 0x2
+ 988 0182 91       		.byte	0x91
+ 989 0183 66       		.sleb128 -26
+ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccS0k2Px.s 			page 20
+
+
+ 990 0184 06       		.uleb128 0x6
+ 991 0185 84010000 		.4byte	.LASF24
+ 992 0189 01       		.byte	0x1
+ 993 018a 22       		.byte	0x22
+ 994 018b 81000000 		.4byte	0x81
+ 995 018f 02       		.uleb128 0x2
+ 996 0190 91       		.byte	0x91
+ 997 0191 65       		.sleb128 -27
+ 998 0192 06       		.uleb128 0x6
+ 999 0193 51020000 		.4byte	.LASF19
+ 1000 0197 01       		.byte	0x1
+ 1001 0198 22       		.byte	0x22
+ 1002 0199 81000000 		.4byte	0x81
+ 1003 019d 02       		.uleb128 0x2
+ 1004 019e 91       		.byte	0x91
+ 1005 019f 64       		.sleb128 -28
+ 1006 01a0 06       		.uleb128 0x6
+ 1007 01a1 18000000 		.4byte	.LASF20
+ 1008 01a5 01       		.byte	0x1
+ 1009 01a6 22       		.byte	0x22
+ 1010 01a7 0D010000 		.4byte	0x10d
+ 1011 01ab 02       		.uleb128 0x2
+ 1012 01ac 91       		.byte	0x91
+ 1013 01ad 00       		.sleb128 0
+ 1014 01ae 09       		.uleb128 0x9
+ 1015 01af DC010000 		.4byte	.LASF25
+ 1016 01b3 01       		.byte	0x1
+ 1017 01b4 23       		.byte	0x23
+ 1018 01b5 81000000 		.4byte	0x81
+ 1019 01b9 02       		.uleb128 0x2
+ 1020 01ba 91       		.byte	0x91
+ 1021 01bb 6F       		.sleb128 -17
+ 1022 01bc 00       		.byte	0
+ 1023 01bd 05       		.uleb128 0x5
+ 1024 01be 2D010000 		.4byte	.LASF26
+ 1025 01c2 01       		.byte	0x1
+ 1026 01c3 29       		.byte	0x29
+ 1027 01c4 00000000 		.4byte	.LFB36
+ 1028 01c8 4C000000 		.4byte	.LFE36-.LFB36
+ 1029 01cc 01       		.uleb128 0x1
+ 1030 01cd 9C       		.byte	0x9c
+ 1031 01ce 0B020000 		.4byte	0x20b
+ 1032 01d2 06       		.uleb128 0x6
+ 1033 01d3 F7010000 		.4byte	.LASF17
+ 1034 01d7 01       		.byte	0x1
+ 1035 01d8 29       		.byte	0x29
+ 1036 01d9 81000000 		.4byte	0x81
+ 1037 01dd 02       		.uleb128 0x2
+ 1038 01de 91       		.byte	0x91
+ 1039 01df 77       		.sleb128 -9
+ 1040 01e0 06       		.uleb128 0x6
+ 1041 01e1 38010000 		.4byte	.LASF18
+ 1042 01e5 01       		.byte	0x1
+ 1043 01e6 29       		.byte	0x29
+ 1044 01e7 81000000 		.4byte	0x81
+ 1045 01eb 02       		.uleb128 0x2
+ 1046 01ec 91       		.byte	0x91
+ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccS0k2Px.s 			page 21
+
+
+ 1047 01ed 76       		.sleb128 -10
+ 1048 01ee 06       		.uleb128 0x6
+ 1049 01ef 4A020000 		.4byte	.LASF27
+ 1050 01f3 01       		.byte	0x1
+ 1051 01f4 29       		.byte	0x29
+ 1052 01f5 81000000 		.4byte	0x81
+ 1053 01f9 02       		.uleb128 0x2
+ 1054 01fa 91       		.byte	0x91
+ 1055 01fb 75       		.sleb128 -11
+ 1056 01fc 06       		.uleb128 0x6
+ 1057 01fd 18000000 		.4byte	.LASF20
+ 1058 0201 01       		.byte	0x1
+ 1059 0202 29       		.byte	0x29
+ 1060 0203 0D010000 		.4byte	0x10d
+ 1061 0207 02       		.uleb128 0x2
+ 1062 0208 91       		.byte	0x91
+ 1063 0209 70       		.sleb128 -16
+ 1064 020a 00       		.byte	0
+ 1065 020b 05       		.uleb128 0x5
+ 1066 020c 0A000000 		.4byte	.LASF28
+ 1067 0210 01       		.byte	0x1
+ 1068 0211 2E       		.byte	0x2e
+ 1069 0212 00000000 		.4byte	.LFB37
+ 1070 0216 62000000 		.4byte	.LFE37-.LFB37
+ 1071 021a 01       		.uleb128 0x1
+ 1072 021b 9C       		.byte	0x9c
+ 1073 021c 65020000 		.4byte	0x265
+ 1074 0220 06       		.uleb128 0x6
+ 1075 0221 F7010000 		.4byte	.LASF17
+ 1076 0225 01       		.byte	0x1
+ 1077 0226 2E       		.byte	0x2e
+ 1078 0227 81000000 		.4byte	0x81
+ 1079 022b 02       		.uleb128 0x2
+ 1080 022c 91       		.byte	0x91
+ 1081 022d 6F       		.sleb128 -17
+ 1082 022e 06       		.uleb128 0x6
+ 1083 022f 38010000 		.4byte	.LASF18
+ 1084 0233 01       		.byte	0x1
+ 1085 0234 2E       		.byte	0x2e
+ 1086 0235 81000000 		.4byte	0x81
+ 1087 0239 02       		.uleb128 0x2
+ 1088 023a 91       		.byte	0x91
+ 1089 023b 6E       		.sleb128 -18
+ 1090 023c 06       		.uleb128 0x6
+ 1091 023d 51020000 		.4byte	.LASF19
+ 1092 0241 01       		.byte	0x1
+ 1093 0242 2E       		.byte	0x2e
+ 1094 0243 81000000 		.4byte	0x81
+ 1095 0247 02       		.uleb128 0x2
+ 1096 0248 91       		.byte	0x91
+ 1097 0249 6D       		.sleb128 -19
+ 1098 024a 06       		.uleb128 0x6
+ 1099 024b 18000000 		.4byte	.LASF20
+ 1100 024f 01       		.byte	0x1
+ 1101 0250 2E       		.byte	0x2e
+ 1102 0251 0D010000 		.4byte	0x10d
+ 1103 0255 02       		.uleb128 0x2
+ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccS0k2Px.s 			page 22
+
+
+ 1104 0256 91       		.byte	0x91
+ 1105 0257 68       		.sleb128 -24
+ 1106 0258 07       		.uleb128 0x7
+ 1107 0259 6900     		.ascii	"i\000"
+ 1108 025b 01       		.byte	0x1
+ 1109 025c 2F       		.byte	0x2f
+ 1110 025d 81000000 		.4byte	0x81
+ 1111 0261 02       		.uleb128 0x2
+ 1112 0262 91       		.byte	0x91
+ 1113 0263 77       		.sleb128 -9
+ 1114 0264 00       		.byte	0
+ 1115 0265 05       		.uleb128 0x5
+ 1116 0266 65010000 		.4byte	.LASF29
+ 1117 026a 01       		.byte	0x1
+ 1118 026b 38       		.byte	0x38
+ 1119 026c 00000000 		.4byte	.LFB38
+ 1120 0270 2C000000 		.4byte	.LFE38-.LFB38
+ 1121 0274 01       		.uleb128 0x1
+ 1122 0275 9C       		.byte	0x9c
+ 1123 0276 A5020000 		.4byte	0x2a5
+ 1124 027a 06       		.uleb128 0x6
+ 1125 027b F7010000 		.4byte	.LASF17
+ 1126 027f 01       		.byte	0x1
+ 1127 0280 38       		.byte	0x38
+ 1128 0281 81000000 		.4byte	0x81
+ 1129 0285 02       		.uleb128 0x2
+ 1130 0286 91       		.byte	0x91
+ 1131 0287 77       		.sleb128 -9
+ 1132 0288 06       		.uleb128 0x6
+ 1133 0289 38010000 		.4byte	.LASF18
+ 1134 028d 01       		.byte	0x1
+ 1135 028e 38       		.byte	0x38
+ 1136 028f 81000000 		.4byte	0x81
+ 1137 0293 02       		.uleb128 0x2
+ 1138 0294 91       		.byte	0x91
+ 1139 0295 76       		.sleb128 -10
+ 1140 0296 06       		.uleb128 0x6
+ 1141 0297 18000000 		.4byte	.LASF20
+ 1142 029b 01       		.byte	0x1
+ 1143 029c 38       		.byte	0x38
+ 1144 029d 81000000 		.4byte	0x81
+ 1145 02a1 02       		.uleb128 0x2
+ 1146 02a2 91       		.byte	0x91
+ 1147 02a3 75       		.sleb128 -11
+ 1148 02a4 00       		.byte	0
+ 1149 02a5 05       		.uleb128 0x5
+ 1150 02a6 3D020000 		.4byte	.LASF30
+ 1151 02aa 01       		.byte	0x1
+ 1152 02ab 3C       		.byte	0x3c
+ 1153 02ac 00000000 		.4byte	.LFB39
+ 1154 02b0 D6000000 		.4byte	.LFE39-.LFB39
+ 1155 02b4 01       		.uleb128 0x1
+ 1156 02b5 9C       		.byte	0x9c
+ 1157 02b6 1B030000 		.4byte	0x31b
+ 1158 02ba 06       		.uleb128 0x6
+ 1159 02bb F7010000 		.4byte	.LASF17
+ 1160 02bf 01       		.byte	0x1
+ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccS0k2Px.s 			page 23
+
+
+ 1161 02c0 3C       		.byte	0x3c
+ 1162 02c1 81000000 		.4byte	0x81
+ 1163 02c5 02       		.uleb128 0x2
+ 1164 02c6 91       		.byte	0x91
+ 1165 02c7 67       		.sleb128 -25
+ 1166 02c8 06       		.uleb128 0x6
+ 1167 02c9 38010000 		.4byte	.LASF18
+ 1168 02cd 01       		.byte	0x1
+ 1169 02ce 3C       		.byte	0x3c
+ 1170 02cf 81000000 		.4byte	0x81
+ 1171 02d3 02       		.uleb128 0x2
+ 1172 02d4 91       		.byte	0x91
+ 1173 02d5 66       		.sleb128 -26
+ 1174 02d6 06       		.uleb128 0x6
+ 1175 02d7 84010000 		.4byte	.LASF24
+ 1176 02db 01       		.byte	0x1
+ 1177 02dc 3C       		.byte	0x3c
+ 1178 02dd 81000000 		.4byte	0x81
+ 1179 02e1 02       		.uleb128 0x2
+ 1180 02e2 91       		.byte	0x91
+ 1181 02e3 65       		.sleb128 -27
+ 1182 02e4 06       		.uleb128 0x6
+ 1183 02e5 51020000 		.4byte	.LASF19
+ 1184 02e9 01       		.byte	0x1
+ 1185 02ea 3C       		.byte	0x3c
+ 1186 02eb 81000000 		.4byte	0x81
+ 1187 02ef 02       		.uleb128 0x2
+ 1188 02f0 91       		.byte	0x91
+ 1189 02f1 64       		.sleb128 -28
+ 1190 02f2 06       		.uleb128 0x6
+ 1191 02f3 18000000 		.4byte	.LASF20
+ 1192 02f7 01       		.byte	0x1
+ 1193 02f8 3C       		.byte	0x3c
+ 1194 02f9 81000000 		.4byte	0x81
+ 1195 02fd 02       		.uleb128 0x2
+ 1196 02fe 91       		.byte	0x91
+ 1197 02ff 00       		.sleb128 0
+ 1198 0300 07       		.uleb128 0x7
+ 1199 0301 6200     		.ascii	"b\000"
+ 1200 0303 01       		.byte	0x1
+ 1201 0304 3D       		.byte	0x3d
+ 1202 0305 81000000 		.4byte	0x81
+ 1203 0309 02       		.uleb128 0x2
+ 1204 030a 91       		.byte	0x91
+ 1205 030b 6E       		.sleb128 -18
+ 1206 030c 09       		.uleb128 0x9
+ 1207 030d DC010000 		.4byte	.LASF25
+ 1208 0311 01       		.byte	0x1
+ 1209 0312 3E       		.byte	0x3e
+ 1210 0313 81000000 		.4byte	0x81
+ 1211 0317 02       		.uleb128 0x2
+ 1212 0318 91       		.byte	0x91
+ 1213 0319 6F       		.sleb128 -17
+ 1214 031a 00       		.byte	0
+ 1215 031b 05       		.uleb128 0x5
+ 1216 031c 8D010000 		.4byte	.LASF31
+ 1217 0320 01       		.byte	0x1
+ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccS0k2Px.s 			page 24
+
+
+ 1218 0321 47       		.byte	0x47
+ 1219 0322 00000000 		.4byte	.LFB40
+ 1220 0326 9E000000 		.4byte	.LFE40-.LFB40
+ 1221 032a 01       		.uleb128 0x1
+ 1222 032b 9C       		.byte	0x9c
+ 1223 032c 75030000 		.4byte	0x375
+ 1224 0330 06       		.uleb128 0x6
+ 1225 0331 F7010000 		.4byte	.LASF17
+ 1226 0335 01       		.byte	0x1
+ 1227 0336 47       		.byte	0x47
+ 1228 0337 81000000 		.4byte	0x81
+ 1229 033b 02       		.uleb128 0x2
+ 1230 033c 91       		.byte	0x91
+ 1231 033d 67       		.sleb128 -25
+ 1232 033e 06       		.uleb128 0x6
+ 1233 033f 38010000 		.4byte	.LASF18
+ 1234 0343 01       		.byte	0x1
+ 1235 0344 47       		.byte	0x47
+ 1236 0345 81000000 		.4byte	0x81
+ 1237 0349 02       		.uleb128 0x2
+ 1238 034a 91       		.byte	0x91
+ 1239 034b 66       		.sleb128 -26
+ 1240 034c 06       		.uleb128 0x6
+ 1241 034d 4A020000 		.4byte	.LASF27
+ 1242 0351 01       		.byte	0x1
+ 1243 0352 47       		.byte	0x47
+ 1244 0353 81000000 		.4byte	0x81
+ 1245 0357 02       		.uleb128 0x2
+ 1246 0358 91       		.byte	0x91
+ 1247 0359 65       		.sleb128 -27
+ 1248 035a 06       		.uleb128 0x6
+ 1249 035b 18000000 		.4byte	.LASF20
+ 1250 035f 01       		.byte	0x1
+ 1251 0360 47       		.byte	0x47
+ 1252 0361 81000000 		.4byte	0x81
+ 1253 0365 02       		.uleb128 0x2
+ 1254 0366 91       		.byte	0x91
+ 1255 0367 64       		.sleb128 -28
+ 1256 0368 07       		.uleb128 0x7
+ 1257 0369 6200     		.ascii	"b\000"
+ 1258 036b 01       		.byte	0x1
+ 1259 036c 48       		.byte	0x48
+ 1260 036d 81000000 		.4byte	0x81
+ 1261 0371 02       		.uleb128 0x2
+ 1262 0372 91       		.byte	0x91
+ 1263 0373 6F       		.sleb128 -17
+ 1264 0374 00       		.byte	0
+ 1265 0375 05       		.uleb128 0x5
+ 1266 0376 08020000 		.4byte	.LASF32
+ 1267 037a 01       		.byte	0x1
+ 1268 037b 4E       		.byte	0x4e
+ 1269 037c 00000000 		.4byte	.LFB41
+ 1270 0380 72000000 		.4byte	.LFE41-.LFB41
+ 1271 0384 01       		.uleb128 0x1
+ 1272 0385 9C       		.byte	0x9c
+ 1273 0386 CF030000 		.4byte	0x3cf
+ 1274 038a 06       		.uleb128 0x6
+ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccS0k2Px.s 			page 25
+
+
+ 1275 038b F7010000 		.4byte	.LASF17
+ 1276 038f 01       		.byte	0x1
+ 1277 0390 4E       		.byte	0x4e
+ 1278 0391 81000000 		.4byte	0x81
+ 1279 0395 02       		.uleb128 0x2
+ 1280 0396 91       		.byte	0x91
+ 1281 0397 6F       		.sleb128 -17
+ 1282 0398 06       		.uleb128 0x6
+ 1283 0399 38010000 		.4byte	.LASF18
+ 1284 039d 01       		.byte	0x1
+ 1285 039e 4E       		.byte	0x4e
+ 1286 039f 81000000 		.4byte	0x81
+ 1287 03a3 02       		.uleb128 0x2
+ 1288 03a4 91       		.byte	0x91
+ 1289 03a5 6E       		.sleb128 -18
+ 1290 03a6 06       		.uleb128 0x6
+ 1291 03a7 51020000 		.4byte	.LASF19
+ 1292 03ab 01       		.byte	0x1
+ 1293 03ac 4E       		.byte	0x4e
+ 1294 03ad 81000000 		.4byte	0x81
+ 1295 03b1 02       		.uleb128 0x2
+ 1296 03b2 91       		.byte	0x91
+ 1297 03b3 6D       		.sleb128 -19
+ 1298 03b4 06       		.uleb128 0x6
+ 1299 03b5 18000000 		.4byte	.LASF20
+ 1300 03b9 01       		.byte	0x1
+ 1301 03ba 4E       		.byte	0x4e
+ 1302 03bb CF030000 		.4byte	0x3cf
+ 1303 03bf 02       		.uleb128 0x2
+ 1304 03c0 91       		.byte	0x91
+ 1305 03c1 68       		.sleb128 -24
+ 1306 03c2 07       		.uleb128 0x7
+ 1307 03c3 6900     		.ascii	"i\000"
+ 1308 03c5 01       		.byte	0x1
+ 1309 03c6 4F       		.byte	0x4f
+ 1310 03c7 81000000 		.4byte	0x81
+ 1311 03cb 02       		.uleb128 0x2
+ 1312 03cc 91       		.byte	0x91
+ 1313 03cd 77       		.sleb128 -9
+ 1314 03ce 00       		.byte	0
+ 1315 03cf 08       		.uleb128 0x8
+ 1316 03d0 04       		.byte	0x4
+ 1317 03d1 8C000000 		.4byte	0x8c
+ 1318 03d5 0A       		.uleb128 0xa
+ 1319 03d6 20010000 		.4byte	.LASF36
+ 1320 03da 01       		.byte	0x1
+ 1321 03db 59       		.byte	0x59
+ 1322 03dc 00000000 		.4byte	.LFB42
+ 1323 03e0 2C000000 		.4byte	.LFE42-.LFB42
+ 1324 03e4 01       		.uleb128 0x1
+ 1325 03e5 9C       		.byte	0x9c
+ 1326 03e6 06       		.uleb128 0x6
+ 1327 03e7 F7010000 		.4byte	.LASF17
+ 1328 03eb 01       		.byte	0x1
+ 1329 03ec 59       		.byte	0x59
+ 1330 03ed 81000000 		.4byte	0x81
+ 1331 03f1 02       		.uleb128 0x2
+ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccS0k2Px.s 			page 26
+
+
+ 1332 03f2 91       		.byte	0x91
+ 1333 03f3 77       		.sleb128 -9
+ 1334 03f4 06       		.uleb128 0x6
+ 1335 03f5 38010000 		.4byte	.LASF18
+ 1336 03f9 01       		.byte	0x1
+ 1337 03fa 59       		.byte	0x59
+ 1338 03fb 81000000 		.4byte	0x81
+ 1339 03ff 02       		.uleb128 0x2
+ 1340 0400 91       		.byte	0x91
+ 1341 0401 76       		.sleb128 -10
+ 1342 0402 06       		.uleb128 0x6
+ 1343 0403 18000000 		.4byte	.LASF20
+ 1344 0407 01       		.byte	0x1
+ 1345 0408 59       		.byte	0x59
+ 1346 0409 8C000000 		.4byte	0x8c
+ 1347 040d 02       		.uleb128 0x2
+ 1348 040e 91       		.byte	0x91
+ 1349 040f 74       		.sleb128 -12
+ 1350 0410 00       		.byte	0
+ 1351 0411 00       		.byte	0
+ 1352              		.section	.debug_abbrev,"",%progbits
+ 1353              	.Ldebug_abbrev0:
+ 1354 0000 01       		.uleb128 0x1
+ 1355 0001 11       		.uleb128 0x11
+ 1356 0002 01       		.byte	0x1
+ 1357 0003 25       		.uleb128 0x25
+ 1358 0004 0E       		.uleb128 0xe
+ 1359 0005 13       		.uleb128 0x13
+ 1360 0006 0B       		.uleb128 0xb
+ 1361 0007 03       		.uleb128 0x3
+ 1362 0008 0E       		.uleb128 0xe
+ 1363 0009 1B       		.uleb128 0x1b
+ 1364 000a 0E       		.uleb128 0xe
+ 1365 000b 55       		.uleb128 0x55
+ 1366 000c 17       		.uleb128 0x17
+ 1367 000d 11       		.uleb128 0x11
+ 1368 000e 01       		.uleb128 0x1
+ 1369 000f 10       		.uleb128 0x10
+ 1370 0010 17       		.uleb128 0x17
+ 1371 0011 00       		.byte	0
+ 1372 0012 00       		.byte	0
+ 1373 0013 02       		.uleb128 0x2
+ 1374 0014 24       		.uleb128 0x24
+ 1375 0015 00       		.byte	0
+ 1376 0016 0B       		.uleb128 0xb
+ 1377 0017 0B       		.uleb128 0xb
+ 1378 0018 3E       		.uleb128 0x3e
+ 1379 0019 0B       		.uleb128 0xb
+ 1380 001a 03       		.uleb128 0x3
+ 1381 001b 0E       		.uleb128 0xe
+ 1382 001c 00       		.byte	0
+ 1383 001d 00       		.byte	0
+ 1384 001e 03       		.uleb128 0x3
+ 1385 001f 16       		.uleb128 0x16
+ 1386 0020 00       		.byte	0
+ 1387 0021 03       		.uleb128 0x3
+ 1388 0022 0E       		.uleb128 0xe
+ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccS0k2Px.s 			page 27
+
+
+ 1389 0023 3A       		.uleb128 0x3a
+ 1390 0024 0B       		.uleb128 0xb
+ 1391 0025 3B       		.uleb128 0x3b
+ 1392 0026 0B       		.uleb128 0xb
+ 1393 0027 49       		.uleb128 0x49
+ 1394 0028 13       		.uleb128 0x13
+ 1395 0029 00       		.byte	0
+ 1396 002a 00       		.byte	0
+ 1397 002b 04       		.uleb128 0x4
+ 1398 002c 24       		.uleb128 0x24
+ 1399 002d 00       		.byte	0
+ 1400 002e 0B       		.uleb128 0xb
+ 1401 002f 0B       		.uleb128 0xb
+ 1402 0030 3E       		.uleb128 0x3e
+ 1403 0031 0B       		.uleb128 0xb
+ 1404 0032 03       		.uleb128 0x3
+ 1405 0033 08       		.uleb128 0x8
+ 1406 0034 00       		.byte	0
+ 1407 0035 00       		.byte	0
+ 1408 0036 05       		.uleb128 0x5
+ 1409 0037 2E       		.uleb128 0x2e
+ 1410 0038 01       		.byte	0x1
+ 1411 0039 3F       		.uleb128 0x3f
+ 1412 003a 19       		.uleb128 0x19
+ 1413 003b 03       		.uleb128 0x3
+ 1414 003c 0E       		.uleb128 0xe
+ 1415 003d 3A       		.uleb128 0x3a
+ 1416 003e 0B       		.uleb128 0xb
+ 1417 003f 3B       		.uleb128 0x3b
+ 1418 0040 0B       		.uleb128 0xb
+ 1419 0041 27       		.uleb128 0x27
+ 1420 0042 19       		.uleb128 0x19
+ 1421 0043 11       		.uleb128 0x11
+ 1422 0044 01       		.uleb128 0x1
+ 1423 0045 12       		.uleb128 0x12
+ 1424 0046 06       		.uleb128 0x6
+ 1425 0047 40       		.uleb128 0x40
+ 1426 0048 18       		.uleb128 0x18
+ 1427 0049 9642     		.uleb128 0x2116
+ 1428 004b 19       		.uleb128 0x19
+ 1429 004c 01       		.uleb128 0x1
+ 1430 004d 13       		.uleb128 0x13
+ 1431 004e 00       		.byte	0
+ 1432 004f 00       		.byte	0
+ 1433 0050 06       		.uleb128 0x6
+ 1434 0051 05       		.uleb128 0x5
+ 1435 0052 00       		.byte	0
+ 1436 0053 03       		.uleb128 0x3
+ 1437 0054 0E       		.uleb128 0xe
+ 1438 0055 3A       		.uleb128 0x3a
+ 1439 0056 0B       		.uleb128 0xb
+ 1440 0057 3B       		.uleb128 0x3b
+ 1441 0058 0B       		.uleb128 0xb
+ 1442 0059 49       		.uleb128 0x49
+ 1443 005a 13       		.uleb128 0x13
+ 1444 005b 02       		.uleb128 0x2
+ 1445 005c 18       		.uleb128 0x18
+ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccS0k2Px.s 			page 28
+
+
+ 1446 005d 00       		.byte	0
+ 1447 005e 00       		.byte	0
+ 1448 005f 07       		.uleb128 0x7
+ 1449 0060 34       		.uleb128 0x34
+ 1450 0061 00       		.byte	0
+ 1451 0062 03       		.uleb128 0x3
+ 1452 0063 08       		.uleb128 0x8
+ 1453 0064 3A       		.uleb128 0x3a
+ 1454 0065 0B       		.uleb128 0xb
+ 1455 0066 3B       		.uleb128 0x3b
+ 1456 0067 0B       		.uleb128 0xb
+ 1457 0068 49       		.uleb128 0x49
+ 1458 0069 13       		.uleb128 0x13
+ 1459 006a 02       		.uleb128 0x2
+ 1460 006b 18       		.uleb128 0x18
+ 1461 006c 00       		.byte	0
+ 1462 006d 00       		.byte	0
+ 1463 006e 08       		.uleb128 0x8
+ 1464 006f 0F       		.uleb128 0xf
+ 1465 0070 00       		.byte	0
+ 1466 0071 0B       		.uleb128 0xb
+ 1467 0072 0B       		.uleb128 0xb
+ 1468 0073 49       		.uleb128 0x49
+ 1469 0074 13       		.uleb128 0x13
+ 1470 0075 00       		.byte	0
+ 1471 0076 00       		.byte	0
+ 1472 0077 09       		.uleb128 0x9
+ 1473 0078 34       		.uleb128 0x34
+ 1474 0079 00       		.byte	0
+ 1475 007a 03       		.uleb128 0x3
+ 1476 007b 0E       		.uleb128 0xe
+ 1477 007c 3A       		.uleb128 0x3a
+ 1478 007d 0B       		.uleb128 0xb
+ 1479 007e 3B       		.uleb128 0x3b
+ 1480 007f 0B       		.uleb128 0xb
+ 1481 0080 49       		.uleb128 0x49
+ 1482 0081 13       		.uleb128 0x13
+ 1483 0082 02       		.uleb128 0x2
+ 1484 0083 18       		.uleb128 0x18
+ 1485 0084 00       		.byte	0
+ 1486 0085 00       		.byte	0
+ 1487 0086 0A       		.uleb128 0xa
+ 1488 0087 2E       		.uleb128 0x2e
+ 1489 0088 01       		.byte	0x1
+ 1490 0089 3F       		.uleb128 0x3f
+ 1491 008a 19       		.uleb128 0x19
+ 1492 008b 03       		.uleb128 0x3
+ 1493 008c 0E       		.uleb128 0xe
+ 1494 008d 3A       		.uleb128 0x3a
+ 1495 008e 0B       		.uleb128 0xb
+ 1496 008f 3B       		.uleb128 0x3b
+ 1497 0090 0B       		.uleb128 0xb
+ 1498 0091 27       		.uleb128 0x27
+ 1499 0092 19       		.uleb128 0x19
+ 1500 0093 11       		.uleb128 0x11
+ 1501 0094 01       		.uleb128 0x1
+ 1502 0095 12       		.uleb128 0x12
+ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccS0k2Px.s 			page 29
+
+
+ 1503 0096 06       		.uleb128 0x6
+ 1504 0097 40       		.uleb128 0x40
+ 1505 0098 18       		.uleb128 0x18
+ 1506 0099 9642     		.uleb128 0x2116
+ 1507 009b 19       		.uleb128 0x19
+ 1508 009c 00       		.byte	0
+ 1509 009d 00       		.byte	0
+ 1510 009e 00       		.byte	0
+ 1511              		.section	.debug_aranges,"",%progbits
+ 1512 0000 64000000 		.4byte	0x64
+ 1513 0004 0200     		.2byte	0x2
+ 1514 0006 00000000 		.4byte	.Ldebug_info0
+ 1515 000a 04       		.byte	0x4
+ 1516 000b 00       		.byte	0
+ 1517 000c 0000     		.2byte	0
+ 1518 000e 0000     		.2byte	0
+ 1519 0010 00000000 		.4byte	.LFB33
+ 1520 0014 84000000 		.4byte	.LFE33-.LFB33
+ 1521 0018 00000000 		.4byte	.LFB34
+ 1522 001c 2E000000 		.4byte	.LFE34-.LFB34
+ 1523 0020 00000000 		.4byte	.LFB35
+ 1524 0024 8A000000 		.4byte	.LFE35-.LFB35
+ 1525 0028 00000000 		.4byte	.LFB36
+ 1526 002c 4C000000 		.4byte	.LFE36-.LFB36
+ 1527 0030 00000000 		.4byte	.LFB37
+ 1528 0034 62000000 		.4byte	.LFE37-.LFB37
+ 1529 0038 00000000 		.4byte	.LFB38
+ 1530 003c 2C000000 		.4byte	.LFE38-.LFB38
+ 1531 0040 00000000 		.4byte	.LFB39
+ 1532 0044 D6000000 		.4byte	.LFE39-.LFB39
+ 1533 0048 00000000 		.4byte	.LFB40
+ 1534 004c 9E000000 		.4byte	.LFE40-.LFB40
+ 1535 0050 00000000 		.4byte	.LFB41
+ 1536 0054 72000000 		.4byte	.LFE41-.LFB41
+ 1537 0058 00000000 		.4byte	.LFB42
+ 1538 005c 2C000000 		.4byte	.LFE42-.LFB42
+ 1539 0060 00000000 		.4byte	0
+ 1540 0064 00000000 		.4byte	0
+ 1541              		.section	.debug_ranges,"",%progbits
+ 1542              	.Ldebug_ranges0:
+ 1543 0000 00000000 		.4byte	.LFB33
+ 1544 0004 84000000 		.4byte	.LFE33
+ 1545 0008 00000000 		.4byte	.LFB34
+ 1546 000c 2E000000 		.4byte	.LFE34
+ 1547 0010 00000000 		.4byte	.LFB35
+ 1548 0014 8A000000 		.4byte	.LFE35
+ 1549 0018 00000000 		.4byte	.LFB36
+ 1550 001c 4C000000 		.4byte	.LFE36
+ 1551 0020 00000000 		.4byte	.LFB37
+ 1552 0024 62000000 		.4byte	.LFE37
+ 1553 0028 00000000 		.4byte	.LFB38
+ 1554 002c 2C000000 		.4byte	.LFE38
+ 1555 0030 00000000 		.4byte	.LFB39
+ 1556 0034 D6000000 		.4byte	.LFE39
+ 1557 0038 00000000 		.4byte	.LFB40
+ 1558 003c 9E000000 		.4byte	.LFE40
+ 1559 0040 00000000 		.4byte	.LFB41
+ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccS0k2Px.s 			page 30
+
+
+ 1560 0044 72000000 		.4byte	.LFE41
+ 1561 0048 00000000 		.4byte	.LFB42
+ 1562 004c 2C000000 		.4byte	.LFE42
+ 1563 0050 00000000 		.4byte	0
+ 1564 0054 00000000 		.4byte	0
+ 1565              		.section	.debug_line,"",%progbits
+ 1566              	.Ldebug_line0:
+ 1567 0000 20020000 		.section	.debug_str,"MS",%progbits,1
+ 1567      02002501 
+ 1567      00000201 
+ 1567      FB0E0D00 
+ 1567      01010101 
+ 1568              	.LASF3:
+ 1569 0000 5F5F7569 		.ascii	"__uint8_t\000"
+ 1569      6E74385F 
+ 1569      7400
+ 1570              	.LASF28:
+ 1571 000a 49324357 		.ascii	"I2CWriteBytes\000"
+ 1571      72697465 
+ 1571      42797465 
+ 1571      7300
+ 1572              	.LASF20:
+ 1573 0018 76616C75 		.ascii	"value\000"
+ 1573      6500
+ 1574              	.LASF34:
+ 1575 001e 2E5C6932 		.ascii	".\\i2cfunctions.c\000"
+ 1575      6366756E 
+ 1575      6374696F 
+ 1575      6E732E63 
+ 1575      00
+ 1576              	.LASF35:
+ 1577 002f 433A5C55 		.ascii	"C:\\Users\\Sam\\OneDrive\\Github\\PSoC-4-Compass-Se"
+ 1577      73657273 
+ 1577      5C53616D 
+ 1577      5C4F6E65 
+ 1577      44726976 
+ 1578 005d 6E736F72 		.ascii	"nsor\\PSoC 4 Compass Modbus Slave.cydsn\000"
+ 1578      5C50536F 
+ 1578      43203420 
+ 1578      436F6D70 
+ 1578      61737320 
+ 1579              	.LASF22:
+ 1580 0084 49324352 		.ascii	"I2CReadByte\000"
+ 1580      65616442 
+ 1580      79746500 
+ 1581              	.LASF13:
+ 1582 0090 666C6F61 		.ascii	"float\000"
+ 1582      7400
+ 1583              	.LASF33:
+ 1584 0096 474E5520 		.ascii	"GNU C 4.8.4 20140526 (release) [ARM/embedded-4_8-br"
+ 1584      4320342E 
+ 1584      382E3420 
+ 1584      32303134 
+ 1584      30353236 
+ 1585 00c9 616E6368 		.ascii	"anch revision 211358] -mcpu=cortex-m0 -mthumb -g -O"
+ 1585      20726576 
+ 1585      6973696F 
+ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccS0k2Px.s 			page 31
+
+
+ 1585      6E203231 
+ 1585      31333538 
+ 1586 00fc 30202D66 		.ascii	"0 -ffunction-sections\000"
+ 1586      66756E63 
+ 1586      74696F6E 
+ 1586      2D736563 
+ 1586      74696F6E 
+ 1587              	.LASF1:
+ 1588 0112 756E7369 		.ascii	"unsigned char\000"
+ 1588      676E6564 
+ 1588      20636861 
+ 1588      7200
+ 1589              	.LASF36:
+ 1590 0120 49324357 		.ascii	"I2CWriteWord\000"
+ 1590      72697465 
+ 1590      576F7264 
+ 1590      00
+ 1591              	.LASF26:
+ 1592 012d 49324352 		.ascii	"I2CReadBit\000"
+ 1592      65616442 
+ 1592      697400
+ 1593              	.LASF18:
+ 1594 0138 72656741 		.ascii	"regAddr\000"
+ 1594      64647200 
+ 1595              	.LASF7:
+ 1596 0140 6C6F6E67 		.ascii	"long unsigned int\000"
+ 1596      20756E73 
+ 1596      69676E65 
+ 1596      6420696E 
+ 1596      7400
+ 1597              	.LASF5:
+ 1598 0152 73686F72 		.ascii	"short unsigned int\000"
+ 1598      7420756E 
+ 1598      7369676E 
+ 1598      65642069 
+ 1598      6E7400
+ 1599              	.LASF29:
+ 1600 0165 49324357 		.ascii	"I2CWriteByte\000"
+ 1600      72697465 
+ 1600      42797465 
+ 1600      00
+ 1601              	.LASF4:
+ 1602 0172 5F5F7569 		.ascii	"__uint16_t\000"
+ 1602      6E743136 
+ 1602      5F7400
+ 1603              	.LASF14:
+ 1604 017d 646F7562 		.ascii	"double\000"
+ 1604      6C6500
+ 1605              	.LASF24:
+ 1606 0184 62697453 		.ascii	"bitStart\000"
+ 1606      74617274 
+ 1606      00
+ 1607              	.LASF31:
+ 1608 018d 49324357 		.ascii	"I2CWriteBit\000"
+ 1608      72697465 
+ 1608      42697400 
+ 1609              	.LASF10:
+ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccS0k2Px.s 			page 32
+
+
+ 1610 0199 756E7369 		.ascii	"unsigned int\000"
+ 1610      676E6564 
+ 1610      20696E74 
+ 1610      00
+ 1611              	.LASF9:
+ 1612 01a6 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 1612      206C6F6E 
+ 1612      6720756E 
+ 1612      7369676E 
+ 1612      65642069 
+ 1613              	.LASF11:
+ 1614 01bd 75696E74 		.ascii	"uint8_t\000"
+ 1614      385F7400 
+ 1615              	.LASF16:
+ 1616 01c5 73697A65 		.ascii	"sizetype\000"
+ 1616      74797065 
+ 1616      00
+ 1617              	.LASF8:
+ 1618 01ce 6C6F6E67 		.ascii	"long long int\000"
+ 1618      206C6F6E 
+ 1618      6720696E 
+ 1618      7400
+ 1619              	.LASF25:
+ 1620 01dc 6D61736B 		.ascii	"mask\000"
+ 1620      00
+ 1621              	.LASF23:
+ 1622 01e1 49324352 		.ascii	"I2CReadBits\000"
+ 1622      65616442 
+ 1622      69747300 
+ 1623              	.LASF2:
+ 1624 01ed 73686F72 		.ascii	"short int\000"
+ 1624      7420696E 
+ 1624      7400
+ 1625              	.LASF17:
+ 1626 01f7 64657641 		.ascii	"devAddr\000"
+ 1626      64647200 
+ 1627              	.LASF12:
+ 1628 01ff 75696E74 		.ascii	"uint16_t\000"
+ 1628      31365F74 
+ 1628      00
+ 1629              	.LASF32:
+ 1630 0208 49324357 		.ascii	"I2CWriteWords\000"
+ 1630      72697465 
+ 1630      576F7264 
+ 1630      7300
+ 1631              	.LASF6:
+ 1632 0216 6C6F6E67 		.ascii	"long int\000"
+ 1632      20696E74 
+ 1632      00
+ 1633              	.LASF15:
+ 1634 021f 63686172 		.ascii	"char\000"
+ 1634      00
+ 1635              	.LASF21:
+ 1636 0224 49324352 		.ascii	"I2CReadBytes\000"
+ 1636      65616442 
+ 1636      79746573 
+ 1636      00
+ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccS0k2Px.s 			page 33
+
+
+ 1637              	.LASF0:
+ 1638 0231 7369676E 		.ascii	"signed char\000"
+ 1638      65642063 
+ 1638      68617200 
+ 1639              	.LASF30:
+ 1640 023d 49324357 		.ascii	"I2CWriteBits\000"
+ 1640      72697465 
+ 1640      42697473 
+ 1640      00
+ 1641              	.LASF27:
+ 1642 024a 6269744E 		.ascii	"bitNum\000"
+ 1642      756D00
+ 1643              	.LASF19:
+ 1644 0251 6C656E67 		.ascii	"length\000"
+ 1644      746800
+ 1645              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.8.4 20140526 (release) [ARM/embedded-4_8-br
