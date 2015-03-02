@@ -1,0 +1,2453 @@
+ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccQQMuZQ.s 			page 1
+
+
+   1              		.cpu cortex-m0
+   2              		.fpu softvfp
+   3              		.eabi_attribute 20, 1
+   4              		.eabi_attribute 21, 1
+   5              		.eabi_attribute 23, 3
+   6              		.eabi_attribute 24, 1
+   7              		.eabi_attribute 25, 1
+   8              		.eabi_attribute 26, 1
+   9              		.eabi_attribute 30, 6
+  10              		.eabi_attribute 34, 0
+  11              		.eabi_attribute 18, 4
+  12              		.code	16
+  13              		.file	"main.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.comm	mb,40,4
+  18              		.comm	encA,1,1
+  19              		.comm	encB,1,1
+  20              		.data
+  21              		.align	2
+  22              		.type	lookup, %object
+  23              		.size	lookup, 16
+  24              	lookup:
+  25 0000 00       		.byte	0
+  26 0001 FF       		.byte	-1
+  27 0002 01       		.byte	1
+  28 0003 00       		.byte	0
+  29 0004 01       		.byte	1
+  30 0005 00       		.byte	0
+  31 0006 00       		.byte	0
+  32 0007 FF       		.byte	-1
+  33 0008 FF       		.byte	-1
+  34 0009 00       		.byte	0
+  35 000a 00       		.byte	0
+  36 000b 01       		.byte	1
+  37 000c 00       		.byte	0
+  38 000d 01       		.byte	1
+  39 000e FF       		.byte	-1
+  40 000f 00       		.byte	0
+  41              		.comm	enc_val,1,1
+  42              		.comm	pidspeed,1,1
+  43              		.comm	op,1,1
+  44              		.global	interruptCount
+  45              		.bss
+  46              		.align	2
+  47              		.type	interruptCount, %object
+  48              		.size	interruptCount, 4
+  49              	interruptCount:
+  50 0000 00000000 		.space	4
+  51              		.comm	encoderCount,4,4
+  52              		.comm	pastEncoderCount,4,4
+  53              		.comm	speedRPS,4,4
+  54              		.comm	speedRPM,4,4
+  55              		.global	ADCResult
+  56              		.align	1
+  57              		.type	ADCResult, %object
+ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccQQMuZQ.s 			page 2
+
+
+  58              		.size	ADCResult, 2
+  59              	ADCResult:
+  60 0004 0000     		.space	2
+  61              		.global	ADCVoltage
+  62 0006 0000     		.align	2
+  63              		.type	ADCVoltage, %object
+  64              		.size	ADCVoltage, 4
+  65              	ADCVoltage:
+  66 0008 00000000 		.space	4
+  67              		.global	__aeabi_i2f
+  68              		.global	__aeabi_fmul
+  69              		.global	__aeabi_f2iz
+  70              		.section	.text.main,"ax",%progbits
+  71              		.align	2
+  72              		.global	main
+  73              		.code	16
+  74              		.thumb_func
+  75              		.type	main, %function
+  76              	main:
+  77              	.LFB33:
+  78              		.file 1 ".\\main.c"
+   1:.\main.c      **** /* ========================================
+   2:.\main.c      ****  *
+   3:.\main.c      ****  * Copyright Sam Walsh, 2015
+   4:.\main.c      ****  * All Rights Reserved.
+   5:.\main.c      ****  *
+   6:.\main.c      ****  * main.c
+   7:.\main.c      ****  *
+   8:.\main.c      ****  * ========================================
+   9:.\main.c      **** */
+  10:.\main.c      **** #include <project.h>
+  11:.\main.c      **** #include <interrupts.h>
+  12:.\main.c      **** #include <modbus.h>
+  13:.\main.c      **** #include <stdio.h>
+  14:.\main.c      **** #include <stdbool.h>
+  15:.\main.c      **** #include <stdlib.h>
+  16:.\main.c      **** #include <math.h>
+  17:.\main.c      **** 
+  18:.\main.c      **** #define  forever    1
+  19:.\main.c      **** #define  forwards   1
+  20:.\main.c      **** #define  backwards  0
+  21:.\main.c      **** 
+  22:.\main.c      **** /* Function Prototypes */
+  23:.\main.c      **** void updateEncoder(void);
+  24:.\main.c      **** void updateModbusPackets(void);
+  25:.\main.c      **** float calculateSpeed(void);
+  26:.\main.c      **** int calculatePID(float, float);
+  27:.\main.c      **** void scaleModbusPIDConstants(void);
+  28:.\main.c      **** 
+  29:.\main.c      **** /* Modbus Variables */
+  30:.\main.c      **** extern unsigned int  holdingReg[50];
+  31:.\main.c      **** extern unsigned char coils[50];
+  32:.\main.c      **** extern unsigned char received[125];
+  33:.\main.c      **** extern unsigned char response[125]; //Enough to return all holding-r's
+  34:.\main.c      **** extern uint8 modbusMessage;
+  35:.\main.c      **** 
+  36:.\main.c      **** /* Typedef modbus packet */
+ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccQQMuZQ.s 			page 3
+
+
+  37:.\main.c      **** struct ModbusData {
+  38:.\main.c      ****    int encoderCount;
+  39:.\main.c      ****    int16 encoderHigh, encoderLow;
+  40:.\main.c      ****    int16 speedRPSScaler;
+  41:.\main.c      ****    int16 speedRPS;
+  42:.\main.c      ****    int16 speedRPM;
+  43:.\main.c      ****    uint16 motorCurrentScaler;
+  44:.\main.c      ****    int16 motorCurrent;
+  45:.\main.c      ****    float PIDScaler;
+  46:.\main.c      ****    float Kp,Ki,Kd; 
+  47:.\main.c      ****    int16 setpointSpeedRPM;
+  48:.\main.c      **** };
+  49:.\main.c      **** struct ModbusData mb;
+  50:.\main.c      **** 
+  51:.\main.c      **** /* Encoder Variables */
+  52:.\main.c      **** extern volatile uint8 encoderInterruptFlag, speedInterruptFlag;
+  53:.\main.c      **** uint8 encA,encB; 
+  54:.\main.c      **** static int8 lookup[] = {0,-1,1,0,1,0,0,-1,-1,0,0,1,0,1,-1,0}; //used for encoder values 
+  55:.\main.c      **** uint8 enc_val,pidspeed; //to store the bit values of the encoders
+  56:.\main.c      **** int8  op;
+  57:.\main.c      **** int   interruptCount = 0;
+  58:.\main.c      **** int   encoderCount,pastEncoderCount;
+  59:.\main.c      **** float speedRPS,speedRPM;
+  60:.\main.c      **** uint16 ADCResult = 0;
+  61:.\main.c      **** float  ADCVoltage = 0;
+  62:.\main.c      **** 
+  63:.\main.c      **** /* Main loop */
+  64:.\main.c      **** int main()
+  65:.\main.c      **** {   
+  79              		.loc 1 65 0
+  80              		.cfi_startproc
+  81 0000 90B5     		push	{r4, r7, lr}
+  82              		.cfi_def_cfa_offset 12
+  83              		.cfi_offset 4, -12
+  84              		.cfi_offset 7, -8
+  85              		.cfi_offset 14, -4
+  86 0002 83B0     		sub	sp, sp, #12
+  87              		.cfi_def_cfa_offset 24
+  88 0004 00AF     		add	r7, sp, #0
+  89              		.cfi_def_cfa_register 7
+  66:.\main.c      ****     /*Clear received array */
+  67:.\main.c      ****     memset(&received[0], 0, sizeof(received));
+  90              		.loc 1 67 0
+  91 0006 6F4B     		ldr	r3, .L10
+  92 0008 181C     		mov	r0, r3
+  93 000a 0021     		mov	r1, #0
+  94 000c 7D22     		mov	r2, #125
+  95 000e FFF7FEFF 		bl	memset
+  68:.\main.c      ****        
+  69:.\main.c      ****     /* Start the SCB UART, Timer and its interrupt */
+  70:.\main.c      ****     ModbusUART_Start();
+  96              		.loc 1 70 0
+  97 0012 FFF7FEFF 		bl	ModbusUART_Start
+  71:.\main.c      ****     MessageReceived_StartEx(messageReceived_isr);  
+  98              		.loc 1 71 0
+  99 0016 6C4B     		ldr	r3, .L10+4
+ 100 0018 181C     		mov	r0, r3
+ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccQQMuZQ.s 			page 4
+
+
+ 101 001a FFF7FEFF 		bl	MessageReceived_StartEx
+  72:.\main.c      ****     writeEnable_Write(0); // receive mode
+ 102              		.loc 1 72 0
+ 103 001e 0020     		mov	r0, #0
+ 104 0020 FFF7FEFF 		bl	writeEnable_Write
+  73:.\main.c      ****     
+  74:.\main.c      ****     /* Start the encoder interrupt */
+  75:.\main.c      ****     EncoderInterrupt_StartEx(encoder_isr);
+ 105              		.loc 1 75 0
+ 106 0024 694B     		ldr	r3, .L10+8
+ 107 0026 181C     		mov	r0, r3
+ 108 0028 FFF7FEFF 		bl	EncoderInterrupt_StartEx
+  76:.\main.c      ****     SpeedInterrupt_StartEx(speed_isr);
+ 109              		.loc 1 76 0
+ 110 002c 684B     		ldr	r3, .L10+12
+ 111 002e 181C     		mov	r0, r3
+ 112 0030 FFF7FEFF 		bl	SpeedInterrupt_StartEx
+  77:.\main.c      ****     SpeedTimer_Start();
+ 113              		.loc 1 77 0
+ 114 0034 FFF7FEFF 		bl	SpeedTimer_Start
+  78:.\main.c      ****     MotorPWM_Start();
+ 115              		.loc 1 78 0
+ 116 0038 FFF7FEFF 		bl	MotorPWM_Start
+  79:.\main.c      ****     MotorPWM_WritePeriod(255);
+ 117              		.loc 1 79 0
+ 118 003c FF20     		mov	r0, #255
+ 119 003e FFF7FEFF 		bl	MotorPWM_WritePeriod
+  80:.\main.c      ****     MotorCurrentADC_Start();
+ 120              		.loc 1 80 0
+ 121 0042 FFF7FEFF 		bl	MotorCurrentADC_Start
+  81:.\main.c      ****     MotorCurrentADC_StartConvert();
+ 122              		.loc 1 81 0
+ 123 0046 FFF7FEFF 		bl	MotorCurrentADC_StartConvert
+  82:.\main.c      ****     MotorCurrentADC_IsEndConversion(MotorCurrentADC_WAIT_FOR_RESULT);
+ 124              		.loc 1 82 0
+ 125 004a 0220     		mov	r0, #2
+ 126 004c FFF7FEFF 		bl	MotorCurrentADC_IsEndConversion
+  83:.\main.c      ****     int i = 0;
+ 127              		.loc 1 83 0
+ 128 0050 0023     		mov	r3, #0
+ 129 0052 7B60     		str	r3, [r7, #4]
+  84:.\main.c      ****     
+  85:.\main.c      ****     CyGlobalIntEnable; /* comment this line to disable global interrupts. */
+ 130              		.loc 1 85 0
+ 131              	@ 85 ".\main.c" 1
+ 132 0054 62B6     		CPSIE   i
+ 133              	@ 0 "" 2
+  86:.\main.c      ****     
+  87:.\main.c      ****     /* Setup Scaling factors for Modbus */ 
+  88:.\main.c      ****     mb.speedRPSScaler = 1000;
+ 134              		.loc 1 88 0
+ 135              		.code	16
+ 136 0056 5F4B     		ldr	r3, .L10+16
+ 137 0058 FA22     		mov	r2, #250
+ 138 005a 9200     		lsl	r2, r2, #2
+ 139 005c 1A81     		strh	r2, [r3, #8]
+  89:.\main.c      ****     mb.motorCurrentScaler = 100;
+ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccQQMuZQ.s 			page 5
+
+
+ 140              		.loc 1 89 0
+ 141 005e 5D4B     		ldr	r3, .L10+16
+ 142 0060 6422     		mov	r2, #100
+ 143 0062 DA81     		strh	r2, [r3, #14]
+  90:.\main.c      ****     //mb.PIDScaler = 1000;
+  91:.\main.c      ****     scaleModbusPIDConstants();
+ 144              		.loc 1 91 0
+ 145 0064 FFF7FEFF 		bl	scaleModbusPIDConstants
+ 146              	.L9:
+  92:.\main.c      ****     
+  93:.\main.c      ****     while(forever)
+  94:.\main.c      ****     {       
+  95:.\main.c      ****         if(modbusMessage)
+ 147              		.loc 1 95 0
+ 148 0068 5B4B     		ldr	r3, .L10+20
+ 149 006a 1B78     		ldrb	r3, [r3]
+ 150 006c 002B     		cmp	r3, #0
+ 151 006e 01D0     		beq	.L2
+  96:.\main.c      ****         {
+  97:.\main.c      ****           processMessage();
+ 152              		.loc 1 97 0
+ 153 0070 FFF7FEFF 		bl	processMessage
+ 154              	.L2:
+  98:.\main.c      ****         }
+  99:.\main.c      ****         
+ 100:.\main.c      ****         if(encoderInterruptFlag)
+ 155              		.loc 1 100 0
+ 156 0074 594B     		ldr	r3, .L10+24
+ 157 0076 1B78     		ldrb	r3, [r3]
+ 158 0078 DBB2     		uxtb	r3, r3
+ 159 007a 002B     		cmp	r3, #0
+ 160 007c 04D0     		beq	.L3
+ 101:.\main.c      ****         {
+ 102:.\main.c      ****             updateEncoder(); 
+ 161              		.loc 1 102 0
+ 162 007e FFF7FEFF 		bl	updateEncoder
+ 103:.\main.c      ****             encoderInterruptFlag = 0;
+ 163              		.loc 1 103 0
+ 164 0082 564B     		ldr	r3, .L10+24
+ 165 0084 0022     		mov	r2, #0
+ 166 0086 1A70     		strb	r2, [r3]
+ 167              	.L3:
+ 104:.\main.c      ****         } 
+ 105:.\main.c      ****         
+ 106:.\main.c      ****         if(speedInterruptFlag)
+ 168              		.loc 1 106 0
+ 169 0088 554B     		ldr	r3, .L10+28
+ 170 008a 1B78     		ldrb	r3, [r3]
+ 171 008c DBB2     		uxtb	r3, r3
+ 172 008e 002B     		cmp	r3, #0
+ 173 0090 61D0     		beq	.L4
+ 107:.\main.c      ****         {          
+ 108:.\main.c      ****             speedRPS = calculateSpeed();
+ 174              		.loc 1 108 0
+ 175 0092 FFF7FEFF 		bl	calculateSpeed
+ 176 0096 021C     		add	r2, r0, #0
+ 177 0098 524B     		ldr	r3, .L10+32
+ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccQQMuZQ.s 			page 6
+
+
+ 178 009a 1A60     		str	r2, [r3]
+ 109:.\main.c      ****             mb.speedRPS = speedRPS * mb.speedRPSScaler;
+ 179              		.loc 1 109 0
+ 180 009c 4D4B     		ldr	r3, .L10+16
+ 181 009e 1B89     		ldrh	r3, [r3, #8]
+ 182 00a0 1BB2     		sxth	r3, r3
+ 183 00a2 181C     		mov	r0, r3
+ 184 00a4 FFF7FEFF 		bl	__aeabi_i2f
+ 185 00a8 021C     		add	r2, r0, #0
+ 186 00aa 4E4B     		ldr	r3, .L10+32
+ 187 00ac 1B68     		ldr	r3, [r3]
+ 188 00ae 101C     		add	r0, r2, #0
+ 189 00b0 191C     		add	r1, r3, #0
+ 190 00b2 FFF7FEFF 		bl	__aeabi_fmul
+ 191 00b6 031C     		add	r3, r0, #0
+ 192 00b8 181C     		add	r0, r3, #0
+ 193 00ba FFF7FEFF 		bl	__aeabi_f2iz
+ 194 00be 031C     		mov	r3, r0
+ 195 00c0 9AB2     		uxth	r2, r3
+ 196 00c2 444B     		ldr	r3, .L10+16
+ 197 00c4 5A81     		strh	r2, [r3, #10]
+ 110:.\main.c      ****             mb.speedRPM = speedRPS * 60;              
+ 198              		.loc 1 110 0
+ 199 00c6 474B     		ldr	r3, .L10+32
+ 200 00c8 1B68     		ldr	r3, [r3]
+ 201 00ca 181C     		add	r0, r3, #0
+ 202 00cc 4649     		ldr	r1, .L10+36
+ 203 00ce FFF7FEFF 		bl	__aeabi_fmul
+ 204 00d2 031C     		add	r3, r0, #0
+ 205 00d4 181C     		add	r0, r3, #0
+ 206 00d6 FFF7FEFF 		bl	__aeabi_f2iz
+ 207 00da 031C     		mov	r3, r0
+ 208 00dc 9AB2     		uxth	r2, r3
+ 209 00de 3D4B     		ldr	r3, .L10+16
+ 210 00e0 9A81     		strh	r2, [r3, #12]
+ 111:.\main.c      ****             speedInterruptFlag = 0;
+ 211              		.loc 1 111 0
+ 212 00e2 3F4B     		ldr	r3, .L10+28
+ 213 00e4 0022     		mov	r2, #0
+ 214 00e6 1A70     		strb	r2, [r3]
+ 112:.\main.c      ****             
+ 113:.\main.c      ****             //everything after this point is pid additions 18/02/15
+ 114:.\main.c      ****             mb.setpointSpeedRPM = holdingReg[12];
+ 215              		.loc 1 114 0
+ 216 00e8 404B     		ldr	r3, .L10+40
+ 217 00ea 1B6B     		ldr	r3, [r3, #48]
+ 218 00ec 9AB2     		uxth	r2, r3
+ 219 00ee 394B     		ldr	r3, .L10+16
+ 220 00f0 9A84     		strh	r2, [r3, #36]
+ 115:.\main.c      ****             pidspeed = calculatePID(abs(mb.speedRPM),abs(mb.setpointSpeedRPM));
+ 221              		.loc 1 115 0
+ 222 00f2 384B     		ldr	r3, .L10+16
+ 223 00f4 9B89     		ldrh	r3, [r3, #12]
+ 224 00f6 1BB2     		sxth	r3, r3
+ 225 00f8 DA17     		asr	r2, r3, #31
+ 226 00fa 9B18     		add	r3, r3, r2
+ 227 00fc 5340     		eor	r3, r2
+ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccQQMuZQ.s 			page 7
+
+
+ 228 00fe 181C     		mov	r0, r3
+ 229 0100 FFF7FEFF 		bl	__aeabi_i2f
+ 230 0104 041C     		add	r4, r0, #0
+ 231 0106 334B     		ldr	r3, .L10+16
+ 232 0108 9B8C     		ldrh	r3, [r3, #36]
+ 233 010a 1BB2     		sxth	r3, r3
+ 234 010c DA17     		asr	r2, r3, #31
+ 235 010e 9B18     		add	r3, r3, r2
+ 236 0110 5340     		eor	r3, r2
+ 237 0112 181C     		mov	r0, r3
+ 238 0114 FFF7FEFF 		bl	__aeabi_i2f
+ 239 0118 031C     		add	r3, r0, #0
+ 240 011a 201C     		add	r0, r4, #0
+ 241 011c 191C     		add	r1, r3, #0
+ 242 011e FFF7FEFF 		bl	calculatePID
+ 243 0122 031C     		mov	r3, r0
+ 244 0124 DAB2     		uxtb	r2, r3
+ 245 0126 324B     		ldr	r3, .L10+44
+ 246 0128 1A70     		strb	r2, [r3]
+ 116:.\main.c      ****             holdingReg[13] = pidspeed;
+ 247              		.loc 1 116 0
+ 248 012a 314B     		ldr	r3, .L10+44
+ 249 012c 1B78     		ldrb	r3, [r3]
+ 250 012e 1A1C     		mov	r2, r3
+ 251 0130 2E4B     		ldr	r3, .L10+40
+ 252 0132 5A63     		str	r2, [r3, #52]
+ 117:.\main.c      ****             //check direction
+ 118:.\main.c      ****             if(mb.setpointSpeedRPM > 0){Direction_Write(forwards);}
+ 253              		.loc 1 118 0
+ 254 0134 274B     		ldr	r3, .L10+16
+ 255 0136 9B8C     		ldrh	r3, [r3, #36]
+ 256 0138 1BB2     		sxth	r3, r3
+ 257 013a 002B     		cmp	r3, #0
+ 258 013c 03DD     		ble	.L5
+ 259              		.loc 1 118 0 is_stmt 0 discriminator 1
+ 260 013e 0120     		mov	r0, #1
+ 261 0140 FFF7FEFF 		bl	Direction_Write
+ 262 0144 02E0     		b	.L6
+ 263              	.L5:
+ 119:.\main.c      ****             else{Direction_Write(backwards);}
+ 264              		.loc 1 119 0 is_stmt 1
+ 265 0146 0020     		mov	r0, #0
+ 266 0148 FFF7FEFF 		bl	Direction_Write
+ 267              	.L6:
+ 120:.\main.c      ****             
+ 121:.\main.c      ****             MotorPWM_WriteCompare(pidspeed);    
+ 268              		.loc 1 121 0
+ 269 014c 284B     		ldr	r3, .L10+44
+ 270 014e 1B78     		ldrb	r3, [r3]
+ 271 0150 181C     		mov	r0, r3
+ 272 0152 FFF7FEFF 		bl	MotorPWM_WriteCompare
+ 273              	.L4:
+ 122:.\main.c      ****         }
+ 123:.\main.c      ****         
+ 124:.\main.c      ****         ADCResult  = MotorCurrentADC_GetResult16(0);
+ 274              		.loc 1 124 0
+ 275 0156 0020     		mov	r0, #0
+ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccQQMuZQ.s 			page 8
+
+
+ 276 0158 FFF7FEFF 		bl	MotorCurrentADC_GetResult16
+ 277 015c 031C     		mov	r3, r0
+ 278 015e 9AB2     		uxth	r2, r3
+ 279 0160 244B     		ldr	r3, .L10+48
+ 280 0162 1A80     		strh	r2, [r3]
+ 125:.\main.c      ****         ADCVoltage = MotorCurrentADC_CountsTo_Volts(0, ADCResult);
+ 281              		.loc 1 125 0
+ 282 0164 234B     		ldr	r3, .L10+48
+ 283 0166 1B88     		ldrh	r3, [r3]
+ 284 0168 9BB2     		uxth	r3, r3
+ 285 016a 1BB2     		sxth	r3, r3
+ 286 016c 0020     		mov	r0, #0
+ 287 016e 191C     		mov	r1, r3
+ 288 0170 FFF7FEFF 		bl	MotorCurrentADC_CountsTo_Volts
+ 289 0174 021C     		add	r2, r0, #0
+ 290 0176 204B     		ldr	r3, .L10+52
+ 291 0178 1A60     		str	r2, [r3]
+ 126:.\main.c      ****         mb.motorCurrent = ADCVoltage * mb.motorCurrentScaler;
+ 292              		.loc 1 126 0
+ 293 017a 164B     		ldr	r3, .L10+16
+ 294 017c DB89     		ldrh	r3, [r3, #14]
+ 295 017e 181C     		mov	r0, r3
+ 296 0180 FFF7FEFF 		bl	__aeabi_i2f
+ 297 0184 021C     		add	r2, r0, #0
+ 298 0186 1C4B     		ldr	r3, .L10+52
+ 299 0188 1B68     		ldr	r3, [r3]
+ 300 018a 101C     		add	r0, r2, #0
+ 301 018c 191C     		add	r1, r3, #0
+ 302 018e FFF7FEFF 		bl	__aeabi_fmul
+ 303 0192 031C     		add	r3, r0, #0
+ 304 0194 181C     		add	r0, r3, #0
+ 305 0196 FFF7FEFF 		bl	__aeabi_f2iz
+ 306 019a 031C     		mov	r3, r0
+ 307 019c 9AB2     		uxth	r2, r3
+ 308 019e 0D4B     		ldr	r3, .L10+16
+ 309 01a0 1A82     		strh	r2, [r3, #16]
+ 127:.\main.c      ****         
+ 128:.\main.c      ****         if(i > 1000)
+ 310              		.loc 1 128 0
+ 311 01a2 7A68     		ldr	r2, [r7, #4]
+ 312 01a4 FA23     		mov	r3, #250
+ 313 01a6 9B00     		lsl	r3, r3, #2
+ 314 01a8 9A42     		cmp	r2, r3
+ 315 01aa 04DD     		ble	.L7
+ 129:.\main.c      ****         {
+ 130:.\main.c      ****             //I don't want to update PID parameters every loop as its all floating point and time c
+ 131:.\main.c      ****             i = 0;
+ 316              		.loc 1 131 0
+ 317 01ac 0023     		mov	r3, #0
+ 318 01ae 7B60     		str	r3, [r7, #4]
+ 132:.\main.c      ****             scaleModbusPIDConstants();
+ 319              		.loc 1 132 0
+ 320 01b0 FFF7FEFF 		bl	scaleModbusPIDConstants
+ 321 01b4 02E0     		b	.L8
+ 322              	.L7:
+ 133:.\main.c      ****         }
+ 134:.\main.c      ****         else
+ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccQQMuZQ.s 			page 9
+
+
+ 135:.\main.c      ****         {
+ 136:.\main.c      ****             i++;
+ 323              		.loc 1 136 0
+ 324 01b6 7B68     		ldr	r3, [r7, #4]
+ 325 01b8 0133     		add	r3, r3, #1
+ 326 01ba 7B60     		str	r3, [r7, #4]
+ 327              	.L8:
+ 137:.\main.c      ****         }
+ 138:.\main.c      ****          
+ 139:.\main.c      ****         updateModbusPackets();  
+ 328              		.loc 1 139 0
+ 329 01bc FFF7FEFF 		bl	updateModbusPackets
+ 140:.\main.c      ****     }
+ 330              		.loc 1 140 0
+ 331 01c0 52E7     		b	.L9
+ 332              	.L11:
+ 333 01c2 C046     		.align	2
+ 334              	.L10:
+ 335 01c4 00000000 		.word	received
+ 336 01c8 00000000 		.word	messageReceived_isr
+ 337 01cc 00000000 		.word	encoder_isr
+ 338 01d0 00000000 		.word	speed_isr
+ 339 01d4 00000000 		.word	mb
+ 340 01d8 00000000 		.word	modbusMessage
+ 341 01dc 00000000 		.word	encoderInterruptFlag
+ 342 01e0 00000000 		.word	speedInterruptFlag
+ 343 01e4 00000000 		.word	speedRPS
+ 344 01e8 00007042 		.word	1114636288
+ 345 01ec 00000000 		.word	holdingReg
+ 346 01f0 00000000 		.word	pidspeed
+ 347 01f4 00000000 		.word	ADCResult
+ 348 01f8 00000000 		.word	ADCVoltage
+ 349              		.cfi_endproc
+ 350              	.LFE33:
+ 351              		.size	main, .-main
+ 352              		.section	.text.updateEncoder,"ax",%progbits
+ 353              		.align	2
+ 354              		.global	updateEncoder
+ 355              		.code	16
+ 356              		.thumb_func
+ 357              		.type	updateEncoder, %function
+ 358              	updateEncoder:
+ 359              	.LFB34:
+ 141:.\main.c      **** }
+ 142:.\main.c      **** 
+ 143:.\main.c      **** void updateEncoder(void)
+ 144:.\main.c      **** {
+ 360              		.loc 1 144 0
+ 361              		.cfi_startproc
+ 362 0000 80B5     		push	{r7, lr}
+ 363              		.cfi_def_cfa_offset 8
+ 364              		.cfi_offset 7, -8
+ 365              		.cfi_offset 14, -4
+ 366 0002 00AF     		add	r7, sp, #0
+ 367              		.cfi_def_cfa_register 7
+ 145:.\main.c      ****     enc_val  = enc_val << 2;            //store last 2 values 
+ 368              		.loc 1 145 0
+ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccQQMuZQ.s 			page 10
+
+
+ 369 0004 304B     		ldr	r3, .L13
+ 370 0006 1B78     		ldrb	r3, [r3]
+ 371 0008 9B00     		lsl	r3, r3, #2
+ 372 000a DAB2     		uxtb	r2, r3
+ 373 000c 2E4B     		ldr	r3, .L13
+ 374 000e 1A70     		strb	r2, [r3]
+ 146:.\main.c      ****     enc_val &= 0x0F;
+ 375              		.loc 1 146 0
+ 376 0010 2D4B     		ldr	r3, .L13
+ 377 0012 1A78     		ldrb	r2, [r3]
+ 378 0014 0F23     		mov	r3, #15
+ 379 0016 1340     		and	r3, r2
+ 380 0018 DAB2     		uxtb	r2, r3
+ 381 001a 2B4B     		ldr	r3, .L13
+ 382 001c 1A70     		strb	r2, [r3]
+ 147:.\main.c      ****     encA     = ChannelA_Read();
+ 383              		.loc 1 147 0
+ 384 001e FFF7FEFF 		bl	ChannelA_Read
+ 385 0022 031C     		mov	r3, r0
+ 386 0024 1A1C     		mov	r2, r3
+ 387 0026 294B     		ldr	r3, .L13+4
+ 388 0028 1A70     		strb	r2, [r3]
+ 148:.\main.c      ****     encB     = ChannelB_Read();
+ 389              		.loc 1 148 0
+ 390 002a FFF7FEFF 		bl	ChannelB_Read
+ 391 002e 031C     		mov	r3, r0
+ 392 0030 1A1C     		mov	r2, r3
+ 393 0032 274B     		ldr	r3, .L13+8
+ 394 0034 1A70     		strb	r2, [r3]
+ 149:.\main.c      ****     encA    &= 0x01; 
+ 395              		.loc 1 149 0
+ 396 0036 254B     		ldr	r3, .L13+4
+ 397 0038 1A78     		ldrb	r2, [r3]
+ 398 003a 0123     		mov	r3, #1
+ 399 003c 1340     		and	r3, r2
+ 400 003e DAB2     		uxtb	r2, r3
+ 401 0040 224B     		ldr	r3, .L13+4
+ 402 0042 1A70     		strb	r2, [r3]
+ 150:.\main.c      ****     encB    &= 0x01;                    //mask off everything except bit 1;
+ 403              		.loc 1 150 0
+ 404 0044 224B     		ldr	r3, .L13+8
+ 405 0046 1A78     		ldrb	r2, [r3]
+ 406 0048 0123     		mov	r3, #1
+ 407 004a 1340     		and	r3, r2
+ 408 004c DAB2     		uxtb	r2, r3
+ 409 004e 204B     		ldr	r3, .L13+8
+ 410 0050 1A70     		strb	r2, [r3]
+ 151:.\main.c      ****     enc_val |= ((encA << 1) | encB);    //shift A, merge with B then merge both with past values
+ 411              		.loc 1 151 0
+ 412 0052 1E4B     		ldr	r3, .L13+4
+ 413 0054 1B78     		ldrb	r3, [r3]
+ 414 0056 5B00     		lsl	r3, r3, #1
+ 415 0058 DAB2     		uxtb	r2, r3
+ 416 005a 1D4B     		ldr	r3, .L13+8
+ 417 005c 1B78     		ldrb	r3, [r3]
+ 418 005e DBB2     		uxtb	r3, r3
+ 419 0060 1343     		orr	r3, r2
+ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccQQMuZQ.s 			page 11
+
+
+ 420 0062 DAB2     		uxtb	r2, r3
+ 421 0064 184B     		ldr	r3, .L13
+ 422 0066 1B78     		ldrb	r3, [r3]
+ 423 0068 DBB2     		uxtb	r3, r3
+ 424 006a 1343     		orr	r3, r2
+ 425 006c DBB2     		uxtb	r3, r3
+ 426 006e DAB2     		uxtb	r2, r3
+ 427 0070 154B     		ldr	r3, .L13
+ 428 0072 1A70     		strb	r2, [r3]
+ 152:.\main.c      ****     op = lookup[enc_val];
+ 429              		.loc 1 152 0
+ 430 0074 144B     		ldr	r3, .L13
+ 431 0076 1B78     		ldrb	r3, [r3]
+ 432 0078 164A     		ldr	r2, .L13+12
+ 433 007a D25C     		ldrb	r2, [r2, r3]
+ 434 007c 164B     		ldr	r3, .L13+16
+ 435 007e 1A70     		strb	r2, [r3]
+ 153:.\main.c      ****     mb.encoderCount += op;              //store count in 32 bit value
+ 436              		.loc 1 153 0
+ 437 0080 164B     		ldr	r3, .L13+20
+ 438 0082 1A68     		ldr	r2, [r3]
+ 439 0084 144B     		ldr	r3, .L13+16
+ 440 0086 1B78     		ldrb	r3, [r3]
+ 441 0088 5BB2     		sxtb	r3, r3
+ 442 008a D218     		add	r2, r2, r3
+ 443 008c 134B     		ldr	r3, .L13+20
+ 444 008e 1A60     		str	r2, [r3]
+ 154:.\main.c      ****     mb.encoderLow = mb.encoderCount & 0xffff; //store in 2 bytes for modbus
+ 445              		.loc 1 154 0
+ 446 0090 124B     		ldr	r3, .L13+20
+ 447 0092 1B68     		ldr	r3, [r3]
+ 448 0094 9AB2     		uxth	r2, r3
+ 449 0096 114B     		ldr	r3, .L13+20
+ 450 0098 DA80     		strh	r2, [r3, #6]
+ 155:.\main.c      ****     mb.encoderHigh = (mb.encoderCount >> 16) & 0xffff; 
+ 451              		.loc 1 155 0
+ 452 009a 104B     		ldr	r3, .L13+20
+ 453 009c 1B68     		ldr	r3, [r3]
+ 454 009e 1B0C     		lsr	r3, r3, #16
+ 455 00a0 9AB2     		uxth	r2, r3
+ 456 00a2 0E4B     		ldr	r3, .L13+20
+ 457 00a4 9A80     		strh	r2, [r3, #4]
+ 156:.\main.c      ****     //This bit is just for debugging to make sure the bytes go back into a 32 bit value
+ 157:.\main.c      ****     encoderCount = 0;
+ 458              		.loc 1 157 0
+ 459 00a6 0E4B     		ldr	r3, .L13+24
+ 460 00a8 0022     		mov	r2, #0
+ 461 00aa 1A60     		str	r2, [r3]
+ 158:.\main.c      ****     encoderCount |= mb.encoderLow;
+ 462              		.loc 1 158 0
+ 463 00ac 0B4B     		ldr	r3, .L13+20
+ 464 00ae DB88     		ldrh	r3, [r3, #6]
+ 465 00b0 1AB2     		sxth	r2, r3
+ 466 00b2 0B4B     		ldr	r3, .L13+24
+ 467 00b4 1B68     		ldr	r3, [r3]
+ 468 00b6 1A43     		orr	r2, r3
+ 469 00b8 094B     		ldr	r3, .L13+24
+ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccQQMuZQ.s 			page 12
+
+
+ 470 00ba 1A60     		str	r2, [r3]
+ 159:.\main.c      ****     encoderCount |= ((mb.encoderCount << 16) & 0xff);
+ 471              		.loc 1 159 0
+ 472 00bc 084B     		ldr	r3, .L13+24
+ 473 00be 1A68     		ldr	r2, [r3]
+ 474 00c0 074B     		ldr	r3, .L13+24
+ 475 00c2 1A60     		str	r2, [r3]
+ 160:.\main.c      ****     
+ 161:.\main.c      **** }
+ 476              		.loc 1 161 0
+ 477 00c4 BD46     		mov	sp, r7
+ 478              		@ sp needed
+ 479 00c6 80BD     		pop	{r7, pc}
+ 480              	.L14:
+ 481              		.align	2
+ 482              	.L13:
+ 483 00c8 00000000 		.word	enc_val
+ 484 00cc 00000000 		.word	encA
+ 485 00d0 00000000 		.word	encB
+ 486 00d4 00000000 		.word	lookup
+ 487 00d8 00000000 		.word	op
+ 488 00dc 00000000 		.word	mb
+ 489 00e0 00000000 		.word	encoderCount
+ 490              		.cfi_endproc
+ 491              	.LFE34:
+ 492              		.size	updateEncoder, .-updateEncoder
+ 493              		.global	__aeabi_ui2f
+ 494              		.global	__aeabi_fdiv
+ 495              		.global	__aeabi_i2d
+ 496              		.global	__aeabi_ddiv
+ 497              		.global	__aeabi_f2d
+ 498              		.global	__aeabi_d2f
+ 499              		.section	.text.calculateSpeed,"ax",%progbits
+ 500              		.align	2
+ 501              		.global	calculateSpeed
+ 502              		.code	16
+ 503              		.thumb_func
+ 504              		.type	calculateSpeed, %function
+ 505              	calculateSpeed:
+ 506              	.LFB35:
+ 162:.\main.c      **** 
+ 163:.\main.c      **** float calculateSpeed(void)
+ 164:.\main.c      **** {
+ 507              		.loc 1 164 0
+ 508              		.cfi_startproc
+ 509 0000 F0B5     		push	{r4, r5, r6, r7, lr}
+ 510              		.cfi_def_cfa_offset 20
+ 511              		.cfi_offset 4, -20
+ 512              		.cfi_offset 5, -16
+ 513              		.cfi_offset 6, -12
+ 514              		.cfi_offset 7, -8
+ 515              		.cfi_offset 14, -4
+ 516 0002 85B0     		sub	sp, sp, #20
+ 517              		.cfi_def_cfa_offset 40
+ 518 0004 00AF     		add	r7, sp, #0
+ 519              		.cfi_def_cfa_register 7
+ 165:.\main.c      ****     //Velocity(RPS) = ((current count/pulses per revolution))/Time interval
+ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccQQMuZQ.s 			page 13
+
+
+ 166:.\main.c      ****     int counts;
+ 167:.\main.c      ****     float speed, timePeriod; //used for doing the calcs
+ 168:.\main.c      ****     counts = mb.encoderCount - pastEncoderCount;
+ 520              		.loc 1 168 0
+ 521 0006 224B     		ldr	r3, .L17+8
+ 522 0008 1A68     		ldr	r2, [r3]
+ 523 000a 224B     		ldr	r3, .L17+12
+ 524 000c 1B68     		ldr	r3, [r3]
+ 525 000e D31A     		sub	r3, r2, r3
+ 526 0010 FB60     		str	r3, [r7, #12]
+ 169:.\main.c      ****     timePeriod = (float)SpeedTimer_ReadPeriod()/1000.0; //(1KHz clock)
+ 527              		.loc 1 169 0
+ 528 0012 FFF7FEFF 		bl	SpeedTimer_ReadPeriod
+ 529 0016 031C     		mov	r3, r0
+ 530 0018 181C     		mov	r0, r3
+ 531 001a FFF7FEFF 		bl	__aeabi_ui2f
+ 532 001e 031C     		add	r3, r0, #0
+ 533 0020 181C     		add	r0, r3, #0
+ 534 0022 1D49     		ldr	r1, .L17+16
+ 535 0024 FFF7FEFF 		bl	__aeabi_fdiv
+ 536 0028 031C     		add	r3, r0, #0
+ 537 002a BB60     		str	r3, [r7, #8]
+ 170:.\main.c      ****     speed = (counts/333.33)/timePeriod;
+ 538              		.loc 1 170 0
+ 539 002c F868     		ldr	r0, [r7, #12]
+ 540 002e FFF7FEFF 		bl	__aeabi_i2d
+ 541 0032 031C     		mov	r3, r0
+ 542 0034 0C1C     		mov	r4, r1
+ 543 0036 181C     		mov	r0, r3
+ 544 0038 211C     		mov	r1, r4
+ 545 003a 144B     		ldr	r3, .L17+4
+ 546 003c 124A     		ldr	r2, .L17
+ 547 003e FFF7FEFF 		bl	__aeabi_ddiv
+ 548 0042 031C     		mov	r3, r0
+ 549 0044 0C1C     		mov	r4, r1
+ 550 0046 1D1C     		mov	r5, r3
+ 551 0048 261C     		mov	r6, r4
+ 552 004a B868     		ldr	r0, [r7, #8]
+ 553 004c FFF7FEFF 		bl	__aeabi_f2d
+ 554 0050 031C     		mov	r3, r0
+ 555 0052 0C1C     		mov	r4, r1
+ 556 0054 281C     		mov	r0, r5
+ 557 0056 311C     		mov	r1, r6
+ 558 0058 1A1C     		mov	r2, r3
+ 559 005a 231C     		mov	r3, r4
+ 560 005c FFF7FEFF 		bl	__aeabi_ddiv
+ 561 0060 031C     		mov	r3, r0
+ 562 0062 0C1C     		mov	r4, r1
+ 563 0064 181C     		mov	r0, r3
+ 564 0066 211C     		mov	r1, r4
+ 565 0068 FFF7FEFF 		bl	__aeabi_d2f
+ 566 006c 031C     		add	r3, r0, #0
+ 567 006e 7B60     		str	r3, [r7, #4]
+ 171:.\main.c      ****     pastEncoderCount = mb.encoderCount; //used for speed calculation
+ 568              		.loc 1 171 0
+ 569 0070 074B     		ldr	r3, .L17+8
+ 570 0072 1A68     		ldr	r2, [r3]
+ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccQQMuZQ.s 			page 14
+
+
+ 571 0074 074B     		ldr	r3, .L17+12
+ 572 0076 1A60     		str	r2, [r3]
+ 172:.\main.c      ****     return speed;
+ 573              		.loc 1 172 0
+ 574 0078 7B68     		ldr	r3, [r7, #4]
+ 173:.\main.c      **** }
+ 575              		.loc 1 173 0
+ 576 007a 181C     		add	r0, r3, #0
+ 577 007c BD46     		mov	sp, r7
+ 578 007e 05B0     		add	sp, sp, #20
+ 579              		@ sp needed
+ 580 0080 F0BD     		pop	{r4, r5, r6, r7, pc}
+ 581              	.L18:
+ 582 0082 C046C046 		.align	3
+ 582      C046
+ 583              	.L17:
+ 584 0088 E17A14AE 		.word	-1374389535
+ 585 008c 47D57440 		.word	1081398599
+ 586 0090 00000000 		.word	mb
+ 587 0094 00000000 		.word	pastEncoderCount
+ 588 0098 00007A44 		.word	1148846080
+ 589              		.cfi_endproc
+ 590              	.LFE35:
+ 591              		.size	calculateSpeed, .-calculateSpeed
+ 592 009c C046C046 		.section	.text.scaleModbusPIDConstants,"ax",%progbits
+ 593              		.align	2
+ 594              		.global	scaleModbusPIDConstants
+ 595              		.code	16
+ 596              		.thumb_func
+ 597              		.type	scaleModbusPIDConstants, %function
+ 598              	scaleModbusPIDConstants:
+ 599              	.LFB36:
+ 174:.\main.c      **** 
+ 175:.\main.c      **** void scaleModbusPIDConstants(void)
+ 176:.\main.c      **** {
+ 600              		.loc 1 176 0
+ 601              		.cfi_startproc
+ 602 0000 80B5     		push	{r7, lr}
+ 603              		.cfi_def_cfa_offset 8
+ 604              		.cfi_offset 7, -8
+ 605              		.cfi_offset 14, -4
+ 606 0002 00AF     		add	r7, sp, #0
+ 607              		.cfi_def_cfa_register 7
+ 177:.\main.c      ****     //Need to actually read the holding registers and do the divide but for now lets
+ 178:.\main.c      ****     //leave this as just setting the values.
+ 179:.\main.c      ****     if(holdingReg[8] == 0)
+ 608              		.loc 1 179 0
+ 609 0004 254B     		ldr	r3, .L22
+ 610 0006 1B6A     		ldr	r3, [r3, #32]
+ 611 0008 002B     		cmp	r3, #0
+ 612 000a 0CD1     		bne	.L20
+ 180:.\main.c      ****     {
+ 181:.\main.c      ****         //scaler hasnt been set go with defaults
+ 182:.\main.c      ****         mb.PIDScaler = 1000;
+ 613              		.loc 1 182 0
+ 614 000c 244B     		ldr	r3, .L22+4
+ 615 000e 254A     		ldr	r2, .L22+8
+ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccQQMuZQ.s 			page 15
+
+
+ 616 0010 5A61     		str	r2, [r3, #20]
+ 183:.\main.c      ****         mb.Kp = 0.9;
+ 617              		.loc 1 183 0
+ 618 0012 234B     		ldr	r3, .L22+4
+ 619 0014 244A     		ldr	r2, .L22+12
+ 620 0016 9A61     		str	r2, [r3, #24]
+ 184:.\main.c      ****         mb.Ki = 0.2;
+ 621              		.loc 1 184 0
+ 622 0018 214B     		ldr	r3, .L22+4
+ 623 001a 244A     		ldr	r2, .L22+16
+ 624 001c DA61     		str	r2, [r3, #28]
+ 185:.\main.c      ****         mb.Kd = 0;
+ 625              		.loc 1 185 0
+ 626 001e 204B     		ldr	r3, .L22+4
+ 627 0020 0022     		mov	r2, #0
+ 628 0022 1A62     		str	r2, [r3, #32]
+ 629 0024 37E0     		b	.L19
+ 630              	.L20:
+ 186:.\main.c      ****     }
+ 187:.\main.c      ****     else
+ 188:.\main.c      ****     {
+ 189:.\main.c      ****         //scaler hasnt been set go with defaults
+ 190:.\main.c      ****         mb.PIDScaler = holdingReg[8];
+ 631              		.loc 1 190 0
+ 632 0026 1D4B     		ldr	r3, .L22
+ 633 0028 1B6A     		ldr	r3, [r3, #32]
+ 634 002a 181C     		mov	r0, r3
+ 635 002c FFF7FEFF 		bl	__aeabi_ui2f
+ 636 0030 021C     		add	r2, r0, #0
+ 637 0032 1B4B     		ldr	r3, .L22+4
+ 638 0034 5A61     		str	r2, [r3, #20]
+ 191:.\main.c      ****         mb.Kp = holdingReg[9]/mb.PIDScaler;
+ 639              		.loc 1 191 0
+ 640 0036 194B     		ldr	r3, .L22
+ 641 0038 5B6A     		ldr	r3, [r3, #36]
+ 642 003a 181C     		mov	r0, r3
+ 643 003c FFF7FEFF 		bl	__aeabi_ui2f
+ 644 0040 021C     		add	r2, r0, #0
+ 645 0042 174B     		ldr	r3, .L22+4
+ 646 0044 5B69     		ldr	r3, [r3, #20]
+ 647 0046 101C     		add	r0, r2, #0
+ 648 0048 191C     		add	r1, r3, #0
+ 649 004a FFF7FEFF 		bl	__aeabi_fdiv
+ 650 004e 031C     		add	r3, r0, #0
+ 651 0050 1A1C     		add	r2, r3, #0
+ 652 0052 134B     		ldr	r3, .L22+4
+ 653 0054 9A61     		str	r2, [r3, #24]
+ 192:.\main.c      ****         mb.Ki = holdingReg[10]/mb.PIDScaler;
+ 654              		.loc 1 192 0
+ 655 0056 114B     		ldr	r3, .L22
+ 656 0058 9B6A     		ldr	r3, [r3, #40]
+ 657 005a 181C     		mov	r0, r3
+ 658 005c FFF7FEFF 		bl	__aeabi_ui2f
+ 659 0060 021C     		add	r2, r0, #0
+ 660 0062 0F4B     		ldr	r3, .L22+4
+ 661 0064 5B69     		ldr	r3, [r3, #20]
+ 662 0066 101C     		add	r0, r2, #0
+ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccQQMuZQ.s 			page 16
+
+
+ 663 0068 191C     		add	r1, r3, #0
+ 664 006a FFF7FEFF 		bl	__aeabi_fdiv
+ 665 006e 031C     		add	r3, r0, #0
+ 666 0070 1A1C     		add	r2, r3, #0
+ 667 0072 0B4B     		ldr	r3, .L22+4
+ 668 0074 DA61     		str	r2, [r3, #28]
+ 193:.\main.c      ****         mb.Kd = holdingReg[11]/mb.PIDScaler;
+ 669              		.loc 1 193 0
+ 670 0076 094B     		ldr	r3, .L22
+ 671 0078 DB6A     		ldr	r3, [r3, #44]
+ 672 007a 181C     		mov	r0, r3
+ 673 007c FFF7FEFF 		bl	__aeabi_ui2f
+ 674 0080 021C     		add	r2, r0, #0
+ 675 0082 074B     		ldr	r3, .L22+4
+ 676 0084 5B69     		ldr	r3, [r3, #20]
+ 677 0086 101C     		add	r0, r2, #0
+ 678 0088 191C     		add	r1, r3, #0
+ 679 008a FFF7FEFF 		bl	__aeabi_fdiv
+ 680 008e 031C     		add	r3, r0, #0
+ 681 0090 1A1C     		add	r2, r3, #0
+ 682 0092 034B     		ldr	r3, .L22+4
+ 683 0094 1A62     		str	r2, [r3, #32]
+ 684              	.L19:
+ 194:.\main.c      ****     }
+ 195:.\main.c      **** 
+ 196:.\main.c      **** }
+ 685              		.loc 1 196 0
+ 686 0096 BD46     		mov	sp, r7
+ 687              		@ sp needed
+ 688 0098 80BD     		pop	{r7, pc}
+ 689              	.L23:
+ 690 009a C046     		.align	2
+ 691              	.L22:
+ 692 009c 00000000 		.word	holdingReg
+ 693 00a0 00000000 		.word	mb
+ 694 00a4 00007A44 		.word	1148846080
+ 695 00a8 6666663F 		.word	1063675494
+ 696 00ac CDCC4C3E 		.word	1045220557
+ 697              		.cfi_endproc
+ 698              	.LFE36:
+ 699              		.size	scaleModbusPIDConstants, .-scaleModbusPIDConstants
+ 700              		.global	__aeabi_fsub
+ 701              		.global	__aeabi_fadd
+ 702              		.global	__aeabi_dmul
+ 703              		.section	.text.calculatePID,"ax",%progbits
+ 704              		.align	2
+ 705              		.global	calculatePID
+ 706              		.code	16
+ 707              		.thumb_func
+ 708              		.type	calculatePID, %function
+ 709              	calculatePID:
+ 710              	.LFB37:
+ 197:.\main.c      **** 
+ 198:.\main.c      **** int calculatePID(float currentValue, float setpoint)
+ 199:.\main.c      **** {
+ 711              		.loc 1 199 0
+ 712              		.cfi_startproc
+ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccQQMuZQ.s 			page 17
+
+
+ 713 0000 90B5     		push	{r4, r7, lr}
+ 714              		.cfi_def_cfa_offset 12
+ 715              		.cfi_offset 4, -12
+ 716              		.cfi_offset 7, -8
+ 717              		.cfi_offset 14, -4
+ 718 0002 87B0     		sub	sp, sp, #28
+ 719              		.cfi_def_cfa_offset 40
+ 720 0004 00AF     		add	r7, sp, #0
+ 721              		.cfi_def_cfa_register 7
+ 722 0006 7860     		str	r0, [r7, #4]
+ 723 0008 3960     		str	r1, [r7]
+ 200:.\main.c      ****     static float integral   = 0;
+ 201:.\main.c      ****     static float derivative = 0;
+ 202:.\main.c      ****     static float lastError = 0;
+ 203:.\main.c      **** 
+ 204:.\main.c      ****     float error, fcontrol = 0.0;
+ 724              		.loc 1 204 0
+ 725 000a 0023     		mov	r3, #0
+ 726 000c 3B61     		str	r3, [r7, #16]
+ 205:.\main.c      ****     int   control = 0;
+ 727              		.loc 1 205 0
+ 728 000e 0023     		mov	r3, #0
+ 729 0010 7B61     		str	r3, [r7, #20]
+ 206:.\main.c      ****     
+ 207:.\main.c      ****     error = setpoint - currentValue;
+ 730              		.loc 1 207 0
+ 731 0012 3868     		ldr	r0, [r7]
+ 732 0014 7968     		ldr	r1, [r7, #4]
+ 733 0016 FFF7FEFF 		bl	__aeabi_fsub
+ 734 001a 031C     		add	r3, r0, #0
+ 735 001c FB60     		str	r3, [r7, #12]
+ 208:.\main.c      ****     integral = (integral + error);
+ 736              		.loc 1 208 0
+ 737 001e 344B     		ldr	r3, .L28+8
+ 738 0020 1B68     		ldr	r3, [r3]
+ 739 0022 181C     		add	r0, r3, #0
+ 740 0024 F968     		ldr	r1, [r7, #12]
+ 741 0026 FFF7FEFF 		bl	__aeabi_fadd
+ 742 002a 031C     		add	r3, r0, #0
+ 743 002c 1A1C     		add	r2, r3, #0
+ 744 002e 304B     		ldr	r3, .L28+8
+ 745 0030 1A60     		str	r2, [r3]
+ 209:.\main.c      ****     integral = 0.6 * integral; //damping integral 
+ 746              		.loc 1 209 0
+ 747 0032 2F4B     		ldr	r3, .L28+8
+ 748 0034 1B68     		ldr	r3, [r3]
+ 749 0036 181C     		add	r0, r3, #0
+ 750 0038 FFF7FEFF 		bl	__aeabi_f2d
+ 751 003c 031C     		mov	r3, r0
+ 752 003e 0C1C     		mov	r4, r1
+ 753 0040 181C     		mov	r0, r3
+ 754 0042 211C     		mov	r1, r4
+ 755 0044 294B     		ldr	r3, .L28+4
+ 756 0046 284A     		ldr	r2, .L28
+ 757 0048 FFF7FEFF 		bl	__aeabi_dmul
+ 758 004c 031C     		mov	r3, r0
+ 759 004e 0C1C     		mov	r4, r1
+ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccQQMuZQ.s 			page 18
+
+
+ 760 0050 181C     		mov	r0, r3
+ 761 0052 211C     		mov	r1, r4
+ 762 0054 FFF7FEFF 		bl	__aeabi_d2f
+ 763 0058 021C     		add	r2, r0, #0
+ 764 005a 254B     		ldr	r3, .L28+8
+ 765 005c 1A60     		str	r2, [r3]
+ 210:.\main.c      **** 	derivative = (error - lastError);
+ 766              		.loc 1 210 0
+ 767 005e 254B     		ldr	r3, .L28+12
+ 768 0060 1B68     		ldr	r3, [r3]
+ 769 0062 F868     		ldr	r0, [r7, #12]
+ 770 0064 191C     		add	r1, r3, #0
+ 771 0066 FFF7FEFF 		bl	__aeabi_fsub
+ 772 006a 031C     		add	r3, r0, #0
+ 773 006c 1A1C     		add	r2, r3, #0
+ 774 006e 224B     		ldr	r3, .L28+16
+ 775 0070 1A60     		str	r2, [r3]
+ 211:.\main.c      **** 	fcontrol =  (mb.Kp * error); 
+ 776              		.loc 1 211 0
+ 777 0072 224B     		ldr	r3, .L28+20
+ 778 0074 9B69     		ldr	r3, [r3, #24]
+ 779 0076 181C     		add	r0, r3, #0
+ 780 0078 F968     		ldr	r1, [r7, #12]
+ 781 007a FFF7FEFF 		bl	__aeabi_fmul
+ 782 007e 031C     		add	r3, r0, #0
+ 783 0080 3B61     		str	r3, [r7, #16]
+ 212:.\main.c      **** 	fcontrol += (mb.Kd * derivative);
+ 784              		.loc 1 212 0
+ 785 0082 1E4B     		ldr	r3, .L28+20
+ 786 0084 1A6A     		ldr	r2, [r3, #32]
+ 787 0086 1C4B     		ldr	r3, .L28+16
+ 788 0088 1B68     		ldr	r3, [r3]
+ 789 008a 101C     		add	r0, r2, #0
+ 790 008c 191C     		add	r1, r3, #0
+ 791 008e FFF7FEFF 		bl	__aeabi_fmul
+ 792 0092 031C     		add	r3, r0, #0
+ 793 0094 3869     		ldr	r0, [r7, #16]
+ 794 0096 191C     		add	r1, r3, #0
+ 795 0098 FFF7FEFF 		bl	__aeabi_fadd
+ 796 009c 031C     		add	r3, r0, #0
+ 797 009e 3B61     		str	r3, [r7, #16]
+ 213:.\main.c      **** 	fcontrol += (mb.Ki * integral);
+ 798              		.loc 1 213 0
+ 799 00a0 164B     		ldr	r3, .L28+20
+ 800 00a2 DA69     		ldr	r2, [r3, #28]
+ 801 00a4 124B     		ldr	r3, .L28+8
+ 802 00a6 1B68     		ldr	r3, [r3]
+ 803 00a8 101C     		add	r0, r2, #0
+ 804 00aa 191C     		add	r1, r3, #0
+ 805 00ac FFF7FEFF 		bl	__aeabi_fmul
+ 806 00b0 031C     		add	r3, r0, #0
+ 807 00b2 3869     		ldr	r0, [r7, #16]
+ 808 00b4 191C     		add	r1, r3, #0
+ 809 00b6 FFF7FEFF 		bl	__aeabi_fadd
+ 810 00ba 031C     		add	r3, r0, #0
+ 811 00bc 3B61     		str	r3, [r7, #16]
+ 214:.\main.c      ****     control = (int)fcontrol;
+ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccQQMuZQ.s 			page 19
+
+
+ 812              		.loc 1 214 0
+ 813 00be 3869     		ldr	r0, [r7, #16]
+ 814 00c0 FFF7FEFF 		bl	__aeabi_f2iz
+ 815 00c4 031C     		mov	r3, r0
+ 816 00c6 7B61     		str	r3, [r7, #20]
+ 215:.\main.c      ****     if(control > 255)
+ 817              		.loc 1 215 0
+ 818 00c8 7B69     		ldr	r3, [r7, #20]
+ 819 00ca FF2B     		cmp	r3, #255
+ 820 00cc 02DD     		ble	.L25
+ 216:.\main.c      ****     {
+ 217:.\main.c      ****         control = 255;
+ 821              		.loc 1 217 0
+ 822 00ce FF23     		mov	r3, #255
+ 823 00d0 7B61     		str	r3, [r7, #20]
+ 824 00d2 04E0     		b	.L26
+ 825              	.L25:
+ 218:.\main.c      ****     }
+ 219:.\main.c      ****     else if (control < 0)
+ 826              		.loc 1 219 0
+ 827 00d4 7B69     		ldr	r3, [r7, #20]
+ 828 00d6 002B     		cmp	r3, #0
+ 829 00d8 01DA     		bge	.L26
+ 220:.\main.c      ****     {
+ 221:.\main.c      ****         control = 0;
+ 830              		.loc 1 221 0
+ 831 00da 0023     		mov	r3, #0
+ 832 00dc 7B61     		str	r3, [r7, #20]
+ 833              	.L26:
+ 222:.\main.c      ****     }
+ 223:.\main.c      ****     return control;   
+ 834              		.loc 1 223 0
+ 835 00de 7B69     		ldr	r3, [r7, #20]
+ 224:.\main.c      **** }
+ 836              		.loc 1 224 0
+ 837 00e0 181C     		mov	r0, r3
+ 838 00e2 BD46     		mov	sp, r7
+ 839 00e4 07B0     		add	sp, sp, #28
+ 840              		@ sp needed
+ 841 00e6 90BD     		pop	{r4, r7, pc}
+ 842              	.L29:
+ 843              		.align	3
+ 844              	.L28:
+ 845 00e8 33333333 		.word	858993459
+ 846 00ec 3333E33F 		.word	1071854387
+ 847 00f0 0C000000 		.word	integral.7288
+ 848 00f4 10000000 		.word	lastError.7290
+ 849 00f8 14000000 		.word	derivative.7289
+ 850 00fc 00000000 		.word	mb
+ 851              		.cfi_endproc
+ 852              	.LFE37:
+ 853              		.size	calculatePID, .-calculatePID
+ 854              		.section	.text.updateModbusPackets,"ax",%progbits
+ 855              		.align	2
+ 856              		.global	updateModbusPackets
+ 857              		.code	16
+ 858              		.thumb_func
+ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccQQMuZQ.s 			page 20
+
+
+ 859              		.type	updateModbusPackets, %function
+ 860              	updateModbusPackets:
+ 861              	.LFB38:
+ 225:.\main.c      **** 
+ 226:.\main.c      **** 
+ 227:.\main.c      **** void updateModbusPackets(void)
+ 228:.\main.c      **** {
+ 862              		.loc 1 228 0
+ 863              		.cfi_startproc
+ 864 0000 80B5     		push	{r7, lr}
+ 865              		.cfi_def_cfa_offset 8
+ 866              		.cfi_offset 7, -8
+ 867              		.cfi_offset 14, -4
+ 868 0002 00AF     		add	r7, sp, #0
+ 869              		.cfi_def_cfa_register 7
+ 229:.\main.c      ****     holdingReg[0] = mb.encoderLow;
+ 870              		.loc 1 229 0
+ 871 0004 124B     		ldr	r3, .L31
+ 872 0006 DB88     		ldrh	r3, [r3, #6]
+ 873 0008 1AB2     		sxth	r2, r3
+ 874 000a 124B     		ldr	r3, .L31+4
+ 875 000c 1A60     		str	r2, [r3]
+ 230:.\main.c      ****     holdingReg[1] = mb.encoderHigh;
+ 876              		.loc 1 230 0
+ 877 000e 104B     		ldr	r3, .L31
+ 878 0010 9B88     		ldrh	r3, [r3, #4]
+ 879 0012 1AB2     		sxth	r2, r3
+ 880 0014 0F4B     		ldr	r3, .L31+4
+ 881 0016 5A60     		str	r2, [r3, #4]
+ 231:.\main.c      ****     holdingReg[2] = mb.speedRPSScaler;
+ 882              		.loc 1 231 0
+ 883 0018 0D4B     		ldr	r3, .L31
+ 884 001a 1B89     		ldrh	r3, [r3, #8]
+ 885 001c 1AB2     		sxth	r2, r3
+ 886 001e 0D4B     		ldr	r3, .L31+4
+ 887 0020 9A60     		str	r2, [r3, #8]
+ 232:.\main.c      ****     holdingReg[3] = mb.speedRPS;
+ 888              		.loc 1 232 0
+ 889 0022 0B4B     		ldr	r3, .L31
+ 890 0024 5B89     		ldrh	r3, [r3, #10]
+ 891 0026 1AB2     		sxth	r2, r3
+ 892 0028 0A4B     		ldr	r3, .L31+4
+ 893 002a DA60     		str	r2, [r3, #12]
+ 233:.\main.c      ****     holdingReg[4] = mb.speedRPM;
+ 894              		.loc 1 233 0
+ 895 002c 084B     		ldr	r3, .L31
+ 896 002e 9B89     		ldrh	r3, [r3, #12]
+ 897 0030 1AB2     		sxth	r2, r3
+ 898 0032 084B     		ldr	r3, .L31+4
+ 899 0034 1A61     		str	r2, [r3, #16]
+ 234:.\main.c      ****     //holdingReg[5] = duty cycle
+ 235:.\main.c      ****     //holdingReg[6] = direction
+ 236:.\main.c      ****     holdingReg[7] = mb.motorCurrent;
+ 900              		.loc 1 236 0
+ 901 0036 064B     		ldr	r3, .L31
+ 902 0038 1B8A     		ldrh	r3, [r3, #16]
+ 903 003a 1AB2     		sxth	r2, r3
+ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccQQMuZQ.s 			page 21
+
+
+ 904 003c 054B     		ldr	r3, .L31+4
+ 905 003e DA61     		str	r2, [r3, #28]
+ 237:.\main.c      ****     //holdingReg[8]  = PIDScaler
+ 238:.\main.c      ****     //holdingReg[9]  = Kp
+ 239:.\main.c      ****     //holdingReg[10] = Ki
+ 240:.\main.c      ****     //holdingReg[11] = Kd
+ 241:.\main.c      ****     //holdingReg[12] = setpointRPM
+ 242:.\main.c      ****     holdingReg[13] = pidspeed;
+ 906              		.loc 1 242 0
+ 907 0040 054B     		ldr	r3, .L31+8
+ 908 0042 1B78     		ldrb	r3, [r3]
+ 909 0044 1A1C     		mov	r2, r3
+ 910 0046 034B     		ldr	r3, .L31+4
+ 911 0048 5A63     		str	r2, [r3, #52]
+ 243:.\main.c      ****     //holdingReg[14] = disable
+ 244:.\main.c      **** 
+ 245:.\main.c      **** }
+ 912              		.loc 1 245 0
+ 913 004a BD46     		mov	sp, r7
+ 914              		@ sp needed
+ 915 004c 80BD     		pop	{r7, pc}
+ 916              	.L32:
+ 917 004e C046     		.align	2
+ 918              	.L31:
+ 919 0050 00000000 		.word	mb
+ 920 0054 00000000 		.word	holdingReg
+ 921 0058 00000000 		.word	pidspeed
+ 922              		.cfi_endproc
+ 923              	.LFE38:
+ 924              		.size	updateModbusPackets, .-updateModbusPackets
+ 925              		.bss
+ 926              		.align	2
+ 927              	integral.7288:
+ 928 000c 00000000 		.space	4
+ 929              		.align	2
+ 930              	lastError.7290:
+ 931 0010 00000000 		.space	4
+ 932              		.align	2
+ 933              	derivative.7289:
+ 934 0014 00000000 		.space	4
+ 935              		.text
+ 936              	.Letext0:
+ 937              		.file 2 ".\\Generated_Source\\PSoC4/cytypes.h"
+ 938              		.section	.debug_info,"",%progbits
+ 939              	.Ldebug_info0:
+ 940 0000 E5030000 		.4byte	0x3e5
+ 941 0004 0400     		.2byte	0x4
+ 942 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 943 000a 04       		.byte	0x4
+ 944 000b 01       		.uleb128 0x1
+ 945 000c 0D030000 		.4byte	.LASF58
+ 946 0010 01       		.byte	0x1
+ 947 0011 47020000 		.4byte	.LASF59
+ 948 0015 6C020000 		.4byte	.LASF60
+ 949 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 950 001d 00000000 		.4byte	0
+ 951 0021 00000000 		.4byte	.Ldebug_line0
+ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccQQMuZQ.s 			page 22
+
+
+ 952 0025 02       		.uleb128 0x2
+ 953 0026 01       		.byte	0x1
+ 954 0027 06       		.byte	0x6
+ 955 0028 4B010000 		.4byte	.LASF0
+ 956 002c 02       		.uleb128 0x2
+ 957 002d 01       		.byte	0x1
+ 958 002e 08       		.byte	0x8
+ 959 002f 3D010000 		.4byte	.LASF1
+ 960 0033 02       		.uleb128 0x2
+ 961 0034 02       		.byte	0x2
+ 962 0035 05       		.byte	0x5
+ 963 0036 39000000 		.4byte	.LASF2
+ 964 003a 02       		.uleb128 0x2
+ 965 003b 02       		.byte	0x2
+ 966 003c 07       		.byte	0x7
+ 967 003d A1010000 		.4byte	.LASF3
+ 968 0041 02       		.uleb128 0x2
+ 969 0042 04       		.byte	0x4
+ 970 0043 05       		.byte	0x5
+ 971 0044 08010000 		.4byte	.LASF4
+ 972 0048 02       		.uleb128 0x2
+ 973 0049 04       		.byte	0x4
+ 974 004a 07       		.byte	0x7
+ 975 004b E5010000 		.4byte	.LASF5
+ 976 004f 02       		.uleb128 0x2
+ 977 0050 08       		.byte	0x8
+ 978 0051 05       		.byte	0x5
+ 979 0052 F5000000 		.4byte	.LASF6
+ 980 0056 02       		.uleb128 0x2
+ 981 0057 08       		.byte	0x8
+ 982 0058 07       		.byte	0x7
+ 983 0059 57010000 		.4byte	.LASF7
+ 984 005d 03       		.uleb128 0x3
+ 985 005e 04       		.byte	0x4
+ 986 005f 05       		.byte	0x5
+ 987 0060 696E7400 		.ascii	"int\000"
+ 988 0064 02       		.uleb128 0x2
+ 989 0065 04       		.byte	0x4
+ 990 0066 07       		.byte	0x7
+ 991 0067 6E010000 		.4byte	.LASF8
+ 992 006b 04       		.uleb128 0x4
+ 993 006c 9C000000 		.4byte	.LASF9
+ 994 0070 02       		.byte	0x2
+ 995 0071 A1       		.byte	0xa1
+ 996 0072 2C000000 		.4byte	0x2c
+ 997 0076 04       		.uleb128 0x4
+ 998 0077 83000000 		.4byte	.LASF10
+ 999 007b 02       		.byte	0x2
+ 1000 007c A2       		.byte	0xa2
+ 1001 007d 3A000000 		.4byte	0x3a
+ 1002 0081 04       		.uleb128 0x4
+ 1003 0082 03010000 		.4byte	.LASF11
+ 1004 0086 02       		.byte	0x2
+ 1005 0087 A4       		.byte	0xa4
+ 1006 0088 25000000 		.4byte	0x25
+ 1007 008c 04       		.uleb128 0x4
+ 1008 008d 96000000 		.4byte	.LASF12
+ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccQQMuZQ.s 			page 23
+
+
+ 1009 0091 02       		.byte	0x2
+ 1010 0092 A5       		.byte	0xa5
+ 1011 0093 33000000 		.4byte	0x33
+ 1012 0097 02       		.uleb128 0x2
+ 1013 0098 04       		.byte	0x4
+ 1014 0099 04       		.byte	0x4
+ 1015 009a DB000000 		.4byte	.LASF13
+ 1016 009e 02       		.uleb128 0x2
+ 1017 009f 08       		.byte	0x8
+ 1018 00a0 04       		.byte	0x4
+ 1019 00a1 04020000 		.4byte	.LASF14
+ 1020 00a5 02       		.uleb128 0x2
+ 1021 00a6 01       		.byte	0x1
+ 1022 00a7 08       		.byte	0x8
+ 1023 00a8 B4010000 		.4byte	.LASF15
+ 1024 00ac 05       		.uleb128 0x5
+ 1025 00ad 6B000000 		.4byte	0x6b
+ 1026 00b1 02       		.uleb128 0x2
+ 1027 00b2 04       		.byte	0x4
+ 1028 00b3 07       		.byte	0x7
+ 1029 00b4 56000000 		.4byte	.LASF16
+ 1030 00b8 02       		.uleb128 0x2
+ 1031 00b9 08       		.byte	0x8
+ 1032 00ba 04       		.byte	0x4
+ 1033 00bb 29010000 		.4byte	.LASF17
+ 1034 00bf 06       		.uleb128 0x6
+ 1035 00c0 EA020000 		.4byte	.LASF61
+ 1036 00c4 28       		.byte	0x28
+ 1037 00c5 01       		.byte	0x1
+ 1038 00c6 25       		.byte	0x25
+ 1039 00c7 65010000 		.4byte	0x165
+ 1040 00cb 07       		.uleb128 0x7
+ 1041 00cc B1000000 		.4byte	.LASF18
+ 1042 00d0 01       		.byte	0x1
+ 1043 00d1 26       		.byte	0x26
+ 1044 00d2 5D000000 		.4byte	0x5d
+ 1045 00d6 00       		.byte	0
+ 1046 00d7 07       		.uleb128 0x7
+ 1047 00d8 8A000000 		.4byte	.LASF19
+ 1048 00dc 01       		.byte	0x1
+ 1049 00dd 27       		.byte	0x27
+ 1050 00de 8C000000 		.4byte	0x8c
+ 1051 00e2 04       		.byte	0x4
+ 1052 00e3 07       		.uleb128 0x7
+ 1053 00e4 24000000 		.4byte	.LASF20
+ 1054 00e8 01       		.byte	0x1
+ 1055 00e9 27       		.byte	0x27
+ 1056 00ea 8C000000 		.4byte	0x8c
+ 1057 00ee 06       		.byte	0x6
+ 1058 00ef 07       		.uleb128 0x7
+ 1059 00f0 A2000000 		.4byte	.LASF21
+ 1060 00f4 01       		.byte	0x1
+ 1061 00f5 28       		.byte	0x28
+ 1062 00f6 8C000000 		.4byte	0x8c
+ 1063 00fa 08       		.byte	0x8
+ 1064 00fb 07       		.uleb128 0x7
+ 1065 00fc D2000000 		.4byte	.LASF22
+ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccQQMuZQ.s 			page 24
+
+
+ 1066 0100 01       		.byte	0x1
+ 1067 0101 29       		.byte	0x29
+ 1068 0102 8C000000 		.4byte	0x8c
+ 1069 0106 0A       		.byte	0xa
+ 1070 0107 07       		.uleb128 0x7
+ 1071 0108 BE000000 		.4byte	.LASF23
+ 1072 010c 01       		.byte	0x1
+ 1073 010d 2A       		.byte	0x2a
+ 1074 010e 8C000000 		.4byte	0x8c
+ 1075 0112 0C       		.byte	0xc
+ 1076 0113 07       		.uleb128 0x7
+ 1077 0114 43000000 		.4byte	.LASF24
+ 1078 0118 01       		.byte	0x1
+ 1079 0119 2B       		.byte	0x2b
+ 1080 011a 76000000 		.4byte	0x76
+ 1081 011e 0E       		.byte	0xe
+ 1082 011f 07       		.uleb128 0x7
+ 1083 0120 F7010000 		.4byte	.LASF25
+ 1084 0124 01       		.byte	0x1
+ 1085 0125 2C       		.byte	0x2c
+ 1086 0126 8C000000 		.4byte	0x8c
+ 1087 012a 10       		.byte	0x10
+ 1088 012b 07       		.uleb128 0x7
+ 1089 012c CE010000 		.4byte	.LASF26
+ 1090 0130 01       		.byte	0x1
+ 1091 0131 2D       		.byte	0x2d
+ 1092 0132 97000000 		.4byte	0x97
+ 1093 0136 14       		.byte	0x14
+ 1094 0137 08       		.uleb128 0x8
+ 1095 0138 4B7000   		.ascii	"Kp\000"
+ 1096 013b 01       		.byte	0x1
+ 1097 013c 2E       		.byte	0x2e
+ 1098 013d 97000000 		.4byte	0x97
+ 1099 0141 18       		.byte	0x18
+ 1100 0142 08       		.uleb128 0x8
+ 1101 0143 4B6900   		.ascii	"Ki\000"
+ 1102 0146 01       		.byte	0x1
+ 1103 0147 2E       		.byte	0x2e
+ 1104 0148 97000000 		.4byte	0x97
+ 1105 014c 1C       		.byte	0x1c
+ 1106 014d 08       		.uleb128 0x8
+ 1107 014e 4B6400   		.ascii	"Kd\000"
+ 1108 0151 01       		.byte	0x1
+ 1109 0152 2E       		.byte	0x2e
+ 1110 0153 97000000 		.4byte	0x97
+ 1111 0157 20       		.byte	0x20
+ 1112 0158 07       		.uleb128 0x7
+ 1113 0159 18020000 		.4byte	.LASF27
+ 1114 015d 01       		.byte	0x1
+ 1115 015e 2F       		.byte	0x2f
+ 1116 015f 8C000000 		.4byte	0x8c
+ 1117 0163 24       		.byte	0x24
+ 1118 0164 00       		.byte	0
+ 1119 0165 09       		.uleb128 0x9
+ 1120 0166 6A000000 		.4byte	.LASF62
+ 1121 016a 01       		.byte	0x1
+ 1122 016b 40       		.byte	0x40
+ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccQQMuZQ.s 			page 25
+
+
+ 1123 016c 5D000000 		.4byte	0x5d
+ 1124 0170 00000000 		.4byte	.LFB33
+ 1125 0174 FC010000 		.4byte	.LFE33-.LFB33
+ 1126 0178 01       		.uleb128 0x1
+ 1127 0179 9C       		.byte	0x9c
+ 1128 017a 8B010000 		.4byte	0x18b
+ 1129 017e 0A       		.uleb128 0xa
+ 1130 017f 6900     		.ascii	"i\000"
+ 1131 0181 01       		.byte	0x1
+ 1132 0182 53       		.byte	0x53
+ 1133 0183 5D000000 		.4byte	0x5d
+ 1134 0187 02       		.uleb128 0x2
+ 1135 0188 91       		.byte	0x91
+ 1136 0189 6C       		.sleb128 -20
+ 1137 018a 00       		.byte	0
+ 1138 018b 0B       		.uleb128 0xb
+ 1139 018c 5E020000 		.4byte	.LASF31
+ 1140 0190 01       		.byte	0x1
+ 1141 0191 8F       		.byte	0x8f
+ 1142 0192 00000000 		.4byte	.LFB34
+ 1143 0196 E4000000 		.4byte	.LFE34-.LFB34
+ 1144 019a 01       		.uleb128 0x1
+ 1145 019b 9C       		.byte	0x9c
+ 1146 019c 0C       		.uleb128 0xc
+ 1147 019d 1A010000 		.4byte	.LASF33
+ 1148 01a1 01       		.byte	0x1
+ 1149 01a2 A3       		.byte	0xa3
+ 1150 01a3 97000000 		.4byte	0x97
+ 1151 01a7 00000000 		.4byte	.LFB35
+ 1152 01ab 9C000000 		.4byte	.LFE35-.LFB35
+ 1153 01af 01       		.uleb128 0x1
+ 1154 01b0 9C       		.byte	0x9c
+ 1155 01b1 E0010000 		.4byte	0x1e0
+ 1156 01b5 0D       		.uleb128 0xd
+ 1157 01b6 9A010000 		.4byte	.LASF28
+ 1158 01ba 01       		.byte	0x1
+ 1159 01bb A6       		.byte	0xa6
+ 1160 01bc 5D000000 		.4byte	0x5d
+ 1161 01c0 02       		.uleb128 0x2
+ 1162 01c1 91       		.byte	0x91
+ 1163 01c2 64       		.sleb128 -28
+ 1164 01c3 0D       		.uleb128 0xd
+ 1165 01c4 94010000 		.4byte	.LASF29
+ 1166 01c8 01       		.byte	0x1
+ 1167 01c9 A7       		.byte	0xa7
+ 1168 01ca 97000000 		.4byte	0x97
+ 1169 01ce 02       		.uleb128 0x2
+ 1170 01cf 91       		.byte	0x91
+ 1171 01d0 5C       		.sleb128 -36
+ 1172 01d1 0D       		.uleb128 0xd
+ 1173 01d2 5F000000 		.4byte	.LASF30
+ 1174 01d6 01       		.byte	0x1
+ 1175 01d7 A7       		.byte	0xa7
+ 1176 01d8 97000000 		.4byte	0x97
+ 1177 01dc 02       		.uleb128 0x2
+ 1178 01dd 91       		.byte	0x91
+ 1179 01de 60       		.sleb128 -32
+ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccQQMuZQ.s 			page 26
+
+
+ 1180 01df 00       		.byte	0
+ 1181 01e0 0B       		.uleb128 0xb
+ 1182 01e1 C9020000 		.4byte	.LASF32
+ 1183 01e5 01       		.byte	0x1
+ 1184 01e6 AF       		.byte	0xaf
+ 1185 01e7 00000000 		.4byte	.LFB36
+ 1186 01eb B0000000 		.4byte	.LFE36-.LFB36
+ 1187 01ef 01       		.uleb128 0x1
+ 1188 01f0 9C       		.byte	0x9c
+ 1189 01f1 0C       		.uleb128 0xc
+ 1190 01f2 D8010000 		.4byte	.LASF34
+ 1191 01f6 01       		.byte	0x1
+ 1192 01f7 C6       		.byte	0xc6
+ 1193 01f8 5D000000 		.4byte	0x5d
+ 1194 01fc 00000000 		.4byte	.LFB37
+ 1195 0200 00010000 		.4byte	.LFE37-.LFB37
+ 1196 0204 01       		.uleb128 0x1
+ 1197 0205 9C       		.byte	0x9c
+ 1198 0206 84020000 		.4byte	0x284
+ 1199 020a 0E       		.uleb128 0xe
+ 1200 020b 0B020000 		.4byte	.LASF35
+ 1201 020f 01       		.byte	0x1
+ 1202 0210 C6       		.byte	0xc6
+ 1203 0211 97000000 		.4byte	0x97
+ 1204 0215 02       		.uleb128 0x2
+ 1205 0216 91       		.byte	0x91
+ 1206 0217 5C       		.sleb128 -36
+ 1207 0218 0E       		.uleb128 0xe
+ 1208 0219 E1020000 		.4byte	.LASF36
+ 1209 021d 01       		.byte	0x1
+ 1210 021e C6       		.byte	0xc6
+ 1211 021f 97000000 		.4byte	0x97
+ 1212 0223 02       		.uleb128 0x2
+ 1213 0224 91       		.byte	0x91
+ 1214 0225 58       		.sleb128 -40
+ 1215 0226 0D       		.uleb128 0xd
+ 1216 0227 11010000 		.4byte	.LASF37
+ 1217 022b 01       		.byte	0x1
+ 1218 022c C8       		.byte	0xc8
+ 1219 022d 97000000 		.4byte	0x97
+ 1220 0231 05       		.uleb128 0x5
+ 1221 0232 03       		.byte	0x3
+ 1222 0233 0C000000 		.4byte	integral.7288
+ 1223 0237 0D       		.uleb128 0xd
+ 1224 0238 78000000 		.4byte	.LASF38
+ 1225 023c 01       		.byte	0x1
+ 1226 023d C9       		.byte	0xc9
+ 1227 023e 97000000 		.4byte	0x97
+ 1228 0242 05       		.uleb128 0x5
+ 1229 0243 03       		.byte	0x3
+ 1230 0244 14000000 		.4byte	derivative.7289
+ 1231 0248 0D       		.uleb128 0xd
+ 1232 0249 00000000 		.4byte	.LASF39
+ 1233 024d 01       		.byte	0x1
+ 1234 024e CA       		.byte	0xca
+ 1235 024f 97000000 		.4byte	0x97
+ 1236 0253 05       		.uleb128 0x5
+ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccQQMuZQ.s 			page 27
+
+
+ 1237 0254 03       		.byte	0x3
+ 1238 0255 10000000 		.4byte	lastError.7290
+ 1239 0259 0D       		.uleb128 0xd
+ 1240 025a C3020000 		.4byte	.LASF40
+ 1241 025e 01       		.byte	0x1
+ 1242 025f CC       		.byte	0xcc
+ 1243 0260 97000000 		.4byte	0x97
+ 1244 0264 02       		.uleb128 0x2
+ 1245 0265 91       		.byte	0x91
+ 1246 0266 64       		.sleb128 -28
+ 1247 0267 0D       		.uleb128 0xd
+ 1248 0268 6F000000 		.4byte	.LASF41
+ 1249 026c 01       		.byte	0x1
+ 1250 026d CC       		.byte	0xcc
+ 1251 026e 97000000 		.4byte	0x97
+ 1252 0272 02       		.uleb128 0x2
+ 1253 0273 91       		.byte	0x91
+ 1254 0274 68       		.sleb128 -24
+ 1255 0275 0D       		.uleb128 0xd
+ 1256 0276 35010000 		.4byte	.LASF42
+ 1257 027a 01       		.byte	0x1
+ 1258 027b CD       		.byte	0xcd
+ 1259 027c 5D000000 		.4byte	0x5d
+ 1260 0280 02       		.uleb128 0x2
+ 1261 0281 91       		.byte	0x91
+ 1262 0282 6C       		.sleb128 -20
+ 1263 0283 00       		.byte	0
+ 1264 0284 0F       		.uleb128 0xf
+ 1265 0285 E1000000 		.4byte	.LASF43
+ 1266 0289 01       		.byte	0x1
+ 1267 028a E3       		.byte	0xe3
+ 1268 028b 00000000 		.4byte	.LFB38
+ 1269 028f 5C000000 		.4byte	.LFE38-.LFB38
+ 1270 0293 01       		.uleb128 0x1
+ 1271 0294 9C       		.byte	0x9c
+ 1272 0295 10       		.uleb128 0x10
+ 1273 0296 81000000 		.4byte	0x81
+ 1274 029a A5020000 		.4byte	0x2a5
+ 1275 029e 11       		.uleb128 0x11
+ 1276 029f B1000000 		.4byte	0xb1
+ 1277 02a3 0F       		.byte	0xf
+ 1278 02a4 00       		.byte	0
+ 1279 02a5 0D       		.uleb128 0xd
+ 1280 02a6 1D000000 		.4byte	.LASF44
+ 1281 02aa 01       		.byte	0x1
+ 1282 02ab 36       		.byte	0x36
+ 1283 02ac 95020000 		.4byte	0x295
+ 1284 02b0 05       		.uleb128 0x5
+ 1285 02b1 03       		.byte	0x3
+ 1286 02b2 00000000 		.4byte	lookup
+ 1287 02b6 10       		.uleb128 0x10
+ 1288 02b7 64000000 		.4byte	0x64
+ 1289 02bb C6020000 		.4byte	0x2c6
+ 1290 02bf 11       		.uleb128 0x11
+ 1291 02c0 B1000000 		.4byte	0xb1
+ 1292 02c4 31       		.byte	0x31
+ 1293 02c5 00       		.byte	0
+ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccQQMuZQ.s 			page 28
+
+
+ 1294 02c6 12       		.uleb128 0x12
+ 1295 02c7 C7000000 		.4byte	.LASF45
+ 1296 02cb 01       		.byte	0x1
+ 1297 02cc 1E       		.byte	0x1e
+ 1298 02cd B6020000 		.4byte	0x2b6
+ 1299 02d1 10       		.uleb128 0x10
+ 1300 02d2 2C000000 		.4byte	0x2c
+ 1301 02d6 E1020000 		.4byte	0x2e1
+ 1302 02da 11       		.uleb128 0x11
+ 1303 02db B1000000 		.4byte	0xb1
+ 1304 02df 7C       		.byte	0x7c
+ 1305 02e0 00       		.byte	0
+ 1306 02e1 12       		.uleb128 0x12
+ 1307 02e2 33020000 		.4byte	.LASF46
+ 1308 02e6 01       		.byte	0x1
+ 1309 02e7 20       		.byte	0x20
+ 1310 02e8 D1020000 		.4byte	0x2d1
+ 1311 02ec 12       		.uleb128 0x12
+ 1312 02ed 50020000 		.4byte	.LASF47
+ 1313 02f1 01       		.byte	0x1
+ 1314 02f2 22       		.byte	0x22
+ 1315 02f3 6B000000 		.4byte	0x6b
+ 1316 02f7 13       		.uleb128 0x13
+ 1317 02f8 6D6200   		.ascii	"mb\000"
+ 1318 02fb 01       		.byte	0x1
+ 1319 02fc 31       		.byte	0x31
+ 1320 02fd BF000000 		.4byte	0xbf
+ 1321 0301 05       		.uleb128 0x5
+ 1322 0302 03       		.byte	0x3
+ 1323 0303 00000000 		.4byte	mb
+ 1324 0307 12       		.uleb128 0x12
+ 1325 0308 B9010000 		.4byte	.LASF48
+ 1326 030c 01       		.byte	0x1
+ 1327 030d 34       		.byte	0x34
+ 1328 030e AC000000 		.4byte	0xac
+ 1329 0312 12       		.uleb128 0x12
+ 1330 0313 0A000000 		.4byte	.LASF49
+ 1331 0317 01       		.byte	0x1
+ 1332 0318 34       		.byte	0x34
+ 1333 0319 AC000000 		.4byte	0xac
+ 1334 031d 14       		.uleb128 0x14
+ 1335 031e 29020000 		.4byte	.LASF50
+ 1336 0322 01       		.byte	0x1
+ 1337 0323 35       		.byte	0x35
+ 1338 0324 6B000000 		.4byte	0x6b
+ 1339 0328 05       		.uleb128 0x5
+ 1340 0329 03       		.byte	0x3
+ 1341 032a 00000000 		.4byte	encA
+ 1342 032e 14       		.uleb128 0x14
+ 1343 032f 2E020000 		.4byte	.LASF51
+ 1344 0333 01       		.byte	0x1
+ 1345 0334 35       		.byte	0x35
+ 1346 0335 6B000000 		.4byte	0x6b
+ 1347 0339 05       		.uleb128 0x5
+ 1348 033a 03       		.byte	0x3
+ 1349 033b 00000000 		.4byte	encB
+ 1350 033f 14       		.uleb128 0x14
+ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccQQMuZQ.s 			page 29
+
+
+ 1351 0340 8C010000 		.4byte	.LASF52
+ 1352 0344 01       		.byte	0x1
+ 1353 0345 37       		.byte	0x37
+ 1354 0346 6B000000 		.4byte	0x6b
+ 1355 034a 05       		.uleb128 0x5
+ 1356 034b 03       		.byte	0x3
+ 1357 034c 00000000 		.4byte	enc_val
+ 1358 0350 14       		.uleb128 0x14
+ 1359 0351 04030000 		.4byte	.LASF53
+ 1360 0355 01       		.byte	0x1
+ 1361 0356 37       		.byte	0x37
+ 1362 0357 6B000000 		.4byte	0x6b
+ 1363 035b 05       		.uleb128 0x5
+ 1364 035c 03       		.byte	0x3
+ 1365 035d 00000000 		.4byte	pidspeed
+ 1366 0361 13       		.uleb128 0x13
+ 1367 0362 6F7000   		.ascii	"op\000"
+ 1368 0365 01       		.byte	0x1
+ 1369 0366 38       		.byte	0x38
+ 1370 0367 81000000 		.4byte	0x81
+ 1371 036b 05       		.uleb128 0x5
+ 1372 036c 03       		.byte	0x3
+ 1373 036d 00000000 		.4byte	op
+ 1374 0371 14       		.uleb128 0x14
+ 1375 0372 F5020000 		.4byte	.LASF54
+ 1376 0376 01       		.byte	0x1
+ 1377 0377 39       		.byte	0x39
+ 1378 0378 5D000000 		.4byte	0x5d
+ 1379 037c 05       		.uleb128 0x5
+ 1380 037d 03       		.byte	0x3
+ 1381 037e 00000000 		.4byte	interruptCount
+ 1382 0382 14       		.uleb128 0x14
+ 1383 0383 B1000000 		.4byte	.LASF18
+ 1384 0387 01       		.byte	0x1
+ 1385 0388 3A       		.byte	0x3a
+ 1386 0389 5D000000 		.4byte	0x5d
+ 1387 038d 05       		.uleb128 0x5
+ 1388 038e 03       		.byte	0x3
+ 1389 038f 00000000 		.4byte	encoderCount
+ 1390 0393 14       		.uleb128 0x14
+ 1391 0394 7B010000 		.4byte	.LASF55
+ 1392 0398 01       		.byte	0x1
+ 1393 0399 3A       		.byte	0x3a
+ 1394 039a 5D000000 		.4byte	0x5d
+ 1395 039e 05       		.uleb128 0x5
+ 1396 039f 03       		.byte	0x3
+ 1397 03a0 00000000 		.4byte	pastEncoderCount
+ 1398 03a4 14       		.uleb128 0x14
+ 1399 03a5 D2000000 		.4byte	.LASF22
+ 1400 03a9 01       		.byte	0x1
+ 1401 03aa 3B       		.byte	0x3b
+ 1402 03ab 97000000 		.4byte	0x97
+ 1403 03af 05       		.uleb128 0x5
+ 1404 03b0 03       		.byte	0x3
+ 1405 03b1 00000000 		.4byte	speedRPS
+ 1406 03b5 14       		.uleb128 0x14
+ 1407 03b6 BE000000 		.4byte	.LASF23
+ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccQQMuZQ.s 			page 30
+
+
+ 1408 03ba 01       		.byte	0x1
+ 1409 03bb 3B       		.byte	0x3b
+ 1410 03bc 97000000 		.4byte	0x97
+ 1411 03c0 05       		.uleb128 0x5
+ 1412 03c1 03       		.byte	0x3
+ 1413 03c2 00000000 		.4byte	speedRPM
+ 1414 03c6 14       		.uleb128 0x14
+ 1415 03c7 2F000000 		.4byte	.LASF56
+ 1416 03cb 01       		.byte	0x1
+ 1417 03cc 3C       		.byte	0x3c
+ 1418 03cd 76000000 		.4byte	0x76
+ 1419 03d1 05       		.uleb128 0x5
+ 1420 03d2 03       		.byte	0x3
+ 1421 03d3 00000000 		.4byte	ADCResult
+ 1422 03d7 14       		.uleb128 0x14
+ 1423 03d8 3C020000 		.4byte	.LASF57
+ 1424 03dc 01       		.byte	0x1
+ 1425 03dd 3D       		.byte	0x3d
+ 1426 03de 97000000 		.4byte	0x97
+ 1427 03e2 05       		.uleb128 0x5
+ 1428 03e3 03       		.byte	0x3
+ 1429 03e4 00000000 		.4byte	ADCVoltage
+ 1430 03e8 00       		.byte	0
+ 1431              		.section	.debug_abbrev,"",%progbits
+ 1432              	.Ldebug_abbrev0:
+ 1433 0000 01       		.uleb128 0x1
+ 1434 0001 11       		.uleb128 0x11
+ 1435 0002 01       		.byte	0x1
+ 1436 0003 25       		.uleb128 0x25
+ 1437 0004 0E       		.uleb128 0xe
+ 1438 0005 13       		.uleb128 0x13
+ 1439 0006 0B       		.uleb128 0xb
+ 1440 0007 03       		.uleb128 0x3
+ 1441 0008 0E       		.uleb128 0xe
+ 1442 0009 1B       		.uleb128 0x1b
+ 1443 000a 0E       		.uleb128 0xe
+ 1444 000b 55       		.uleb128 0x55
+ 1445 000c 17       		.uleb128 0x17
+ 1446 000d 11       		.uleb128 0x11
+ 1447 000e 01       		.uleb128 0x1
+ 1448 000f 10       		.uleb128 0x10
+ 1449 0010 17       		.uleb128 0x17
+ 1450 0011 00       		.byte	0
+ 1451 0012 00       		.byte	0
+ 1452 0013 02       		.uleb128 0x2
+ 1453 0014 24       		.uleb128 0x24
+ 1454 0015 00       		.byte	0
+ 1455 0016 0B       		.uleb128 0xb
+ 1456 0017 0B       		.uleb128 0xb
+ 1457 0018 3E       		.uleb128 0x3e
+ 1458 0019 0B       		.uleb128 0xb
+ 1459 001a 03       		.uleb128 0x3
+ 1460 001b 0E       		.uleb128 0xe
+ 1461 001c 00       		.byte	0
+ 1462 001d 00       		.byte	0
+ 1463 001e 03       		.uleb128 0x3
+ 1464 001f 24       		.uleb128 0x24
+ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccQQMuZQ.s 			page 31
+
+
+ 1465 0020 00       		.byte	0
+ 1466 0021 0B       		.uleb128 0xb
+ 1467 0022 0B       		.uleb128 0xb
+ 1468 0023 3E       		.uleb128 0x3e
+ 1469 0024 0B       		.uleb128 0xb
+ 1470 0025 03       		.uleb128 0x3
+ 1471 0026 08       		.uleb128 0x8
+ 1472 0027 00       		.byte	0
+ 1473 0028 00       		.byte	0
+ 1474 0029 04       		.uleb128 0x4
+ 1475 002a 16       		.uleb128 0x16
+ 1476 002b 00       		.byte	0
+ 1477 002c 03       		.uleb128 0x3
+ 1478 002d 0E       		.uleb128 0xe
+ 1479 002e 3A       		.uleb128 0x3a
+ 1480 002f 0B       		.uleb128 0xb
+ 1481 0030 3B       		.uleb128 0x3b
+ 1482 0031 0B       		.uleb128 0xb
+ 1483 0032 49       		.uleb128 0x49
+ 1484 0033 13       		.uleb128 0x13
+ 1485 0034 00       		.byte	0
+ 1486 0035 00       		.byte	0
+ 1487 0036 05       		.uleb128 0x5
+ 1488 0037 35       		.uleb128 0x35
+ 1489 0038 00       		.byte	0
+ 1490 0039 49       		.uleb128 0x49
+ 1491 003a 13       		.uleb128 0x13
+ 1492 003b 00       		.byte	0
+ 1493 003c 00       		.byte	0
+ 1494 003d 06       		.uleb128 0x6
+ 1495 003e 13       		.uleb128 0x13
+ 1496 003f 01       		.byte	0x1
+ 1497 0040 03       		.uleb128 0x3
+ 1498 0041 0E       		.uleb128 0xe
+ 1499 0042 0B       		.uleb128 0xb
+ 1500 0043 0B       		.uleb128 0xb
+ 1501 0044 3A       		.uleb128 0x3a
+ 1502 0045 0B       		.uleb128 0xb
+ 1503 0046 3B       		.uleb128 0x3b
+ 1504 0047 0B       		.uleb128 0xb
+ 1505 0048 01       		.uleb128 0x1
+ 1506 0049 13       		.uleb128 0x13
+ 1507 004a 00       		.byte	0
+ 1508 004b 00       		.byte	0
+ 1509 004c 07       		.uleb128 0x7
+ 1510 004d 0D       		.uleb128 0xd
+ 1511 004e 00       		.byte	0
+ 1512 004f 03       		.uleb128 0x3
+ 1513 0050 0E       		.uleb128 0xe
+ 1514 0051 3A       		.uleb128 0x3a
+ 1515 0052 0B       		.uleb128 0xb
+ 1516 0053 3B       		.uleb128 0x3b
+ 1517 0054 0B       		.uleb128 0xb
+ 1518 0055 49       		.uleb128 0x49
+ 1519 0056 13       		.uleb128 0x13
+ 1520 0057 38       		.uleb128 0x38
+ 1521 0058 0B       		.uleb128 0xb
+ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccQQMuZQ.s 			page 32
+
+
+ 1522 0059 00       		.byte	0
+ 1523 005a 00       		.byte	0
+ 1524 005b 08       		.uleb128 0x8
+ 1525 005c 0D       		.uleb128 0xd
+ 1526 005d 00       		.byte	0
+ 1527 005e 03       		.uleb128 0x3
+ 1528 005f 08       		.uleb128 0x8
+ 1529 0060 3A       		.uleb128 0x3a
+ 1530 0061 0B       		.uleb128 0xb
+ 1531 0062 3B       		.uleb128 0x3b
+ 1532 0063 0B       		.uleb128 0xb
+ 1533 0064 49       		.uleb128 0x49
+ 1534 0065 13       		.uleb128 0x13
+ 1535 0066 38       		.uleb128 0x38
+ 1536 0067 0B       		.uleb128 0xb
+ 1537 0068 00       		.byte	0
+ 1538 0069 00       		.byte	0
+ 1539 006a 09       		.uleb128 0x9
+ 1540 006b 2E       		.uleb128 0x2e
+ 1541 006c 01       		.byte	0x1
+ 1542 006d 3F       		.uleb128 0x3f
+ 1543 006e 19       		.uleb128 0x19
+ 1544 006f 03       		.uleb128 0x3
+ 1545 0070 0E       		.uleb128 0xe
+ 1546 0071 3A       		.uleb128 0x3a
+ 1547 0072 0B       		.uleb128 0xb
+ 1548 0073 3B       		.uleb128 0x3b
+ 1549 0074 0B       		.uleb128 0xb
+ 1550 0075 49       		.uleb128 0x49
+ 1551 0076 13       		.uleb128 0x13
+ 1552 0077 11       		.uleb128 0x11
+ 1553 0078 01       		.uleb128 0x1
+ 1554 0079 12       		.uleb128 0x12
+ 1555 007a 06       		.uleb128 0x6
+ 1556 007b 40       		.uleb128 0x40
+ 1557 007c 18       		.uleb128 0x18
+ 1558 007d 9642     		.uleb128 0x2116
+ 1559 007f 19       		.uleb128 0x19
+ 1560 0080 01       		.uleb128 0x1
+ 1561 0081 13       		.uleb128 0x13
+ 1562 0082 00       		.byte	0
+ 1563 0083 00       		.byte	0
+ 1564 0084 0A       		.uleb128 0xa
+ 1565 0085 34       		.uleb128 0x34
+ 1566 0086 00       		.byte	0
+ 1567 0087 03       		.uleb128 0x3
+ 1568 0088 08       		.uleb128 0x8
+ 1569 0089 3A       		.uleb128 0x3a
+ 1570 008a 0B       		.uleb128 0xb
+ 1571 008b 3B       		.uleb128 0x3b
+ 1572 008c 0B       		.uleb128 0xb
+ 1573 008d 49       		.uleb128 0x49
+ 1574 008e 13       		.uleb128 0x13
+ 1575 008f 02       		.uleb128 0x2
+ 1576 0090 18       		.uleb128 0x18
+ 1577 0091 00       		.byte	0
+ 1578 0092 00       		.byte	0
+ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccQQMuZQ.s 			page 33
+
+
+ 1579 0093 0B       		.uleb128 0xb
+ 1580 0094 2E       		.uleb128 0x2e
+ 1581 0095 00       		.byte	0
+ 1582 0096 3F       		.uleb128 0x3f
+ 1583 0097 19       		.uleb128 0x19
+ 1584 0098 03       		.uleb128 0x3
+ 1585 0099 0E       		.uleb128 0xe
+ 1586 009a 3A       		.uleb128 0x3a
+ 1587 009b 0B       		.uleb128 0xb
+ 1588 009c 3B       		.uleb128 0x3b
+ 1589 009d 0B       		.uleb128 0xb
+ 1590 009e 27       		.uleb128 0x27
+ 1591 009f 19       		.uleb128 0x19
+ 1592 00a0 11       		.uleb128 0x11
+ 1593 00a1 01       		.uleb128 0x1
+ 1594 00a2 12       		.uleb128 0x12
+ 1595 00a3 06       		.uleb128 0x6
+ 1596 00a4 40       		.uleb128 0x40
+ 1597 00a5 18       		.uleb128 0x18
+ 1598 00a6 9642     		.uleb128 0x2116
+ 1599 00a8 19       		.uleb128 0x19
+ 1600 00a9 00       		.byte	0
+ 1601 00aa 00       		.byte	0
+ 1602 00ab 0C       		.uleb128 0xc
+ 1603 00ac 2E       		.uleb128 0x2e
+ 1604 00ad 01       		.byte	0x1
+ 1605 00ae 3F       		.uleb128 0x3f
+ 1606 00af 19       		.uleb128 0x19
+ 1607 00b0 03       		.uleb128 0x3
+ 1608 00b1 0E       		.uleb128 0xe
+ 1609 00b2 3A       		.uleb128 0x3a
+ 1610 00b3 0B       		.uleb128 0xb
+ 1611 00b4 3B       		.uleb128 0x3b
+ 1612 00b5 0B       		.uleb128 0xb
+ 1613 00b6 27       		.uleb128 0x27
+ 1614 00b7 19       		.uleb128 0x19
+ 1615 00b8 49       		.uleb128 0x49
+ 1616 00b9 13       		.uleb128 0x13
+ 1617 00ba 11       		.uleb128 0x11
+ 1618 00bb 01       		.uleb128 0x1
+ 1619 00bc 12       		.uleb128 0x12
+ 1620 00bd 06       		.uleb128 0x6
+ 1621 00be 40       		.uleb128 0x40
+ 1622 00bf 18       		.uleb128 0x18
+ 1623 00c0 9642     		.uleb128 0x2116
+ 1624 00c2 19       		.uleb128 0x19
+ 1625 00c3 01       		.uleb128 0x1
+ 1626 00c4 13       		.uleb128 0x13
+ 1627 00c5 00       		.byte	0
+ 1628 00c6 00       		.byte	0
+ 1629 00c7 0D       		.uleb128 0xd
+ 1630 00c8 34       		.uleb128 0x34
+ 1631 00c9 00       		.byte	0
+ 1632 00ca 03       		.uleb128 0x3
+ 1633 00cb 0E       		.uleb128 0xe
+ 1634 00cc 3A       		.uleb128 0x3a
+ 1635 00cd 0B       		.uleb128 0xb
+ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccQQMuZQ.s 			page 34
+
+
+ 1636 00ce 3B       		.uleb128 0x3b
+ 1637 00cf 0B       		.uleb128 0xb
+ 1638 00d0 49       		.uleb128 0x49
+ 1639 00d1 13       		.uleb128 0x13
+ 1640 00d2 02       		.uleb128 0x2
+ 1641 00d3 18       		.uleb128 0x18
+ 1642 00d4 00       		.byte	0
+ 1643 00d5 00       		.byte	0
+ 1644 00d6 0E       		.uleb128 0xe
+ 1645 00d7 05       		.uleb128 0x5
+ 1646 00d8 00       		.byte	0
+ 1647 00d9 03       		.uleb128 0x3
+ 1648 00da 0E       		.uleb128 0xe
+ 1649 00db 3A       		.uleb128 0x3a
+ 1650 00dc 0B       		.uleb128 0xb
+ 1651 00dd 3B       		.uleb128 0x3b
+ 1652 00de 0B       		.uleb128 0xb
+ 1653 00df 49       		.uleb128 0x49
+ 1654 00e0 13       		.uleb128 0x13
+ 1655 00e1 02       		.uleb128 0x2
+ 1656 00e2 18       		.uleb128 0x18
+ 1657 00e3 00       		.byte	0
+ 1658 00e4 00       		.byte	0
+ 1659 00e5 0F       		.uleb128 0xf
+ 1660 00e6 2E       		.uleb128 0x2e
+ 1661 00e7 00       		.byte	0
+ 1662 00e8 3F       		.uleb128 0x3f
+ 1663 00e9 19       		.uleb128 0x19
+ 1664 00ea 03       		.uleb128 0x3
+ 1665 00eb 0E       		.uleb128 0xe
+ 1666 00ec 3A       		.uleb128 0x3a
+ 1667 00ed 0B       		.uleb128 0xb
+ 1668 00ee 3B       		.uleb128 0x3b
+ 1669 00ef 0B       		.uleb128 0xb
+ 1670 00f0 27       		.uleb128 0x27
+ 1671 00f1 19       		.uleb128 0x19
+ 1672 00f2 11       		.uleb128 0x11
+ 1673 00f3 01       		.uleb128 0x1
+ 1674 00f4 12       		.uleb128 0x12
+ 1675 00f5 06       		.uleb128 0x6
+ 1676 00f6 40       		.uleb128 0x40
+ 1677 00f7 18       		.uleb128 0x18
+ 1678 00f8 9742     		.uleb128 0x2117
+ 1679 00fa 19       		.uleb128 0x19
+ 1680 00fb 00       		.byte	0
+ 1681 00fc 00       		.byte	0
+ 1682 00fd 10       		.uleb128 0x10
+ 1683 00fe 01       		.uleb128 0x1
+ 1684 00ff 01       		.byte	0x1
+ 1685 0100 49       		.uleb128 0x49
+ 1686 0101 13       		.uleb128 0x13
+ 1687 0102 01       		.uleb128 0x1
+ 1688 0103 13       		.uleb128 0x13
+ 1689 0104 00       		.byte	0
+ 1690 0105 00       		.byte	0
+ 1691 0106 11       		.uleb128 0x11
+ 1692 0107 21       		.uleb128 0x21
+ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccQQMuZQ.s 			page 35
+
+
+ 1693 0108 00       		.byte	0
+ 1694 0109 49       		.uleb128 0x49
+ 1695 010a 13       		.uleb128 0x13
+ 1696 010b 2F       		.uleb128 0x2f
+ 1697 010c 0B       		.uleb128 0xb
+ 1698 010d 00       		.byte	0
+ 1699 010e 00       		.byte	0
+ 1700 010f 12       		.uleb128 0x12
+ 1701 0110 34       		.uleb128 0x34
+ 1702 0111 00       		.byte	0
+ 1703 0112 03       		.uleb128 0x3
+ 1704 0113 0E       		.uleb128 0xe
+ 1705 0114 3A       		.uleb128 0x3a
+ 1706 0115 0B       		.uleb128 0xb
+ 1707 0116 3B       		.uleb128 0x3b
+ 1708 0117 0B       		.uleb128 0xb
+ 1709 0118 49       		.uleb128 0x49
+ 1710 0119 13       		.uleb128 0x13
+ 1711 011a 3F       		.uleb128 0x3f
+ 1712 011b 19       		.uleb128 0x19
+ 1713 011c 3C       		.uleb128 0x3c
+ 1714 011d 19       		.uleb128 0x19
+ 1715 011e 00       		.byte	0
+ 1716 011f 00       		.byte	0
+ 1717 0120 13       		.uleb128 0x13
+ 1718 0121 34       		.uleb128 0x34
+ 1719 0122 00       		.byte	0
+ 1720 0123 03       		.uleb128 0x3
+ 1721 0124 08       		.uleb128 0x8
+ 1722 0125 3A       		.uleb128 0x3a
+ 1723 0126 0B       		.uleb128 0xb
+ 1724 0127 3B       		.uleb128 0x3b
+ 1725 0128 0B       		.uleb128 0xb
+ 1726 0129 49       		.uleb128 0x49
+ 1727 012a 13       		.uleb128 0x13
+ 1728 012b 3F       		.uleb128 0x3f
+ 1729 012c 19       		.uleb128 0x19
+ 1730 012d 02       		.uleb128 0x2
+ 1731 012e 18       		.uleb128 0x18
+ 1732 012f 00       		.byte	0
+ 1733 0130 00       		.byte	0
+ 1734 0131 14       		.uleb128 0x14
+ 1735 0132 34       		.uleb128 0x34
+ 1736 0133 00       		.byte	0
+ 1737 0134 03       		.uleb128 0x3
+ 1738 0135 0E       		.uleb128 0xe
+ 1739 0136 3A       		.uleb128 0x3a
+ 1740 0137 0B       		.uleb128 0xb
+ 1741 0138 3B       		.uleb128 0x3b
+ 1742 0139 0B       		.uleb128 0xb
+ 1743 013a 49       		.uleb128 0x49
+ 1744 013b 13       		.uleb128 0x13
+ 1745 013c 3F       		.uleb128 0x3f
+ 1746 013d 19       		.uleb128 0x19
+ 1747 013e 02       		.uleb128 0x2
+ 1748 013f 18       		.uleb128 0x18
+ 1749 0140 00       		.byte	0
+ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccQQMuZQ.s 			page 36
+
+
+ 1750 0141 00       		.byte	0
+ 1751 0142 00       		.byte	0
+ 1752              		.section	.debug_aranges,"",%progbits
+ 1753 0000 44000000 		.4byte	0x44
+ 1754 0004 0200     		.2byte	0x2
+ 1755 0006 00000000 		.4byte	.Ldebug_info0
+ 1756 000a 04       		.byte	0x4
+ 1757 000b 00       		.byte	0
+ 1758 000c 0000     		.2byte	0
+ 1759 000e 0000     		.2byte	0
+ 1760 0010 00000000 		.4byte	.LFB33
+ 1761 0014 FC010000 		.4byte	.LFE33-.LFB33
+ 1762 0018 00000000 		.4byte	.LFB34
+ 1763 001c E4000000 		.4byte	.LFE34-.LFB34
+ 1764 0020 00000000 		.4byte	.LFB35
+ 1765 0024 9C000000 		.4byte	.LFE35-.LFB35
+ 1766 0028 00000000 		.4byte	.LFB36
+ 1767 002c B0000000 		.4byte	.LFE36-.LFB36
+ 1768 0030 00000000 		.4byte	.LFB37
+ 1769 0034 00010000 		.4byte	.LFE37-.LFB37
+ 1770 0038 00000000 		.4byte	.LFB38
+ 1771 003c 5C000000 		.4byte	.LFE38-.LFB38
+ 1772 0040 00000000 		.4byte	0
+ 1773 0044 00000000 		.4byte	0
+ 1774              		.section	.debug_ranges,"",%progbits
+ 1775              	.Ldebug_ranges0:
+ 1776 0000 00000000 		.4byte	.LFB33
+ 1777 0004 FC010000 		.4byte	.LFE33
+ 1778 0008 00000000 		.4byte	.LFB34
+ 1779 000c E4000000 		.4byte	.LFE34
+ 1780 0010 00000000 		.4byte	.LFB35
+ 1781 0014 9C000000 		.4byte	.LFE35
+ 1782 0018 00000000 		.4byte	.LFB36
+ 1783 001c B0000000 		.4byte	.LFE36
+ 1784 0020 00000000 		.4byte	.LFB37
+ 1785 0024 00010000 		.4byte	.LFE37
+ 1786 0028 00000000 		.4byte	.LFB38
+ 1787 002c 5C000000 		.4byte	.LFE38
+ 1788 0030 00000000 		.4byte	0
+ 1789 0034 00000000 		.4byte	0
+ 1790              		.section	.debug_line,"",%progbits
+ 1791              	.Ldebug_line0:
+ 1792 0000 19010000 		.section	.debug_str,"MS",%progbits,1
+ 1792      02004500 
+ 1792      00000201 
+ 1792      FB0E0D00 
+ 1792      01010101 
+ 1793              	.LASF39:
+ 1794 0000 6C617374 		.ascii	"lastError\000"
+ 1794      4572726F 
+ 1794      7200
+ 1795              	.LASF49:
+ 1796 000a 73706565 		.ascii	"speedInterruptFlag\000"
+ 1796      64496E74 
+ 1796      65727275 
+ 1796      7074466C 
+ 1796      616700
+ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccQQMuZQ.s 			page 37
+
+
+ 1797              	.LASF44:
+ 1798 001d 6C6F6F6B 		.ascii	"lookup\000"
+ 1798      757000
+ 1799              	.LASF20:
+ 1800 0024 656E636F 		.ascii	"encoderLow\000"
+ 1800      6465724C 
+ 1800      6F7700
+ 1801              	.LASF56:
+ 1802 002f 41444352 		.ascii	"ADCResult\000"
+ 1802      6573756C 
+ 1802      7400
+ 1803              	.LASF2:
+ 1804 0039 73686F72 		.ascii	"short int\000"
+ 1804      7420696E 
+ 1804      7400
+ 1805              	.LASF24:
+ 1806 0043 6D6F746F 		.ascii	"motorCurrentScaler\000"
+ 1806      72437572 
+ 1806      72656E74 
+ 1806      5363616C 
+ 1806      657200
+ 1807              	.LASF16:
+ 1808 0056 73697A65 		.ascii	"sizetype\000"
+ 1808      74797065 
+ 1808      00
+ 1809              	.LASF30:
+ 1810 005f 74696D65 		.ascii	"timePeriod\000"
+ 1810      50657269 
+ 1810      6F6400
+ 1811              	.LASF62:
+ 1812 006a 6D61696E 		.ascii	"main\000"
+ 1812      00
+ 1813              	.LASF41:
+ 1814 006f 66636F6E 		.ascii	"fcontrol\000"
+ 1814      74726F6C 
+ 1814      00
+ 1815              	.LASF38:
+ 1816 0078 64657269 		.ascii	"derivative\000"
+ 1816      76617469 
+ 1816      766500
+ 1817              	.LASF10:
+ 1818 0083 75696E74 		.ascii	"uint16\000"
+ 1818      313600
+ 1819              	.LASF19:
+ 1820 008a 656E636F 		.ascii	"encoderHigh\000"
+ 1820      64657248 
+ 1820      69676800 
+ 1821              	.LASF12:
+ 1822 0096 696E7431 		.ascii	"int16\000"
+ 1822      3600
+ 1823              	.LASF9:
+ 1824 009c 75696E74 		.ascii	"uint8\000"
+ 1824      3800
+ 1825              	.LASF21:
+ 1826 00a2 73706565 		.ascii	"speedRPSScaler\000"
+ 1826      64525053 
+ 1826      5363616C 
+ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccQQMuZQ.s 			page 38
+
+
+ 1826      657200
+ 1827              	.LASF18:
+ 1828 00b1 656E636F 		.ascii	"encoderCount\000"
+ 1828      64657243 
+ 1828      6F756E74 
+ 1828      00
+ 1829              	.LASF23:
+ 1830 00be 73706565 		.ascii	"speedRPM\000"
+ 1830      6452504D 
+ 1830      00
+ 1831              	.LASF45:
+ 1832 00c7 686F6C64 		.ascii	"holdingReg\000"
+ 1832      696E6752 
+ 1832      656700
+ 1833              	.LASF22:
+ 1834 00d2 73706565 		.ascii	"speedRPS\000"
+ 1834      64525053 
+ 1834      00
+ 1835              	.LASF13:
+ 1836 00db 666C6F61 		.ascii	"float\000"
+ 1836      7400
+ 1837              	.LASF43:
+ 1838 00e1 75706461 		.ascii	"updateModbusPackets\000"
+ 1838      74654D6F 
+ 1838      64627573 
+ 1838      5061636B 
+ 1838      65747300 
+ 1839              	.LASF6:
+ 1840 00f5 6C6F6E67 		.ascii	"long long int\000"
+ 1840      206C6F6E 
+ 1840      6720696E 
+ 1840      7400
+ 1841              	.LASF11:
+ 1842 0103 696E7438 		.ascii	"int8\000"
+ 1842      00
+ 1843              	.LASF4:
+ 1844 0108 6C6F6E67 		.ascii	"long int\000"
+ 1844      20696E74 
+ 1844      00
+ 1845              	.LASF37:
+ 1846 0111 696E7465 		.ascii	"integral\000"
+ 1846      6772616C 
+ 1846      00
+ 1847              	.LASF33:
+ 1848 011a 63616C63 		.ascii	"calculateSpeed\000"
+ 1848      756C6174 
+ 1848      65537065 
+ 1848      656400
+ 1849              	.LASF17:
+ 1850 0129 6C6F6E67 		.ascii	"long double\000"
+ 1850      20646F75 
+ 1850      626C6500 
+ 1851              	.LASF42:
+ 1852 0135 636F6E74 		.ascii	"control\000"
+ 1852      726F6C00 
+ 1853              	.LASF1:
+ 1854 013d 756E7369 		.ascii	"unsigned char\000"
+ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccQQMuZQ.s 			page 39
+
+
+ 1854      676E6564 
+ 1854      20636861 
+ 1854      7200
+ 1855              	.LASF0:
+ 1856 014b 7369676E 		.ascii	"signed char\000"
+ 1856      65642063 
+ 1856      68617200 
+ 1857              	.LASF7:
+ 1858 0157 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 1858      206C6F6E 
+ 1858      6720756E 
+ 1858      7369676E 
+ 1858      65642069 
+ 1859              	.LASF8:
+ 1860 016e 756E7369 		.ascii	"unsigned int\000"
+ 1860      676E6564 
+ 1860      20696E74 
+ 1860      00
+ 1861              	.LASF55:
+ 1862 017b 70617374 		.ascii	"pastEncoderCount\000"
+ 1862      456E636F 
+ 1862      64657243 
+ 1862      6F756E74 
+ 1862      00
+ 1863              	.LASF52:
+ 1864 018c 656E635F 		.ascii	"enc_val\000"
+ 1864      76616C00 
+ 1865              	.LASF29:
+ 1866 0194 73706565 		.ascii	"speed\000"
+ 1866      6400
+ 1867              	.LASF28:
+ 1868 019a 636F756E 		.ascii	"counts\000"
+ 1868      747300
+ 1869              	.LASF3:
+ 1870 01a1 73686F72 		.ascii	"short unsigned int\000"
+ 1870      7420756E 
+ 1870      7369676E 
+ 1870      65642069 
+ 1870      6E7400
+ 1871              	.LASF15:
+ 1872 01b4 63686172 		.ascii	"char\000"
+ 1872      00
+ 1873              	.LASF48:
+ 1874 01b9 656E636F 		.ascii	"encoderInterruptFlag\000"
+ 1874      64657249 
+ 1874      6E746572 
+ 1874      72757074 
+ 1874      466C6167 
+ 1875              	.LASF26:
+ 1876 01ce 50494453 		.ascii	"PIDScaler\000"
+ 1876      63616C65 
+ 1876      7200
+ 1877              	.LASF34:
+ 1878 01d8 63616C63 		.ascii	"calculatePID\000"
+ 1878      756C6174 
+ 1878      65504944 
+ 1878      00
+ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccQQMuZQ.s 			page 40
+
+
+ 1879              	.LASF5:
+ 1880 01e5 6C6F6E67 		.ascii	"long unsigned int\000"
+ 1880      20756E73 
+ 1880      69676E65 
+ 1880      6420696E 
+ 1880      7400
+ 1881              	.LASF25:
+ 1882 01f7 6D6F746F 		.ascii	"motorCurrent\000"
+ 1882      72437572 
+ 1882      72656E74 
+ 1882      00
+ 1883              	.LASF14:
+ 1884 0204 646F7562 		.ascii	"double\000"
+ 1884      6C6500
+ 1885              	.LASF35:
+ 1886 020b 63757272 		.ascii	"currentValue\000"
+ 1886      656E7456 
+ 1886      616C7565 
+ 1886      00
+ 1887              	.LASF27:
+ 1888 0218 73657470 		.ascii	"setpointSpeedRPM\000"
+ 1888      6F696E74 
+ 1888      53706565 
+ 1888      6452504D 
+ 1888      00
+ 1889              	.LASF50:
+ 1890 0229 656E6341 		.ascii	"encA\000"
+ 1890      00
+ 1891              	.LASF51:
+ 1892 022e 656E6342 		.ascii	"encB\000"
+ 1892      00
+ 1893              	.LASF46:
+ 1894 0233 72656365 		.ascii	"received\000"
+ 1894      69766564 
+ 1894      00
+ 1895              	.LASF57:
+ 1896 023c 41444356 		.ascii	"ADCVoltage\000"
+ 1896      6F6C7461 
+ 1896      676500
+ 1897              	.LASF59:
+ 1898 0247 2E5C6D61 		.ascii	".\\main.c\000"
+ 1898      696E2E63 
+ 1898      00
+ 1899              	.LASF47:
+ 1900 0250 6D6F6462 		.ascii	"modbusMessage\000"
+ 1900      75734D65 
+ 1900      73736167 
+ 1900      6500
+ 1901              	.LASF31:
+ 1902 025e 75706461 		.ascii	"updateEncoder\000"
+ 1902      7465456E 
+ 1902      636F6465 
+ 1902      7200
+ 1903              	.LASF60:
+ 1904 026c 433A5C55 		.ascii	"C:\\Users\\Sam\\OneDrive\\Github\\PSoC-4-Motor-Cont"
+ 1904      73657273 
+ 1904      5C53616D 
+ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccQQMuZQ.s 			page 41
+
+
+ 1904      5C4F6E65 
+ 1904      44726976 
+ 1905 029a 726F6C6C 		.ascii	"roller\\PSoC 4 Encoder Modbus Slave.cydsn\000"
+ 1905      65725C50 
+ 1905      536F4320 
+ 1905      3420456E 
+ 1905      636F6465 
+ 1906              	.LASF40:
+ 1907 02c3 6572726F 		.ascii	"error\000"
+ 1907      7200
+ 1908              	.LASF32:
+ 1909 02c9 7363616C 		.ascii	"scaleModbusPIDConstants\000"
+ 1909      654D6F64 
+ 1909      62757350 
+ 1909      4944436F 
+ 1909      6E737461 
+ 1910              	.LASF36:
+ 1911 02e1 73657470 		.ascii	"setpoint\000"
+ 1911      6F696E74 
+ 1911      00
+ 1912              	.LASF61:
+ 1913 02ea 4D6F6462 		.ascii	"ModbusData\000"
+ 1913      75734461 
+ 1913      746100
+ 1914              	.LASF54:
+ 1915 02f5 696E7465 		.ascii	"interruptCount\000"
+ 1915      72727570 
+ 1915      74436F75 
+ 1915      6E7400
+ 1916              	.LASF53:
+ 1917 0304 70696473 		.ascii	"pidspeed\000"
+ 1917      70656564 
+ 1917      00
+ 1918              	.LASF58:
+ 1919 030d 474E5520 		.ascii	"GNU C 4.8.4 20140526 (release) [ARM/embedded-4_8-br"
+ 1919      4320342E 
+ 1919      382E3420 
+ 1919      32303134 
+ 1919      30353236 
+ 1920 0340 616E6368 		.ascii	"anch revision 211358] -mcpu=cortex-m0 -mthumb -g -O"
+ 1920      20726576 
+ 1920      6973696F 
+ 1920      6E203231 
+ 1920      31333538 
+ 1921 0373 30202D66 		.ascii	"0 -ffunction-sections\000"
+ 1921      66756E63 
+ 1921      74696F6E 
+ 1921      2D736563 
+ 1921      74696F6E 
+ 1922              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.8.4 20140526 (release) [ARM/embedded-4_8-br
