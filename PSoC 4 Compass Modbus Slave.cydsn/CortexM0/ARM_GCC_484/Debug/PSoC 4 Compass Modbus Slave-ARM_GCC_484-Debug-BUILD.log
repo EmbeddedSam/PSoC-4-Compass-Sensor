@@ -1,18 +1,15 @@
---------------- Build Started: 03/07/2015 13:55:18 Project: PSoC 4 Compass Modbus Slave, Configuration: ARM GCC 4.8.4 Debug ---------------
+--------------- Build Started: 03/07/2015 15:17:17 Project: PSoC 4 Compass Modbus Slave, Configuration: ARM GCC 4.8.4 Debug ---------------
 The code generation step is up to date.
 arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -Wno-main -I. -I.\Generated_Source\PSoC4 -Wa,-alh=.\CortexM0\ARM_GCC_484\Debug/main.lst -g -D DEBUG -Wall -ffunction-sections -O0 -c .\main.c -o .\CortexM0\ARM_GCC_484\Debug\main.o
 .\main.c: In function 'main':
-.\main.c:94:11: warning: unused variable 'ida' [-Wunused-variable]
+.\main.c:86:11: warning: unused variable 'ida' [-Wunused-variable]
      uint8 ida = 0;
            ^
-.\main.c:84:9: warning: unused variable 'i' [-Wunused-variable]
-     int i = 0;
-         ^
 arm-none-eabi-ar.exe -rs ".\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a" .\CortexM0\ARM_GCC_484\Debug\cyfitter_cfg.o .\CortexM0\ARM_GCC_484\Debug\CyBootAsmGnu.o .\CortexM0\ARM_GCC_484\Debug\CyFlash.o .\CortexM0\ARM_GCC_484\Debug\CyLib.o .\CortexM0\ARM_GCC_484\Debug\cyPm.o .\CortexM0\ARM_GCC_484\Debug\cyutils.o .\CortexM0\ARM_GCC_484\Debug\TX_LED.o .\CortexM0\ARM_GCC_484\Debug\RX_LED.o .\CortexM0\ARM_GCC_484\Debug\MessageTimer.o .\CortexM0\ARM_GCC_484\Debug\MessageTimer_PM.o .\CortexM0\ARM_GCC_484\Debug\ModbusUART.o .\CortexM0\ARM_GCC_484\Debug\ModbusUART_SPI_UART.o .\CortexM0\ARM_GCC_484\Debug\ModbusUART_SPI_UART_INT.o .\CortexM0\ARM_GCC_484\Debug\ModbusUART_PM.o .\CortexM0\ARM_GCC_484\Debug\ModbusUART_UART.o .\CortexM0\ARM_GCC_484\Debug\ModbusUART_BOOT.o .\CortexM0\ARM_GCC_484\Debug\ModbusUART_UART_BOOT.o .\CortexM0\ARM_GCC_484\Debug\ModbusUART_rx.o .\CortexM0\ARM_GCC_484\Debug\ModbusUART_SCBCLK.o .\CortexM0\ARM_GCC_484\Debug\ModbusUART_tx.o .\CortexM0\ARM_GCC_484\Debug\MessageTimerClock.o .\CortexM0\ARM_GCC_484\Debug\P0_2_LED.o .\CortexM0\ARM_GCC_484\Debug\MessageReceived.o .\CortexM0\ARM_GCC_484\Debug\EndOfMessage.o .\CortexM0\ARM_GCC_484\Debug\TimerPin.o .\CortexM0\ARM_GCC_484\Debug\writeEnable.o .\CortexM0\ARM_GCC_484\Debug\SpeedTimer.o .\CortexM0\ARM_GCC_484\Debug\SpeedTimer_PM.o .\CortexM0\ARM_GCC_484\Debug\SpeedInterrupt.o .\CortexM0\ARM_GCC_484\Debug\timer_clock.o .\CortexM0\ARM_GCC_484\Debug\I2C_MASTER.o .\CortexM0\ARM_GCC_484\Debug\I2C_MASTER_I2C_INT.o .\CortexM0\ARM_GCC_484\Debug\I2C_MASTER_I2C.o .\CortexM0\ARM_GCC_484\Debug\I2C_MASTER_I2C_BOOT.o .\CortexM0\ARM_GCC_484\Debug\I2C_MASTER_I2C_MASTER.o .\CortexM0\ARM_GCC_484\Debug\I2C_MASTER_PM.o .\CortexM0\ARM_GCC_484\Debug\I2C_MASTER_BOOT.o .\CortexM0\ARM_GCC_484\Debug\I2C_MASTER_SCBCLK.o .\CortexM0\ARM_GCC_484\Debug\I2C_MASTER_sda.o .\CortexM0\ARM_GCC_484\Debug\I2C_MASTER_scl.o .\CortexM0\ARM_GCC_484\Debug\I2C_MASTER_SCB_IRQ.o
 arm-none-eabi-ar.exe: creating .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a
 arm-none-eabi-gcc.exe -Wl,--start-group -o ".\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.elf" .\CortexM0\ARM_GCC_484\Debug\main.o .\CortexM0\ARM_GCC_484\Debug\interrupts.o .\CortexM0\ARM_GCC_484\Debug\Modbus.o .\CortexM0\ARM_GCC_484\Debug\i2cfunctions.o .\CortexM0\ARM_GCC_484\Debug\hmc5883l.o .\CortexM0\ARM_GCC_484\Debug\HMC5883L-Compass.o .\CortexM0\ARM_GCC_484\Debug\i2c.o .\CortexM0\ARM_GCC_484\Debug\cymetadata.o .\CortexM0\ARM_GCC_484\Debug\Cm0Start.o ".\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a" "C:\Program Files (x86)\Cypress\PSoC Creator\3.1\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\CortexM0\ARM_GCC_484\Debug\CyComponentLibrary.a" -mthumb -march=armv6-m -l m "-Wl,-Map,.\CortexM0\ARM_GCC_484\Debug/PSoC 4 Compass Modbus Slave.map" -T .\Generated_Source\PSoC4\cm0gcc.ld -g -specs=nano.specs "-u _printf_float" "" -Wl,--gc-sections -Wl,--end-group
 cyelftool.exe -C "C:\Users\Sam\OneDrive\Github\PSoC-4-Compass-Sensor\PSoC 4 Compass Modbus Slave.cydsn\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.elf" --flash_size 32768 --flash_row_size 128
 cyelftool.exe -S "C:\Users\Sam\OneDrive\Github\PSoC-4-Compass-Sensor\PSoC 4 Compass Modbus Slave.cydsn\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.elf"
-Flash used: 23560 of 32768 bytes (71.9 %).
-SRAM used: 2172 of 4096 bytes (53.0 %). Stack: 1024 bytes. Heap: 256 bytes.
---------------- Build Succeeded: 03/07/2015 13:55:22 ---------------
+Flash used: 23568 of 32768 bytes (71.9 %).
+SRAM used: 2164 of 4096 bytes (52.8 %). Stack: 1024 bytes. Heap: 256 bytes.
+--------------- Build Succeeded: 03/07/2015 15:17:20 ---------------

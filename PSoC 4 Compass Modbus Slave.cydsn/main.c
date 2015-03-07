@@ -36,16 +36,12 @@ extern uint8 modbusMessage;
 
 /* Typedef modbus packet */
 struct ModbusData {
-   int encoderCount;
-   int16 encoderHigh, encoderLow;
-   int16 speedRPSScaler;
-   int16 speedRPS;
-   int16 speedRPM;
-   uint16 motorCurrentScaler;
-   int16 motorCurrent;
+   int16 cx,cy,cz;
+   int16 heading;
    float PIDScaler;
    float Kp,Ki,Kd; 
-   int16 setpointSpeedRPM;
+   int16 setpointHeading;
+   int16 pidOutput;
 };
 struct ModbusData mb;
 
@@ -61,8 +57,6 @@ float scale = 0.92;
 double bearing = 0;
 bool compassOnline = 0;
 uint16 xoffset,yoffset;
-
-
 
 /* Main loop */
 int main()
@@ -86,8 +80,6 @@ int main()
     CyGlobalIntEnable; /* comment this line to disable global interrupts. */
     
     /* Setup Scaling factors for Modbus */ 
-    mb.speedRPSScaler = 1000;
-    mb.motorCurrentScaler = 100;
     //mb.PIDScaler = 1000;
     scaleModbusPIDConstants();
     
@@ -96,13 +88,7 @@ int main()
     compassOnline = HMC5883L_testConnection();
     if(compassOnline){
         HMC5883L_initialize();
-    }
-
-    
-    
-    //HMC5883L_SetUp();
-    //HMC58X3L_Calibration();
-    
+    }   
     
     while(forever)
     {       
@@ -131,15 +117,19 @@ int main()
                 
                 if (bearing < 0)
                     bearing += 2 * M_PI;
-                 bearing = bearing*(180.0 / M_PI);//convert to degrees          
+                 bearing = bearing*(180.0 / M_PI);//convert to degrees
+                 holdingReg[3] = (uint16)bearing*10;
             }
             
-            holdingReg[3] = (uint16)bearing*10;
-            
-            //CyDelay(1);
-            
-
-    
+            //We don't want to scale the PID contants every time as the floating point
+            //stuff is wasteful.
+            if(i < 10000){
+                i ++;
+            }
+            else{
+                scaleModbusPIDConstants();
+                i = 0;
+            }   
         }
     }
 }
@@ -148,7 +138,7 @@ void scaleModbusPIDConstants(void)
 {
     //Need to actually read the holding registers and do the divide but for now lets
     //leave this as just setting the values.
-    if(holdingReg[8] == 0)
+    if(holdingReg[6] == 0)
     {
         //scaler hasnt been set go with defaults
         mb.PIDScaler = 1000;
@@ -159,10 +149,10 @@ void scaleModbusPIDConstants(void)
     else
     {
         //scaler hasnt been set go with defaults
-        mb.PIDScaler = holdingReg[8];
-        mb.Kp = holdingReg[9]/mb.PIDScaler;
-        mb.Ki = holdingReg[10]/mb.PIDScaler;
-        mb.Kd = holdingReg[11]/mb.PIDScaler;
+        mb.PIDScaler = holdingReg[6];
+        mb.Kp = holdingReg[7]/mb.PIDScaler;
+        mb.Ki = holdingReg[8]/mb.PIDScaler;
+        mb.Kd = holdingReg[9]/mb.PIDScaler;
     }
 
 }

@@ -1,6 +1,6 @@
 // ======================================================================
 // PSoC 4 Compass Modbus Slave.v generated from TopDesign.cysch
-// 03/03/2015 at 20:02
+// 03/07/2015 at 14:40
 // This file is auto generated. ANY EDITS YOU MAKE MAY BE LOST WHEN THIS FILE IS REGENERATED!!!
 // ======================================================================
 
