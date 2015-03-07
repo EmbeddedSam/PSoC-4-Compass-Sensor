@@ -18,7 +18,7 @@
 #define SlaveAddress 5 //Change this to whatever you want
 #define CHECK_BIT(var,pos) !!((var) & (1 << (pos)))
 
-unsigned int  holdingReg[50];                                                                                                                                                               
+uint16  holdingReg[50];                                                                                                                                                               
 unsigned char coils[50];
 unsigned char received[125];
 unsigned char response[125]; //Enough to return all holding-r's

@@ -1,4 +1,4 @@
---------------- Build Started: 03/07/2015 12:03:08 Project: PSoC 4 Compass Modbus Slave, Configuration: ARM GCC 4.8.4 Debug ---------------
+--------------- Build Started: 03/07/2015 13:55:18 Project: PSoC 4 Compass Modbus Slave, Configuration: ARM GCC 4.8.4 Debug ---------------
 The code generation step is up to date.
 arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -Wno-main -I. -I.\Generated_Source\PSoC4 -Wa,-alh=.\CortexM0\ARM_GCC_484\Debug/main.lst -g -D DEBUG -Wall -ffunction-sections -O0 -c .\main.c -o .\CortexM0\ARM_GCC_484\Debug\main.o
 .\main.c: In function 'main':
@@ -13,6 +13,6 @@ arm-none-eabi-ar.exe: creating .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbu
 arm-none-eabi-gcc.exe -Wl,--start-group -o ".\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.elf" .\CortexM0\ARM_GCC_484\Debug\main.o .\CortexM0\ARM_GCC_484\Debug\interrupts.o .\CortexM0\ARM_GCC_484\Debug\Modbus.o .\CortexM0\ARM_GCC_484\Debug\i2cfunctions.o .\CortexM0\ARM_GCC_484\Debug\hmc5883l.o .\CortexM0\ARM_GCC_484\Debug\HMC5883L-Compass.o .\CortexM0\ARM_GCC_484\Debug\i2c.o .\CortexM0\ARM_GCC_484\Debug\cymetadata.o .\CortexM0\ARM_GCC_484\Debug\Cm0Start.o ".\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a" "C:\Program Files (x86)\Cypress\PSoC Creator\3.1\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\CortexM0\ARM_GCC_484\Debug\CyComponentLibrary.a" -mthumb -march=armv6-m -l m "-Wl,-Map,.\CortexM0\ARM_GCC_484\Debug/PSoC 4 Compass Modbus Slave.map" -T .\Generated_Source\PSoC4\cm0gcc.ld -g -specs=nano.specs "-u _printf_float" "" -Wl,--gc-sections -Wl,--end-group
 cyelftool.exe -C "C:\Users\Sam\OneDrive\Github\PSoC-4-Compass-Sensor\PSoC 4 Compass Modbus Slave.cydsn\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.elf" --flash_size 32768 --flash_row_size 128
 cyelftool.exe -S "C:\Users\Sam\OneDrive\Github\PSoC-4-Compass-Sensor\PSoC 4 Compass Modbus Slave.cydsn\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.elf"
-Flash used: 18104 of 32768 bytes (55.2 %).
-SRAM used: 2268 of 4096 bytes (55.4 %). Stack: 1024 bytes. Heap: 256 bytes.
---------------- Build Succeeded: 03/07/2015 12:03:11 ---------------
+Flash used: 23560 of 32768 bytes (71.9 %).
+SRAM used: 2172 of 4096 bytes (53.0 %). Stack: 1024 bytes. Heap: 256 bytes.
+--------------- Build Succeeded: 03/07/2015 13:55:22 ---------------

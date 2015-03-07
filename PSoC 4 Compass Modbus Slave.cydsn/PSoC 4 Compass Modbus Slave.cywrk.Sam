@@ -280,32 +280,6 @@
 <VisibleNodeIds>
 <v>PSoC 4 Compass Modbus Slave</v>
 <v>PSoC 4 Compass Modbus Slave\PSoC 4 Compass Modbus Slave</v>
-<v>PSoC 4 Compass Modbus Slave\PSoC 4 Compass Modbus Slave\CortexM0</v>
-<v>PSoC 4 Compass Modbus Slave\PSoC 4 Compass Modbus Slave\CortexM0\ARM_GCC_484</v>
-<v>PSoC 4 Compass Modbus Slave\PSoC 4 Compass Modbus Slave\CortexM0\ARM_GCC_484\Debug</v>
-<v>PSoC 4 Compass Modbus Slave\PSoC 4 Compass Modbus Slave\CortexM0\ARM_GCC_484\Debug\Listing Files</v>
-<v>PSoC 4 Compass Modbus Slave\PSoC 4 Compass Modbus Slave\CortexM0\ARM_GCC_484\Debug\Listing Files\Cm0Start.lst</v>
-<v>PSoC 4 Compass Modbus Slave\PSoC 4 Compass Modbus Slave\CortexM0\ARM_GCC_484\Debug\Listing Files\CyBootAsmGnu.lst</v>
-<v>PSoC 4 Compass Modbus Slave\PSoC 4 Compass Modbus Slave\CortexM0\ARM_GCC_484\Debug\Listing Files\cyfitter_cfg.lst</v>
-<v>PSoC 4 Compass Modbus Slave\PSoC 4 Compass Modbus Slave\CortexM0\ARM_GCC_484\Debug\Listing Files\CyFlash.lst</v>
-<v>PSoC 4 Compass Modbus Slave\PSoC 4 Compass Modbus Slave\CortexM0\ARM_GCC_484\Debug\Listing Files\CyLib.lst</v>
-<v>PSoC 4 Compass Modbus Slave\PSoC 4 Compass Modbus Slave\CortexM0\ARM_GCC_484\Debug\Listing Files\cymetadata.lst</v>
-<v>PSoC 4 Compass Modbus Slave\PSoC 4 Compass Modbus Slave\CortexM0\ARM_GCC_484\Debug\Listing Files\cyPm.lst</v>
-<v>PSoC 4 Compass Modbus Slave\PSoC 4 Compass Modbus Slave\CortexM0\ARM_GCC_484\Debug\Listing Files\cyutils.lst</v>
-<v>PSoC 4 Compass Modbus Slave\PSoC 4 Compass Modbus Slave\CortexM0\ARM_GCC_484\Debug\Listing Files\EndOfMessage.lst</v>
-<v>PSoC 4 Compass Modbus Slave\PSoC 4 Compass Modbus Slave\CortexM0\ARM_GCC_484\Debug\Listing Files\hmc5883l.lst</v>
-<v>PSoC 4 Compass Modbus Slave\PSoC 4 Compass Modbus Slave\CortexM0\ARM_GCC_484\Debug\Listing Files\HMC5883L-Compass.lst</v>
-<v>PSoC 4 Compass Modbus Slave\PSoC 4 Compass Modbus Slave\CortexM0\ARM_GCC_484\Debug\Listing Files\i2c.lst</v>
-<v>PSoC 4 Compass Modbus Slave\PSoC 4 Compass Modbus Slave\CortexM0\ARM_GCC_484\Debug\Listing Files\I2C_MASTER.lst</v>
-<v>PSoC 4 Compass Modbus Slave\PSoC 4 Compass Modbus Slave\CortexM0\ARM_GCC_484\Debug\Listing Files\I2C_MASTER_BOOT.lst</v>
-<v>PSoC 4 Compass Modbus Slave\PSoC 4 Compass Modbus Slave\CortexM0\ARM_GCC_484\Debug\Listing Files\I2C_MASTER_I2C.lst</v>
-<v>PSoC 4 Compass Modbus Slave\PSoC 4 Compass Modbus Slave\CortexM0\ARM_GCC_484\Debug\Listing Files\I2C_MASTER_I2C_BOOT.lst</v>
-<v>PSoC 4 Compass Modbus Slave\PSoC 4 Compass Modbus Slave\CortexM0\ARM_GCC_484\Debug\Listing Files\I2C_MASTER_I2C_INT.lst</v>
-<v>PSoC 4 Compass Modbus Slave\PSoC 4 Compass Modbus Slave\CortexM0\ARM_GCC_484\Debug\Listing Files\I2C_MASTER_I2C_MASTER.lst</v>
-<v>PSoC 4 Compass Modbus Slave\PSoC 4 Compass Modbus Slave\CortexM0\ARM_GCC_484\Debug\Listing Files\I2C_MASTER_PM.lst</v>
-<v>PSoC 4 Compass Modbus Slave\PSoC 4 Compass Modbus Slave\CortexM0\ARM_GCC_484\Debug\Listing Files\I2C_MASTER_SCB_IRQ.lst</v>
-<v>PSoC 4 Compass Modbus Slave\PSoC 4 Compass Modbus Slave\CortexM0\ARM_GCC_484\Debug\Listing Files\I2C_MASTER_SCBCLK.lst</v>
-<v>PSoC 4 Compass Modbus Slave\PSoC 4 Compass Modbus Slave\CortexM0\ARM_GCC_484\Debug\Listing Files\I2C_MASTER_scl.lst</v>
 </VisibleNodeIds>
 </CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
 </TreeStates>

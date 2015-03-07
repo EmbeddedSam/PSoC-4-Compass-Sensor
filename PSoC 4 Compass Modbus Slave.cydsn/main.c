@@ -28,7 +28,7 @@ int calculatePID(float, float);
 void scaleModbusPIDConstants(void);
 
 /* Modbus Variables */
-extern unsigned int  holdingReg[50];
+extern uint16  holdingReg[50];
 extern unsigned char coils[50];
 extern unsigned char received[125];
 extern unsigned char response[125]; //Enough to return all holding-r's
@@ -114,41 +114,31 @@ int main()
         if(compassOnline)
         {            
             HMC5883L_getHeading(&cx,&cy,&cz);
-            sx = (double)(cx);
-            sy = (double)cy;
-            sz = (double)cz * scale;        
+            sx = (double)(cx) * scale * 10.0;
+            sy = (double)cy   * scale * 10.0;
+            sz = (double)cz   * scale * 10.0;
             
-//            if(holdingReg[4] == 0){
-//                //no x offset applied, use default
-//                xoffset = -75;
-//            }
-//            else{xoffset = holdingReg[4];}
-//            
-//            if(holdingReg[5] == 0){
-//                //no y offset applied use default
-//                yoffset = -7;
-//            }
-//            else{xoffset = holdingReg[5];}
+            holdingReg[0] = (int16)sx;
+            holdingReg[1] = (int16)sy;
             
-           // xoffset = -75;
-           // yoffset = -7;
+            if((holdingReg[4] !=0) && (holdingReg[5] !=0))
+            {
+                //master has set offsets so it wants us to calculate the bearing here
+                offsetsx = ((double)((int16)holdingReg[4])) /10.0;
+                offsetsy = ((double)((int16)holdingReg[5])) /10.0;  
+                
+                bearing  = atan2(((sy/10.0) + offsetsy), ((sx/10.0) + offsetsx)); 
+                
+                if (bearing < 0)
+                    bearing += 2 * M_PI;
+                 bearing = bearing*(180.0 / M_PI);//convert to degrees          
+            }
             
-//            if((holdingReg[4] !=0) && (holdingReg[5] !=0))
-//            {
-//                //master has set offsets so it wants us to calculate the bearing here
-//                offsetsx = ((double)((int16)holdingReg[4])) /100.0;
-//                offsetsy = ((double)((int16)holdingReg[5])) /100.0;  
-//                
-//                bearing  = atan2((sy - offsetsy), (sx - offsetsx)); 
-//                if (bearing < 0)
-//                    bearing += 2 * M_PI;
-//                 bearing = bearing*(180.0 / M_PI);//convert to degrees          
-//            }
+            holdingReg[3] = (uint16)bearing*10;
+            
+            //CyDelay(1);
+            
 
-            holdingReg[0] = (uint16)(sx*100.0);
-            holdingReg[1] = (uint16)(sy*100.0);            
-            holdingReg[2] = (uint16)(sz*100.0);
-            holdingReg[3] = (uint16) (bearing*100.0);
     
         }
     }
