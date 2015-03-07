@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccKjBF7o.s 			page 1
+ARM GAS  C:\Users\Sam\AppData\Local\Temp\cclELFIf.s 			page 1
 
 
    1              		.cpu cortex-m0
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccKjBF7o.s 			page 1
   37 0006 3B60     		str	r3, [r7]
   38 0008 FB1D     		add	r3, r7, #7
   39 000a 1870     		strb	r0, [r3]
-ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccKjBF7o.s 			page 2
+ARM GAS  C:\Users\Sam\AppData\Local\Temp\cclELFIf.s 			page 2
 
 
   40 000c BB1D     		add	r3, r7, #6
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccKjBF7o.s 			page 1
   87 0060 1A1C     		mov	r2, r3
   88 0062 7B1D     		add	r3, r7, #5
   89 0064 1B78     		ldrb	r3, [r3]
-ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccKjBF7o.s 			page 3
+ARM GAS  C:\Users\Sam\AppData\Local\Temp\cclELFIf.s 			page 3
 
 
   90 0066 013B     		sub	r3, r3, #1
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccKjBF7o.s 			page 1
  137 0016 1978     		ldrb	r1, [r3]
  138 0018 BB1D     		add	r3, r7, #6
  139 001a 1A78     		ldrb	r2, [r3]
-ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccKjBF7o.s 			page 4
+ARM GAS  C:\Users\Sam\AppData\Local\Temp\cclELFIf.s 			page 4
 
 
  140 001c 3B68     		ldr	r3, [r7]
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccKjBF7o.s 			page 1
  190 0028 0B1C     		mov	r3, r1
  191 002a 5A1E     		sub	r2, r3, #1
  192 002c 7B1D     		add	r3, r7, #5
-ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccKjBF7o.s 			page 5
+ARM GAS  C:\Users\Sam\AppData\Local\Temp\cclELFIf.s 			page 5
 
 
  193 002e 1978     		ldrb	r1, [r3]
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccKjBF7o.s 			page 1
  243              		.cfi_endproc
  244              	.LFE35:
  245              		.size	I2CReadBits, .-I2CReadBits
-ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccKjBF7o.s 			page 6
+ARM GAS  C:\Users\Sam\AppData\Local\Temp\cclELFIf.s 			page 6
 
 
  246 008a C046     		.section	.text.I2CReadBit,"ax",%progbits
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccKjBF7o.s 			page 1
  296 0044 1A70     		strb	r2, [r3]
   44:.\i2cfunctions.c **** }
  297              		.loc 1 44 0
-ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccKjBF7o.s 			page 7
+ARM GAS  C:\Users\Sam\AppData\Local\Temp\cclELFIf.s 			page 7
 
 
  298 0046 BD46     		mov	sp, r7
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccKjBF7o.s 			page 1
  346              		.loc 1 50 0
  347 0032 06E0     		b	.L8
  348              	.L9:
-ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccKjBF7o.s 			page 8
+ARM GAS  C:\Users\Sam\AppData\Local\Temp\cclELFIf.s 			page 8
 
 
   51:.\i2cfunctions.c **** 		I2C_MASTER_I2CMasterWriteByte(*value++);
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccKjBF7o.s 			page 1
  396              		.cfi_def_cfa_register 7
  397 0006 FB1D     		add	r3, r7, #7
  398 0008 1870     		strb	r0, [r3]
-ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccKjBF7o.s 			page 9
+ARM GAS  C:\Users\Sam\AppData\Local\Temp\cclELFIf.s 			page 9
 
 
  399 000a BB1D     		add	r3, r7, #6
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccKjBF7o.s 			page 1
  449 0018 1970     		strb	r1, [r3]
  450 001a 3B1D     		add	r3, r7, #4
  451 001c 1A70     		strb	r2, [r3]
-ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccKjBF7o.s 			page 10
+ARM GAS  C:\Users\Sam\AppData\Local\Temp\cclELFIf.s 			page 10
 
 
   61:.\i2cfunctions.c **** 	uint8_t b;
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccKjBF7o.s 			page 1
  501 007a 0F31     		add	r1, r1, #15
  502 007c 1278     		ldrb	r2, [r2]
  503 007e 0978     		ldrb	r1, [r1]
-ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccKjBF7o.s 			page 11
+ARM GAS  C:\Users\Sam\AppData\Local\Temp\cclELFIf.s 			page 11
 
 
  504 0080 0A40     		and	r2, r1
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccKjBF7o.s 			page 1
  554 00d6 C046     		.section	.text.I2CWriteBit,"ax",%progbits
  555              		.align	2
  556              		.global	I2CWriteBit
-ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccKjBF7o.s 			page 12
+ARM GAS  C:\Users\Sam\AppData\Local\Temp\cclELFIf.s 			page 12
 
 
  557              		.code	16
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccKjBF7o.s 			page 1
  606 0044 9940     		lsl	r1, r1, r3
  607 0046 0B1C     		mov	r3, r1
  608 0048 DAB2     		uxtb	r2, r3
-ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccKjBF7o.s 			page 13
+ARM GAS  C:\Users\Sam\AppData\Local\Temp\cclELFIf.s 			page 13
 
 
  609 004a 3B1C     		mov	r3, r7
@@ -778,7 +778,7 @@ ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccKjBF7o.s 			page 1
  661              		.align	2
  662              		.global	I2CWriteWords
  663              		.code	16
-ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccKjBF7o.s 			page 14
+ARM GAS  C:\Users\Sam\AppData\Local\Temp\cclELFIf.s 			page 14
 
 
  664              		.thumb_func
@@ -838,7 +838,7 @@ ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccKjBF7o.s 			page 1
   84:.\i2cfunctions.c **** 		I2C_MASTER_I2CMasterWriteByte((uint8_t)*value++);
  711              		.loc 1 84 0
  712 0042 3B68     		ldr	r3, [r7]
-ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccKjBF7o.s 			page 15
+ARM GAS  C:\Users\Sam\AppData\Local\Temp\cclELFIf.s 			page 15
 
 
  713 0044 9A1C     		add	r2, r3, #2
@@ -898,7 +898,7 @@ ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccKjBF7o.s 			page 1
  761 0008 1870     		strb	r0, [r3]
  762 000a BB1D     		add	r3, r7, #6
  763 000c 1970     		strb	r1, [r3]
-ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccKjBF7o.s 			page 16
+ARM GAS  C:\Users\Sam\AppData\Local\Temp\cclELFIf.s 			page 16
 
 
  764 000e 3B1D     		add	r3, r7, #4
@@ -958,7 +958,7 @@ ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccKjBF7o.s 			page 1
  816 003f 02       		.byte	0x2
  817 0040 05       		.byte	0x5
  818 0041 ED010000 		.4byte	.LASF2
-ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccKjBF7o.s 			page 17
+ARM GAS  C:\Users\Sam\AppData\Local\Temp\cclELFIf.s 			page 17
 
 
  819 0045 03       		.uleb128 0x3
@@ -1018,7 +1018,7 @@ ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccKjBF7o.s 			page 1
  873 00a8 1F020000 		.4byte	.LASF15
  874 00ac 02       		.uleb128 0x2
  875 00ad 04       		.byte	0x4
-ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccKjBF7o.s 			page 18
+ARM GAS  C:\Users\Sam\AppData\Local\Temp\cclELFIf.s 			page 18
 
 
  876 00ae 07       		.byte	0x7
@@ -1078,7 +1078,7 @@ ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccKjBF7o.s 			page 1
  930 010f 81000000 		.4byte	0x81
  931 0113 05       		.uleb128 0x5
  932 0114 84000000 		.4byte	.LASF22
-ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccKjBF7o.s 			page 19
+ARM GAS  C:\Users\Sam\AppData\Local\Temp\cclELFIf.s 			page 19
 
 
  933 0118 01       		.byte	0x1
@@ -1138,7 +1138,7 @@ ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccKjBF7o.s 			page 1
  987 0181 02       		.uleb128 0x2
  988 0182 91       		.byte	0x91
  989 0183 66       		.sleb128 -26
-ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccKjBF7o.s 			page 20
+ARM GAS  C:\Users\Sam\AppData\Local\Temp\cclELFIf.s 			page 20
 
 
  990 0184 06       		.uleb128 0x6
@@ -1198,7 +1198,7 @@ ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccKjBF7o.s 			page 1
  1044 01e7 81000000 		.4byte	0x81
  1045 01eb 02       		.uleb128 0x2
  1046 01ec 91       		.byte	0x91
-ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccKjBF7o.s 			page 21
+ARM GAS  C:\Users\Sam\AppData\Local\Temp\cclELFIf.s 			page 21
 
 
  1047 01ed 76       		.sleb128 -10
@@ -1258,7 +1258,7 @@ ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccKjBF7o.s 			page 1
  1101 0250 2E       		.byte	0x2e
  1102 0251 0D010000 		.4byte	0x10d
  1103 0255 02       		.uleb128 0x2
-ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccKjBF7o.s 			page 22
+ARM GAS  C:\Users\Sam\AppData\Local\Temp\cclELFIf.s 			page 22
 
 
  1104 0256 91       		.byte	0x91
@@ -1318,7 +1318,7 @@ ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccKjBF7o.s 			page 1
  1158 02ba 06       		.uleb128 0x6
  1159 02bb F7010000 		.4byte	.LASF17
  1160 02bf 01       		.byte	0x1
-ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccKjBF7o.s 			page 23
+ARM GAS  C:\Users\Sam\AppData\Local\Temp\cclELFIf.s 			page 23
 
 
  1161 02c0 3C       		.byte	0x3c
@@ -1378,7 +1378,7 @@ ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccKjBF7o.s 			page 1
  1215 031b 05       		.uleb128 0x5
  1216 031c 8D010000 		.4byte	.LASF31
  1217 0320 01       		.byte	0x1
-ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccKjBF7o.s 			page 24
+ARM GAS  C:\Users\Sam\AppData\Local\Temp\cclELFIf.s 			page 24
 
 
  1218 0321 47       		.byte	0x47
@@ -1438,7 +1438,7 @@ ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccKjBF7o.s 			page 1
  1272 0385 9C       		.byte	0x9c
  1273 0386 CF030000 		.4byte	0x3cf
  1274 038a 06       		.uleb128 0x6
-ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccKjBF7o.s 			page 25
+ARM GAS  C:\Users\Sam\AppData\Local\Temp\cclELFIf.s 			page 25
 
 
  1275 038b F7010000 		.4byte	.LASF17
@@ -1498,7 +1498,7 @@ ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccKjBF7o.s 			page 1
  1329 03ec 59       		.byte	0x59
  1330 03ed 81000000 		.4byte	0x81
  1331 03f1 02       		.uleb128 0x2
-ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccKjBF7o.s 			page 26
+ARM GAS  C:\Users\Sam\AppData\Local\Temp\cclELFIf.s 			page 26
 
 
  1332 03f2 91       		.byte	0x91
@@ -1558,7 +1558,7 @@ ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccKjBF7o.s 			page 1
  1386 0020 00       		.byte	0
  1387 0021 03       		.uleb128 0x3
  1388 0022 0E       		.uleb128 0xe
-ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccKjBF7o.s 			page 27
+ARM GAS  C:\Users\Sam\AppData\Local\Temp\cclELFIf.s 			page 27
 
 
  1389 0023 3A       		.uleb128 0x3a
@@ -1618,7 +1618,7 @@ ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccKjBF7o.s 			page 1
  1443 005a 13       		.uleb128 0x13
  1444 005b 02       		.uleb128 0x2
  1445 005c 18       		.uleb128 0x18
-ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccKjBF7o.s 			page 28
+ARM GAS  C:\Users\Sam\AppData\Local\Temp\cclELFIf.s 			page 28
 
 
  1446 005d 00       		.byte	0
@@ -1678,7 +1678,7 @@ ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccKjBF7o.s 			page 1
  1500 0093 11       		.uleb128 0x11
  1501 0094 01       		.uleb128 0x1
  1502 0095 12       		.uleb128 0x12
-ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccKjBF7o.s 			page 29
+ARM GAS  C:\Users\Sam\AppData\Local\Temp\cclELFIf.s 			page 29
 
 
  1503 0096 06       		.uleb128 0x6
@@ -1738,7 +1738,7 @@ ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccKjBF7o.s 			page 1
  1557 0038 00000000 		.4byte	.LFB40
  1558 003c 9E000000 		.4byte	.LFE40
  1559 0040 00000000 		.4byte	.LFB41
-ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccKjBF7o.s 			page 30
+ARM GAS  C:\Users\Sam\AppData\Local\Temp\cclELFIf.s 			page 30
 
 
  1560 0044 72000000 		.4byte	.LFE41
@@ -1798,7 +1798,7 @@ ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccKjBF7o.s 			page 1
  1585 00c9 616E6368 		.ascii	"anch revision 211358] -mcpu=cortex-m0 -mthumb -g -O"
  1585      20726576 
  1585      6973696F 
-ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccKjBF7o.s 			page 31
+ARM GAS  C:\Users\Sam\AppData\Local\Temp\cclELFIf.s 			page 31
 
 
  1585      6E203231 
@@ -1858,7 +1858,7 @@ ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccKjBF7o.s 			page 1
  1608      72697465 
  1608      42697400 
  1609              	.LASF10:
-ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccKjBF7o.s 			page 32
+ARM GAS  C:\Users\Sam\AppData\Local\Temp\cclELFIf.s 			page 32
 
 
  1610 0199 756E7369 		.ascii	"unsigned int\000"
@@ -1918,7 +1918,7 @@ ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccKjBF7o.s 			page 1
  1636      65616442 
  1636      79746573 
  1636      00
-ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccKjBF7o.s 			page 33
+ARM GAS  C:\Users\Sam\AppData\Local\Temp\cclELFIf.s 			page 33
 
 
  1637              	.LASF0:

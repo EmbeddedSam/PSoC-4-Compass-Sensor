@@ -168,7 +168,7 @@ void SpeedTimer_Wakeup(void)        ;
 *    Initialial Parameter Constants
 ***************************************/
 
-#define SpeedTimer_INIT_PERIOD             49u
+#define SpeedTimer_INIT_PERIOD             249u
 #define SpeedTimer_INIT_CAPTURE_MODE       ((uint8)((uint8)0u << SpeedTimer_CTRL_CAP_MODE_SHIFT))
 #define SpeedTimer_INIT_TRIGGER_MODE       ((uint8)((uint8)0u << SpeedTimer_CTRL_TRIG_MODE_SHIFT))
 #if (SpeedTimer_UsingFixedFunction)

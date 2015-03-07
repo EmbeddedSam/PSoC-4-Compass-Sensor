@@ -169,7 +169,6 @@
 <v>PSoC 4 Compass Modbus Slave\PSoC 4 Compass Modbus Slave\Generated_Source\PSoC4\project.h</v>
 </ExpandedNodeIds>
 <VisibleNodeIds>
-<v>PSoC 4 Compass Modbus Slave</v>
 <v>PSoC 4 Compass Modbus Slave\PSoC 4 Compass Modbus Slave</v>
 <v>PSoC 4 Compass Modbus Slave\PSoC 4 Compass Modbus Slave\TopDesign</v>
 <v>PSoC 4 Compass Modbus Slave\PSoC 4 Compass Modbus Slave\PSoC 4 Compass Modbus Slave.cydwr</v>
@@ -197,6 +196,7 @@
 <v>PSoC 4 Compass Modbus Slave\PSoC 4 Compass Modbus Slave\Generated_Source\PSoC4\cy_boot\Cm0RealView.scat</v>
 <v>PSoC 4 Compass Modbus Slave\PSoC 4 Compass Modbus Slave\Generated_Source\PSoC4\cy_boot\Cm0Start.c</v>
 <v>PSoC 4 Compass Modbus Slave\PSoC 4 Compass Modbus Slave\Generated_Source\PSoC4\cy_boot\core_cm0.h</v>
+<v>PSoC 4 Compass Modbus Slave\PSoC 4 Compass Modbus Slave\Generated_Source\PSoC4\cy_boot\core_cm0_psoc4.h</v>
 </VisibleNodeIds>
 </CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
 <CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="PSoC 4 Compass Modbus Slave">

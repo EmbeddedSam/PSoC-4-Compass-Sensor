@@ -57,6 +57,7 @@ float scale = 0.92;
 double bearing = 0;
 bool compassOnline = 0;
 uint16 xoffset,yoffset;
+float pidSpeed;
 
 /* Main loop */
 int main()
@@ -119,17 +120,26 @@ int main()
                     bearing += 2 * M_PI;
                  bearing = bearing*(180.0 / M_PI);//convert to degrees
                  holdingReg[3] = (uint16)bearing*10;
+                
+                pidSpeed = calculatePID(abs(bearing), abs(holdingReg[10]));
+                holdingReg[12] = (uint16) pidSpeed;
             }
             
             //We don't want to scale the PID contants every time as the floating point
             //stuff is wasteful.
-            if(i < 10000){
+            if(i < 1000){
                 i ++;
             }
             else{
                 scaleModbusPIDConstants();
                 i = 0;
-            }   
+            }
+            
+            if(speedInterruptFlag)
+            {
+                
+                speedInterruptFlag = 0;
+            }
         }
     }
 }
@@ -149,7 +159,7 @@ void scaleModbusPIDConstants(void)
     else
     {
         //scaler hasnt been set go with defaults
-        mb.PIDScaler = holdingReg[6];
+        //mb.PIDScaler = holdingReg[6];
         mb.Kp = holdingReg[7]/mb.PIDScaler;
         mb.Ki = holdingReg[8]/mb.PIDScaler;
         mb.Kd = holdingReg[9]/mb.PIDScaler;
@@ -175,13 +185,13 @@ int calculatePID(float currentValue, float setpoint)
 	fcontrol += (mb.Kd * derivative);
 	fcontrol += (mb.Ki * integral);
     control = (int)fcontrol;
-    if(control > 255)
+    if(control > 512)
     {
-        control = 255;
+        control = 512;
     }
-    else if (control < 0)
+    else if (control < -512)
     {
-        control = 0;
+        control = -512;
     }
     return control;   
 }
@@ -202,7 +212,7 @@ void updateModbusPackets(void)
     //holdingReg[10] = Ki
     //holdingReg[11] = Kd
     //holdingReg[12] = setpointRPM
-    holdingReg[13] = pidspeed;
+    //holdingReg[13] = pidspeed;
     //holdingReg[14] = disable
 
 }
