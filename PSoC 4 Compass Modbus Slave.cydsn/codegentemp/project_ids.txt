@@ -1,5 +1,5 @@
-C:\Program Files (x86)\Cypress\PSoC Creator\3.1\PSoC Creator\psoc\content\default\CyAnnotationLibrary\CyAnnotationLibrary.cylib\CyAnnotationLibrary.cyprj|0d40b5a6-d5c5-4d1a-b4ea-46d87c1e4267
-C:\Program Files (x86)\Cypress\PSoC Creator\3.1\PSoC Creator\psoc\content\cycomponentlibraryupdates\CyComponentLibraryUpdates.cylib\CyComponentLibraryUpdates.cyprj|06dde33a-754d-42d7-86e0-8bab6144965d
-C:\Program Files (x86)\Cypress\PSoC Creator\3.1\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\CyComponentLibrary.cyprj|e3411b26-e0f6-4585-946a-68120700b292
-C:\Program Files (x86)\Cypress\PSoC Creator\3.1\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\CyPrimitives.cyprj|0892f074-2c86-444d-9f54-11bca1a9195a
-C:\Users\Sam\OneDrive\Github\PSoC-4-Compass-Sensor\PSoC 4 Compass Modbus Slave.cydsn\PSoC 4 Compass Modbus Slave.cyprj|7e709e31-cd9b-4022-9cd0-22b006945eaa
+C:\Users\Sam\OneDrive\Github\PSoC-4-Compass-Sensor\PSoC 4 Compass Modbus Slave.cydsn\PSoC 4 Compass Modbus Slave.cyprj|4372e42b-7bb0-4be7-b154-dff214d1c159
+C:\Program Files (x86)\Cypress\PSoC Creator\3.1\PSoC Creator\psoc\content\default\CyAnnotationLibrary\CyAnnotationLibrary.cylib\CyAnnotationLibrary.cyprj|e0e78595-5fda-419e-a6b0-c86d71503cfc
+C:\Program Files (x86)\Cypress\PSoC Creator\3.1\PSoC Creator\psoc\content\cycomponentlibraryupdates\CyComponentLibraryUpdates.cylib\CyComponentLibraryUpdates.cyprj|c6e8dcdb-1b25-47e3-b958-ba350d208a14
+C:\Program Files (x86)\Cypress\PSoC Creator\3.1\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\CyComponentLibrary.cyprj|43b4eb39-e8e5-4e0e-af5c-548db9e66279
+C:\Program Files (x86)\Cypress\PSoC Creator\3.1\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\CyPrimitives.cyprj|28cd099c-6bc7-4eab-ae19-61996dbb4a8c

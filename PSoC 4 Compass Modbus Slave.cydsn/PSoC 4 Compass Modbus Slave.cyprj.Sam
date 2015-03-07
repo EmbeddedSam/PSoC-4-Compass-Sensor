@@ -67,11 +67,9 @@
 <dep name=".\Generated_Source\PSoC4\timer_clock.h" />
 <dep name=".\Generated_Source\PSoC4\writeEnable.h" />
 <dep name=".\Generated_Source\PSoC4\writeEnable_aliases.h" />
-<dep name=".\HMC5883L-Compass.h" />
-<dep name=".\i2c.h" />
+<dep name=".\hmc5883l.h" />
 <dep name=".\interrupts.h" />
 <dep name=".\main.c" />
-<dep name=".\main.h" />
 <dep name=".\modbus.h" />
 </file>
 <file name=".\Generated_Source\PSoC4\CyFlash.h" />
@@ -128,12 +126,70 @@
 <file name=".\Generated_Source\PSoC4\timer_clock.h" />
 <file name=".\Generated_Source\PSoC4\writeEnable.h" />
 <file name=".\Generated_Source\PSoC4\writeEnable_aliases.h" />
-<file name=".\HMC5883L-Compass.h" />
-<file name=".\i2c.h" />
+<file name=".\hmc5883l.h" />
 <file name=".\interrupts.h" />
 <file name=".\main.c" />
-<file name=".\main.h" />
 <file name=".\modbus.h" />
+<file name=".\CortexM0\ARM_GCC_484\Debug\Modbus.o">
+<dep name=".\Generated_Source\PSoC4\CyFlash.h" />
+<dep name=".\Generated_Source\PSoC4\CyLib.h" />
+<dep name=".\Generated_Source\PSoC4\EndOfMessage.h" />
+<dep name=".\Generated_Source\PSoC4\I2C_MASTER.h" />
+<dep name=".\Generated_Source\PSoC4\I2C_MASTER_BOOT.h" />
+<dep name=".\Generated_Source\PSoC4\I2C_MASTER_I2C.h" />
+<dep name=".\Generated_Source\PSoC4\I2C_MASTER_I2C_PVT.h" />
+<dep name=".\Generated_Source\PSoC4\I2C_MASTER_PINS.h" />
+<dep name=".\Generated_Source\PSoC4\I2C_MASTER_PVT.h" />
+<dep name=".\Generated_Source\PSoC4\I2C_MASTER_SCBCLK.h" />
+<dep name=".\Generated_Source\PSoC4\I2C_MASTER_SCB_IRQ.h" />
+<dep name=".\Generated_Source\PSoC4\I2C_MASTER_scl.h" />
+<dep name=".\Generated_Source\PSoC4\I2C_MASTER_scl_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\I2C_MASTER_sda.h" />
+<dep name=".\Generated_Source\PSoC4\I2C_MASTER_sda_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\MessageReceived.h" />
+<dep name=".\Generated_Source\PSoC4\MessageTimer.h" />
+<dep name=".\Generated_Source\PSoC4\MessageTimerClock.h" />
+<dep name=".\Generated_Source\PSoC4\ModbusUART.h" />
+<dep name=".\Generated_Source\PSoC4\ModbusUART_BOOT.h" />
+<dep name=".\Generated_Source\PSoC4\ModbusUART_PINS.h" />
+<dep name=".\Generated_Source\PSoC4\ModbusUART_PVT.h" />
+<dep name=".\Generated_Source\PSoC4\ModbusUART_SCBCLK.h" />
+<dep name=".\Generated_Source\PSoC4\ModbusUART_SPI_UART.h" />
+<dep name=".\Generated_Source\PSoC4\ModbusUART_SPI_UART_PVT.h" />
+<dep name=".\Generated_Source\PSoC4\ModbusUART_rx.h" />
+<dep name=".\Generated_Source\PSoC4\ModbusUART_rx_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\ModbusUART_tx.h" />
+<dep name=".\Generated_Source\PSoC4\ModbusUART_tx_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\P0_2_LED.h" />
+<dep name=".\Generated_Source\PSoC4\P0_2_LED_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\RX_LED.h" />
+<dep name=".\Generated_Source\PSoC4\RX_LED_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\SpeedInterrupt.h" />
+<dep name=".\Generated_Source\PSoC4\SpeedTimer.h" />
+<dep name=".\Generated_Source\PSoC4\TX_LED.h" />
+<dep name=".\Generated_Source\PSoC4\TX_LED_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\TimerPin.h" />
+<dep name=".\Generated_Source\PSoC4\TimerPin_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\core_cm0.h" />
+<dep name=".\Generated_Source\PSoC4\core_cm0_psoc4.h" />
+<dep name=".\Generated_Source\PSoC4\core_cmFunc.h" />
+<dep name=".\Generated_Source\PSoC4\core_cmInstr.h" />
+<dep name=".\Generated_Source\PSoC4\cyPm.h" />
+<dep name=".\Generated_Source\PSoC4\cydevice_trm.h" />
+<dep name=".\Generated_Source\PSoC4\cydisabledsheets.h" />
+<dep name=".\Generated_Source\PSoC4\cyfitter.h" />
+<dep name=".\Generated_Source\PSoC4\cyfitter_cfg.h" />
+<dep name=".\Generated_Source\PSoC4\cypins.h" />
+<dep name=".\Generated_Source\PSoC4\cytypes.h" />
+<dep name=".\Generated_Source\PSoC4\project.h" />
+<dep name=".\Generated_Source\PSoC4\timer_clock.h" />
+<dep name=".\Generated_Source\PSoC4\writeEnable.h" />
+<dep name=".\Generated_Source\PSoC4\writeEnable_aliases.h" />
+<dep name=".\Modbus.c" />
+<dep name=".\Modbus.h" />
+<dep name=".\interrupts.h" />
+</file>
+<file name=".\Modbus.c" />
 <file name=".\CortexM0\ARM_GCC_484\Debug\HMC5883L-Compass.o">
 <dep name=".\Generated_Source\PSoC4\CyFlash.h" />
 <dep name=".\Generated_Source\PSoC4\CyLib.h" />
@@ -195,66 +251,9 @@
 <dep name=".\main.h" />
 </file>
 <file name=".\HMC5883L-Compass.c" />
-<file name=".\CortexM0\ARM_GCC_484\Debug\Modbus.o">
-<dep name=".\Generated_Source\PSoC4\CyFlash.h" />
-<dep name=".\Generated_Source\PSoC4\CyLib.h" />
-<dep name=".\Generated_Source\PSoC4\EndOfMessage.h" />
-<dep name=".\Generated_Source\PSoC4\I2C_MASTER.h" />
-<dep name=".\Generated_Source\PSoC4\I2C_MASTER_BOOT.h" />
-<dep name=".\Generated_Source\PSoC4\I2C_MASTER_I2C.h" />
-<dep name=".\Generated_Source\PSoC4\I2C_MASTER_I2C_PVT.h" />
-<dep name=".\Generated_Source\PSoC4\I2C_MASTER_PINS.h" />
-<dep name=".\Generated_Source\PSoC4\I2C_MASTER_PVT.h" />
-<dep name=".\Generated_Source\PSoC4\I2C_MASTER_SCBCLK.h" />
-<dep name=".\Generated_Source\PSoC4\I2C_MASTER_SCB_IRQ.h" />
-<dep name=".\Generated_Source\PSoC4\I2C_MASTER_scl.h" />
-<dep name=".\Generated_Source\PSoC4\I2C_MASTER_scl_aliases.h" />
-<dep name=".\Generated_Source\PSoC4\I2C_MASTER_sda.h" />
-<dep name=".\Generated_Source\PSoC4\I2C_MASTER_sda_aliases.h" />
-<dep name=".\Generated_Source\PSoC4\MessageReceived.h" />
-<dep name=".\Generated_Source\PSoC4\MessageTimer.h" />
-<dep name=".\Generated_Source\PSoC4\MessageTimerClock.h" />
-<dep name=".\Generated_Source\PSoC4\ModbusUART.h" />
-<dep name=".\Generated_Source\PSoC4\ModbusUART_BOOT.h" />
-<dep name=".\Generated_Source\PSoC4\ModbusUART_PINS.h" />
-<dep name=".\Generated_Source\PSoC4\ModbusUART_PVT.h" />
-<dep name=".\Generated_Source\PSoC4\ModbusUART_SCBCLK.h" />
-<dep name=".\Generated_Source\PSoC4\ModbusUART_SPI_UART.h" />
-<dep name=".\Generated_Source\PSoC4\ModbusUART_SPI_UART_PVT.h" />
-<dep name=".\Generated_Source\PSoC4\ModbusUART_rx.h" />
-<dep name=".\Generated_Source\PSoC4\ModbusUART_rx_aliases.h" />
-<dep name=".\Generated_Source\PSoC4\ModbusUART_tx.h" />
-<dep name=".\Generated_Source\PSoC4\ModbusUART_tx_aliases.h" />
-<dep name=".\Generated_Source\PSoC4\P0_2_LED.h" />
-<dep name=".\Generated_Source\PSoC4\P0_2_LED_aliases.h" />
-<dep name=".\Generated_Source\PSoC4\RX_LED.h" />
-<dep name=".\Generated_Source\PSoC4\RX_LED_aliases.h" />
-<dep name=".\Generated_Source\PSoC4\SpeedInterrupt.h" />
-<dep name=".\Generated_Source\PSoC4\SpeedTimer.h" />
-<dep name=".\Generated_Source\PSoC4\TX_LED.h" />
-<dep name=".\Generated_Source\PSoC4\TX_LED_aliases.h" />
-<dep name=".\Generated_Source\PSoC4\TimerPin.h" />
-<dep name=".\Generated_Source\PSoC4\TimerPin_aliases.h" />
-<dep name=".\Generated_Source\PSoC4\core_cm0.h" />
-<dep name=".\Generated_Source\PSoC4\core_cm0_psoc4.h" />
-<dep name=".\Generated_Source\PSoC4\core_cmFunc.h" />
-<dep name=".\Generated_Source\PSoC4\core_cmInstr.h" />
-<dep name=".\Generated_Source\PSoC4\cyPm.h" />
-<dep name=".\Generated_Source\PSoC4\cydevice_trm.h" />
-<dep name=".\Generated_Source\PSoC4\cydisabledsheets.h" />
-<dep name=".\Generated_Source\PSoC4\cyfitter.h" />
-<dep name=".\Generated_Source\PSoC4\cyfitter_cfg.h" />
-<dep name=".\Generated_Source\PSoC4\cypins.h" />
-<dep name=".\Generated_Source\PSoC4\cytypes.h" />
-<dep name=".\Generated_Source\PSoC4\project.h" />
-<dep name=".\Generated_Source\PSoC4\timer_clock.h" />
-<dep name=".\Generated_Source\PSoC4\writeEnable.h" />
-<dep name=".\Generated_Source\PSoC4\writeEnable_aliases.h" />
-<dep name=".\Modbus.c" />
-<dep name=".\Modbus.h" />
-<dep name=".\interrupts.h" />
-</file>
-<file name=".\Modbus.c" />
+<file name=".\HMC5883L-Compass.h" />
+<file name=".\i2c.h" />
+<file name=".\main.h" />
 <file name=".\CortexM0\ARM_GCC_484\Debug\hmc5883l.o">
 <dep name=".\Generated_Source\PSoC4\CyFlash.h" />
 <dep name=".\Generated_Source\PSoC4\CyLib.h" />
@@ -315,7 +314,6 @@
 <dep name=".\i2cfunctions.h" />
 </file>
 <file name=".\hmc5883l.c" />
-<file name=".\hmc5883l.h" />
 <file name=".\i2cfunctions.h" />
 <file name=".\CortexM0\ARM_GCC_484\Debug\i2c.o">
 <dep name=".\Generated_Source\PSoC4\CyFlash.h" />
@@ -1130,7 +1128,7 @@
 <name_val_pair name=".\Generated_Source\PSoC4\SpeedTimer_PM.c" v="-mcpu=cortex-m0 -mthumb -Wno-main -I. -I.\Generated_Source\PSoC4 -Wa,-alh=${OutputDir}/${CompileFile}.lst -g -D DEBUG -Wall -ffunction-sections -O0" />
 <name_val_pair name=".\Generated_Source\PSoC4\SpeedInterrupt.c" v="-mcpu=cortex-m0 -mthumb -Wno-main -I. -I.\Generated_Source\PSoC4 -Wa,-alh=${OutputDir}/${CompileFile}.lst -g -D DEBUG -Wall -ffunction-sections -O0" />
 <name_val_pair name=".\Generated_Source\PSoC4\timer_clock.c" v="-mcpu=cortex-m0 -mthumb -Wno-main -I. -I.\Generated_Source\PSoC4 -Wa,-alh=${OutputDir}/${CompileFile}.lst -g -D DEBUG -Wall -ffunction-sections -O0" />
-<name_val_pair name="C:\Users\Sam\OneDrive\Github\PSoC-4-Compass-Sensor\PSoC 4 Compass Modbus Slave.cydsn\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.hex" v="-mthumb -march=armv6-m -Wl,-Map,${OutputDir}/${ProjectShortName}.map -T .\Generated_Source\PSoC4\cm0gcc.ld -g -specs=nano.specs &quot;-u _printf_float&quot; &quot;&quot; -Wl,--gc-sections" />
+<name_val_pair name="C:\Users\Sam\OneDrive\Github\PSoC-4-Compass-Sensor\PSoC 4 Compass Modbus Slave.cydsn\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.hex" v="-mthumb -march=armv6-m -l m -Wl,-Map,${OutputDir}/${ProjectShortName}.map -T .\Generated_Source\PSoC4\cm0gcc.ld -g -specs=nano.specs &quot;-u _printf_float&quot; &quot;&quot; -Wl,--gc-sections" />
 <name_val_pair name=".\Generated_Source\PSoC4\I2C_MASTER.c" v="-mcpu=cortex-m0 -mthumb -Wno-main -I. -I.\Generated_Source\PSoC4 -Wa,-alh=${OutputDir}/${CompileFile}.lst -g -D DEBUG -Wall -ffunction-sections -O0" />
 <name_val_pair name=".\Generated_Source\PSoC4\I2C_MASTER_I2C_INT.c" v="-mcpu=cortex-m0 -mthumb -Wno-main -I. -I.\Generated_Source\PSoC4 -Wa,-alh=${OutputDir}/${CompileFile}.lst -g -D DEBUG -Wall -ffunction-sections -O0" />
 <name_val_pair name=".\Generated_Source\PSoC4\I2C_MASTER_I2C.c" v="-mcpu=cortex-m0 -mthumb -Wno-main -I. -I.\Generated_Source\PSoC4 -Wa,-alh=${OutputDir}/${CompileFile}.lst -g -D DEBUG -Wall -ffunction-sections -O0" />
@@ -1212,7 +1210,6 @@
 <v>Cypress Component Catalog\Digital\Functions\Counter [v2.40]</v>
 <v>Cypress Component Catalog\Digital\Functions\CRC [v2.40]</v>
 <v>Cypress Component Catalog\Digital\Functions\PrISM [v2.20]</v>
-<v>Cypress Component Catalog\Digital\Functions\PRS [v2.40]</v>
 </VisibleNodeIds>
 </CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
 <CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="Off-Chip Component Catalog\Diodes">
@@ -1253,7 +1250,6 @@
 <v>Off-Chip Component Catalog\Passive\Potentiometer [v1.0]</v>
 <v>Off-Chip Component Catalog\Passive\Resistor [v1.0]</v>
 <v>Off-Chip Component Catalog\Passive\Transformer [v1.0]</v>
-<v>Off-Chip Component Catalog\Power</v>
 </VisibleNodeIds>
 </CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
 </tree_states>
@@ -2313,14 +2309,14 @@
 <v>C:\Program Files (x86)\Cypress\PSoC Creator\3.1\PSoC Creator\warp\lib\common\stdlogic\rtlpkg.vif</v>
 <v>C:\Program Files (x86)\Cypress\PSoC Creator\3.1\PSoC Creator\warp\lib\common\stdlogic\cy_psoc3.vif</v>
 </warp_dep>
-<deps_time v="130697987033391871" />
+<deps_time v="130698865701058786" />
 <top_block v="TopDesign" />
 <last_generation v="1" />
 </CyGuid_925cc1e1-309e-4e08-b0a1-09a83c35b157>
 </dataGuid>
 <dataGuid v="769d31ea-68b1-4f0c-b90a-7c10a43ee563">
 <CyGuid_769d31ea-68b1-4f0c-b90a-7c10a43ee563 type_name="CyDesigner.Common.ProjMgmt.Model.CyLinkCustomData" version="1">
-<deps_time v="130698004051605257" />
+<deps_time v="130702033897633864" />
 </CyGuid_769d31ea-68b1-4f0c-b90a-7c10a43ee563>
 </dataGuid>
 <dataGuid v="504337dd-7d07-4bc7-9057-90e60cf6c469">
@@ -2333,11 +2329,15 @@
 <dataGuid v="bf610382-39c6-441f-80b8-b04622ea7845">
 <CyGuid_bf610382-39c6-441f-80b8-b04622ea7845 type_name="CyDesigner.Common.Debugger.CyWatchedVariableList" version="1">
 <debugger_watch_list>
-<CyGuid_ccf7a56e-c00d-460c-82dd-56c8f54feb7f type_name="CyDesigner.Common.Debugger.CyWatchedVariableList+CyWatchedItem" version="1" window="0" name="ida" radix="binary" />
 <CyGuid_ccf7a56e-c00d-460c-82dd-56c8f54feb7f type_name="CyDesigner.Common.Debugger.CyWatchedVariableList+CyWatchedItem" version="1" window="0" name="buffer" radix="Default" />
-<CyGuid_ccf7a56e-c00d-460c-82dd-56c8f54feb7f type_name="CyDesigner.Common.Debugger.CyWatchedVariableList+CyWatchedItem" version="1" window="0" name="values" radix="Default" />
+<CyGuid_ccf7a56e-c00d-460c-82dd-56c8f54feb7f type_name="CyDesigner.Common.Debugger.CyWatchedVariableList+CyWatchedItem" version="1" window="0" name="cx" radix="decimal" />
+<CyGuid_ccf7a56e-c00d-460c-82dd-56c8f54feb7f type_name="CyDesigner.Common.Debugger.CyWatchedVariableList+CyWatchedItem" version="1" window="0" name="cy" radix="decimal" />
+<CyGuid_ccf7a56e-c00d-460c-82dd-56c8f54feb7f type_name="CyDesigner.Common.Debugger.CyWatchedVariableList+CyWatchedItem" version="1" window="0" name="cz" radix="decimal" />
 <CyGuid_ccf7a56e-c00d-460c-82dd-56c8f54feb7f type_name="CyDesigner.Common.Debugger.CyWatchedVariableList+CyWatchedItem" version="1" window="0" name="holdingReg" radix="Default" />
-<CyGuid_ccf7a56e-c00d-460c-82dd-56c8f54feb7f type_name="CyDesigner.Common.Debugger.CyWatchedVariableList+CyWatchedItem" version="1" window="0" name="holdingReg" radix="Default" />
+<CyGuid_ccf7a56e-c00d-460c-82dd-56c8f54feb7f type_name="CyDesigner.Common.Debugger.CyWatchedVariableList+CyWatchedItem" version="1" window="0" name="offsetsx" radix="Default" />
+<CyGuid_ccf7a56e-c00d-460c-82dd-56c8f54feb7f type_name="CyDesigner.Common.Debugger.CyWatchedVariableList+CyWatchedItem" version="1" window="0" name="offsetsy" radix="Default" />
+<CyGuid_ccf7a56e-c00d-460c-82dd-56c8f54feb7f type_name="CyDesigner.Common.Debugger.CyWatchedVariableList+CyWatchedItem" version="1" window="0" name="cx" radix="decimal" />
+<CyGuid_ccf7a56e-c00d-460c-82dd-56c8f54feb7f type_name="CyDesigner.Common.Debugger.CyWatchedVariableList+CyWatchedItem" version="1" window="0" name="cy" radix="decimal" />
 </debugger_watch_list>
 </CyGuid_bf610382-39c6-441f-80b8-b04622ea7845>
 </dataGuid>

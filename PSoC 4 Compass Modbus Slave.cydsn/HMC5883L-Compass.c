@@ -8,6 +8,7 @@
 
 float HMC5883_lastx, HMC5883_lasty, HMC5883_lastz;
 int16_t  HMC5883_FIFO[3][11];
+char ids[3];
 
 uint8_t HMC5883_IS_newdata(void);
 void HMC58X3_writeReg(uint8_t reg, uint8_t val);
@@ -247,5 +248,6 @@ void HMC5883L_SetUp(void)
 	HMC58X3_setMode(0);						// Continues-conversion mode
 	HMC58X3_setDOR(6);						// 75Hz
 	HMC58X3_FIFO_init();
+    HMC58X3_getID(ids);
 }
 

@@ -127,10 +127,10 @@ uint8_t HMC5883L_getMode(void);
 void HMC5883L_setMode(uint8_t);
 
 // DATA* registers
-void getHeading(int16_t *x, int16_t *y, int16_t *z);
-int16_t getHeadingX();
-int16_t getHeadingY();
-int16_t getHeadingZ();
+void HMC5883L_getHeading(int16_t *x, int16_t *y, int16_t *z);
+int16_t HMC5883L_getHeadingX();
+int16_t HMC5883L_getHeadingY();
+int16_t HMC5883L_getHeadingZ();
 
 // STATUS register
 bool getLockStatus();

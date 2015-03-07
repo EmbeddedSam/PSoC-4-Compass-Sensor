@@ -1,5 +1,5 @@
 # PSoC 4 Compass Modbus Slave
-# 2015-03-02 19:38:18Z
+# 2015-03-03 20:02:37Z
 
 # IO_2@[IOP=(3)][IoId=(2)] is reserved: SWDDebugEnabled
 dont_use_io iocell 3 2

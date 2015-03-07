@@ -13,7 +13,7 @@
 <v>Output</v>
 </TreeKeys>
 <TreeStates>
-<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="PSoC 4 Compass Modbus Slave\PSoC 4 Compass Modbus Slave\Source Files\hmc5883l.c">
+<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="PSoC 4 Compass Modbus Slave\PSoC 4 Compass Modbus Slave\Source Files\main.c">
 <ExpandedNodeIds>
 <v>PSoC 4 Compass Modbus Slave</v>
 <v>PSoC 4 Compass Modbus Slave\PSoC 4 Compass Modbus Slave</v>
@@ -169,15 +169,6 @@
 <v>PSoC 4 Compass Modbus Slave\PSoC 4 Compass Modbus Slave\Generated_Source\PSoC4\project.h</v>
 </ExpandedNodeIds>
 <VisibleNodeIds>
-<v>PSoC 4 Compass Modbus Slave</v>
-<v>PSoC 4 Compass Modbus Slave\PSoC 4 Compass Modbus Slave</v>
-<v>PSoC 4 Compass Modbus Slave\PSoC 4 Compass Modbus Slave\TopDesign</v>
-<v>PSoC 4 Compass Modbus Slave\PSoC 4 Compass Modbus Slave\PSoC 4 Compass Modbus Slave.cydwr</v>
-<v>PSoC 4 Compass Modbus Slave\PSoC 4 Compass Modbus Slave\Header Files</v>
-<v>PSoC 4 Compass Modbus Slave\PSoC 4 Compass Modbus Slave\Header Files\hmc5883l.h</v>
-<v>PSoC 4 Compass Modbus Slave\PSoC 4 Compass Modbus Slave\Header Files\HMC5883L-Compass.h</v>
-<v>PSoC 4 Compass Modbus Slave\PSoC 4 Compass Modbus Slave\Header Files\i2c.h</v>
-<v>PSoC 4 Compass Modbus Slave\PSoC 4 Compass Modbus Slave\Header Files\i2cfunctions.h</v>
 <v>PSoC 4 Compass Modbus Slave\PSoC 4 Compass Modbus Slave\Header Files\interrupts.h</v>
 <v>PSoC 4 Compass Modbus Slave\PSoC 4 Compass Modbus Slave\Header Files\main.h</v>
 <v>PSoC 4 Compass Modbus Slave\PSoC 4 Compass Modbus Slave\Header Files\Modbus.h</v>
@@ -206,7 +197,6 @@
 <v>PSoC 4 Compass Modbus Slave\PSoC 4 Compass Modbus Slave\Generated_Source\PSoC4\cy_boot\CyFlash.c</v>
 <v>PSoC 4 Compass Modbus Slave\PSoC 4 Compass Modbus Slave\Generated_Source\PSoC4\cy_boot\CyFlash.h</v>
 <v>PSoC 4 Compass Modbus Slave\PSoC 4 Compass Modbus Slave\Generated_Source\PSoC4\cy_boot\CyLib.c</v>
-<v>PSoC 4 Compass Modbus Slave\PSoC 4 Compass Modbus Slave\Generated_Source\PSoC4\cy_boot\CyLib.h</v>
 </VisibleNodeIds>
 </CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
 <CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="PSoC 4 Compass Modbus Slave">
@@ -316,16 +306,6 @@
 <v>PSoC 4 Compass Modbus Slave\PSoC 4 Compass Modbus Slave\CortexM0\ARM_GCC_484\Debug\Listing Files\I2C_MASTER_SCB_IRQ.lst</v>
 <v>PSoC 4 Compass Modbus Slave\PSoC 4 Compass Modbus Slave\CortexM0\ARM_GCC_484\Debug\Listing Files\I2C_MASTER_SCBCLK.lst</v>
 <v>PSoC 4 Compass Modbus Slave\PSoC 4 Compass Modbus Slave\CortexM0\ARM_GCC_484\Debug\Listing Files\I2C_MASTER_scl.lst</v>
-<v>PSoC 4 Compass Modbus Slave\PSoC 4 Compass Modbus Slave\CortexM0\ARM_GCC_484\Debug\Listing Files\I2C_MASTER_sda.lst</v>
-<v>PSoC 4 Compass Modbus Slave\PSoC 4 Compass Modbus Slave\CortexM0\ARM_GCC_484\Debug\Listing Files\i2cfunctions.lst</v>
-<v>PSoC 4 Compass Modbus Slave\PSoC 4 Compass Modbus Slave\CortexM0\ARM_GCC_484\Debug\Listing Files\interrupts.lst</v>
-<v>PSoC 4 Compass Modbus Slave\PSoC 4 Compass Modbus Slave\CortexM0\ARM_GCC_484\Debug\Listing Files\main.lst</v>
-<v>PSoC 4 Compass Modbus Slave\PSoC 4 Compass Modbus Slave\CortexM0\ARM_GCC_484\Debug\Listing Files\MessageReceived.lst</v>
-<v>PSoC 4 Compass Modbus Slave\PSoC 4 Compass Modbus Slave\CortexM0\ARM_GCC_484\Debug\Listing Files\MessageTimer.lst</v>
-<v>PSoC 4 Compass Modbus Slave\PSoC 4 Compass Modbus Slave\CortexM0\ARM_GCC_484\Debug\Listing Files\MessageTimer_PM.lst</v>
-<v>PSoC 4 Compass Modbus Slave\PSoC 4 Compass Modbus Slave\CortexM0\ARM_GCC_484\Debug\Listing Files\MessageTimerClock.lst</v>
-<v>PSoC 4 Compass Modbus Slave\PSoC 4 Compass Modbus Slave\CortexM0\ARM_GCC_484\Debug\Listing Files\Modbus.lst</v>
-<v>PSoC 4 Compass Modbus Slave\PSoC 4 Compass Modbus Slave\CortexM0\ARM_GCC_484\Debug\Listing Files\ModbusUART.lst</v>
 </VisibleNodeIds>
 </CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
 </TreeStates>
@@ -385,7 +365,7 @@
 <name v=".\PSoC 4 Compass Modbus Slave.cydwr" />
 <name v=".\Generated_Source\PSoC4\cyfitter.h" />
 <name v=".\Generated_Source\PSoC4\project.h" />
-<name v=".\Generated_Source\PSoC4\MessageTimerClock.c" />
+<name v=".\Generated_Source\PSoC4\messageTimerClock.c" />
 <name v=".\Modbus.h" />
 <name v=".\Modbus.c" />
 <name v=".\interrupts.h" />
@@ -393,7 +373,6 @@
 <name v=".\hmc5883l.c" />
 <name v=".\hmc5883l.h" />
 <name v=".\i2cfunctions.h" />
-<name v=".\Generated_Source\PSoC4\I2C_MASTER_I2C_MASTER.c" />
 <name v=".\Generated_Source\PSoC4\CyLib.c" />
 <name v=".\Generated_Source\PSoC4\I2C_MASTER_sda.c" />
 <name v=".\Generated_Source\PSoC4\I2C_MASTER_scl.c" />

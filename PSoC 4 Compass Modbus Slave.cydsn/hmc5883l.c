@@ -79,17 +79,22 @@ void HMC5883L_initialize() {
  * @return True if connection is valid, false otherwise
  */
 bool HMC5883L_testConnection() {
-  // if (I2CReadBytes(devAddr, HMC5883L_RA_ID_A, 3, buffer) == 3) {
-  //      return (buffer[0] == 'H' && buffer[1] == '4' && buffer[2] == '3');
-  //}
+    I2CReadBytes(devAddr, HMC5883L_RA_ID_A, 3, buffer);
+    if(buffer[0] == 'H' && buffer[1] == '4' && buffer[2] == '3'){
+        return 1;
+    }
+    else{
+        return 0;
+    }
+  }
 //I2CReadBytes(uint8_t devAddr, uint8_t regAddr, uint8_t length, uint8_t *value)
   //return false;
-}
 
-uint8_t HMC5883L_getDeviceID() {
-   // I2CReadBits(devAddr, MPU6050_RA_WHO_AM_I, MPU6050_WHO_AM_I_BIT, MPU6050_WHO_AM_I_LENGTH, buffer);
-   // return buffer[0];
-}
+
+//uint8_t HMC5883L_getDeviceID() {
+//   I2CReadBits(devAddr, MPU6050_RA_WHO_AM_I, MPU6050_WHO_AM_I_BIT, MPU6050_WHO_AM_I_LENGTH, buffer);
+//   return buffer[0];
+//}
 
 // CONFIG_A register
 
@@ -278,8 +283,8 @@ void HMC5883L_setMode(uint8_t newMode) {
  * @see HMC5883L_RA_DATAX_H
  */
 void HMC5883L_getHeading(int16_t *x, int16_t *y, int16_t *z) {
-   // I2Cdev::readBytes(devAddr, HMC5883L_RA_DATAX_H, 6, buffer);
-   // if (mode == HMC5883L_MODE_SINGLE) I2Cdev::writeByte(devAddr, HMC5883L_RA_MODE, HMC5883L_MODE_SINGLE << (HMC5883L_MODEREG_BIT - HMC5883L_MODEREG_LENGTH + 1));
+    I2CReadBytes(devAddr, HMC5883L_RA_DATAX_H, 6, buffer);
+    if(mode == HMC5883L_MODE_SINGLE) I2CWriteByte(devAddr, HMC5883L_RA_MODE, HMC5883L_MODE_SINGLE << (HMC5883L_MODEREG_BIT - HMC5883L_MODEREG_LENGTH + 1));
     *x = (((int16_t)buffer[0]) << 8) | buffer[1];
     *y = (((int16_t)buffer[4]) << 8) | buffer[5];
     *z = (((int16_t)buffer[2]) << 8) | buffer[3];
@@ -291,7 +296,7 @@ void HMC5883L_getHeading(int16_t *x, int16_t *y, int16_t *z) {
 int16_t HMC5883L_getHeadingX() {
     // each axis read requires that ALL axis registers be read, even if only
     // one is used; this was not done ineffiently in the code by accident
-   // I2Cdev::readBytes(devAddr, HMC5883L_RA_DATAX_H, 6, buffer);
+   //I2Cdev::readBytes(devAddr, HMC5883L_RA_DATAX_H, 6, buffer);
    // if (mode == HMC5883L_MODE_SINGLE) I2Cdev::writeByte(devAddr, HMC5883L_RA_MODE, HMC5883L_MODE_SINGLE << (HMC5883L_MODEREG_BIT - HMC5883L_MODEREG_LENGTH + 1));
    // return (((int16_t)buffer[0]) << 8) | buffer[1];
 }
@@ -346,8 +351,8 @@ bool HMC5883L_getLockStatus() {
  * @see HMC5883L_STATUS_READY_BIT
  */
 bool HMC5883L_getReadyStatus() {
-    //I2Cdev::readBit(devAddr, HMC5883L_RA_STATUS, HMC5883L_STATUS_READY_BIT, buffer);
-    //return buffer[0];
+    I2CReadBit(devAddr, HMC5883L_RA_STATUS, HMC5883L_STATUS_READY_BIT, buffer);
+    return buffer[0];
 }
 
 // ID_* registers
@@ -363,13 +368,13 @@ uint8_t HMC5883L_getIDA() {
  * @return ID_A byte (should be 00110100, ASCII value '4')
  */
 uint8_t HMC5883L_getIDB() {
-    //I2Cdev::readByte(devAddr, HMC5883L_RA_ID_B, buffer);
-    //return buffer[0];
+    I2CReadByte(devAddr, HMC5883L_RA_ID_B, buffer);
+    return buffer[0];
 }
 /** Get identification byte C
  * @return ID_A byte (should be 00110011, ASCII value '3')
  */
 uint8_t HMC5883L_getIDC() {
-    //I2Cdev::readByte(devAddr, HMC5883L_RA_ID_C, buffer);
-   // return buffer[0];
+    I2CReadByte(devAddr, HMC5883L_RA_ID_C, buffer);
+    return buffer[0];
 }

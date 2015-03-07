@@ -2,7 +2,7 @@
 --	Conversion of PSoC 4 Compass Modbus Slave.v to vh2:
 --
 --	Cypress Semiconductor - WARP Version 6.3 IR 41
---	Mon Mar 02 19:38:16 2015
+--	Tue Mar 03 20:02:36 2015
 --
 
 USE cypress.cypress.all;

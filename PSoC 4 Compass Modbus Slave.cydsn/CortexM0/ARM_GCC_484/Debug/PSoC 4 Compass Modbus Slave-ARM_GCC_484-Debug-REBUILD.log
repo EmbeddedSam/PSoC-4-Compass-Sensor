@@ -1,4 +1,4 @@
---------------- Rebuild Started: 03/02/2015 19:38:09 Project: PSoC 4 Compass Modbus Slave, Configuration: ARM GCC 4.8.4 Debug ---------------
+--------------- Rebuild Started: 03/03/2015 20:02:24 Project: PSoC 4 Compass Modbus Slave, Configuration: ARM GCC 4.8.4 Debug ---------------
 Deleting file ".\CortexM0\ARM_GCC_484\Debug\main.o"
 Deleting file ".\CortexM0\ARM_GCC_484\Debug\interrupts.o"
 Deleting file ".\CortexM0\ARM_GCC_484\Debug\Modbus.o"
@@ -50,7 +50,6 @@ Deleting file ".\CortexM0\ARM_GCC_484\Debug\I2C_MASTER_sda.o"
 Deleting file ".\CortexM0\ARM_GCC_484\Debug\I2C_MASTER_scl.o"
 Deleting file ".\CortexM0\ARM_GCC_484\Debug\I2C_MASTER_SCB_IRQ.o"
 Deleting file ".\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.hex"
-Deleting file ".\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.elf"
 Deleting file ".\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.map"
 Deleting file ".\PSoC 4 Compass Modbus Slave.cycdx"
 Deleting file ".\PSoC 4 Compass Modbus Slave.svd"
@@ -77,52 +76,35 @@ Dependency Generation ...
 Clean Temporary Files ...
 arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -Wno-main -I. -I.\Generated_Source\PSoC4 -Wa,-alh=.\CortexM0\ARM_GCC_484\Debug/main.lst -g -D DEBUG -Wall -ffunction-sections -O0 -c .\main.c -o .\CortexM0\ARM_GCC_484\Debug\main.o
 .\main.c: In function 'main':
-.\main.c:76:9: warning: unused variable 'i' [-Wunused-variable]
+.\main.c:92:11: warning: unused variable 'ida' [-Wunused-variable]
+     uint8 ida = 0;
+           ^
+.\main.c:82:9: warning: unused variable 'i' [-Wunused-variable]
      int i = 0;
          ^
 arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -Wno-main -I. -I.\Generated_Source\PSoC4 -Wa,-alh=.\CortexM0\ARM_GCC_484\Debug/interrupts.lst -g -D DEBUG -Wall -ffunction-sections -O0 -c .\interrupts.c -o .\CortexM0\ARM_GCC_484\Debug\interrupts.o
 arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -Wno-main -I. -I.\Generated_Source\PSoC4 -Wa,-alh=.\CortexM0\ARM_GCC_484\Debug/Modbus.lst -g -D DEBUG -Wall -ffunction-sections -O0 -c .\Modbus.c -o .\CortexM0\ARM_GCC_484\Debug\Modbus.o
 arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -Wno-main -I. -I.\Generated_Source\PSoC4 -Wa,-alh=.\CortexM0\ARM_GCC_484\Debug/i2cfunctions.lst -g -D DEBUG -Wall -ffunction-sections -O0 -c .\i2cfunctions.c -o .\CortexM0\ARM_GCC_484\Debug\i2cfunctions.o
 arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -Wno-main -I. -I.\Generated_Source\PSoC4 -Wa,-alh=.\CortexM0\ARM_GCC_484\Debug/hmc5883l.lst -g -D DEBUG -Wall -ffunction-sections -O0 -c .\hmc5883l.c -o .\CortexM0\ARM_GCC_484\Debug\hmc5883l.o
-.\hmc5883l.c: In function 'HMC5883L_testConnection':
-.\hmc5883l.c:87:1: warning: control reaches end of non-void function [-Wreturn-type]
- }
- ^
-.\hmc5883l.c: In function 'HMC5883L_getDeviceID':
-.\hmc5883l.c:92:1: warning: control reaches end of non-void function [-Wreturn-type]
- }
- ^
 .\hmc5883l.c: In function 'HMC5883L_getHeadingX':
-.\hmc5883l.c:297:1: warning: control reaches end of non-void function [-Wreturn-type]
+.\hmc5883l.c:302:1: warning: control reaches end of non-void function [-Wreturn-type]
  }
  ^
 .\hmc5883l.c: In function 'HMC5883L_getHeadingY':
-.\hmc5883l.c:308:1: warning: control reaches end of non-void function [-Wreturn-type]
+.\hmc5883l.c:313:1: warning: control reaches end of non-void function [-Wreturn-type]
  }
  ^
 .\hmc5883l.c: In function 'HMC5883L_getHeadingZ':
-.\hmc5883l.c:319:1: warning: control reaches end of non-void function [-Wreturn-type]
+.\hmc5883l.c:324:1: warning: control reaches end of non-void function [-Wreturn-type]
  }
  ^
 .\hmc5883l.c: In function 'HMC5883L_getLockStatus':
-.\hmc5883l.c:337:1: warning: control reaches end of non-void function [-Wreturn-type]
- }
- ^
-.\hmc5883l.c: In function 'HMC5883L_getReadyStatus':
-.\hmc5883l.c:351:1: warning: control reaches end of non-void function [-Wreturn-type]
- }
- ^
-.\hmc5883l.c: In function 'HMC5883L_getIDB':
-.\hmc5883l.c:368:1: warning: control reaches end of non-void function [-Wreturn-type]
- }
- ^
-.\hmc5883l.c: In function 'HMC5883L_getIDC':
-.\hmc5883l.c:375:1: warning: control reaches end of non-void function [-Wreturn-type]
+.\hmc5883l.c:342:1: warning: control reaches end of non-void function [-Wreturn-type]
  }
  ^
 arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -Wno-main -I. -I.\Generated_Source\PSoC4 -Wa,-alh=.\CortexM0\ARM_GCC_484\Debug/HMC5883L-Compass.lst -g -D DEBUG -Wall -ffunction-sections -O0 -c .\HMC5883L-Compass.c -o .\CortexM0\ARM_GCC_484\Debug\HMC5883L-Compass.o
 .\HMC5883L-Compass.c: In function 'HMC5883_IS_newdata':
-.\HMC5883L-Compass.c:115:2: warning: implicit declaration of function 'Pin_GY86_DRDY_Read' [-Wimplicit-function-declaration]
+.\HMC5883L-Compass.c:116:2: warning: implicit declaration of function 'Pin_GY86_DRDY_Read' [-Wimplicit-function-declaration]
   if(Pin_GY86_DRDY_Read() == ON)
   ^
 arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -Wno-main -I. -I.\Generated_Source\PSoC4 -Wa,-alh=.\CortexM0\ARM_GCC_484\Debug/i2c.lst -g -D DEBUG -Wall -ffunction-sections -O0 -c .\i2c.c -o .\CortexM0\ARM_GCC_484\Debug\i2c.o
@@ -172,8 +154,8 @@ arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -Wno-main -I. -I.\Generated_Source
 arm-none-eabi-ar.exe -rs ".\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a" .\CortexM0\ARM_GCC_484\Debug\cyfitter_cfg.o .\CortexM0\ARM_GCC_484\Debug\CyBootAsmGnu.o .\CortexM0\ARM_GCC_484\Debug\CyFlash.o .\CortexM0\ARM_GCC_484\Debug\CyLib.o .\CortexM0\ARM_GCC_484\Debug\cyPm.o .\CortexM0\ARM_GCC_484\Debug\cyutils.o .\CortexM0\ARM_GCC_484\Debug\TX_LED.o .\CortexM0\ARM_GCC_484\Debug\RX_LED.o .\CortexM0\ARM_GCC_484\Debug\MessageTimer.o .\CortexM0\ARM_GCC_484\Debug\MessageTimer_PM.o .\CortexM0\ARM_GCC_484\Debug\ModbusUART.o .\CortexM0\ARM_GCC_484\Debug\ModbusUART_SPI_UART.o .\CortexM0\ARM_GCC_484\Debug\ModbusUART_SPI_UART_INT.o .\CortexM0\ARM_GCC_484\Debug\ModbusUART_PM.o .\CortexM0\ARM_GCC_484\Debug\ModbusUART_UART.o .\CortexM0\ARM_GCC_484\Debug\ModbusUART_BOOT.o .\CortexM0\ARM_GCC_484\Debug\ModbusUART_UART_BOOT.o .\CortexM0\ARM_GCC_484\Debug\ModbusUART_rx.o .\CortexM0\ARM_GCC_484\Debug\ModbusUART_SCBCLK.o .\CortexM0\ARM_GCC_484\Debug\ModbusUART_tx.o .\CortexM0\ARM_GCC_484\Debug\MessageTimerClock.o .\CortexM0\ARM_GCC_484\Debug\P0_2_LED.o .\CortexM0\ARM_GCC_484\Debug\MessageReceived.o .\CortexM0\ARM_GCC_484\Debug\EndOfMessage.o .\CortexM0\ARM_GCC_484\Debug\TimerPin.o .\CortexM0\ARM_GCC_484\Debug\writeEnable.o .\CortexM0\ARM_GCC_484\Debug\SpeedTimer.o .\CortexM0\ARM_GCC_484\Debug\SpeedTimer_PM.o .\CortexM0\ARM_GCC_484\Debug\SpeedInterrupt.o .\CortexM0\ARM_GCC_484\Debug\timer_clock.o .\CortexM0\ARM_GCC_484\Debug\I2C_MASTER.o .\CortexM0\ARM_GCC_484\Debug\I2C_MASTER_I2C_INT.o .\CortexM0\ARM_GCC_484\Debug\I2C_MASTER_I2C.o .\CortexM0\ARM_GCC_484\Debug\I2C_MASTER_I2C_BOOT.o .\CortexM0\ARM_GCC_484\Debug\I2C_MASTER_I2C_MASTER.o .\CortexM0\ARM_GCC_484\Debug\I2C_MASTER_PM.o .\CortexM0\ARM_GCC_484\Debug\I2C_MASTER_BOOT.o .\CortexM0\ARM_GCC_484\Debug\I2C_MASTER_SCBCLK.o .\CortexM0\ARM_GCC_484\Debug\I2C_MASTER_sda.o .\CortexM0\ARM_GCC_484\Debug\I2C_MASTER_scl.o .\CortexM0\ARM_GCC_484\Debug\I2C_MASTER_SCB_IRQ.o
 arm-none-eabi-ar.exe: creating .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a
 arm-none-eabi-gcc.exe -Wl,--start-group -o ".\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.elf" .\CortexM0\ARM_GCC_484\Debug\main.o .\CortexM0\ARM_GCC_484\Debug\interrupts.o .\CortexM0\ARM_GCC_484\Debug\Modbus.o .\CortexM0\ARM_GCC_484\Debug\i2cfunctions.o .\CortexM0\ARM_GCC_484\Debug\hmc5883l.o .\CortexM0\ARM_GCC_484\Debug\HMC5883L-Compass.o .\CortexM0\ARM_GCC_484\Debug\i2c.o .\CortexM0\ARM_GCC_484\Debug\cymetadata.o .\CortexM0\ARM_GCC_484\Debug\Cm0Start.o ".\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a" "C:\Program Files (x86)\Cypress\PSoC Creator\3.1\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\CortexM0\ARM_GCC_484\Debug\CyComponentLibrary.a" -mthumb -march=armv6-m "-Wl,-Map,.\CortexM0\ARM_GCC_484\Debug/PSoC 4 Compass Modbus Slave.map" -T .\Generated_Source\PSoC4\cm0gcc.ld -g -specs=nano.specs "-u _printf_float" "" -Wl,--gc-sections -Wl,--end-group
-cyelftool.exe -C "C:\Users\Sam\OneDrive\Github\PSoC-4-Compass-Sensor\PSoC 4 Compass Modbus Slave.cydsn\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.elf" --flash_size 32768 --flash_row_size 128
-cyelftool.exe -S "C:\Users\Sam\OneDrive\Github\PSoC-4-Compass-Sensor\PSoC 4 Compass Modbus Slave.cydsn\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.elf"
-Flash used: 16112 of 32768 bytes (49.2 %).
-SRAM used: 2268 of 4096 bytes (55.4 %). Stack: 1024 bytes. Heap: 256 bytes.
---------------- Rebuild Succeeded: 03/02/2015 19:38:34 ---------------
+ERROR: Warning: alignment 1 of symbol `z' in .\CortexM0\ARM_GCC_484\Debug\Modbus.o is smaller than 8 in .\CortexM0\ARM_GCC_484\Debug\main.oERROR: Warning: size of symbol `z' changed from 8 in .\CortexM0\ARM_GCC_484\Debug\main.o to 1 in .\CortexM0\ARM_GCC_484\Debug\Modbus.o.\CortexM0\ARM_GCC_484\Debug\main.o: In function `main':
+C:\Users\Sam\OneDrive\Github\PSoC-4-Compass-Sensor\PSoC 4 Compass Modbus Slave.cydsn/.\main.c:121: undefined reference to `atan2'
+collect2.exe: error: ld returned 1 exit status
+The command 'arm-none-eabi-gcc.exe' failed with exit code '1'.
+--------------- Rebuild Failed: 03/03/2015 20:03:06 ---------------

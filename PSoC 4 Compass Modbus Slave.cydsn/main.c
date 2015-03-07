@@ -13,8 +13,7 @@
 #include <stdio.h>
 #include <stdbool.h>
 #include <stdlib.h>
-#include <math.h>
-#include "HMC5883L-Compass.h"
+#include "math.h"
 #include "hmc5883l.h"
 
 #define  forever    1
@@ -54,7 +53,15 @@ struct ModbusData mb;
 extern volatile uint8 speedInterruptFlag;
 int   interruptCount = 0;
 uint8 pidspeed;
+
 int16 cx,cy,cz;
+double sx,sy,sz;
+double offsetsx,offsetsy;
+float scale = 0.92;
+double bearing = 0;
+bool compassOnline = 0;
+uint16 xoffset,yoffset;
+
 
 
 /* Main loop */
@@ -84,39 +91,66 @@ int main()
     //mb.PIDScaler = 1000;
     scaleModbusPIDConstants();
     
-    // uint8 ida = 0;
-    // HMC5883L_Init();
-    // HMC5883L_initialize();
-    //ida = HMC5883L_getIDA();
+    uint8 ida = 0;
+    HMC5883L_Init();
+    compassOnline = HMC5883L_testConnection();
+    if(compassOnline){
+        HMC5883L_initialize();
+    }
+
     
-    HMC5883L_SetUp();
-    HMC58X3L_Calibration();
     
-    float values[4] = {0,0,0,0};
+    //HMC5883L_SetUp();
+    //HMC58X3L_Calibration();
+    
     
     while(forever)
     {       
         if(modbusMessage)
         {
           processMessage();
-          HMC58X3_mgetValues(&values[0]);
         }
-        
-        //HMC58X3_getlastValues(&cx,&cy,&cz);
-        
-        
-        holdingReg[0] = (int16)values[0];
-        holdingReg[1] = (int16)values[1];
-        holdingReg[2] = (int16)values[2];
-        
-        
-        if(speedInterruptFlag)
-        {          
 
+        if(compassOnline)
+        {            
+            HMC5883L_getHeading(&cx,&cy,&cz);
+            sx = (double)(cx);
+            sy = (double)cy;
+            sz = (double)cz * scale;        
+            
+//            if(holdingReg[4] == 0){
+//                //no x offset applied, use default
+//                xoffset = -75;
+//            }
+//            else{xoffset = holdingReg[4];}
+//            
+//            if(holdingReg[5] == 0){
+//                //no y offset applied use default
+//                yoffset = -7;
+//            }
+//            else{xoffset = holdingReg[5];}
+            
+           // xoffset = -75;
+           // yoffset = -7;
+            
+//            if((holdingReg[4] !=0) && (holdingReg[5] !=0))
+//            {
+//                //master has set offsets so it wants us to calculate the bearing here
+//                offsetsx = ((double)((int16)holdingReg[4])) /100.0;
+//                offsetsy = ((double)((int16)holdingReg[5])) /100.0;  
+//                
+//                bearing  = atan2((sy - offsetsy), (sx - offsetsx)); 
+//                if (bearing < 0)
+//                    bearing += 2 * M_PI;
+//                 bearing = bearing*(180.0 / M_PI);//convert to degrees          
+//            }
 
+            holdingReg[0] = (uint16)(sx*100.0);
+            holdingReg[1] = (uint16)(sy*100.0);            
+            holdingReg[2] = (uint16)(sz*100.0);
+            holdingReg[3] = (uint16) (bearing*100.0);
+    
         }
-         
-        updateModbusPackets();  
     }
 }
 
@@ -175,14 +209,14 @@ int calculatePID(float currentValue, float setpoint)
 
 void updateModbusPackets(void)
 {
-    holdingReg[0] = mb.encoderLow;
-    holdingReg[1] = mb.encoderHigh;
-    holdingReg[2] = mb.speedRPSScaler;
-    holdingReg[3] = mb.speedRPS;
-    holdingReg[4] = mb.speedRPM;
+   // holdingReg[0] = mb.encoderLow;
+  //  holdingReg[1] = mb.encoderHigh;
+   // holdingReg[2] = mb.speedRPSScaler;
+   // holdingReg[3] = mb.speedRPS;
+   // holdingReg[4] = mb.speedRPM;
     //holdingReg[5] = duty cycle
     //holdingReg[6] = direction
-    holdingReg[7] = mb.motorCurrent;
+   // holdingReg[7] = mb.motorCurrent;
     //holdingReg[8]  = PIDScaler
     //holdingReg[9]  = Kp
     //holdingReg[10] = Ki

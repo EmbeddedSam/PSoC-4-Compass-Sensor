@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccy6hVZJ.s 			page 1
+ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccJjUaFv.s 			page 1
 
 
    1              		.cpu cortex-m0
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccy6hVZJ.s 			page 1
   27:.\hmc5883l.c  **** FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
   28:.\hmc5883l.c  **** AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
   29:.\hmc5883l.c  **** LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccy6hVZJ.s 			page 2
+ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccJjUaFv.s 			page 2
 
 
   30:.\hmc5883l.c  **** OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccy6hVZJ.s 			page 1
   61              		.cfi_startproc
   62 0000 80B5     		push	{r7, lr}
   63              		.cfi_def_cfa_offset 8
-ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccy6hVZJ.s 			page 3
+ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccJjUaFv.s 			page 3
 
 
   64              		.cfi_offset 7, -8
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccy6hVZJ.s 			page 1
   64:.\hmc5883l.c  ****     // write CONFIG_A register
   65:.\hmc5883l.c  ****      I2CWriteByte(devAddr, HMC5883L_RA_CONFIG_A,
  106              		.loc 1 65 0
-ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccy6hVZJ.s 			page 4
+ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccJjUaFv.s 			page 4
 
 
  107 0004 074B     		ldr	r3, .L8
@@ -236,2273 +236,2344 @@ ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccy6hVZJ.s 			page 1
  143              		.cfi_offset 14, -4
  144 0002 00AF     		add	r7, sp, #0
  145              		.cfi_def_cfa_register 7
-  82:.\hmc5883l.c  ****   // if (I2CReadBytes(devAddr, HMC5883L_RA_ID_A, 3, buffer) == 3) {
-  83:.\hmc5883l.c  ****   //      return (buffer[0] == 'H' && buffer[1] == '4' && buffer[2] == '3');
-ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccy6hVZJ.s 			page 5
+  82:.\hmc5883l.c  ****     I2CReadBytes(devAddr, HMC5883L_RA_ID_A, 3, buffer);
+ 146              		.loc 1 82 0
+ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccJjUaFv.s 			page 5
 
 
-  84:.\hmc5883l.c  ****   //}
-  85:.\hmc5883l.c  **** //I2CReadBytes(uint8_t devAddr, uint8_t regAddr, uint8_t length, uint8_t *value)
-  86:.\hmc5883l.c  ****   //return false;
-  87:.\hmc5883l.c  **** }
- 146              		.loc 1 87 0
- 147 0004 181C     		mov	r0, r3
- 148 0006 BD46     		mov	sp, r7
- 149              		@ sp needed
- 150 0008 80BD     		pop	{r7, pc}
- 151              		.cfi_endproc
- 152              	.LFE36:
- 153              		.size	HMC5883L_testConnection, .-HMC5883L_testConnection
- 154 000a C046     		.section	.text.HMC5883L_getDeviceID,"ax",%progbits
- 155              		.align	2
- 156              		.global	HMC5883L_getDeviceID
- 157              		.code	16
- 158              		.thumb_func
- 159              		.type	HMC5883L_getDeviceID, %function
- 160              	HMC5883L_getDeviceID:
- 161              	.LFB37:
-  88:.\hmc5883l.c  **** 
-  89:.\hmc5883l.c  **** uint8_t HMC5883L_getDeviceID() {
- 162              		.loc 1 89 0
- 163              		.cfi_startproc
- 164 0000 80B5     		push	{r7, lr}
- 165              		.cfi_def_cfa_offset 8
- 166              		.cfi_offset 7, -8
- 167              		.cfi_offset 14, -4
- 168 0002 00AF     		add	r7, sp, #0
- 169              		.cfi_def_cfa_register 7
-  90:.\hmc5883l.c  ****    // I2CReadBits(devAddr, MPU6050_RA_WHO_AM_I, MPU6050_WHO_AM_I_BIT, MPU6050_WHO_AM_I_LENGTH, buff
-  91:.\hmc5883l.c  ****    // return buffer[0];
-  92:.\hmc5883l.c  **** }
- 170              		.loc 1 92 0
- 171 0004 181C     		mov	r0, r3
- 172 0006 BD46     		mov	sp, r7
- 173              		@ sp needed
- 174 0008 80BD     		pop	{r7, pc}
- 175              		.cfi_endproc
- 176              	.LFE37:
- 177              		.size	HMC5883L_getDeviceID, .-HMC5883L_getDeviceID
- 178 000a C046     		.section	.text.HMC5883L_getSampleAveraging,"ax",%progbits
- 179              		.align	2
- 180              		.global	HMC5883L_getSampleAveraging
- 181              		.code	16
- 182              		.thumb_func
- 183              		.type	HMC5883L_getSampleAveraging, %function
- 184              	HMC5883L_getSampleAveraging:
- 185              	.LFB38:
+ 147 0004 0C4B     		ldr	r3, .L13
+ 148 0006 1A78     		ldrb	r2, [r3]
+ 149 0008 0C4B     		ldr	r3, .L13+4
+ 150 000a 101C     		mov	r0, r2
+ 151 000c 0A21     		mov	r1, #10
+ 152 000e 0322     		mov	r2, #3
+ 153 0010 FFF7FEFF 		bl	I2CReadBytes
+  83:.\hmc5883l.c  ****     if(buffer[0] == 'H' && buffer[1] == '4' && buffer[2] == '3'){
+ 154              		.loc 1 83 0
+ 155 0014 094B     		ldr	r3, .L13+4
+ 156 0016 1B78     		ldrb	r3, [r3]
+ 157 0018 482B     		cmp	r3, #72
+ 158 001a 09D1     		bne	.L11
+ 159              		.loc 1 83 0 is_stmt 0 discriminator 1
+ 160 001c 074B     		ldr	r3, .L13+4
+ 161 001e 5B78     		ldrb	r3, [r3, #1]
+ 162 0020 342B     		cmp	r3, #52
+ 163 0022 05D1     		bne	.L11
+ 164 0024 054B     		ldr	r3, .L13+4
+ 165 0026 9B78     		ldrb	r3, [r3, #2]
+ 166 0028 332B     		cmp	r3, #51
+ 167 002a 01D1     		bne	.L11
+  84:.\hmc5883l.c  ****         return 1;
+ 168              		.loc 1 84 0 is_stmt 1
+ 169 002c 0123     		mov	r3, #1
+ 170 002e 00E0     		b	.L12
+ 171              	.L11:
+  85:.\hmc5883l.c  ****     }
+  86:.\hmc5883l.c  ****     else{
+  87:.\hmc5883l.c  ****         return 0;
+ 172              		.loc 1 87 0
+ 173 0030 0023     		mov	r3, #0
+ 174              	.L12:
+  88:.\hmc5883l.c  ****     }
+  89:.\hmc5883l.c  ****   }
+ 175              		.loc 1 89 0
+ 176 0032 181C     		mov	r0, r3
+ 177 0034 BD46     		mov	sp, r7
+ 178              		@ sp needed
+ 179 0036 80BD     		pop	{r7, pc}
+ 180              	.L14:
+ 181              		.align	2
+ 182              	.L13:
+ 183 0038 00000000 		.word	devAddr
+ 184 003c 00000000 		.word	buffer
+ 185              		.cfi_endproc
+ 186              	.LFE36:
+ 187              		.size	HMC5883L_testConnection, .-HMC5883L_testConnection
+ 188              		.section	.text.HMC5883L_getSampleAveraging,"ax",%progbits
+ 189              		.align	2
+ 190              		.global	HMC5883L_getSampleAveraging
+ 191              		.code	16
+ 192              		.thumb_func
+ 193              		.type	HMC5883L_getSampleAveraging, %function
+ 194              	HMC5883L_getSampleAveraging:
+ 195              	.LFB37:
+  90:.\hmc5883l.c  **** //I2CReadBytes(uint8_t devAddr, uint8_t regAddr, uint8_t length, uint8_t *value)
+ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccJjUaFv.s 			page 6
+
+
+  91:.\hmc5883l.c  ****   //return false;
+  92:.\hmc5883l.c  **** 
   93:.\hmc5883l.c  **** 
-  94:.\hmc5883l.c  **** // CONFIG_A register
-  95:.\hmc5883l.c  **** 
-  96:.\hmc5883l.c  **** /** Get number of samples averaged per measurement.
-  97:.\hmc5883l.c  ****  * @return Current samples averaged per measurement (0-3 for 1/2/4/8 respectively)
-  98:.\hmc5883l.c  ****  * @see HMC5883L_AVERAGING_8
-  99:.\hmc5883l.c  ****  * @see HMC5883L_RA_CONFIG_A
- 100:.\hmc5883l.c  ****  * @see HMC5883L_CRA_AVERAGE_BIT
-ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccy6hVZJ.s 			page 6
+  94:.\hmc5883l.c  **** //uint8_t HMC5883L_getDeviceID() {
+  95:.\hmc5883l.c  **** //   I2CReadBits(devAddr, MPU6050_RA_WHO_AM_I, MPU6050_WHO_AM_I_BIT, MPU6050_WHO_AM_I_LENGTH, buffe
+  96:.\hmc5883l.c  **** //   return buffer[0];
+  97:.\hmc5883l.c  **** //}
+  98:.\hmc5883l.c  **** 
+  99:.\hmc5883l.c  **** // CONFIG_A register
+ 100:.\hmc5883l.c  **** 
+ 101:.\hmc5883l.c  **** /** Get number of samples averaged per measurement.
+ 102:.\hmc5883l.c  ****  * @return Current samples averaged per measurement (0-3 for 1/2/4/8 respectively)
+ 103:.\hmc5883l.c  ****  * @see HMC5883L_AVERAGING_8
+ 104:.\hmc5883l.c  ****  * @see HMC5883L_RA_CONFIG_A
+ 105:.\hmc5883l.c  ****  * @see HMC5883L_CRA_AVERAGE_BIT
+ 106:.\hmc5883l.c  ****  * @see HMC5883L_CRA_AVERAGE_LENGTH
+ 107:.\hmc5883l.c  ****  */
+ 108:.\hmc5883l.c  **** uint8_t HMC5883L_getSampleAveraging() {
+ 196              		.loc 1 108 0
+ 197              		.cfi_startproc
+ 198 0000 80B5     		push	{r7, lr}
+ 199              		.cfi_def_cfa_offset 8
+ 200              		.cfi_offset 7, -8
+ 201              		.cfi_offset 14, -4
+ 202 0002 00AF     		add	r7, sp, #0
+ 203              		.cfi_def_cfa_register 7
+ 109:.\hmc5883l.c  ****     //I2Cdev::readBits(devAddr, HMC5883L_RA_CONFIG_A, HMC5883L_CRA_AVERAGE_BIT, HMC5883L_CRA_AVERAG
+ 110:.\hmc5883l.c  ****     return buffer[0];
+ 204              		.loc 1 110 0
+ 205 0004 024B     		ldr	r3, .L17
+ 206 0006 1B78     		ldrb	r3, [r3]
+ 111:.\hmc5883l.c  **** }
+ 207              		.loc 1 111 0
+ 208 0008 181C     		mov	r0, r3
+ 209 000a BD46     		mov	sp, r7
+ 210              		@ sp needed
+ 211 000c 80BD     		pop	{r7, pc}
+ 212              	.L18:
+ 213 000e C046     		.align	2
+ 214              	.L17:
+ 215 0010 00000000 		.word	buffer
+ 216              		.cfi_endproc
+ 217              	.LFE37:
+ 218              		.size	HMC5883L_getSampleAveraging, .-HMC5883L_getSampleAveraging
+ 219              		.section	.text.HMC5883L_setSampleAveraging,"ax",%progbits
+ 220              		.align	2
+ 221              		.global	HMC5883L_setSampleAveraging
+ 222              		.code	16
+ 223              		.thumb_func
+ 224              		.type	HMC5883L_setSampleAveraging, %function
+ 225              	HMC5883L_setSampleAveraging:
+ 226              	.LFB38:
+ 112:.\hmc5883l.c  **** /** Set number of samples averaged per measurement.
+ 113:.\hmc5883l.c  ****  * @param averaging New samples averaged per measurement setting(0-3 for 1/2/4/8 respectively)
+ 114:.\hmc5883l.c  ****  * @see HMC5883L_RA_CONFIG_A
+ 115:.\hmc5883l.c  ****  * @see HMC5883L_CRA_AVERAGE_BIT
+ 116:.\hmc5883l.c  ****  * @see HMC5883L_CRA_AVERAGE_LENGTH
+ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccJjUaFv.s 			page 7
 
 
- 101:.\hmc5883l.c  ****  * @see HMC5883L_CRA_AVERAGE_LENGTH
- 102:.\hmc5883l.c  ****  */
- 103:.\hmc5883l.c  **** uint8_t HMC5883L_getSampleAveraging() {
- 186              		.loc 1 103 0
- 187              		.cfi_startproc
- 188 0000 80B5     		push	{r7, lr}
- 189              		.cfi_def_cfa_offset 8
- 190              		.cfi_offset 7, -8
- 191              		.cfi_offset 14, -4
- 192 0002 00AF     		add	r7, sp, #0
- 193              		.cfi_def_cfa_register 7
- 104:.\hmc5883l.c  ****     //I2Cdev::readBits(devAddr, HMC5883L_RA_CONFIG_A, HMC5883L_CRA_AVERAGE_BIT, HMC5883L_CRA_AVERAG
- 105:.\hmc5883l.c  ****     return buffer[0];
- 194              		.loc 1 105 0
- 195 0004 024B     		ldr	r3, .L14
- 196 0006 1B78     		ldrb	r3, [r3]
- 106:.\hmc5883l.c  **** }
- 197              		.loc 1 106 0
- 198 0008 181C     		mov	r0, r3
- 199 000a BD46     		mov	sp, r7
- 200              		@ sp needed
- 201 000c 80BD     		pop	{r7, pc}
- 202              	.L15:
- 203 000e C046     		.align	2
- 204              	.L14:
- 205 0010 00000000 		.word	buffer
- 206              		.cfi_endproc
- 207              	.LFE38:
- 208              		.size	HMC5883L_getSampleAveraging, .-HMC5883L_getSampleAveraging
- 209              		.section	.text.HMC5883L_setSampleAveraging,"ax",%progbits
- 210              		.align	2
- 211              		.global	HMC5883L_setSampleAveraging
- 212              		.code	16
- 213              		.thumb_func
- 214              		.type	HMC5883L_setSampleAveraging, %function
- 215              	HMC5883L_setSampleAveraging:
- 216              	.LFB39:
- 107:.\hmc5883l.c  **** /** Set number of samples averaged per measurement.
- 108:.\hmc5883l.c  ****  * @param averaging New samples averaged per measurement setting(0-3 for 1/2/4/8 respectively)
- 109:.\hmc5883l.c  ****  * @see HMC5883L_RA_CONFIG_A
- 110:.\hmc5883l.c  ****  * @see HMC5883L_CRA_AVERAGE_BIT
- 111:.\hmc5883l.c  ****  * @see HMC5883L_CRA_AVERAGE_LENGTH
- 112:.\hmc5883l.c  ****  */
- 113:.\hmc5883l.c  **** void HMC5883L_setSampleAveraging(uint8_t averaging) {
- 217              		.loc 1 113 0
- 218              		.cfi_startproc
- 219 0000 80B5     		push	{r7, lr}
- 220              		.cfi_def_cfa_offset 8
- 221              		.cfi_offset 7, -8
- 222              		.cfi_offset 14, -4
- 223 0002 82B0     		sub	sp, sp, #8
- 224              		.cfi_def_cfa_offset 16
- 225 0004 00AF     		add	r7, sp, #0
- 226              		.cfi_def_cfa_register 7
- 227 0006 021C     		mov	r2, r0
- 228 0008 FB1D     		add	r3, r7, #7
- 229 000a 1A70     		strb	r2, [r3]
-ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccy6hVZJ.s 			page 7
+ 117:.\hmc5883l.c  ****  */
+ 118:.\hmc5883l.c  **** void HMC5883L_setSampleAveraging(uint8_t averaging) {
+ 227              		.loc 1 118 0
+ 228              		.cfi_startproc
+ 229 0000 80B5     		push	{r7, lr}
+ 230              		.cfi_def_cfa_offset 8
+ 231              		.cfi_offset 7, -8
+ 232              		.cfi_offset 14, -4
+ 233 0002 82B0     		sub	sp, sp, #8
+ 234              		.cfi_def_cfa_offset 16
+ 235 0004 00AF     		add	r7, sp, #0
+ 236              		.cfi_def_cfa_register 7
+ 237 0006 021C     		mov	r2, r0
+ 238 0008 FB1D     		add	r3, r7, #7
+ 239 000a 1A70     		strb	r2, [r3]
+ 119:.\hmc5883l.c  ****     //I2Cdev::writeBits(devAddr, HMC5883L_RA_CONFIG_A, HMC5883L_CRA_AVERAGE_BIT, HMC5883L_CRA_AVERA
+ 120:.\hmc5883l.c  ****     asm("nop");
+ 240              		.loc 1 120 0
+ 241              	@ 120 ".\hmc5883l.c" 1
+ 242 000c C046     		nop
+ 243              	@ 0 "" 2
+ 121:.\hmc5883l.c  **** }
+ 244              		.loc 1 121 0
+ 245              		.code	16
+ 246 000e BD46     		mov	sp, r7
+ 247 0010 02B0     		add	sp, sp, #8
+ 248              		@ sp needed
+ 249 0012 80BD     		pop	{r7, pc}
+ 250              		.cfi_endproc
+ 251              	.LFE38:
+ 252              		.size	HMC5883L_setSampleAveraging, .-HMC5883L_setSampleAveraging
+ 253              		.section	.text.HMC5883L_getDataRate,"ax",%progbits
+ 254              		.align	2
+ 255              		.global	HMC5883L_getDataRate
+ 256              		.code	16
+ 257              		.thumb_func
+ 258              		.type	HMC5883L_getDataRate, %function
+ 259              	HMC5883L_getDataRate:
+ 260              	.LFB39:
+ 122:.\hmc5883l.c  **** /** Get data output rate value.
+ 123:.\hmc5883l.c  ****  * The Table below shows all selectable output rates in continuous measurement
+ 124:.\hmc5883l.c  ****  * mode. All three channels shall be measured within a given output rate. Other
+ 125:.\hmc5883l.c  ****  * output rates with maximum rate of 160 Hz can be achieved by monitoring DRDY
+ 126:.\hmc5883l.c  ****  * interrupt pin in single measurement mode.
+ 127:.\hmc5883l.c  ****  *
+ 128:.\hmc5883l.c  ****  * Value | Typical Data Output Rate (Hz)
+ 129:.\hmc5883l.c  ****  * ------+------------------------------
+ 130:.\hmc5883l.c  ****  * 0     | 0.75
+ 131:.\hmc5883l.c  ****  * 1     | 1.5
+ 132:.\hmc5883l.c  ****  * 2     | 3
+ 133:.\hmc5883l.c  ****  * 3     | 7.5
+ 134:.\hmc5883l.c  ****  * 4     | 15 (Default)
+ 135:.\hmc5883l.c  ****  * 5     | 30
+ 136:.\hmc5883l.c  ****  * 6     | 75
+ 137:.\hmc5883l.c  ****  * 7     | Not used
+ 138:.\hmc5883l.c  ****  *
+ 139:.\hmc5883l.c  ****  * @return Current rate of data output to registers
+ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccJjUaFv.s 			page 8
 
 
- 114:.\hmc5883l.c  ****     //I2Cdev::writeBits(devAddr, HMC5883L_RA_CONFIG_A, HMC5883L_CRA_AVERAGE_BIT, HMC5883L_CRA_AVERA
- 115:.\hmc5883l.c  ****     asm("nop");
- 230              		.loc 1 115 0
- 231              	@ 115 ".\hmc5883l.c" 1
- 232 000c C046     		nop
- 233              	@ 0 "" 2
- 116:.\hmc5883l.c  **** }
- 234              		.loc 1 116 0
- 235              		.code	16
- 236 000e BD46     		mov	sp, r7
- 237 0010 02B0     		add	sp, sp, #8
- 238              		@ sp needed
- 239 0012 80BD     		pop	{r7, pc}
- 240              		.cfi_endproc
- 241              	.LFE39:
- 242              		.size	HMC5883L_setSampleAveraging, .-HMC5883L_setSampleAveraging
- 243              		.section	.text.HMC5883L_getDataRate,"ax",%progbits
- 244              		.align	2
- 245              		.global	HMC5883L_getDataRate
- 246              		.code	16
- 247              		.thumb_func
- 248              		.type	HMC5883L_getDataRate, %function
- 249              	HMC5883L_getDataRate:
- 250              	.LFB40:
- 117:.\hmc5883l.c  **** /** Get data output rate value.
- 118:.\hmc5883l.c  ****  * The Table below shows all selectable output rates in continuous measurement
- 119:.\hmc5883l.c  ****  * mode. All three channels shall be measured within a given output rate. Other
- 120:.\hmc5883l.c  ****  * output rates with maximum rate of 160 Hz can be achieved by monitoring DRDY
- 121:.\hmc5883l.c  ****  * interrupt pin in single measurement mode.
- 122:.\hmc5883l.c  ****  *
- 123:.\hmc5883l.c  ****  * Value | Typical Data Output Rate (Hz)
- 124:.\hmc5883l.c  ****  * ------+------------------------------
- 125:.\hmc5883l.c  ****  * 0     | 0.75
- 126:.\hmc5883l.c  ****  * 1     | 1.5
- 127:.\hmc5883l.c  ****  * 2     | 3
- 128:.\hmc5883l.c  ****  * 3     | 7.5
- 129:.\hmc5883l.c  ****  * 4     | 15 (Default)
- 130:.\hmc5883l.c  ****  * 5     | 30
- 131:.\hmc5883l.c  ****  * 6     | 75
- 132:.\hmc5883l.c  ****  * 7     | Not used
- 133:.\hmc5883l.c  ****  *
- 134:.\hmc5883l.c  ****  * @return Current rate of data output to registers
- 135:.\hmc5883l.c  ****  * @see HMC5883L_RATE_15
- 136:.\hmc5883l.c  ****  * @see HMC5883L_RA_CONFIG_A
- 137:.\hmc5883l.c  ****  * @see HMC5883L_CRA_RATE_BIT
- 138:.\hmc5883l.c  ****  * @see HMC5883L_CRA_RATE_LENGTH
- 139:.\hmc5883l.c  ****  */
- 140:.\hmc5883l.c  **** uint8_t HMC5883L_getDataRate() {
- 251              		.loc 1 140 0
- 252              		.cfi_startproc
- 253 0000 80B5     		push	{r7, lr}
- 254              		.cfi_def_cfa_offset 8
- 255              		.cfi_offset 7, -8
- 256              		.cfi_offset 14, -4
- 257 0002 00AF     		add	r7, sp, #0
- 258              		.cfi_def_cfa_register 7
- 141:.\hmc5883l.c  ****     //I2Cdev::readBits(devAddr, HMC5883L_RA_CONFIG_A, HMC5883L_CRA_RATE_BIT, HMC5883L_CRA_RATE_LENG
-ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccy6hVZJ.s 			page 8
+ 140:.\hmc5883l.c  ****  * @see HMC5883L_RATE_15
+ 141:.\hmc5883l.c  ****  * @see HMC5883L_RA_CONFIG_A
+ 142:.\hmc5883l.c  ****  * @see HMC5883L_CRA_RATE_BIT
+ 143:.\hmc5883l.c  ****  * @see HMC5883L_CRA_RATE_LENGTH
+ 144:.\hmc5883l.c  ****  */
+ 145:.\hmc5883l.c  **** uint8_t HMC5883L_getDataRate() {
+ 261              		.loc 1 145 0
+ 262              		.cfi_startproc
+ 263 0000 80B5     		push	{r7, lr}
+ 264              		.cfi_def_cfa_offset 8
+ 265              		.cfi_offset 7, -8
+ 266              		.cfi_offset 14, -4
+ 267 0002 00AF     		add	r7, sp, #0
+ 268              		.cfi_def_cfa_register 7
+ 146:.\hmc5883l.c  ****     //I2Cdev::readBits(devAddr, HMC5883L_RA_CONFIG_A, HMC5883L_CRA_RATE_BIT, HMC5883L_CRA_RATE_LENG
+ 147:.\hmc5883l.c  ****     return buffer[0];
+ 269              		.loc 1 147 0
+ 270 0004 024B     		ldr	r3, .L22
+ 271 0006 1B78     		ldrb	r3, [r3]
+ 148:.\hmc5883l.c  **** }
+ 272              		.loc 1 148 0
+ 273 0008 181C     		mov	r0, r3
+ 274 000a BD46     		mov	sp, r7
+ 275              		@ sp needed
+ 276 000c 80BD     		pop	{r7, pc}
+ 277              	.L23:
+ 278 000e C046     		.align	2
+ 279              	.L22:
+ 280 0010 00000000 		.word	buffer
+ 281              		.cfi_endproc
+ 282              	.LFE39:
+ 283              		.size	HMC5883L_getDataRate, .-HMC5883L_getDataRate
+ 284              		.section	.text.HMC5883L_setDataRate,"ax",%progbits
+ 285              		.align	2
+ 286              		.global	HMC5883L_setDataRate
+ 287              		.code	16
+ 288              		.thumb_func
+ 289              		.type	HMC5883L_setDataRate, %function
+ 290              	HMC5883L_setDataRate:
+ 291              	.LFB40:
+ 149:.\hmc5883l.c  **** /** Set data output rate value.
+ 150:.\hmc5883l.c  ****  * @param rate Rate of data output to registers
+ 151:.\hmc5883l.c  ****  * @see getDataRate()
+ 152:.\hmc5883l.c  ****  * @see HMC5883L_RATE_15
+ 153:.\hmc5883l.c  ****  * @see HMC5883L_RA_CONFIG_A
+ 154:.\hmc5883l.c  ****  * @see HMC5883L_CRA_RATE_BIT
+ 155:.\hmc5883l.c  ****  * @see HMC5883L_CRA_RATE_LENGTH
+ 156:.\hmc5883l.c  ****  */
+ 157:.\hmc5883l.c  **** void HMC5883L_setDataRate(uint8_t rate) {
+ 292              		.loc 1 157 0
+ 293              		.cfi_startproc
+ 294 0000 80B5     		push	{r7, lr}
+ 295              		.cfi_def_cfa_offset 8
+ 296              		.cfi_offset 7, -8
+ 297              		.cfi_offset 14, -4
+ 298 0002 82B0     		sub	sp, sp, #8
+ 299              		.cfi_def_cfa_offset 16
+ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccJjUaFv.s 			page 9
 
 
- 142:.\hmc5883l.c  ****     return buffer[0];
- 259              		.loc 1 142 0
- 260 0004 024B     		ldr	r3, .L19
- 261 0006 1B78     		ldrb	r3, [r3]
- 143:.\hmc5883l.c  **** }
- 262              		.loc 1 143 0
- 263 0008 181C     		mov	r0, r3
- 264 000a BD46     		mov	sp, r7
- 265              		@ sp needed
- 266 000c 80BD     		pop	{r7, pc}
- 267              	.L20:
- 268 000e C046     		.align	2
- 269              	.L19:
- 270 0010 00000000 		.word	buffer
- 271              		.cfi_endproc
- 272              	.LFE40:
- 273              		.size	HMC5883L_getDataRate, .-HMC5883L_getDataRate
- 274              		.section	.text.HMC5883L_setDataRate,"ax",%progbits
- 275              		.align	2
- 276              		.global	HMC5883L_setDataRate
- 277              		.code	16
- 278              		.thumb_func
- 279              		.type	HMC5883L_setDataRate, %function
- 280              	HMC5883L_setDataRate:
- 281              	.LFB41:
- 144:.\hmc5883l.c  **** /** Set data output rate value.
- 145:.\hmc5883l.c  ****  * @param rate Rate of data output to registers
- 146:.\hmc5883l.c  ****  * @see getDataRate()
- 147:.\hmc5883l.c  ****  * @see HMC5883L_RATE_15
- 148:.\hmc5883l.c  ****  * @see HMC5883L_RA_CONFIG_A
- 149:.\hmc5883l.c  ****  * @see HMC5883L_CRA_RATE_BIT
- 150:.\hmc5883l.c  ****  * @see HMC5883L_CRA_RATE_LENGTH
- 151:.\hmc5883l.c  ****  */
- 152:.\hmc5883l.c  **** void HMC5883L_setDataRate(uint8_t rate) {
- 282              		.loc 1 152 0
- 283              		.cfi_startproc
- 284 0000 80B5     		push	{r7, lr}
- 285              		.cfi_def_cfa_offset 8
- 286              		.cfi_offset 7, -8
- 287              		.cfi_offset 14, -4
- 288 0002 82B0     		sub	sp, sp, #8
- 289              		.cfi_def_cfa_offset 16
- 290 0004 00AF     		add	r7, sp, #0
- 291              		.cfi_def_cfa_register 7
- 292 0006 021C     		mov	r2, r0
- 293 0008 FB1D     		add	r3, r7, #7
- 294 000a 1A70     		strb	r2, [r3]
- 153:.\hmc5883l.c  ****     //I2Cdev::writeBits(devAddr, HMC5883L_RA_CONFIG_A, HMC5883L_CRA_RATE_BIT, HMC5883L_CRA_RATE_LEN
- 154:.\hmc5883l.c  **** }
- 295              		.loc 1 154 0
- 296 000c BD46     		mov	sp, r7
- 297 000e 02B0     		add	sp, sp, #8
- 298              		@ sp needed
- 299 0010 80BD     		pop	{r7, pc}
- 300              		.cfi_endproc
- 301              	.LFE41:
- 302              		.size	HMC5883L_setDataRate, .-HMC5883L_setDataRate
-ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccy6hVZJ.s 			page 9
+ 300 0004 00AF     		add	r7, sp, #0
+ 301              		.cfi_def_cfa_register 7
+ 302 0006 021C     		mov	r2, r0
+ 303 0008 FB1D     		add	r3, r7, #7
+ 304 000a 1A70     		strb	r2, [r3]
+ 158:.\hmc5883l.c  ****     //I2Cdev::writeBits(devAddr, HMC5883L_RA_CONFIG_A, HMC5883L_CRA_RATE_BIT, HMC5883L_CRA_RATE_LEN
+ 159:.\hmc5883l.c  **** }
+ 305              		.loc 1 159 0
+ 306 000c BD46     		mov	sp, r7
+ 307 000e 02B0     		add	sp, sp, #8
+ 308              		@ sp needed
+ 309 0010 80BD     		pop	{r7, pc}
+ 310              		.cfi_endproc
+ 311              	.LFE40:
+ 312              		.size	HMC5883L_setDataRate, .-HMC5883L_setDataRate
+ 313 0012 C046     		.section	.text.HMC5883L_getMeasurementBias,"ax",%progbits
+ 314              		.align	2
+ 315              		.global	HMC5883L_getMeasurementBias
+ 316              		.code	16
+ 317              		.thumb_func
+ 318              		.type	HMC5883L_getMeasurementBias, %function
+ 319              	HMC5883L_getMeasurementBias:
+ 320              	.LFB41:
+ 160:.\hmc5883l.c  **** /** Get measurement bias value.
+ 161:.\hmc5883l.c  ****  * @return Current bias value (0-2 for normal/positive/negative respectively)
+ 162:.\hmc5883l.c  ****  * @see HMC5883L_BIAS_NORMAL
+ 163:.\hmc5883l.c  ****  * @see HMC5883L_RA_CONFIG_A
+ 164:.\hmc5883l.c  ****  * @see HMC5883L_CRA_BIAS_BIT
+ 165:.\hmc5883l.c  ****  * @see HMC5883L_CRA_BIAS_LENGTH
+ 166:.\hmc5883l.c  ****  */
+ 167:.\hmc5883l.c  **** uint8_t HMC5883L_getMeasurementBias() {
+ 321              		.loc 1 167 0
+ 322              		.cfi_startproc
+ 323 0000 80B5     		push	{r7, lr}
+ 324              		.cfi_def_cfa_offset 8
+ 325              		.cfi_offset 7, -8
+ 326              		.cfi_offset 14, -4
+ 327 0002 00AF     		add	r7, sp, #0
+ 328              		.cfi_def_cfa_register 7
+ 168:.\hmc5883l.c  ****    //I2Cdev::readBits(devAddr, HMC5883L_RA_CONFIG_A, HMC5883L_CRA_BIAS_BIT, HMC5883L_CRA_BIAS_LENGT
+ 169:.\hmc5883l.c  ****     return buffer[0];
+ 329              		.loc 1 169 0
+ 330 0004 024B     		ldr	r3, .L27
+ 331 0006 1B78     		ldrb	r3, [r3]
+ 170:.\hmc5883l.c  **** }
+ 332              		.loc 1 170 0
+ 333 0008 181C     		mov	r0, r3
+ 334 000a BD46     		mov	sp, r7
+ 335              		@ sp needed
+ 336 000c 80BD     		pop	{r7, pc}
+ 337              	.L28:
+ 338 000e C046     		.align	2
+ 339              	.L27:
+ 340 0010 00000000 		.word	buffer
+ 341              		.cfi_endproc
+ 342              	.LFE41:
+ 343              		.size	HMC5883L_getMeasurementBias, .-HMC5883L_getMeasurementBias
+ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccJjUaFv.s 			page 10
 
 
- 303 0012 C046     		.section	.text.HMC5883L_getMeasurementBias,"ax",%progbits
- 304              		.align	2
- 305              		.global	HMC5883L_getMeasurementBias
- 306              		.code	16
- 307              		.thumb_func
- 308              		.type	HMC5883L_getMeasurementBias, %function
- 309              	HMC5883L_getMeasurementBias:
- 310              	.LFB42:
- 155:.\hmc5883l.c  **** /** Get measurement bias value.
- 156:.\hmc5883l.c  ****  * @return Current bias value (0-2 for normal/positive/negative respectively)
- 157:.\hmc5883l.c  ****  * @see HMC5883L_BIAS_NORMAL
- 158:.\hmc5883l.c  ****  * @see HMC5883L_RA_CONFIG_A
- 159:.\hmc5883l.c  ****  * @see HMC5883L_CRA_BIAS_BIT
- 160:.\hmc5883l.c  ****  * @see HMC5883L_CRA_BIAS_LENGTH
- 161:.\hmc5883l.c  ****  */
- 162:.\hmc5883l.c  **** uint8_t HMC5883L_getMeasurementBias() {
- 311              		.loc 1 162 0
- 312              		.cfi_startproc
- 313 0000 80B5     		push	{r7, lr}
- 314              		.cfi_def_cfa_offset 8
- 315              		.cfi_offset 7, -8
- 316              		.cfi_offset 14, -4
- 317 0002 00AF     		add	r7, sp, #0
- 318              		.cfi_def_cfa_register 7
- 163:.\hmc5883l.c  ****    //I2Cdev::readBits(devAddr, HMC5883L_RA_CONFIG_A, HMC5883L_CRA_BIAS_BIT, HMC5883L_CRA_BIAS_LENGT
- 164:.\hmc5883l.c  ****     return buffer[0];
- 319              		.loc 1 164 0
- 320 0004 024B     		ldr	r3, .L24
- 321 0006 1B78     		ldrb	r3, [r3]
- 165:.\hmc5883l.c  **** }
- 322              		.loc 1 165 0
- 323 0008 181C     		mov	r0, r3
- 324 000a BD46     		mov	sp, r7
- 325              		@ sp needed
- 326 000c 80BD     		pop	{r7, pc}
- 327              	.L25:
- 328 000e C046     		.align	2
- 329              	.L24:
- 330 0010 00000000 		.word	buffer
- 331              		.cfi_endproc
- 332              	.LFE42:
- 333              		.size	HMC5883L_getMeasurementBias, .-HMC5883L_getMeasurementBias
- 334              		.section	.text.HMC5883L_setMeasurementBias,"ax",%progbits
- 335              		.align	2
- 336              		.global	HMC5883L_setMeasurementBias
- 337              		.code	16
- 338              		.thumb_func
- 339              		.type	HMC5883L_setMeasurementBias, %function
- 340              	HMC5883L_setMeasurementBias:
- 341              	.LFB43:
- 166:.\hmc5883l.c  **** /** Set measurement bias value.
- 167:.\hmc5883l.c  ****  * @param bias New bias value (0-2 for normal/positive/negative respectively)
- 168:.\hmc5883l.c  ****  * @see HMC5883L_BIAS_NORMAL
- 169:.\hmc5883l.c  ****  * @see HMC5883L_RA_CONFIG_A
- 170:.\hmc5883l.c  ****  * @see HMC5883L_CRA_BIAS_BIT
- 171:.\hmc5883l.c  ****  * @see HMC5883L_CRA_BIAS_LENGTH
- 172:.\hmc5883l.c  ****  */
-ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccy6hVZJ.s 			page 10
+ 344              		.section	.text.HMC5883L_setMeasurementBias,"ax",%progbits
+ 345              		.align	2
+ 346              		.global	HMC5883L_setMeasurementBias
+ 347              		.code	16
+ 348              		.thumb_func
+ 349              		.type	HMC5883L_setMeasurementBias, %function
+ 350              	HMC5883L_setMeasurementBias:
+ 351              	.LFB42:
+ 171:.\hmc5883l.c  **** /** Set measurement bias value.
+ 172:.\hmc5883l.c  ****  * @param bias New bias value (0-2 for normal/positive/negative respectively)
+ 173:.\hmc5883l.c  ****  * @see HMC5883L_BIAS_NORMAL
+ 174:.\hmc5883l.c  ****  * @see HMC5883L_RA_CONFIG_A
+ 175:.\hmc5883l.c  ****  * @see HMC5883L_CRA_BIAS_BIT
+ 176:.\hmc5883l.c  ****  * @see HMC5883L_CRA_BIAS_LENGTH
+ 177:.\hmc5883l.c  ****  */
+ 178:.\hmc5883l.c  **** void HMC5883L_setMeasurementBias(uint8_t bias) {
+ 352              		.loc 1 178 0
+ 353              		.cfi_startproc
+ 354 0000 80B5     		push	{r7, lr}
+ 355              		.cfi_def_cfa_offset 8
+ 356              		.cfi_offset 7, -8
+ 357              		.cfi_offset 14, -4
+ 358 0002 82B0     		sub	sp, sp, #8
+ 359              		.cfi_def_cfa_offset 16
+ 360 0004 00AF     		add	r7, sp, #0
+ 361              		.cfi_def_cfa_register 7
+ 362 0006 021C     		mov	r2, r0
+ 363 0008 FB1D     		add	r3, r7, #7
+ 364 000a 1A70     		strb	r2, [r3]
+ 179:.\hmc5883l.c  ****     //I2Cdev::writeBits(devAddr, HMC5883L_RA_CONFIG_A, HMC5883L_CRA_BIAS_BIT, HMC5883L_CRA_BIAS_LEN
+ 180:.\hmc5883l.c  ****     asm("nop");
+ 365              		.loc 1 180 0
+ 366              	@ 180 ".\hmc5883l.c" 1
+ 367 000c C046     		nop
+ 368              	@ 0 "" 2
+ 181:.\hmc5883l.c  **** }
+ 369              		.loc 1 181 0
+ 370              		.code	16
+ 371 000e BD46     		mov	sp, r7
+ 372 0010 02B0     		add	sp, sp, #8
+ 373              		@ sp needed
+ 374 0012 80BD     		pop	{r7, pc}
+ 375              		.cfi_endproc
+ 376              	.LFE42:
+ 377              		.size	HMC5883L_setMeasurementBias, .-HMC5883L_setMeasurementBias
+ 378              		.section	.text.HMC5883L_getGain,"ax",%progbits
+ 379              		.align	2
+ 380              		.global	HMC5883L_getGain
+ 381              		.code	16
+ 382              		.thumb_func
+ 383              		.type	HMC5883L_getGain, %function
+ 384              	HMC5883L_getGain:
+ 385              	.LFB43:
+ 182:.\hmc5883l.c  **** 
+ 183:.\hmc5883l.c  **** // CONFIG_B register
+ 184:.\hmc5883l.c  **** 
+ 185:.\hmc5883l.c  **** /** Get magnetic field gain value.
+ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccJjUaFv.s 			page 11
 
 
- 173:.\hmc5883l.c  **** void HMC5883L_setMeasurementBias(uint8_t bias) {
- 342              		.loc 1 173 0
- 343              		.cfi_startproc
- 344 0000 80B5     		push	{r7, lr}
- 345              		.cfi_def_cfa_offset 8
- 346              		.cfi_offset 7, -8
- 347              		.cfi_offset 14, -4
- 348 0002 82B0     		sub	sp, sp, #8
- 349              		.cfi_def_cfa_offset 16
- 350 0004 00AF     		add	r7, sp, #0
- 351              		.cfi_def_cfa_register 7
- 352 0006 021C     		mov	r2, r0
- 353 0008 FB1D     		add	r3, r7, #7
- 354 000a 1A70     		strb	r2, [r3]
- 174:.\hmc5883l.c  ****     //I2Cdev::writeBits(devAddr, HMC5883L_RA_CONFIG_A, HMC5883L_CRA_BIAS_BIT, HMC5883L_CRA_BIAS_LEN
- 175:.\hmc5883l.c  ****     asm("nop");
- 355              		.loc 1 175 0
- 356              	@ 175 ".\hmc5883l.c" 1
- 357 000c C046     		nop
- 358              	@ 0 "" 2
- 176:.\hmc5883l.c  **** }
- 359              		.loc 1 176 0
- 360              		.code	16
- 361 000e BD46     		mov	sp, r7
- 362 0010 02B0     		add	sp, sp, #8
- 363              		@ sp needed
- 364 0012 80BD     		pop	{r7, pc}
- 365              		.cfi_endproc
- 366              	.LFE43:
- 367              		.size	HMC5883L_setMeasurementBias, .-HMC5883L_setMeasurementBias
- 368              		.section	.text.HMC5883L_getGain,"ax",%progbits
- 369              		.align	2
- 370              		.global	HMC5883L_getGain
- 371              		.code	16
- 372              		.thumb_func
- 373              		.type	HMC5883L_getGain, %function
- 374              	HMC5883L_getGain:
- 375              	.LFB44:
- 177:.\hmc5883l.c  **** 
- 178:.\hmc5883l.c  **** // CONFIG_B register
- 179:.\hmc5883l.c  **** 
- 180:.\hmc5883l.c  **** /** Get magnetic field gain value.
- 181:.\hmc5883l.c  ****  * The table below shows nominal gain settings. Use the "Gain" column to convert
- 182:.\hmc5883l.c  ****  * counts to Gauss. Choose a lower gain value (higher GN#) when total field
- 183:.\hmc5883l.c  ****  * strength causes overflow in one of the data output registers (saturation).
- 184:.\hmc5883l.c  ****  * The data output range for all settings is 0xF800-0x07FF (-2048 - 2047).
- 185:.\hmc5883l.c  ****  *
- 186:.\hmc5883l.c  ****  * Value | Field Range | Gain (LSB/Gauss)
- 187:.\hmc5883l.c  ****  * ------+-------------+-----------------
- 188:.\hmc5883l.c  ****  * 0     | +/- 0.88 Ga | 1370
- 189:.\hmc5883l.c  ****  * 1     | +/- 1.3 Ga  | 1090 (Default)
- 190:.\hmc5883l.c  ****  * 2     | +/- 1.9 Ga  | 820
- 191:.\hmc5883l.c  ****  * 3     | +/- 2.5 Ga  | 660
- 192:.\hmc5883l.c  ****  * 4     | +/- 4.0 Ga  | 440
- 193:.\hmc5883l.c  ****  * 5     | +/- 4.7 Ga  | 390
- 194:.\hmc5883l.c  ****  * 6     | +/- 5.6 Ga  | 330
- 195:.\hmc5883l.c  ****  * 7     | +/- 8.1 Ga  | 230
-ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccy6hVZJ.s 			page 11
+ 186:.\hmc5883l.c  ****  * The table below shows nominal gain settings. Use the "Gain" column to convert
+ 187:.\hmc5883l.c  ****  * counts to Gauss. Choose a lower gain value (higher GN#) when total field
+ 188:.\hmc5883l.c  ****  * strength causes overflow in one of the data output registers (saturation).
+ 189:.\hmc5883l.c  ****  * The data output range for all settings is 0xF800-0x07FF (-2048 - 2047).
+ 190:.\hmc5883l.c  ****  *
+ 191:.\hmc5883l.c  ****  * Value | Field Range | Gain (LSB/Gauss)
+ 192:.\hmc5883l.c  ****  * ------+-------------+-----------------
+ 193:.\hmc5883l.c  ****  * 0     | +/- 0.88 Ga | 1370
+ 194:.\hmc5883l.c  ****  * 1     | +/- 1.3 Ga  | 1090 (Default)
+ 195:.\hmc5883l.c  ****  * 2     | +/- 1.9 Ga  | 820
+ 196:.\hmc5883l.c  ****  * 3     | +/- 2.5 Ga  | 660
+ 197:.\hmc5883l.c  ****  * 4     | +/- 4.0 Ga  | 440
+ 198:.\hmc5883l.c  ****  * 5     | +/- 4.7 Ga  | 390
+ 199:.\hmc5883l.c  ****  * 6     | +/- 5.6 Ga  | 330
+ 200:.\hmc5883l.c  ****  * 7     | +/- 8.1 Ga  | 230
+ 201:.\hmc5883l.c  ****  *
+ 202:.\hmc5883l.c  ****  * @return Current magnetic field gain value
+ 203:.\hmc5883l.c  ****  * @see HMC5883L_GAIN_1090
+ 204:.\hmc5883l.c  ****  * @see HMC5883L_RA_CONFIG_B
+ 205:.\hmc5883l.c  ****  * @see HMC5883L_CRB_GAIN_BIT
+ 206:.\hmc5883l.c  ****  * @see HMC5883L_CRB_GAIN_LENGTH
+ 207:.\hmc5883l.c  ****  */
+ 208:.\hmc5883l.c  **** uint8_t HMC5883L_getGain() {
+ 386              		.loc 1 208 0
+ 387              		.cfi_startproc
+ 388 0000 80B5     		push	{r7, lr}
+ 389              		.cfi_def_cfa_offset 8
+ 390              		.cfi_offset 7, -8
+ 391              		.cfi_offset 14, -4
+ 392 0002 00AF     		add	r7, sp, #0
+ 393              		.cfi_def_cfa_register 7
+ 209:.\hmc5883l.c  ****     //I2Cdev::readBits(devAddr, HMC5883L_RA_CONFIG_B, HMC5883L_CRB_GAIN_BIT, HMC5883L_CRB_GAIN_LENG
+ 210:.\hmc5883l.c  ****     return buffer[0];
+ 394              		.loc 1 210 0
+ 395 0004 024B     		ldr	r3, .L32
+ 396 0006 1B78     		ldrb	r3, [r3]
+ 211:.\hmc5883l.c  **** }
+ 397              		.loc 1 211 0
+ 398 0008 181C     		mov	r0, r3
+ 399 000a BD46     		mov	sp, r7
+ 400              		@ sp needed
+ 401 000c 80BD     		pop	{r7, pc}
+ 402              	.L33:
+ 403 000e C046     		.align	2
+ 404              	.L32:
+ 405 0010 00000000 		.word	buffer
+ 406              		.cfi_endproc
+ 407              	.LFE43:
+ 408              		.size	HMC5883L_getGain, .-HMC5883L_getGain
+ 409              		.section	.text.HMC5883L_setGain,"ax",%progbits
+ 410              		.align	2
+ 411              		.global	HMC5883L_setGain
+ 412              		.code	16
+ 413              		.thumb_func
+ 414              		.type	HMC5883L_setGain, %function
+ 415              	HMC5883L_setGain:
+ 416              	.LFB44:
+ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccJjUaFv.s 			page 12
 
 
- 196:.\hmc5883l.c  ****  *
- 197:.\hmc5883l.c  ****  * @return Current magnetic field gain value
- 198:.\hmc5883l.c  ****  * @see HMC5883L_GAIN_1090
- 199:.\hmc5883l.c  ****  * @see HMC5883L_RA_CONFIG_B
- 200:.\hmc5883l.c  ****  * @see HMC5883L_CRB_GAIN_BIT
- 201:.\hmc5883l.c  ****  * @see HMC5883L_CRB_GAIN_LENGTH
- 202:.\hmc5883l.c  ****  */
- 203:.\hmc5883l.c  **** uint8_t HMC5883L_getGain() {
- 376              		.loc 1 203 0
- 377              		.cfi_startproc
- 378 0000 80B5     		push	{r7, lr}
- 379              		.cfi_def_cfa_offset 8
- 380              		.cfi_offset 7, -8
- 381              		.cfi_offset 14, -4
- 382 0002 00AF     		add	r7, sp, #0
- 383              		.cfi_def_cfa_register 7
- 204:.\hmc5883l.c  ****     //I2Cdev::readBits(devAddr, HMC5883L_RA_CONFIG_B, HMC5883L_CRB_GAIN_BIT, HMC5883L_CRB_GAIN_LENG
- 205:.\hmc5883l.c  ****     return buffer[0];
- 384              		.loc 1 205 0
- 385 0004 024B     		ldr	r3, .L29
- 386 0006 1B78     		ldrb	r3, [r3]
- 206:.\hmc5883l.c  **** }
- 387              		.loc 1 206 0
- 388 0008 181C     		mov	r0, r3
- 389 000a BD46     		mov	sp, r7
- 390              		@ sp needed
- 391 000c 80BD     		pop	{r7, pc}
- 392              	.L30:
- 393 000e C046     		.align	2
- 394              	.L29:
- 395 0010 00000000 		.word	buffer
- 396              		.cfi_endproc
- 397              	.LFE44:
- 398              		.size	HMC5883L_getGain, .-HMC5883L_getGain
- 399              		.section	.text.HMC5883L_setGain,"ax",%progbits
- 400              		.align	2
- 401              		.global	HMC5883L_setGain
- 402              		.code	16
- 403              		.thumb_func
- 404              		.type	HMC5883L_setGain, %function
- 405              	HMC5883L_setGain:
- 406              	.LFB45:
- 207:.\hmc5883l.c  **** /** Set magnetic field gain value.
- 208:.\hmc5883l.c  ****  * @param gain New magnetic field gain value
- 209:.\hmc5883l.c  ****  * @see getGain()
- 210:.\hmc5883l.c  ****  * @see HMC5883L_RA_CONFIG_B
- 211:.\hmc5883l.c  ****  * @see HMC5883L_CRB_GAIN_BIT
- 212:.\hmc5883l.c  ****  * @see HMC5883L_CRB_GAIN_LENGTH
- 213:.\hmc5883l.c  ****  */
- 214:.\hmc5883l.c  **** void HMC5883L_setGain(uint8_t gain) {
- 407              		.loc 1 214 0
- 408              		.cfi_startproc
- 409 0000 80B5     		push	{r7, lr}
- 410              		.cfi_def_cfa_offset 8
- 411              		.cfi_offset 7, -8
- 412              		.cfi_offset 14, -4
- 413 0002 82B0     		sub	sp, sp, #8
-ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccy6hVZJ.s 			page 12
+ 212:.\hmc5883l.c  **** /** Set magnetic field gain value.
+ 213:.\hmc5883l.c  ****  * @param gain New magnetic field gain value
+ 214:.\hmc5883l.c  ****  * @see getGain()
+ 215:.\hmc5883l.c  ****  * @see HMC5883L_RA_CONFIG_B
+ 216:.\hmc5883l.c  ****  * @see HMC5883L_CRB_GAIN_BIT
+ 217:.\hmc5883l.c  ****  * @see HMC5883L_CRB_GAIN_LENGTH
+ 218:.\hmc5883l.c  ****  */
+ 219:.\hmc5883l.c  **** void HMC5883L_setGain(uint8_t gain) {
+ 417              		.loc 1 219 0
+ 418              		.cfi_startproc
+ 419 0000 80B5     		push	{r7, lr}
+ 420              		.cfi_def_cfa_offset 8
+ 421              		.cfi_offset 7, -8
+ 422              		.cfi_offset 14, -4
+ 423 0002 82B0     		sub	sp, sp, #8
+ 424              		.cfi_def_cfa_offset 16
+ 425 0004 00AF     		add	r7, sp, #0
+ 426              		.cfi_def_cfa_register 7
+ 427 0006 021C     		mov	r2, r0
+ 428 0008 FB1D     		add	r3, r7, #7
+ 429 000a 1A70     		strb	r2, [r3]
+ 220:.\hmc5883l.c  ****     // use this method to guarantee that bits 4-0 are set to zero, which is a
+ 221:.\hmc5883l.c  ****     // requirement specified in the datasheet; it's actually more efficient than
+ 222:.\hmc5883l.c  ****     // using the I2Cdev.writeBits method
+ 223:.\hmc5883l.c  ****     I2CWriteByte(devAddr, HMC5883L_RA_CONFIG_B, gain << (HMC5883L_CRB_GAIN_BIT - HMC5883L_CRB_GAIN_
+ 430              		.loc 1 223 0
+ 431 000c 064B     		ldr	r3, .L35
+ 432 000e 1A78     		ldrb	r2, [r3]
+ 433 0010 FB1D     		add	r3, r7, #7
+ 434 0012 1B78     		ldrb	r3, [r3]
+ 435 0014 5B01     		lsl	r3, r3, #5
+ 436 0016 DBB2     		uxtb	r3, r3
+ 437 0018 101C     		mov	r0, r2
+ 438 001a 0121     		mov	r1, #1
+ 439 001c 1A1C     		mov	r2, r3
+ 440 001e FFF7FEFF 		bl	I2CWriteByte
+ 224:.\hmc5883l.c  **** }
+ 441              		.loc 1 224 0
+ 442 0022 BD46     		mov	sp, r7
+ 443 0024 02B0     		add	sp, sp, #8
+ 444              		@ sp needed
+ 445 0026 80BD     		pop	{r7, pc}
+ 446              	.L36:
+ 447              		.align	2
+ 448              	.L35:
+ 449 0028 00000000 		.word	devAddr
+ 450              		.cfi_endproc
+ 451              	.LFE44:
+ 452              		.size	HMC5883L_setGain, .-HMC5883L_setGain
+ 453              		.section	.text.HMC5883L_getMode,"ax",%progbits
+ 454              		.align	2
+ 455              		.global	HMC5883L_getMode
+ 456              		.code	16
+ 457              		.thumb_func
+ 458              		.type	HMC5883L_getMode, %function
+ 459              	HMC5883L_getMode:
+ 460              	.LFB45:
+ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccJjUaFv.s 			page 13
 
 
- 414              		.cfi_def_cfa_offset 16
- 415 0004 00AF     		add	r7, sp, #0
- 416              		.cfi_def_cfa_register 7
- 417 0006 021C     		mov	r2, r0
- 418 0008 FB1D     		add	r3, r7, #7
- 419 000a 1A70     		strb	r2, [r3]
- 215:.\hmc5883l.c  ****     // use this method to guarantee that bits 4-0 are set to zero, which is a
- 216:.\hmc5883l.c  ****     // requirement specified in the datasheet; it's actually more efficient than
- 217:.\hmc5883l.c  ****     // using the I2Cdev.writeBits method
- 218:.\hmc5883l.c  ****     I2CWriteByte(devAddr, HMC5883L_RA_CONFIG_B, gain << (HMC5883L_CRB_GAIN_BIT - HMC5883L_CRB_GAIN_
- 420              		.loc 1 218 0
- 421 000c 064B     		ldr	r3, .L32
- 422 000e 1A78     		ldrb	r2, [r3]
- 423 0010 FB1D     		add	r3, r7, #7
- 424 0012 1B78     		ldrb	r3, [r3]
- 425 0014 5B01     		lsl	r3, r3, #5
- 426 0016 DBB2     		uxtb	r3, r3
- 427 0018 101C     		mov	r0, r2
- 428 001a 0121     		mov	r1, #1
- 429 001c 1A1C     		mov	r2, r3
- 430 001e FFF7FEFF 		bl	I2CWriteByte
- 219:.\hmc5883l.c  **** }
- 431              		.loc 1 219 0
- 432 0022 BD46     		mov	sp, r7
- 433 0024 02B0     		add	sp, sp, #8
- 434              		@ sp needed
- 435 0026 80BD     		pop	{r7, pc}
- 436              	.L33:
- 437              		.align	2
- 438              	.L32:
- 439 0028 00000000 		.word	devAddr
- 440              		.cfi_endproc
- 441              	.LFE45:
- 442              		.size	HMC5883L_setGain, .-HMC5883L_setGain
- 443              		.section	.text.HMC5883L_getMode,"ax",%progbits
- 444              		.align	2
- 445              		.global	HMC5883L_getMode
- 446              		.code	16
- 447              		.thumb_func
- 448              		.type	HMC5883L_getMode, %function
- 449              	HMC5883L_getMode:
- 450              	.LFB46:
- 220:.\hmc5883l.c  **** 
- 221:.\hmc5883l.c  **** // MODE register
- 222:.\hmc5883l.c  **** 
- 223:.\hmc5883l.c  **** /** Get measurement mode.
- 224:.\hmc5883l.c  ****  * In continuous-measurement mode, the device continuously performs measurements
- 225:.\hmc5883l.c  ****  * and places the result in the data register. RDY goes high when new data is
- 226:.\hmc5883l.c  ****  * placed in all three registers. After a power-on or a write to the mode or
- 227:.\hmc5883l.c  ****  * configuration register, the first measurement set is available from all three
- 228:.\hmc5883l.c  ****  * data output registers after a period of 2/fDO and subsequent measurements are
- 229:.\hmc5883l.c  ****  * available at a frequency of fDO, where fDO is the frequency of data output.
- 230:.\hmc5883l.c  ****  *
- 231:.\hmc5883l.c  ****  * When single-measurement mode (default) is selected, device performs a single
- 232:.\hmc5883l.c  ****  * measurement, sets RDY high and returned to idle mode. Mode register returns
- 233:.\hmc5883l.c  ****  * to idle mode bit values. The measurement remains in the data output register
- 234:.\hmc5883l.c  ****  * and RDY remains high until the data output register is read or another
-ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccy6hVZJ.s 			page 13
+ 225:.\hmc5883l.c  **** 
+ 226:.\hmc5883l.c  **** // MODE register
+ 227:.\hmc5883l.c  **** 
+ 228:.\hmc5883l.c  **** /** Get measurement mode.
+ 229:.\hmc5883l.c  ****  * In continuous-measurement mode, the device continuously performs measurements
+ 230:.\hmc5883l.c  ****  * and places the result in the data register. RDY goes high when new data is
+ 231:.\hmc5883l.c  ****  * placed in all three registers. After a power-on or a write to the mode or
+ 232:.\hmc5883l.c  ****  * configuration register, the first measurement set is available from all three
+ 233:.\hmc5883l.c  ****  * data output registers after a period of 2/fDO and subsequent measurements are
+ 234:.\hmc5883l.c  ****  * available at a frequency of fDO, where fDO is the frequency of data output.
+ 235:.\hmc5883l.c  ****  *
+ 236:.\hmc5883l.c  ****  * When single-measurement mode (default) is selected, device performs a single
+ 237:.\hmc5883l.c  ****  * measurement, sets RDY high and returned to idle mode. Mode register returns
+ 238:.\hmc5883l.c  ****  * to idle mode bit values. The measurement remains in the data output register
+ 239:.\hmc5883l.c  ****  * and RDY remains high until the data output register is read or another
+ 240:.\hmc5883l.c  ****  * measurement is performed.
+ 241:.\hmc5883l.c  ****  *
+ 242:.\hmc5883l.c  ****  * @return Current measurement mode
+ 243:.\hmc5883l.c  ****  * @see HMC5883L_MODE_CONTINUOUS
+ 244:.\hmc5883l.c  ****  * @see HMC5883L_MODE_SINGLE
+ 245:.\hmc5883l.c  ****  * @see HMC5883L_MODE_IDLE
+ 246:.\hmc5883l.c  ****  * @see HMC5883L_RA_MODE
+ 247:.\hmc5883l.c  ****  * @see HMC5883L_MODEREG_BIT
+ 248:.\hmc5883l.c  ****  * @see HMC5883L_MODEREG_LENGTH
+ 249:.\hmc5883l.c  ****  */
+ 250:.\hmc5883l.c  **** uint8_t HMC5883L_getMode() {
+ 461              		.loc 1 250 0
+ 462              		.cfi_startproc
+ 463 0000 80B5     		push	{r7, lr}
+ 464              		.cfi_def_cfa_offset 8
+ 465              		.cfi_offset 7, -8
+ 466              		.cfi_offset 14, -4
+ 467 0002 00AF     		add	r7, sp, #0
+ 468              		.cfi_def_cfa_register 7
+ 251:.\hmc5883l.c  ****     //I2Cdev::readBits(devAddr, HMC5883L_RA_MODE, HMC5883L_MODEREG_BIT, HMC5883L_MODEREG_LENGTH, bu
+ 252:.\hmc5883l.c  ****     return buffer[0];
+ 469              		.loc 1 252 0
+ 470 0004 024B     		ldr	r3, .L39
+ 471 0006 1B78     		ldrb	r3, [r3]
+ 253:.\hmc5883l.c  **** }
+ 472              		.loc 1 253 0
+ 473 0008 181C     		mov	r0, r3
+ 474 000a BD46     		mov	sp, r7
+ 475              		@ sp needed
+ 476 000c 80BD     		pop	{r7, pc}
+ 477              	.L40:
+ 478 000e C046     		.align	2
+ 479              	.L39:
+ 480 0010 00000000 		.word	buffer
+ 481              		.cfi_endproc
+ 482              	.LFE45:
+ 483              		.size	HMC5883L_getMode, .-HMC5883L_getMode
+ 484              		.section	.text.HMC5883L_setMode,"ax",%progbits
+ 485              		.align	2
+ 486              		.global	HMC5883L_setMode
+ 487              		.code	16
+ 488              		.thumb_func
+ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccJjUaFv.s 			page 14
 
 
- 235:.\hmc5883l.c  ****  * measurement is performed.
- 236:.\hmc5883l.c  ****  *
- 237:.\hmc5883l.c  ****  * @return Current measurement mode
- 238:.\hmc5883l.c  ****  * @see HMC5883L_MODE_CONTINUOUS
- 239:.\hmc5883l.c  ****  * @see HMC5883L_MODE_SINGLE
- 240:.\hmc5883l.c  ****  * @see HMC5883L_MODE_IDLE
- 241:.\hmc5883l.c  ****  * @see HMC5883L_RA_MODE
- 242:.\hmc5883l.c  ****  * @see HMC5883L_MODEREG_BIT
- 243:.\hmc5883l.c  ****  * @see HMC5883L_MODEREG_LENGTH
- 244:.\hmc5883l.c  ****  */
- 245:.\hmc5883l.c  **** uint8_t HMC5883L_getMode() {
- 451              		.loc 1 245 0
- 452              		.cfi_startproc
- 453 0000 80B5     		push	{r7, lr}
- 454              		.cfi_def_cfa_offset 8
- 455              		.cfi_offset 7, -8
- 456              		.cfi_offset 14, -4
- 457 0002 00AF     		add	r7, sp, #0
- 458              		.cfi_def_cfa_register 7
- 246:.\hmc5883l.c  ****     //I2Cdev::readBits(devAddr, HMC5883L_RA_MODE, HMC5883L_MODEREG_BIT, HMC5883L_MODEREG_LENGTH, bu
- 247:.\hmc5883l.c  ****     return buffer[0];
- 459              		.loc 1 247 0
- 460 0004 024B     		ldr	r3, .L36
- 461 0006 1B78     		ldrb	r3, [r3]
- 248:.\hmc5883l.c  **** }
- 462              		.loc 1 248 0
- 463 0008 181C     		mov	r0, r3
- 464 000a BD46     		mov	sp, r7
- 465              		@ sp needed
- 466 000c 80BD     		pop	{r7, pc}
- 467              	.L37:
- 468 000e C046     		.align	2
- 469              	.L36:
- 470 0010 00000000 		.word	buffer
- 471              		.cfi_endproc
- 472              	.LFE46:
- 473              		.size	HMC5883L_getMode, .-HMC5883L_getMode
- 474              		.section	.text.HMC5883L_setMode,"ax",%progbits
- 475              		.align	2
- 476              		.global	HMC5883L_setMode
- 477              		.code	16
- 478              		.thumb_func
- 479              		.type	HMC5883L_setMode, %function
- 480              	HMC5883L_setMode:
- 481              	.LFB47:
- 249:.\hmc5883l.c  **** /** Set measurement mode.
- 250:.\hmc5883l.c  ****  * @param newMode New measurement mode
- 251:.\hmc5883l.c  ****  * @see getMode()
- 252:.\hmc5883l.c  ****  * @see HMC5883L_MODE_CONTINUOUS
- 253:.\hmc5883l.c  ****  * @see HMC5883L_MODE_SINGLE
- 254:.\hmc5883l.c  ****  * @see HMC5883L_MODE_IDLE
- 255:.\hmc5883l.c  ****  * @see HMC5883L_RA_MODE
- 256:.\hmc5883l.c  ****  * @see HMC5883L_MODEREG_BIT
- 257:.\hmc5883l.c  ****  * @see HMC5883L_MODEREG_LENGTH
- 258:.\hmc5883l.c  ****  */
- 259:.\hmc5883l.c  **** void HMC5883L_setMode(uint8_t newMode) {
- 482              		.loc 1 259 0
-ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccy6hVZJ.s 			page 14
+ 489              		.type	HMC5883L_setMode, %function
+ 490              	HMC5883L_setMode:
+ 491              	.LFB46:
+ 254:.\hmc5883l.c  **** /** Set measurement mode.
+ 255:.\hmc5883l.c  ****  * @param newMode New measurement mode
+ 256:.\hmc5883l.c  ****  * @see getMode()
+ 257:.\hmc5883l.c  ****  * @see HMC5883L_MODE_CONTINUOUS
+ 258:.\hmc5883l.c  ****  * @see HMC5883L_MODE_SINGLE
+ 259:.\hmc5883l.c  ****  * @see HMC5883L_MODE_IDLE
+ 260:.\hmc5883l.c  ****  * @see HMC5883L_RA_MODE
+ 261:.\hmc5883l.c  ****  * @see HMC5883L_MODEREG_BIT
+ 262:.\hmc5883l.c  ****  * @see HMC5883L_MODEREG_LENGTH
+ 263:.\hmc5883l.c  ****  */
+ 264:.\hmc5883l.c  **** void HMC5883L_setMode(uint8_t newMode) {
+ 492              		.loc 1 264 0
+ 493              		.cfi_startproc
+ 494 0000 80B5     		push	{r7, lr}
+ 495              		.cfi_def_cfa_offset 8
+ 496              		.cfi_offset 7, -8
+ 497              		.cfi_offset 14, -4
+ 498 0002 82B0     		sub	sp, sp, #8
+ 499              		.cfi_def_cfa_offset 16
+ 500 0004 00AF     		add	r7, sp, #0
+ 501              		.cfi_def_cfa_register 7
+ 502 0006 021C     		mov	r2, r0
+ 503 0008 FB1D     		add	r3, r7, #7
+ 504 000a 1A70     		strb	r2, [r3]
+ 265:.\hmc5883l.c  ****     // use this method to guarantee that bits 7-2 are set to zero, which is a
+ 266:.\hmc5883l.c  ****     // requirement specified in the datasheet; it's actually more efficient than
+ 267:.\hmc5883l.c  ****     // using the I2Cdev.writeBits method
+ 268:.\hmc5883l.c  ****     I2CWriteByte(devAddr, HMC5883L_RA_MODE, newMode << (HMC5883L_MODEREG_BIT - HMC5883L_MODEREG_LEN
+ 505              		.loc 1 268 0
+ 506 000c 074B     		ldr	r3, .L42
+ 507 000e 1A78     		ldrb	r2, [r3]
+ 508 0010 FB1D     		add	r3, r7, #7
+ 509 0012 1B78     		ldrb	r3, [r3]
+ 510 0014 101C     		mov	r0, r2
+ 511 0016 0221     		mov	r1, #2
+ 512 0018 1A1C     		mov	r2, r3
+ 513 001a FFF7FEFF 		bl	I2CWriteByte
+ 269:.\hmc5883l.c  ****     mode = newMode; // track to tell if we have to clear bit 7 after a read
+ 514              		.loc 1 269 0
+ 515 001e 044B     		ldr	r3, .L42+4
+ 516 0020 FA1D     		add	r2, r7, #7
+ 517 0022 1278     		ldrb	r2, [r2]
+ 518 0024 1A70     		strb	r2, [r3]
+ 270:.\hmc5883l.c  **** }
+ 519              		.loc 1 270 0
+ 520 0026 BD46     		mov	sp, r7
+ 521 0028 02B0     		add	sp, sp, #8
+ 522              		@ sp needed
+ 523 002a 80BD     		pop	{r7, pc}
+ 524              	.L43:
+ 525              		.align	2
+ 526              	.L42:
+ 527 002c 00000000 		.word	devAddr
+ 528 0030 00000000 		.word	mode
+ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccJjUaFv.s 			page 15
 
 
- 483              		.cfi_startproc
- 484 0000 80B5     		push	{r7, lr}
- 485              		.cfi_def_cfa_offset 8
- 486              		.cfi_offset 7, -8
- 487              		.cfi_offset 14, -4
- 488 0002 82B0     		sub	sp, sp, #8
- 489              		.cfi_def_cfa_offset 16
- 490 0004 00AF     		add	r7, sp, #0
- 491              		.cfi_def_cfa_register 7
- 492 0006 021C     		mov	r2, r0
- 493 0008 FB1D     		add	r3, r7, #7
- 494 000a 1A70     		strb	r2, [r3]
- 260:.\hmc5883l.c  ****     // use this method to guarantee that bits 7-2 are set to zero, which is a
- 261:.\hmc5883l.c  ****     // requirement specified in the datasheet; it's actually more efficient than
- 262:.\hmc5883l.c  ****     // using the I2Cdev.writeBits method
- 263:.\hmc5883l.c  ****     I2CWriteByte(devAddr, HMC5883L_RA_MODE, newMode << (HMC5883L_MODEREG_BIT - HMC5883L_MODEREG_LEN
- 495              		.loc 1 263 0
- 496 000c 074B     		ldr	r3, .L39
- 497 000e 1A78     		ldrb	r2, [r3]
- 498 0010 FB1D     		add	r3, r7, #7
- 499 0012 1B78     		ldrb	r3, [r3]
- 500 0014 101C     		mov	r0, r2
- 501 0016 0221     		mov	r1, #2
- 502 0018 1A1C     		mov	r2, r3
- 503 001a FFF7FEFF 		bl	I2CWriteByte
- 264:.\hmc5883l.c  ****     mode = newMode; // track to tell if we have to clear bit 7 after a read
- 504              		.loc 1 264 0
- 505 001e 044B     		ldr	r3, .L39+4
- 506 0020 FA1D     		add	r2, r7, #7
- 507 0022 1278     		ldrb	r2, [r2]
- 508 0024 1A70     		strb	r2, [r3]
- 265:.\hmc5883l.c  **** }
- 509              		.loc 1 265 0
- 510 0026 BD46     		mov	sp, r7
- 511 0028 02B0     		add	sp, sp, #8
- 512              		@ sp needed
- 513 002a 80BD     		pop	{r7, pc}
- 514              	.L40:
- 515              		.align	2
- 516              	.L39:
- 517 002c 00000000 		.word	devAddr
- 518 0030 00000000 		.word	mode
- 519              		.cfi_endproc
- 520              	.LFE47:
- 521              		.size	HMC5883L_setMode, .-HMC5883L_setMode
- 522              		.section	.text.HMC5883L_getHeading,"ax",%progbits
- 523              		.align	2
- 524              		.global	HMC5883L_getHeading
- 525              		.code	16
- 526              		.thumb_func
- 527              		.type	HMC5883L_getHeading, %function
- 528              	HMC5883L_getHeading:
- 529              	.LFB48:
- 266:.\hmc5883l.c  **** 
- 267:.\hmc5883l.c  **** // DATA* registers
- 268:.\hmc5883l.c  **** 
- 269:.\hmc5883l.c  **** /** Get 3-axis heading measurements.
-ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccy6hVZJ.s 			page 15
+ 529              		.cfi_endproc
+ 530              	.LFE46:
+ 531              		.size	HMC5883L_setMode, .-HMC5883L_setMode
+ 532              		.section	.text.HMC5883L_getHeading,"ax",%progbits
+ 533              		.align	2
+ 534              		.global	HMC5883L_getHeading
+ 535              		.code	16
+ 536              		.thumb_func
+ 537              		.type	HMC5883L_getHeading, %function
+ 538              	HMC5883L_getHeading:
+ 539              	.LFB47:
+ 271:.\hmc5883l.c  **** 
+ 272:.\hmc5883l.c  **** // DATA* registers
+ 273:.\hmc5883l.c  **** 
+ 274:.\hmc5883l.c  **** /** Get 3-axis heading measurements.
+ 275:.\hmc5883l.c  ****  * In the event the ADC reading overflows or underflows for the given channel,
+ 276:.\hmc5883l.c  ****  * or if there is a math overflow during the bias measurement, this data
+ 277:.\hmc5883l.c  ****  * register will contain the value -4096. This register value will clear when
+ 278:.\hmc5883l.c  ****  * after the next valid measurement is made. Note that this method automatically
+ 279:.\hmc5883l.c  ****  * clears the appropriate bit in the MODE register if Single mode is active.
+ 280:.\hmc5883l.c  ****  * @param x 16-bit signed integer container for X-axis heading
+ 281:.\hmc5883l.c  ****  * @param y 16-bit signed integer container for Y-axis heading
+ 282:.\hmc5883l.c  ****  * @param z 16-bit signed integer container for Z-axis heading
+ 283:.\hmc5883l.c  ****  * @see HMC5883L_RA_DATAX_H
+ 284:.\hmc5883l.c  ****  */
+ 285:.\hmc5883l.c  **** void HMC5883L_getHeading(int16_t *x, int16_t *y, int16_t *z) {
+ 540              		.loc 1 285 0
+ 541              		.cfi_startproc
+ 542 0000 80B5     		push	{r7, lr}
+ 543              		.cfi_def_cfa_offset 8
+ 544              		.cfi_offset 7, -8
+ 545              		.cfi_offset 14, -4
+ 546 0002 84B0     		sub	sp, sp, #16
+ 547              		.cfi_def_cfa_offset 24
+ 548 0004 00AF     		add	r7, sp, #0
+ 549              		.cfi_def_cfa_register 7
+ 550 0006 F860     		str	r0, [r7, #12]
+ 551 0008 B960     		str	r1, [r7, #8]
+ 552 000a 7A60     		str	r2, [r7, #4]
+ 286:.\hmc5883l.c  ****     I2CReadBytes(devAddr, HMC5883L_RA_DATAX_H, 6, buffer);
+ 553              		.loc 1 286 0
+ 554 000c 194B     		ldr	r3, .L46
+ 555 000e 1A78     		ldrb	r2, [r3]
+ 556 0010 194B     		ldr	r3, .L46+4
+ 557 0012 101C     		mov	r0, r2
+ 558 0014 0321     		mov	r1, #3
+ 559 0016 0622     		mov	r2, #6
+ 560 0018 FFF7FEFF 		bl	I2CReadBytes
+ 287:.\hmc5883l.c  ****     if(mode == HMC5883L_MODE_SINGLE) I2CWriteByte(devAddr, HMC5883L_RA_MODE, HMC5883L_MODE_SINGLE <
+ 561              		.loc 1 287 0
+ 562 001c 174B     		ldr	r3, .L46+8
+ 563 001e 1B78     		ldrb	r3, [r3]
+ 564 0020 012B     		cmp	r3, #1
+ 565 0022 06D1     		bne	.L45
+ 566              		.loc 1 287 0 is_stmt 0 discriminator 1
+ 567 0024 134B     		ldr	r3, .L46
+ 568 0026 1B78     		ldrb	r3, [r3]
+ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccJjUaFv.s 			page 16
 
 
- 270:.\hmc5883l.c  ****  * In the event the ADC reading overflows or underflows for the given channel,
- 271:.\hmc5883l.c  ****  * or if there is a math overflow during the bias measurement, this data
- 272:.\hmc5883l.c  ****  * register will contain the value -4096. This register value will clear when
- 273:.\hmc5883l.c  ****  * after the next valid measurement is made. Note that this method automatically
- 274:.\hmc5883l.c  ****  * clears the appropriate bit in the MODE register if Single mode is active.
- 275:.\hmc5883l.c  ****  * @param x 16-bit signed integer container for X-axis heading
- 276:.\hmc5883l.c  ****  * @param y 16-bit signed integer container for Y-axis heading
- 277:.\hmc5883l.c  ****  * @param z 16-bit signed integer container for Z-axis heading
- 278:.\hmc5883l.c  ****  * @see HMC5883L_RA_DATAX_H
- 279:.\hmc5883l.c  ****  */
- 280:.\hmc5883l.c  **** void HMC5883L_getHeading(int16_t *x, int16_t *y, int16_t *z) {
- 530              		.loc 1 280 0
- 531              		.cfi_startproc
- 532 0000 80B5     		push	{r7, lr}
- 533              		.cfi_def_cfa_offset 8
- 534              		.cfi_offset 7, -8
- 535              		.cfi_offset 14, -4
- 536 0002 84B0     		sub	sp, sp, #16
- 537              		.cfi_def_cfa_offset 24
- 538 0004 00AF     		add	r7, sp, #0
- 539              		.cfi_def_cfa_register 7
- 540 0006 F860     		str	r0, [r7, #12]
- 541 0008 B960     		str	r1, [r7, #8]
- 542 000a 7A60     		str	r2, [r7, #4]
- 281:.\hmc5883l.c  ****    // I2Cdev::readBytes(devAddr, HMC5883L_RA_DATAX_H, 6, buffer);
- 282:.\hmc5883l.c  ****    // if (mode == HMC5883L_MODE_SINGLE) I2Cdev::writeByte(devAddr, HMC5883L_RA_MODE, HMC5883L_MODE_
- 283:.\hmc5883l.c  ****     *x = (((int16_t)buffer[0]) << 8) | buffer[1];
- 543              		.loc 1 283 0
- 544 000c 104B     		ldr	r3, .L42
- 545 000e 1B78     		ldrb	r3, [r3]
- 546 0010 1B02     		lsl	r3, r3, #8
- 547 0012 9AB2     		uxth	r2, r3
- 548 0014 0E4B     		ldr	r3, .L42
- 549 0016 5B78     		ldrb	r3, [r3, #1]
- 550 0018 1343     		orr	r3, r2
- 551 001a 9AB2     		uxth	r2, r3
- 552 001c FB68     		ldr	r3, [r7, #12]
- 553 001e 1A80     		strh	r2, [r3]
- 284:.\hmc5883l.c  ****     *y = (((int16_t)buffer[4]) << 8) | buffer[5];
- 554              		.loc 1 284 0
- 555 0020 0B4B     		ldr	r3, .L42
- 556 0022 1B79     		ldrb	r3, [r3, #4]
- 557 0024 1B02     		lsl	r3, r3, #8
- 558 0026 9AB2     		uxth	r2, r3
- 559 0028 094B     		ldr	r3, .L42
- 560 002a 5B79     		ldrb	r3, [r3, #5]
- 561 002c 1343     		orr	r3, r2
- 562 002e 9AB2     		uxth	r2, r3
- 563 0030 BB68     		ldr	r3, [r7, #8]
- 564 0032 1A80     		strh	r2, [r3]
- 285:.\hmc5883l.c  ****     *z = (((int16_t)buffer[2]) << 8) | buffer[3];
- 565              		.loc 1 285 0
- 566 0034 064B     		ldr	r3, .L42
- 567 0036 9B78     		ldrb	r3, [r3, #2]
- 568 0038 1B02     		lsl	r3, r3, #8
- 569 003a 9AB2     		uxth	r2, r3
- 570 003c 044B     		ldr	r3, .L42
-ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccy6hVZJ.s 			page 16
-
-
- 571 003e DB78     		ldrb	r3, [r3, #3]
- 572 0040 1343     		orr	r3, r2
- 573 0042 9AB2     		uxth	r2, r3
- 574 0044 7B68     		ldr	r3, [r7, #4]
- 575 0046 1A80     		strh	r2, [r3]
- 286:.\hmc5883l.c  **** }
- 576              		.loc 1 286 0
- 577 0048 BD46     		mov	sp, r7
- 578 004a 04B0     		add	sp, sp, #16
- 579              		@ sp needed
- 580 004c 80BD     		pop	{r7, pc}
- 581              	.L43:
- 582 004e C046     		.align	2
- 583              	.L42:
- 584 0050 00000000 		.word	buffer
- 585              		.cfi_endproc
- 586              	.LFE48:
- 587              		.size	HMC5883L_getHeading, .-HMC5883L_getHeading
- 588              		.section	.text.HMC5883L_getHeadingX,"ax",%progbits
- 589              		.align	2
- 590              		.global	HMC5883L_getHeadingX
- 591              		.code	16
- 592              		.thumb_func
- 593              		.type	HMC5883L_getHeadingX, %function
- 594              	HMC5883L_getHeadingX:
- 595              	.LFB49:
- 287:.\hmc5883l.c  **** /** Get X-axis heading measurement.
- 288:.\hmc5883l.c  ****  * @return 16-bit signed integer with X-axis heading
- 289:.\hmc5883l.c  ****  * @see HMC5883L_RA_DATAX_H
- 290:.\hmc5883l.c  ****  */
- 291:.\hmc5883l.c  **** int16_t HMC5883L_getHeadingX() {
- 596              		.loc 1 291 0
- 597              		.cfi_startproc
- 598 0000 80B5     		push	{r7, lr}
- 599              		.cfi_def_cfa_offset 8
- 600              		.cfi_offset 7, -8
- 601              		.cfi_offset 14, -4
- 602 0002 00AF     		add	r7, sp, #0
- 603              		.cfi_def_cfa_register 7
- 292:.\hmc5883l.c  ****     // each axis read requires that ALL axis registers be read, even if only
- 293:.\hmc5883l.c  ****     // one is used; this was not done ineffiently in the code by accident
- 294:.\hmc5883l.c  ****    // I2Cdev::readBytes(devAddr, HMC5883L_RA_DATAX_H, 6, buffer);
- 295:.\hmc5883l.c  ****    // if (mode == HMC5883L_MODE_SINGLE) I2Cdev::writeByte(devAddr, HMC5883L_RA_MODE, HMC5883L_MODE_
- 296:.\hmc5883l.c  ****    // return (((int16_t)buffer[0]) << 8) | buffer[1];
- 297:.\hmc5883l.c  **** }
- 604              		.loc 1 297 0
- 605 0004 181C     		mov	r0, r3
- 606 0006 BD46     		mov	sp, r7
- 607              		@ sp needed
- 608 0008 80BD     		pop	{r7, pc}
- 609              		.cfi_endproc
- 610              	.LFE49:
- 611              		.size	HMC5883L_getHeadingX, .-HMC5883L_getHeadingX
- 612 000a C046     		.section	.text.HMC5883L_getHeadingY,"ax",%progbits
+ 569 0028 181C     		mov	r0, r3
+ 570 002a 0221     		mov	r1, #2
+ 571 002c 0122     		mov	r2, #1
+ 572 002e FFF7FEFF 		bl	I2CWriteByte
+ 573              	.L45:
+ 288:.\hmc5883l.c  ****     *x = (((int16_t)buffer[0]) << 8) | buffer[1];
+ 574              		.loc 1 288 0 is_stmt 1
+ 575 0032 114B     		ldr	r3, .L46+4
+ 576 0034 1B78     		ldrb	r3, [r3]
+ 577 0036 1B02     		lsl	r3, r3, #8
+ 578 0038 9AB2     		uxth	r2, r3
+ 579 003a 0F4B     		ldr	r3, .L46+4
+ 580 003c 5B78     		ldrb	r3, [r3, #1]
+ 581 003e 1343     		orr	r3, r2
+ 582 0040 9AB2     		uxth	r2, r3
+ 583 0042 FB68     		ldr	r3, [r7, #12]
+ 584 0044 1A80     		strh	r2, [r3]
+ 289:.\hmc5883l.c  ****     *y = (((int16_t)buffer[4]) << 8) | buffer[5];
+ 585              		.loc 1 289 0
+ 586 0046 0C4B     		ldr	r3, .L46+4
+ 587 0048 1B79     		ldrb	r3, [r3, #4]
+ 588 004a 1B02     		lsl	r3, r3, #8
+ 589 004c 9AB2     		uxth	r2, r3
+ 590 004e 0A4B     		ldr	r3, .L46+4
+ 591 0050 5B79     		ldrb	r3, [r3, #5]
+ 592 0052 1343     		orr	r3, r2
+ 593 0054 9AB2     		uxth	r2, r3
+ 594 0056 BB68     		ldr	r3, [r7, #8]
+ 595 0058 1A80     		strh	r2, [r3]
+ 290:.\hmc5883l.c  ****     *z = (((int16_t)buffer[2]) << 8) | buffer[3];
+ 596              		.loc 1 290 0
+ 597 005a 074B     		ldr	r3, .L46+4
+ 598 005c 9B78     		ldrb	r3, [r3, #2]
+ 599 005e 1B02     		lsl	r3, r3, #8
+ 600 0060 9AB2     		uxth	r2, r3
+ 601 0062 054B     		ldr	r3, .L46+4
+ 602 0064 DB78     		ldrb	r3, [r3, #3]
+ 603 0066 1343     		orr	r3, r2
+ 604 0068 9AB2     		uxth	r2, r3
+ 605 006a 7B68     		ldr	r3, [r7, #4]
+ 606 006c 1A80     		strh	r2, [r3]
+ 291:.\hmc5883l.c  **** }
+ 607              		.loc 1 291 0
+ 608 006e BD46     		mov	sp, r7
+ 609 0070 04B0     		add	sp, sp, #16
+ 610              		@ sp needed
+ 611 0072 80BD     		pop	{r7, pc}
+ 612              	.L47:
  613              		.align	2
- 614              		.global	HMC5883L_getHeadingY
- 615              		.code	16
-ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccy6hVZJ.s 			page 17
+ 614              	.L46:
+ 615 0074 00000000 		.word	devAddr
+ 616 0078 00000000 		.word	buffer
+ 617 007c 00000000 		.word	mode
+ 618              		.cfi_endproc
+ 619              	.LFE47:
+ 620              		.size	HMC5883L_getHeading, .-HMC5883L_getHeading
+ 621              		.section	.text.HMC5883L_getHeadingX,"ax",%progbits
+ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccJjUaFv.s 			page 17
 
 
- 616              		.thumb_func
- 617              		.type	HMC5883L_getHeadingY, %function
- 618              	HMC5883L_getHeadingY:
- 619              	.LFB50:
- 298:.\hmc5883l.c  **** /** Get Y-axis heading measurement.
- 299:.\hmc5883l.c  ****  * @return 16-bit signed integer with Y-axis heading
- 300:.\hmc5883l.c  ****  * @see HMC5883L_RA_DATAY_H
- 301:.\hmc5883l.c  ****  */
- 302:.\hmc5883l.c  **** int16_t HMC5883L_getHeadingY() {
- 620              		.loc 1 302 0
- 621              		.cfi_startproc
- 622 0000 80B5     		push	{r7, lr}
- 623              		.cfi_def_cfa_offset 8
- 624              		.cfi_offset 7, -8
- 625              		.cfi_offset 14, -4
- 626 0002 00AF     		add	r7, sp, #0
- 627              		.cfi_def_cfa_register 7
- 303:.\hmc5883l.c  ****     // each axis read requires that ALL axis registers be read, even if only
- 304:.\hmc5883l.c  ****     // one is used; this was not done ineffiently in the code by accident
- 305:.\hmc5883l.c  ****     //I2Cdev::readBytes(devAddr, HMC5883L_RA_DATAX_H, 6, buffer);
- 306:.\hmc5883l.c  ****     //if (mode == HMC5883L_MODE_SINGLE) I2Cdev::writeByte(devAddr, HMC5883L_RA_MODE, HMC5883L_MODE_
- 307:.\hmc5883l.c  ****     //return (((int16_t)buffer[4]) << 8) | buffer[5];
- 308:.\hmc5883l.c  **** }
- 628              		.loc 1 308 0
- 629 0004 181C     		mov	r0, r3
- 630 0006 BD46     		mov	sp, r7
- 631              		@ sp needed
- 632 0008 80BD     		pop	{r7, pc}
- 633              		.cfi_endproc
- 634              	.LFE50:
- 635              		.size	HMC5883L_getHeadingY, .-HMC5883L_getHeadingY
- 636 000a C046     		.section	.text.HMC5883L_getHeadingZ,"ax",%progbits
- 637              		.align	2
- 638              		.global	HMC5883L_getHeadingZ
- 639              		.code	16
- 640              		.thumb_func
- 641              		.type	HMC5883L_getHeadingZ, %function
- 642              	HMC5883L_getHeadingZ:
- 643              	.LFB51:
- 309:.\hmc5883l.c  **** /** Get Z-axis heading measurement.
- 310:.\hmc5883l.c  ****  * @return 16-bit signed integer with Z-axis heading
- 311:.\hmc5883l.c  ****  * @see HMC5883L_RA_DATAZ_H
- 312:.\hmc5883l.c  ****  */
- 313:.\hmc5883l.c  **** int16_t HMC5883L_getHeadingZ() {
- 644              		.loc 1 313 0
- 645              		.cfi_startproc
- 646 0000 80B5     		push	{r7, lr}
- 647              		.cfi_def_cfa_offset 8
- 648              		.cfi_offset 7, -8
- 649              		.cfi_offset 14, -4
- 650 0002 00AF     		add	r7, sp, #0
- 651              		.cfi_def_cfa_register 7
- 314:.\hmc5883l.c  ****     // each axis read requires that ALL axis registers be read, even if only
- 315:.\hmc5883l.c  ****     // one is used; this was not done ineffiently in the code by accident
- 316:.\hmc5883l.c  ****     //I2Cdev::readBytes(devAddr, HMC5883L_RA_DATAX_H, 6, buffer);
- 317:.\hmc5883l.c  ****     //if (mode == HMC5883L_MODE_SINGLE) I2Cdev::writeByte(devAddr, HMC5883L_RA_MODE, HMC5883L_MODE_
- 318:.\hmc5883l.c  ****     //return (((int16_t)buffer[2]) << 8) | buffer[3];
-ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccy6hVZJ.s 			page 18
+ 622              		.align	2
+ 623              		.global	HMC5883L_getHeadingX
+ 624              		.code	16
+ 625              		.thumb_func
+ 626              		.type	HMC5883L_getHeadingX, %function
+ 627              	HMC5883L_getHeadingX:
+ 628              	.LFB48:
+ 292:.\hmc5883l.c  **** /** Get X-axis heading measurement.
+ 293:.\hmc5883l.c  ****  * @return 16-bit signed integer with X-axis heading
+ 294:.\hmc5883l.c  ****  * @see HMC5883L_RA_DATAX_H
+ 295:.\hmc5883l.c  ****  */
+ 296:.\hmc5883l.c  **** int16_t HMC5883L_getHeadingX() {
+ 629              		.loc 1 296 0
+ 630              		.cfi_startproc
+ 631 0000 80B5     		push	{r7, lr}
+ 632              		.cfi_def_cfa_offset 8
+ 633              		.cfi_offset 7, -8
+ 634              		.cfi_offset 14, -4
+ 635 0002 00AF     		add	r7, sp, #0
+ 636              		.cfi_def_cfa_register 7
+ 297:.\hmc5883l.c  ****     // each axis read requires that ALL axis registers be read, even if only
+ 298:.\hmc5883l.c  ****     // one is used; this was not done ineffiently in the code by accident
+ 299:.\hmc5883l.c  ****    //I2Cdev::readBytes(devAddr, HMC5883L_RA_DATAX_H, 6, buffer);
+ 300:.\hmc5883l.c  ****    // if (mode == HMC5883L_MODE_SINGLE) I2Cdev::writeByte(devAddr, HMC5883L_RA_MODE, HMC5883L_MODE_
+ 301:.\hmc5883l.c  ****    // return (((int16_t)buffer[0]) << 8) | buffer[1];
+ 302:.\hmc5883l.c  **** }
+ 637              		.loc 1 302 0
+ 638 0004 181C     		mov	r0, r3
+ 639 0006 BD46     		mov	sp, r7
+ 640              		@ sp needed
+ 641 0008 80BD     		pop	{r7, pc}
+ 642              		.cfi_endproc
+ 643              	.LFE48:
+ 644              		.size	HMC5883L_getHeadingX, .-HMC5883L_getHeadingX
+ 645 000a C046     		.section	.text.HMC5883L_getHeadingY,"ax",%progbits
+ 646              		.align	2
+ 647              		.global	HMC5883L_getHeadingY
+ 648              		.code	16
+ 649              		.thumb_func
+ 650              		.type	HMC5883L_getHeadingY, %function
+ 651              	HMC5883L_getHeadingY:
+ 652              	.LFB49:
+ 303:.\hmc5883l.c  **** /** Get Y-axis heading measurement.
+ 304:.\hmc5883l.c  ****  * @return 16-bit signed integer with Y-axis heading
+ 305:.\hmc5883l.c  ****  * @see HMC5883L_RA_DATAY_H
+ 306:.\hmc5883l.c  ****  */
+ 307:.\hmc5883l.c  **** int16_t HMC5883L_getHeadingY() {
+ 653              		.loc 1 307 0
+ 654              		.cfi_startproc
+ 655 0000 80B5     		push	{r7, lr}
+ 656              		.cfi_def_cfa_offset 8
+ 657              		.cfi_offset 7, -8
+ 658              		.cfi_offset 14, -4
+ 659 0002 00AF     		add	r7, sp, #0
+ 660              		.cfi_def_cfa_register 7
+ 308:.\hmc5883l.c  ****     // each axis read requires that ALL axis registers be read, even if only
+ 309:.\hmc5883l.c  ****     // one is used; this was not done ineffiently in the code by accident
+ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccJjUaFv.s 			page 18
 
 
- 319:.\hmc5883l.c  **** }
- 652              		.loc 1 319 0
- 653 0004 181C     		mov	r0, r3
- 654 0006 BD46     		mov	sp, r7
- 655              		@ sp needed
- 656 0008 80BD     		pop	{r7, pc}
- 657              		.cfi_endproc
- 658              	.LFE51:
- 659              		.size	HMC5883L_getHeadingZ, .-HMC5883L_getHeadingZ
- 660 000a C046     		.section	.text.HMC5883L_getLockStatus,"ax",%progbits
- 661              		.align	2
- 662              		.global	HMC5883L_getLockStatus
- 663              		.code	16
- 664              		.thumb_func
- 665              		.type	HMC5883L_getLockStatus, %function
- 666              	HMC5883L_getLockStatus:
- 667              	.LFB52:
- 320:.\hmc5883l.c  **** 
- 321:.\hmc5883l.c  **** // STATUS register
- 322:.\hmc5883l.c  **** 
- 323:.\hmc5883l.c  **** /** Get data output register lock status.
- 324:.\hmc5883l.c  ****  * This bit is set when this some but not all for of the six data output
- 325:.\hmc5883l.c  ****  * registers have been read. When this bit is set, the six data output registers
- 326:.\hmc5883l.c  ****  * are locked and any new data will not be placed in these register until one of
- 327:.\hmc5883l.c  ****  * three conditions are met: one, all six bytes have been read or the mode
- 328:.\hmc5883l.c  ****  * changed, two, the mode is changed, or three, the measurement configuration is
- 329:.\hmc5883l.c  ****  * changed.
- 330:.\hmc5883l.c  ****  * @return Data output register lock status
- 331:.\hmc5883l.c  ****  * @see HMC5883L_RA_STATUS
- 332:.\hmc5883l.c  ****  * @see HMC5883L_STATUS_LOCK_BIT
- 333:.\hmc5883l.c  ****  */
- 334:.\hmc5883l.c  **** bool HMC5883L_getLockStatus() {
- 668              		.loc 1 334 0
- 669              		.cfi_startproc
- 670 0000 80B5     		push	{r7, lr}
- 671              		.cfi_def_cfa_offset 8
- 672              		.cfi_offset 7, -8
- 673              		.cfi_offset 14, -4
- 674 0002 00AF     		add	r7, sp, #0
- 675              		.cfi_def_cfa_register 7
- 335:.\hmc5883l.c  ****     //I2Cdev::readBit(devAddr, HMC5883L_RA_STATUS, HMC5883L_STATUS_LOCK_BIT, buffer);
- 336:.\hmc5883l.c  ****     //return buffer[0];
- 337:.\hmc5883l.c  **** }
- 676              		.loc 1 337 0
- 677 0004 181C     		mov	r0, r3
- 678 0006 BD46     		mov	sp, r7
- 679              		@ sp needed
- 680 0008 80BD     		pop	{r7, pc}
- 681              		.cfi_endproc
- 682              	.LFE52:
- 683              		.size	HMC5883L_getLockStatus, .-HMC5883L_getLockStatus
- 684 000a C046     		.section	.text.HMC5883L_getReadyStatus,"ax",%progbits
- 685              		.align	2
- 686              		.global	HMC5883L_getReadyStatus
- 687              		.code	16
- 688              		.thumb_func
- 689              		.type	HMC5883L_getReadyStatus, %function
-ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccy6hVZJ.s 			page 19
+ 310:.\hmc5883l.c  ****     //I2Cdev::readBytes(devAddr, HMC5883L_RA_DATAX_H, 6, buffer);
+ 311:.\hmc5883l.c  ****     //if (mode == HMC5883L_MODE_SINGLE) I2Cdev::writeByte(devAddr, HMC5883L_RA_MODE, HMC5883L_MODE_
+ 312:.\hmc5883l.c  ****     //return (((int16_t)buffer[4]) << 8) | buffer[5];
+ 313:.\hmc5883l.c  **** }
+ 661              		.loc 1 313 0
+ 662 0004 181C     		mov	r0, r3
+ 663 0006 BD46     		mov	sp, r7
+ 664              		@ sp needed
+ 665 0008 80BD     		pop	{r7, pc}
+ 666              		.cfi_endproc
+ 667              	.LFE49:
+ 668              		.size	HMC5883L_getHeadingY, .-HMC5883L_getHeadingY
+ 669 000a C046     		.section	.text.HMC5883L_getHeadingZ,"ax",%progbits
+ 670              		.align	2
+ 671              		.global	HMC5883L_getHeadingZ
+ 672              		.code	16
+ 673              		.thumb_func
+ 674              		.type	HMC5883L_getHeadingZ, %function
+ 675              	HMC5883L_getHeadingZ:
+ 676              	.LFB50:
+ 314:.\hmc5883l.c  **** /** Get Z-axis heading measurement.
+ 315:.\hmc5883l.c  ****  * @return 16-bit signed integer with Z-axis heading
+ 316:.\hmc5883l.c  ****  * @see HMC5883L_RA_DATAZ_H
+ 317:.\hmc5883l.c  ****  */
+ 318:.\hmc5883l.c  **** int16_t HMC5883L_getHeadingZ() {
+ 677              		.loc 1 318 0
+ 678              		.cfi_startproc
+ 679 0000 80B5     		push	{r7, lr}
+ 680              		.cfi_def_cfa_offset 8
+ 681              		.cfi_offset 7, -8
+ 682              		.cfi_offset 14, -4
+ 683 0002 00AF     		add	r7, sp, #0
+ 684              		.cfi_def_cfa_register 7
+ 319:.\hmc5883l.c  ****     // each axis read requires that ALL axis registers be read, even if only
+ 320:.\hmc5883l.c  ****     // one is used; this was not done ineffiently in the code by accident
+ 321:.\hmc5883l.c  ****     //I2Cdev::readBytes(devAddr, HMC5883L_RA_DATAX_H, 6, buffer);
+ 322:.\hmc5883l.c  ****     //if (mode == HMC5883L_MODE_SINGLE) I2Cdev::writeByte(devAddr, HMC5883L_RA_MODE, HMC5883L_MODE_
+ 323:.\hmc5883l.c  ****     //return (((int16_t)buffer[2]) << 8) | buffer[3];
+ 324:.\hmc5883l.c  **** }
+ 685              		.loc 1 324 0
+ 686 0004 181C     		mov	r0, r3
+ 687 0006 BD46     		mov	sp, r7
+ 688              		@ sp needed
+ 689 0008 80BD     		pop	{r7, pc}
+ 690              		.cfi_endproc
+ 691              	.LFE50:
+ 692              		.size	HMC5883L_getHeadingZ, .-HMC5883L_getHeadingZ
+ 693 000a C046     		.section	.text.HMC5883L_getLockStatus,"ax",%progbits
+ 694              		.align	2
+ 695              		.global	HMC5883L_getLockStatus
+ 696              		.code	16
+ 697              		.thumb_func
+ 698              		.type	HMC5883L_getLockStatus, %function
+ 699              	HMC5883L_getLockStatus:
+ 700              	.LFB51:
+ 325:.\hmc5883l.c  **** 
+ 326:.\hmc5883l.c  **** // STATUS register
+ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccJjUaFv.s 			page 19
 
 
- 690              	HMC5883L_getReadyStatus:
- 691              	.LFB53:
- 338:.\hmc5883l.c  **** /** Get data ready status.
- 339:.\hmc5883l.c  ****  * This bit is set when data is written to all six data registers, and cleared
- 340:.\hmc5883l.c  ****  * when the device initiates a write to the data output registers and after one
- 341:.\hmc5883l.c  ****  * or more of the data output registers are written to. When RDY bit is clear it
- 342:.\hmc5883l.c  ****  * shall remain cleared for 250 us. DRDY pin can be used as an alternative to
- 343:.\hmc5883l.c  ****  * the status register for monitoring the device for measurement data.
- 344:.\hmc5883l.c  ****  * @return Data ready status
- 345:.\hmc5883l.c  ****  * @see HMC5883L_RA_STATUS
- 346:.\hmc5883l.c  ****  * @see HMC5883L_STATUS_READY_BIT
- 347:.\hmc5883l.c  ****  */
- 348:.\hmc5883l.c  **** bool HMC5883L_getReadyStatus() {
- 692              		.loc 1 348 0
- 693              		.cfi_startproc
- 694 0000 80B5     		push	{r7, lr}
- 695              		.cfi_def_cfa_offset 8
- 696              		.cfi_offset 7, -8
- 697              		.cfi_offset 14, -4
- 698 0002 00AF     		add	r7, sp, #0
- 699              		.cfi_def_cfa_register 7
- 349:.\hmc5883l.c  ****     //I2Cdev::readBit(devAddr, HMC5883L_RA_STATUS, HMC5883L_STATUS_READY_BIT, buffer);
- 350:.\hmc5883l.c  ****     //return buffer[0];
- 351:.\hmc5883l.c  **** }
- 700              		.loc 1 351 0
- 701 0004 181C     		mov	r0, r3
- 702 0006 BD46     		mov	sp, r7
- 703              		@ sp needed
- 704 0008 80BD     		pop	{r7, pc}
- 705              		.cfi_endproc
- 706              	.LFE53:
- 707              		.size	HMC5883L_getReadyStatus, .-HMC5883L_getReadyStatus
- 708 000a C046     		.section	.text.HMC5883L_getIDA,"ax",%progbits
- 709              		.align	2
- 710              		.global	HMC5883L_getIDA
- 711              		.code	16
- 712              		.thumb_func
- 713              		.type	HMC5883L_getIDA, %function
- 714              	HMC5883L_getIDA:
- 715              	.LFB54:
- 352:.\hmc5883l.c  **** 
- 353:.\hmc5883l.c  **** // ID_* registers
- 354:.\hmc5883l.c  **** 
- 355:.\hmc5883l.c  **** /** Get identification byte A
- 356:.\hmc5883l.c  ****  * @return ID_A byte (should be 01001000, ASCII value 'H')
- 357:.\hmc5883l.c  ****  */
- 358:.\hmc5883l.c  **** uint8_t HMC5883L_getIDA() {
- 716              		.loc 1 358 0
- 717              		.cfi_startproc
- 718 0000 80B5     		push	{r7, lr}
- 719              		.cfi_def_cfa_offset 8
- 720              		.cfi_offset 7, -8
- 721              		.cfi_offset 14, -4
- 722 0002 00AF     		add	r7, sp, #0
- 723              		.cfi_def_cfa_register 7
- 359:.\hmc5883l.c  ****     I2CReadByte(devAddr, HMC5883L_RA_ID_A, buffer);
- 724              		.loc 1 359 0
-ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccy6hVZJ.s 			page 20
+ 327:.\hmc5883l.c  **** 
+ 328:.\hmc5883l.c  **** /** Get data output register lock status.
+ 329:.\hmc5883l.c  ****  * This bit is set when this some but not all for of the six data output
+ 330:.\hmc5883l.c  ****  * registers have been read. When this bit is set, the six data output registers
+ 331:.\hmc5883l.c  ****  * are locked and any new data will not be placed in these register until one of
+ 332:.\hmc5883l.c  ****  * three conditions are met: one, all six bytes have been read or the mode
+ 333:.\hmc5883l.c  ****  * changed, two, the mode is changed, or three, the measurement configuration is
+ 334:.\hmc5883l.c  ****  * changed.
+ 335:.\hmc5883l.c  ****  * @return Data output register lock status
+ 336:.\hmc5883l.c  ****  * @see HMC5883L_RA_STATUS
+ 337:.\hmc5883l.c  ****  * @see HMC5883L_STATUS_LOCK_BIT
+ 338:.\hmc5883l.c  ****  */
+ 339:.\hmc5883l.c  **** bool HMC5883L_getLockStatus() {
+ 701              		.loc 1 339 0
+ 702              		.cfi_startproc
+ 703 0000 80B5     		push	{r7, lr}
+ 704              		.cfi_def_cfa_offset 8
+ 705              		.cfi_offset 7, -8
+ 706              		.cfi_offset 14, -4
+ 707 0002 00AF     		add	r7, sp, #0
+ 708              		.cfi_def_cfa_register 7
+ 340:.\hmc5883l.c  ****     //I2Cdev::readBit(devAddr, HMC5883L_RA_STATUS, HMC5883L_STATUS_LOCK_BIT, buffer);
+ 341:.\hmc5883l.c  ****     //return buffer[0];
+ 342:.\hmc5883l.c  **** }
+ 709              		.loc 1 342 0
+ 710 0004 181C     		mov	r0, r3
+ 711 0006 BD46     		mov	sp, r7
+ 712              		@ sp needed
+ 713 0008 80BD     		pop	{r7, pc}
+ 714              		.cfi_endproc
+ 715              	.LFE51:
+ 716              		.size	HMC5883L_getLockStatus, .-HMC5883L_getLockStatus
+ 717 000a C046     		.section	.text.HMC5883L_getReadyStatus,"ax",%progbits
+ 718              		.align	2
+ 719              		.global	HMC5883L_getReadyStatus
+ 720              		.code	16
+ 721              		.thumb_func
+ 722              		.type	HMC5883L_getReadyStatus, %function
+ 723              	HMC5883L_getReadyStatus:
+ 724              	.LFB52:
+ 343:.\hmc5883l.c  **** /** Get data ready status.
+ 344:.\hmc5883l.c  ****  * This bit is set when data is written to all six data registers, and cleared
+ 345:.\hmc5883l.c  ****  * when the device initiates a write to the data output registers and after one
+ 346:.\hmc5883l.c  ****  * or more of the data output registers are written to. When RDY bit is clear it
+ 347:.\hmc5883l.c  ****  * shall remain cleared for 250 us. DRDY pin can be used as an alternative to
+ 348:.\hmc5883l.c  ****  * the status register for monitoring the device for measurement data.
+ 349:.\hmc5883l.c  ****  * @return Data ready status
+ 350:.\hmc5883l.c  ****  * @see HMC5883L_RA_STATUS
+ 351:.\hmc5883l.c  ****  * @see HMC5883L_STATUS_READY_BIT
+ 352:.\hmc5883l.c  ****  */
+ 353:.\hmc5883l.c  **** bool HMC5883L_getReadyStatus() {
+ 725              		.loc 1 353 0
+ 726              		.cfi_startproc
+ 727 0000 80B5     		push	{r7, lr}
+ 728              		.cfi_def_cfa_offset 8
+ 729              		.cfi_offset 7, -8
+ 730              		.cfi_offset 14, -4
+ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccJjUaFv.s 			page 20
 
 
- 725 0004 064B     		ldr	r3, .L51
- 726 0006 1A78     		ldrb	r2, [r3]
- 727 0008 064B     		ldr	r3, .L51+4
- 728 000a 101C     		mov	r0, r2
- 729 000c 0A21     		mov	r1, #10
- 730 000e 1A1C     		mov	r2, r3
- 731 0010 FFF7FEFF 		bl	I2CReadByte
- 360:.\hmc5883l.c  ****     return buffer[0];
- 732              		.loc 1 360 0
- 733 0014 034B     		ldr	r3, .L51+4
- 734 0016 1B78     		ldrb	r3, [r3]
- 361:.\hmc5883l.c  **** }
- 735              		.loc 1 361 0
- 736 0018 181C     		mov	r0, r3
- 737 001a BD46     		mov	sp, r7
- 738              		@ sp needed
- 739 001c 80BD     		pop	{r7, pc}
- 740              	.L52:
- 741 001e C046     		.align	2
- 742              	.L51:
- 743 0020 00000000 		.word	devAddr
- 744 0024 00000000 		.word	buffer
- 745              		.cfi_endproc
- 746              	.LFE54:
- 747              		.size	HMC5883L_getIDA, .-HMC5883L_getIDA
- 748              		.section	.text.HMC5883L_getIDB,"ax",%progbits
- 749              		.align	2
- 750              		.global	HMC5883L_getIDB
- 751              		.code	16
- 752              		.thumb_func
- 753              		.type	HMC5883L_getIDB, %function
- 754              	HMC5883L_getIDB:
- 755              	.LFB55:
- 362:.\hmc5883l.c  **** /** Get identification byte B
- 363:.\hmc5883l.c  ****  * @return ID_A byte (should be 00110100, ASCII value '4')
- 364:.\hmc5883l.c  ****  */
- 365:.\hmc5883l.c  **** uint8_t HMC5883L_getIDB() {
- 756              		.loc 1 365 0
- 757              		.cfi_startproc
- 758 0000 80B5     		push	{r7, lr}
- 759              		.cfi_def_cfa_offset 8
- 760              		.cfi_offset 7, -8
- 761              		.cfi_offset 14, -4
- 762 0002 00AF     		add	r7, sp, #0
- 763              		.cfi_def_cfa_register 7
- 366:.\hmc5883l.c  ****     //I2Cdev::readByte(devAddr, HMC5883L_RA_ID_B, buffer);
- 367:.\hmc5883l.c  ****     //return buffer[0];
- 368:.\hmc5883l.c  **** }
- 764              		.loc 1 368 0
- 765 0004 181C     		mov	r0, r3
- 766 0006 BD46     		mov	sp, r7
- 767              		@ sp needed
- 768 0008 80BD     		pop	{r7, pc}
- 769              		.cfi_endproc
- 770              	.LFE55:
- 771              		.size	HMC5883L_getIDB, .-HMC5883L_getIDB
- 772 000a C046     		.section	.text.HMC5883L_getIDC,"ax",%progbits
-ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccy6hVZJ.s 			page 21
+ 731 0002 00AF     		add	r7, sp, #0
+ 732              		.cfi_def_cfa_register 7
+ 354:.\hmc5883l.c  ****     I2CReadBit(devAddr, HMC5883L_RA_STATUS, HMC5883L_STATUS_READY_BIT, buffer);
+ 733              		.loc 1 354 0
+ 734 0004 074B     		ldr	r3, .L54
+ 735 0006 1A78     		ldrb	r2, [r3]
+ 736 0008 074B     		ldr	r3, .L54+4
+ 737 000a 101C     		mov	r0, r2
+ 738 000c 0921     		mov	r1, #9
+ 739 000e 0022     		mov	r2, #0
+ 740 0010 FFF7FEFF 		bl	I2CReadBit
+ 355:.\hmc5883l.c  ****     return buffer[0];
+ 741              		.loc 1 355 0
+ 742 0014 044B     		ldr	r3, .L54+4
+ 743 0016 1B78     		ldrb	r3, [r3]
+ 744 0018 5A1E     		sub	r2, r3, #1
+ 745 001a 9341     		sbc	r3, r3, r2
+ 746 001c DBB2     		uxtb	r3, r3
+ 356:.\hmc5883l.c  **** }
+ 747              		.loc 1 356 0
+ 748 001e 181C     		mov	r0, r3
+ 749 0020 BD46     		mov	sp, r7
+ 750              		@ sp needed
+ 751 0022 80BD     		pop	{r7, pc}
+ 752              	.L55:
+ 753              		.align	2
+ 754              	.L54:
+ 755 0024 00000000 		.word	devAddr
+ 756 0028 00000000 		.word	buffer
+ 757              		.cfi_endproc
+ 758              	.LFE52:
+ 759              		.size	HMC5883L_getReadyStatus, .-HMC5883L_getReadyStatus
+ 760              		.section	.text.HMC5883L_getIDA,"ax",%progbits
+ 761              		.align	2
+ 762              		.global	HMC5883L_getIDA
+ 763              		.code	16
+ 764              		.thumb_func
+ 765              		.type	HMC5883L_getIDA, %function
+ 766              	HMC5883L_getIDA:
+ 767              	.LFB53:
+ 357:.\hmc5883l.c  **** 
+ 358:.\hmc5883l.c  **** // ID_* registers
+ 359:.\hmc5883l.c  **** 
+ 360:.\hmc5883l.c  **** /** Get identification byte A
+ 361:.\hmc5883l.c  ****  * @return ID_A byte (should be 01001000, ASCII value 'H')
+ 362:.\hmc5883l.c  ****  */
+ 363:.\hmc5883l.c  **** uint8_t HMC5883L_getIDA() {
+ 768              		.loc 1 363 0
+ 769              		.cfi_startproc
+ 770 0000 80B5     		push	{r7, lr}
+ 771              		.cfi_def_cfa_offset 8
+ 772              		.cfi_offset 7, -8
+ 773              		.cfi_offset 14, -4
+ 774 0002 00AF     		add	r7, sp, #0
+ 775              		.cfi_def_cfa_register 7
+ 364:.\hmc5883l.c  ****     I2CReadByte(devAddr, HMC5883L_RA_ID_A, buffer);
+ 776              		.loc 1 364 0
+ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccJjUaFv.s 			page 21
 
 
- 773              		.align	2
- 774              		.global	HMC5883L_getIDC
- 775              		.code	16
- 776              		.thumb_func
- 777              		.type	HMC5883L_getIDC, %function
- 778              	HMC5883L_getIDC:
- 779              	.LFB56:
- 369:.\hmc5883l.c  **** /** Get identification byte C
- 370:.\hmc5883l.c  ****  * @return ID_A byte (should be 00110011, ASCII value '3')
- 371:.\hmc5883l.c  ****  */
- 372:.\hmc5883l.c  **** uint8_t HMC5883L_getIDC() {
- 780              		.loc 1 372 0
- 781              		.cfi_startproc
- 782 0000 80B5     		push	{r7, lr}
- 783              		.cfi_def_cfa_offset 8
- 784              		.cfi_offset 7, -8
- 785              		.cfi_offset 14, -4
- 786 0002 00AF     		add	r7, sp, #0
- 787              		.cfi_def_cfa_register 7
- 373:.\hmc5883l.c  ****     //I2Cdev::readByte(devAddr, HMC5883L_RA_ID_C, buffer);
- 374:.\hmc5883l.c  ****    // return buffer[0];
- 375:.\hmc5883l.c  **** }
- 788              		.loc 1 375 0
- 789 0004 181C     		mov	r0, r3
- 790 0006 BD46     		mov	sp, r7
- 791              		@ sp needed
- 792 0008 80BD     		pop	{r7, pc}
- 793              		.cfi_endproc
- 794              	.LFE56:
- 795              		.size	HMC5883L_getIDC, .-HMC5883L_getIDC
- 796 000a C046     		.text
- 797              	.Letext0:
- 798              		.file 2 "c:\\program files (x86)\\cypress\\psoc creator\\3.1\\psoc creator\\import\\gnu_cs\\arm\\4
- 799              		.file 3 "c:\\program files (x86)\\cypress\\psoc creator\\3.1\\psoc creator\\import\\gnu_cs\\arm\\4
- 800              		.file 4 ".\\hmc5883l.h"
- 801              		.section	.debug_info,"",%progbits
- 802              	.Ldebug_info0:
- 803 0000 84030000 		.4byte	0x384
- 804 0004 0400     		.2byte	0x4
- 805 0006 00000000 		.4byte	.Ldebug_abbrev0
- 806 000a 04       		.byte	0x4
- 807 000b 01       		.uleb128 0x1
- 808 000c 17010000 		.4byte	.LASF50
- 809 0010 01       		.byte	0x1
- 810 0011 28030000 		.4byte	.LASF51
- 811 0015 6A000000 		.4byte	.LASF52
- 812 0019 00000000 		.4byte	.Ldebug_ranges0+0
- 813 001d 00000000 		.4byte	0
- 814 0021 00000000 		.4byte	.Ldebug_line0
- 815 0025 02       		.uleb128 0x2
- 816 0026 01       		.byte	0x1
- 817 0027 06       		.byte	0x6
- 818 0028 9E030000 		.4byte	.LASF0
- 819 002c 03       		.uleb128 0x3
- 820 002d 00000000 		.4byte	.LASF2
- 821 0031 02       		.byte	0x2
- 822 0032 1C       		.byte	0x1c
-ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccy6hVZJ.s 			page 22
+ 777 0004 064B     		ldr	r3, .L58
+ 778 0006 1A78     		ldrb	r2, [r3]
+ 779 0008 064B     		ldr	r3, .L58+4
+ 780 000a 101C     		mov	r0, r2
+ 781 000c 0A21     		mov	r1, #10
+ 782 000e 1A1C     		mov	r2, r3
+ 783 0010 FFF7FEFF 		bl	I2CReadByte
+ 365:.\hmc5883l.c  ****     return buffer[0];
+ 784              		.loc 1 365 0
+ 785 0014 034B     		ldr	r3, .L58+4
+ 786 0016 1B78     		ldrb	r3, [r3]
+ 366:.\hmc5883l.c  **** }
+ 787              		.loc 1 366 0
+ 788 0018 181C     		mov	r0, r3
+ 789 001a BD46     		mov	sp, r7
+ 790              		@ sp needed
+ 791 001c 80BD     		pop	{r7, pc}
+ 792              	.L59:
+ 793 001e C046     		.align	2
+ 794              	.L58:
+ 795 0020 00000000 		.word	devAddr
+ 796 0024 00000000 		.word	buffer
+ 797              		.cfi_endproc
+ 798              	.LFE53:
+ 799              		.size	HMC5883L_getIDA, .-HMC5883L_getIDA
+ 800              		.section	.text.HMC5883L_getIDB,"ax",%progbits
+ 801              		.align	2
+ 802              		.global	HMC5883L_getIDB
+ 803              		.code	16
+ 804              		.thumb_func
+ 805              		.type	HMC5883L_getIDB, %function
+ 806              	HMC5883L_getIDB:
+ 807              	.LFB54:
+ 367:.\hmc5883l.c  **** /** Get identification byte B
+ 368:.\hmc5883l.c  ****  * @return ID_A byte (should be 00110100, ASCII value '4')
+ 369:.\hmc5883l.c  ****  */
+ 370:.\hmc5883l.c  **** uint8_t HMC5883L_getIDB() {
+ 808              		.loc 1 370 0
+ 809              		.cfi_startproc
+ 810 0000 80B5     		push	{r7, lr}
+ 811              		.cfi_def_cfa_offset 8
+ 812              		.cfi_offset 7, -8
+ 813              		.cfi_offset 14, -4
+ 814 0002 00AF     		add	r7, sp, #0
+ 815              		.cfi_def_cfa_register 7
+ 371:.\hmc5883l.c  ****     I2CReadByte(devAddr, HMC5883L_RA_ID_B, buffer);
+ 816              		.loc 1 371 0
+ 817 0004 064B     		ldr	r3, .L62
+ 818 0006 1A78     		ldrb	r2, [r3]
+ 819 0008 064B     		ldr	r3, .L62+4
+ 820 000a 101C     		mov	r0, r2
+ 821 000c 0B21     		mov	r1, #11
+ 822 000e 1A1C     		mov	r2, r3
+ 823 0010 FFF7FEFF 		bl	I2CReadByte
+ 372:.\hmc5883l.c  ****     return buffer[0];
+ 824              		.loc 1 372 0
+ 825 0014 034B     		ldr	r3, .L62+4
+ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccJjUaFv.s 			page 22
 
 
- 823 0033 37000000 		.4byte	0x37
- 824 0037 02       		.uleb128 0x2
- 825 0038 01       		.byte	0x1
- 826 0039 08       		.byte	0x8
- 827 003a A4010000 		.4byte	.LASF1
- 828 003e 03       		.uleb128 0x3
- 829 003f 62020000 		.4byte	.LASF3
- 830 0043 02       		.byte	0x2
- 831 0044 25       		.byte	0x25
- 832 0045 49000000 		.4byte	0x49
- 833 0049 02       		.uleb128 0x2
- 834 004a 02       		.byte	0x2
- 835 004b 05       		.byte	0x5
- 836 004c 35030000 		.4byte	.LASF4
- 837 0050 02       		.uleb128 0x2
- 838 0051 02       		.byte	0x2
- 839 0052 07       		.byte	0x7
- 840 0053 ED010000 		.4byte	.LASF5
- 841 0057 02       		.uleb128 0x2
- 842 0058 04       		.byte	0x4
- 843 0059 05       		.byte	0x5
- 844 005a 84030000 		.4byte	.LASF6
- 845 005e 02       		.uleb128 0x2
- 846 005f 04       		.byte	0x4
- 847 0060 07       		.byte	0x7
- 848 0061 C3010000 		.4byte	.LASF7
- 849 0065 02       		.uleb128 0x2
- 850 0066 08       		.byte	0x8
- 851 0067 05       		.byte	0x5
- 852 0068 01030000 		.4byte	.LASF8
- 853 006c 02       		.uleb128 0x2
- 854 006d 08       		.byte	0x8
- 855 006e 07       		.byte	0x7
- 856 006f 95020000 		.4byte	.LASF9
- 857 0073 04       		.uleb128 0x4
- 858 0074 04       		.byte	0x4
- 859 0075 05       		.byte	0x5
- 860 0076 696E7400 		.ascii	"int\000"
- 861 007a 02       		.uleb128 0x2
- 862 007b 04       		.byte	0x4
- 863 007c 07       		.byte	0x7
- 864 007d 80020000 		.4byte	.LASF10
- 865 0081 03       		.uleb128 0x3
- 866 0082 AC020000 		.4byte	.LASF11
- 867 0086 03       		.byte	0x3
- 868 0087 2A       		.byte	0x2a
- 869 0088 2C000000 		.4byte	0x2c
- 870 008c 03       		.uleb128 0x3
- 871 008d C3020000 		.4byte	.LASF12
- 872 0091 03       		.byte	0x3
- 873 0092 35       		.byte	0x35
- 874 0093 3E000000 		.4byte	0x3e
- 875 0097 02       		.uleb128 0x2
- 876 0098 04       		.byte	0x4
- 877 0099 04       		.byte	0x4
- 878 009a 11010000 		.4byte	.LASF13
- 879 009e 02       		.uleb128 0x2
-ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccy6hVZJ.s 			page 23
+ 826 0016 1B78     		ldrb	r3, [r3]
+ 373:.\hmc5883l.c  **** }
+ 827              		.loc 1 373 0
+ 828 0018 181C     		mov	r0, r3
+ 829 001a BD46     		mov	sp, r7
+ 830              		@ sp needed
+ 831 001c 80BD     		pop	{r7, pc}
+ 832              	.L63:
+ 833 001e C046     		.align	2
+ 834              	.L62:
+ 835 0020 00000000 		.word	devAddr
+ 836 0024 00000000 		.word	buffer
+ 837              		.cfi_endproc
+ 838              	.LFE54:
+ 839              		.size	HMC5883L_getIDB, .-HMC5883L_getIDB
+ 840              		.section	.text.HMC5883L_getIDC,"ax",%progbits
+ 841              		.align	2
+ 842              		.global	HMC5883L_getIDC
+ 843              		.code	16
+ 844              		.thumb_func
+ 845              		.type	HMC5883L_getIDC, %function
+ 846              	HMC5883L_getIDC:
+ 847              	.LFB55:
+ 374:.\hmc5883l.c  **** /** Get identification byte C
+ 375:.\hmc5883l.c  ****  * @return ID_A byte (should be 00110011, ASCII value '3')
+ 376:.\hmc5883l.c  ****  */
+ 377:.\hmc5883l.c  **** uint8_t HMC5883L_getIDC() {
+ 848              		.loc 1 377 0
+ 849              		.cfi_startproc
+ 850 0000 80B5     		push	{r7, lr}
+ 851              		.cfi_def_cfa_offset 8
+ 852              		.cfi_offset 7, -8
+ 853              		.cfi_offset 14, -4
+ 854 0002 00AF     		add	r7, sp, #0
+ 855              		.cfi_def_cfa_register 7
+ 378:.\hmc5883l.c  ****     I2CReadByte(devAddr, HMC5883L_RA_ID_C, buffer);
+ 856              		.loc 1 378 0
+ 857 0004 064B     		ldr	r3, .L66
+ 858 0006 1A78     		ldrb	r2, [r3]
+ 859 0008 064B     		ldr	r3, .L66+4
+ 860 000a 101C     		mov	r0, r2
+ 861 000c 0C21     		mov	r1, #12
+ 862 000e 1A1C     		mov	r2, r3
+ 863 0010 FFF7FEFF 		bl	I2CReadByte
+ 379:.\hmc5883l.c  ****     return buffer[0];
+ 864              		.loc 1 379 0
+ 865 0014 034B     		ldr	r3, .L66+4
+ 866 0016 1B78     		ldrb	r3, [r3]
+ 380:.\hmc5883l.c  **** }
+ 867              		.loc 1 380 0
+ 868 0018 181C     		mov	r0, r3
+ 869 001a BD46     		mov	sp, r7
+ 870              		@ sp needed
+ 871 001c 80BD     		pop	{r7, pc}
+ 872              	.L67:
+ 873 001e C046     		.align	2
+ 874              	.L66:
+ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccJjUaFv.s 			page 23
 
 
- 880 009f 08       		.byte	0x8
- 881 00a0 04       		.byte	0x4
- 882 00a1 2A020000 		.4byte	.LASF14
- 883 00a5 02       		.uleb128 0x2
- 884 00a6 01       		.byte	0x1
- 885 00a7 08       		.byte	0x8
- 886 00a8 8D030000 		.4byte	.LASF15
- 887 00ac 02       		.uleb128 0x2
- 888 00ad 04       		.byte	0x4
- 889 00ae 07       		.byte	0x7
- 890 00af E7020000 		.4byte	.LASF16
- 891 00b3 02       		.uleb128 0x2
- 892 00b4 08       		.byte	0x8
- 893 00b5 04       		.byte	0x4
- 894 00b6 92030000 		.4byte	.LASF17
- 895 00ba 05       		.uleb128 0x5
- 896 00bb 1C020000 		.4byte	.LASF18
- 897 00bf 01       		.byte	0x1
- 898 00c0 2A       		.byte	0x2a
- 899 00c1 00000000 		.4byte	.LFB33
- 900 00c5 14000000 		.4byte	.LFE33-.LFB33
- 901 00c9 01       		.uleb128 0x1
- 902 00ca 9C       		.byte	0x9c
- 903 00cb 06       		.uleb128 0x6
- 904 00cc 6A030000 		.4byte	.LASF23
- 905 00d0 01       		.byte	0x1
- 906 00d1 33       		.byte	0x33
- 907 00d2 00000000 		.4byte	.LFB34
- 908 00d6 20000000 		.4byte	.LFE34-.LFB34
- 909 00da 01       		.uleb128 0x1
- 910 00db 9C       		.byte	0x9c
- 911 00dc EF000000 		.4byte	0xef
- 912 00e0 07       		.uleb128 0x7
- 913 00e1 8D020000 		.4byte	.LASF25
- 914 00e5 01       		.byte	0x1
- 915 00e6 33       		.byte	0x33
- 916 00e7 81000000 		.4byte	0x81
- 917 00eb 02       		.uleb128 0x2
- 918 00ec 91       		.byte	0x91
- 919 00ed 77       		.sleb128 -9
- 920 00ee 00       		.byte	0
- 921 00ef 08       		.uleb128 0x8
- 922 00f0 6C020000 		.4byte	.LASF53
- 923 00f4 01       		.byte	0x1
- 924 00f5 3F       		.byte	0x3f
- 925 00f6 00000000 		.4byte	.LFB35
- 926 00fa 28000000 		.4byte	.LFE35-.LFB35
- 927 00fe 01       		.uleb128 0x1
- 928 00ff 9C       		.byte	0x9c
- 929 0100 09       		.uleb128 0x9
- 930 0101 D9000000 		.4byte	.LASF19
- 931 0105 01       		.byte	0x1
- 932 0106 51       		.byte	0x51
- 933 0107 15010000 		.4byte	0x115
- 934 010b 00000000 		.4byte	.LFB36
- 935 010f 0A000000 		.4byte	.LFE36-.LFB36
- 936 0113 01       		.uleb128 0x1
-ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccy6hVZJ.s 			page 24
+ 875 0020 00000000 		.word	devAddr
+ 876 0024 00000000 		.word	buffer
+ 877              		.cfi_endproc
+ 878              	.LFE55:
+ 879              		.size	HMC5883L_getIDC, .-HMC5883L_getIDC
+ 880              		.text
+ 881              	.Letext0:
+ 882              		.file 2 "c:\\program files (x86)\\cypress\\psoc creator\\3.1\\psoc creator\\import\\gnu_cs\\arm\\4
+ 883              		.file 3 "c:\\program files (x86)\\cypress\\psoc creator\\3.1\\psoc creator\\import\\gnu_cs\\arm\\4
+ 884              		.file 4 ".\\hmc5883l.h"
+ 885              		.section	.debug_info,"",%progbits
+ 886              	.Ldebug_info0:
+ 887 0000 6F030000 		.4byte	0x36f
+ 888 0004 0400     		.2byte	0x4
+ 889 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 890 000a 04       		.byte	0x4
+ 891 000b 01       		.uleb128 0x1
+ 892 000c 16010000 		.4byte	.LASF49
+ 893 0010 01       		.byte	0x1
+ 894 0011 13030000 		.4byte	.LASF50
+ 895 0015 69000000 		.4byte	.LASF51
+ 896 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 897 001d 00000000 		.4byte	0
+ 898 0021 00000000 		.4byte	.Ldebug_line0
+ 899 0025 02       		.uleb128 0x2
+ 900 0026 01       		.byte	0x1
+ 901 0027 06       		.byte	0x6
+ 902 0028 89030000 		.4byte	.LASF0
+ 903 002c 03       		.uleb128 0x3
+ 904 002d 00000000 		.4byte	.LASF2
+ 905 0031 02       		.byte	0x2
+ 906 0032 1C       		.byte	0x1c
+ 907 0033 37000000 		.4byte	0x37
+ 908 0037 02       		.uleb128 0x2
+ 909 0038 01       		.byte	0x1
+ 910 0039 08       		.byte	0x8
+ 911 003a A3010000 		.4byte	.LASF1
+ 912 003e 03       		.uleb128 0x3
+ 913 003f 61020000 		.4byte	.LASF3
+ 914 0043 02       		.byte	0x2
+ 915 0044 25       		.byte	0x25
+ 916 0045 49000000 		.4byte	0x49
+ 917 0049 02       		.uleb128 0x2
+ 918 004a 02       		.byte	0x2
+ 919 004b 05       		.byte	0x5
+ 920 004c 20030000 		.4byte	.LASF4
+ 921 0050 02       		.uleb128 0x2
+ 922 0051 02       		.byte	0x2
+ 923 0052 07       		.byte	0x7
+ 924 0053 EC010000 		.4byte	.LASF5
+ 925 0057 02       		.uleb128 0x2
+ 926 0058 04       		.byte	0x4
+ 927 0059 05       		.byte	0x5
+ 928 005a 6F030000 		.4byte	.LASF6
+ 929 005e 02       		.uleb128 0x2
+ 930 005f 04       		.byte	0x4
+ 931 0060 07       		.byte	0x7
+ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccJjUaFv.s 			page 24
 
 
- 937 0114 9C       		.byte	0x9c
- 938 0115 02       		.uleb128 0x2
- 939 0116 01       		.byte	0x1
- 940 0117 02       		.byte	0x2
- 941 0118 0A000000 		.4byte	.LASF20
- 942 011c 09       		.uleb128 0x9
- 943 011d 10000000 		.4byte	.LASF21
- 944 0121 01       		.byte	0x1
- 945 0122 59       		.byte	0x59
- 946 0123 81000000 		.4byte	0x81
- 947 0127 00000000 		.4byte	.LFB37
- 948 012b 0A000000 		.4byte	.LFE37-.LFB37
- 949 012f 01       		.uleb128 0x1
- 950 0130 9C       		.byte	0x9c
- 951 0131 09       		.uleb128 0x9
- 952 0132 00020000 		.4byte	.LASF22
- 953 0136 01       		.byte	0x1
- 954 0137 67       		.byte	0x67
- 955 0138 81000000 		.4byte	0x81
- 956 013c 00000000 		.4byte	.LFB38
- 957 0140 14000000 		.4byte	.LFE38-.LFB38
- 958 0144 01       		.uleb128 0x1
- 959 0145 9C       		.byte	0x9c
- 960 0146 06       		.uleb128 0x6
- 961 0147 CB020000 		.4byte	.LASF24
- 962 014b 01       		.byte	0x1
- 963 014c 71       		.byte	0x71
- 964 014d 00000000 		.4byte	.LFB39
- 965 0151 14000000 		.4byte	.LFE39-.LFB39
- 966 0155 01       		.uleb128 0x1
- 967 0156 9C       		.byte	0x9c
- 968 0157 6A010000 		.4byte	0x16a
- 969 015b 07       		.uleb128 0x7
- 970 015c B4020000 		.4byte	.LASF26
- 971 0160 01       		.byte	0x1
- 972 0161 71       		.byte	0x71
- 973 0162 81000000 		.4byte	0x81
- 974 0166 02       		.uleb128 0x2
- 975 0167 91       		.byte	0x91
- 976 0168 77       		.sleb128 -9
- 977 0169 00       		.byte	0
- 978 016a 09       		.uleb128 0x9
- 979 016b BF000000 		.4byte	.LASF27
- 980 016f 01       		.byte	0x1
- 981 0170 8C       		.byte	0x8c
- 982 0171 81000000 		.4byte	0x81
- 983 0175 00000000 		.4byte	.LFB40
- 984 0179 14000000 		.4byte	.LFE40-.LFB40
- 985 017d 01       		.uleb128 0x1
- 986 017e 9C       		.byte	0x9c
- 987 017f 06       		.uleb128 0x6
- 988 0180 31020000 		.4byte	.LASF28
- 989 0184 01       		.byte	0x1
- 990 0185 98       		.byte	0x98
- 991 0186 00000000 		.4byte	.LFB41
- 992 018a 12000000 		.4byte	.LFE41-.LFB41
- 993 018e 01       		.uleb128 0x1
-ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccy6hVZJ.s 			page 25
+ 932 0061 C2010000 		.4byte	.LASF7
+ 933 0065 02       		.uleb128 0x2
+ 934 0066 08       		.byte	0x8
+ 935 0067 05       		.byte	0x5
+ 936 0068 EC020000 		.4byte	.LASF8
+ 937 006c 02       		.uleb128 0x2
+ 938 006d 08       		.byte	0x8
+ 939 006e 07       		.byte	0x7
+ 940 006f 80020000 		.4byte	.LASF9
+ 941 0073 04       		.uleb128 0x4
+ 942 0074 04       		.byte	0x4
+ 943 0075 05       		.byte	0x5
+ 944 0076 696E7400 		.ascii	"int\000"
+ 945 007a 02       		.uleb128 0x2
+ 946 007b 04       		.byte	0x4
+ 947 007c 07       		.byte	0x7
+ 948 007d 6B020000 		.4byte	.LASF10
+ 949 0081 03       		.uleb128 0x3
+ 950 0082 97020000 		.4byte	.LASF11
+ 951 0086 03       		.byte	0x3
+ 952 0087 2A       		.byte	0x2a
+ 953 0088 2C000000 		.4byte	0x2c
+ 954 008c 03       		.uleb128 0x3
+ 955 008d AE020000 		.4byte	.LASF12
+ 956 0091 03       		.byte	0x3
+ 957 0092 35       		.byte	0x35
+ 958 0093 3E000000 		.4byte	0x3e
+ 959 0097 02       		.uleb128 0x2
+ 960 0098 04       		.byte	0x4
+ 961 0099 04       		.byte	0x4
+ 962 009a 10010000 		.4byte	.LASF13
+ 963 009e 02       		.uleb128 0x2
+ 964 009f 08       		.byte	0x8
+ 965 00a0 04       		.byte	0x4
+ 966 00a1 29020000 		.4byte	.LASF14
+ 967 00a5 02       		.uleb128 0x2
+ 968 00a6 01       		.byte	0x1
+ 969 00a7 08       		.byte	0x8
+ 970 00a8 78030000 		.4byte	.LASF15
+ 971 00ac 02       		.uleb128 0x2
+ 972 00ad 04       		.byte	0x4
+ 973 00ae 07       		.byte	0x7
+ 974 00af D2020000 		.4byte	.LASF16
+ 975 00b3 02       		.uleb128 0x2
+ 976 00b4 08       		.byte	0x8
+ 977 00b5 04       		.byte	0x4
+ 978 00b6 7D030000 		.4byte	.LASF17
+ 979 00ba 05       		.uleb128 0x5
+ 980 00bb 1B020000 		.4byte	.LASF18
+ 981 00bf 01       		.byte	0x1
+ 982 00c0 2A       		.byte	0x2a
+ 983 00c1 00000000 		.4byte	.LFB33
+ 984 00c5 14000000 		.4byte	.LFE33-.LFB33
+ 985 00c9 01       		.uleb128 0x1
+ 986 00ca 9C       		.byte	0x9c
+ 987 00cb 06       		.uleb128 0x6
+ 988 00cc 55030000 		.4byte	.LASF22
+ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccJjUaFv.s 			page 25
 
 
- 994 018f 9C       		.byte	0x9c
- 995 0190 A3010000 		.4byte	0x1a3
- 996 0194 07       		.uleb128 0x7
- 997 0195 65000000 		.4byte	.LASF29
- 998 0199 01       		.byte	0x1
- 999 019a 98       		.byte	0x98
- 1000 019b 81000000 		.4byte	0x81
- 1001 019f 02       		.uleb128 0x2
- 1002 01a0 91       		.byte	0x91
- 1003 01a1 77       		.sleb128 -9
- 1004 01a2 00       		.byte	0
- 1005 01a3 09       		.uleb128 0x9
- 1006 01a4 46020000 		.4byte	.LASF30
- 1007 01a8 01       		.byte	0x1
- 1008 01a9 A2       		.byte	0xa2
- 1009 01aa 81000000 		.4byte	0x81
- 1010 01ae 00000000 		.4byte	.LFB42
- 1011 01b2 14000000 		.4byte	.LFE42-.LFB42
- 1012 01b6 01       		.uleb128 0x1
- 1013 01b7 9C       		.byte	0x9c
- 1014 01b8 06       		.uleb128 0x6
- 1015 01b9 4E030000 		.4byte	.LASF31
- 1016 01bd 01       		.byte	0x1
- 1017 01be AD       		.byte	0xad
- 1018 01bf 00000000 		.4byte	.LFB43
- 1019 01c3 14000000 		.4byte	.LFE43-.LFB43
- 1020 01c7 01       		.uleb128 0x1
- 1021 01c8 9C       		.byte	0x9c
- 1022 01c9 DC010000 		.4byte	0x1dc
- 1023 01cd 07       		.uleb128 0x7
- 1024 01ce 0F030000 		.4byte	.LASF32
- 1025 01d2 01       		.byte	0x1
- 1026 01d3 AD       		.byte	0xad
- 1027 01d4 81000000 		.4byte	0x81
- 1028 01d8 02       		.uleb128 0x2
- 1029 01d9 91       		.byte	0x91
- 1030 01da 77       		.sleb128 -9
- 1031 01db 00       		.byte	0
- 1032 01dc 09       		.uleb128 0x9
- 1033 01dd 54000000 		.4byte	.LASF33
- 1034 01e1 01       		.byte	0x1
- 1035 01e2 CB       		.byte	0xcb
- 1036 01e3 81000000 		.4byte	0x81
- 1037 01e7 00000000 		.4byte	.LFB44
- 1038 01eb 14000000 		.4byte	.LFE44-.LFB44
- 1039 01ef 01       		.uleb128 0x1
- 1040 01f0 9C       		.byte	0x9c
- 1041 01f1 0A       		.uleb128 0xa
- 1042 01f2 93010000 		.4byte	.LASF34
- 1043 01f6 01       		.byte	0x1
- 1044 01f7 D6       		.byte	0xd6
- 1045 01f8 00000000 		.4byte	.LFB45
- 1046 01fc 2C000000 		.4byte	.LFE45-.LFB45
- 1047 0200 01       		.uleb128 0x1
- 1048 0201 9C       		.byte	0x9c
- 1049 0202 15020000 		.4byte	0x215
- 1050 0206 07       		.uleb128 0x7
-ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccy6hVZJ.s 			page 26
+ 989 00d0 01       		.byte	0x1
+ 990 00d1 33       		.byte	0x33
+ 991 00d2 00000000 		.4byte	.LFB34
+ 992 00d6 20000000 		.4byte	.LFE34-.LFB34
+ 993 00da 01       		.uleb128 0x1
+ 994 00db 9C       		.byte	0x9c
+ 995 00dc EF000000 		.4byte	0xef
+ 996 00e0 07       		.uleb128 0x7
+ 997 00e1 78020000 		.4byte	.LASF24
+ 998 00e5 01       		.byte	0x1
+ 999 00e6 33       		.byte	0x33
+ 1000 00e7 81000000 		.4byte	0x81
+ 1001 00eb 02       		.uleb128 0x2
+ 1002 00ec 91       		.byte	0x91
+ 1003 00ed 77       		.sleb128 -9
+ 1004 00ee 00       		.byte	0
+ 1005 00ef 08       		.uleb128 0x8
+ 1006 00f0 10000000 		.4byte	.LASF52
+ 1007 00f4 01       		.byte	0x1
+ 1008 00f5 3F       		.byte	0x3f
+ 1009 00f6 00000000 		.4byte	.LFB35
+ 1010 00fa 28000000 		.4byte	.LFE35-.LFB35
+ 1011 00fe 01       		.uleb128 0x1
+ 1012 00ff 9C       		.byte	0x9c
+ 1013 0100 09       		.uleb128 0x9
+ 1014 0101 D8000000 		.4byte	.LASF19
+ 1015 0105 01       		.byte	0x1
+ 1016 0106 51       		.byte	0x51
+ 1017 0107 15010000 		.4byte	0x115
+ 1018 010b 00000000 		.4byte	.LFB36
+ 1019 010f 40000000 		.4byte	.LFE36-.LFB36
+ 1020 0113 01       		.uleb128 0x1
+ 1021 0114 9C       		.byte	0x9c
+ 1022 0115 02       		.uleb128 0x2
+ 1023 0116 01       		.byte	0x1
+ 1024 0117 02       		.byte	0x2
+ 1025 0118 0A000000 		.4byte	.LASF20
+ 1026 011c 0A       		.uleb128 0xa
+ 1027 011d FF010000 		.4byte	.LASF21
+ 1028 0121 01       		.byte	0x1
+ 1029 0122 6C       		.byte	0x6c
+ 1030 0123 81000000 		.4byte	0x81
+ 1031 0127 00000000 		.4byte	.LFB37
+ 1032 012b 14000000 		.4byte	.LFE37-.LFB37
+ 1033 012f 01       		.uleb128 0x1
+ 1034 0130 9C       		.byte	0x9c
+ 1035 0131 06       		.uleb128 0x6
+ 1036 0132 B6020000 		.4byte	.LASF23
+ 1037 0136 01       		.byte	0x1
+ 1038 0137 76       		.byte	0x76
+ 1039 0138 00000000 		.4byte	.LFB38
+ 1040 013c 14000000 		.4byte	.LFE38-.LFB38
+ 1041 0140 01       		.uleb128 0x1
+ 1042 0141 9C       		.byte	0x9c
+ 1043 0142 55010000 		.4byte	0x155
+ 1044 0146 07       		.uleb128 0x7
+ 1045 0147 9F020000 		.4byte	.LASF25
+ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccJjUaFv.s 			page 26
 
 
- 1051 0207 D4000000 		.4byte	.LASF35
- 1052 020b 01       		.byte	0x1
- 1053 020c D6       		.byte	0xd6
- 1054 020d 81000000 		.4byte	0x81
- 1055 0211 02       		.uleb128 0x2
- 1056 0212 91       		.byte	0x91
- 1057 0213 77       		.sleb128 -9
- 1058 0214 00       		.byte	0
- 1059 0215 0B       		.uleb128 0xb
- 1060 0216 B2010000 		.4byte	.LASF54
- 1061 021a 01       		.byte	0x1
- 1062 021b F5       		.byte	0xf5
- 1063 021c 81000000 		.4byte	0x81
- 1064 0220 00000000 		.4byte	.LFB46
- 1065 0224 14000000 		.4byte	.LFE46-.LFB46
- 1066 0228 01       		.uleb128 0x1
- 1067 0229 9C       		.byte	0x9c
- 1068 022a 0C       		.uleb128 0xc
- 1069 022b F0020000 		.4byte	.LASF36
- 1070 022f 01       		.byte	0x1
- 1071 0230 0301     		.2byte	0x103
- 1072 0232 00000000 		.4byte	.LFB47
- 1073 0236 34000000 		.4byte	.LFE47-.LFB47
- 1074 023a 01       		.uleb128 0x1
- 1075 023b 9C       		.byte	0x9c
- 1076 023c 50020000 		.4byte	0x250
- 1077 0240 0D       		.uleb128 0xd
- 1078 0241 4C000000 		.4byte	.LASF37
- 1079 0245 01       		.byte	0x1
- 1080 0246 0301     		.2byte	0x103
- 1081 0248 81000000 		.4byte	0x81
- 1082 024c 02       		.uleb128 0x2
- 1083 024d 91       		.byte	0x91
- 1084 024e 77       		.sleb128 -9
- 1085 024f 00       		.byte	0
- 1086 0250 0E       		.uleb128 0xe
- 1087 0251 14030000 		.4byte	.LASF38
- 1088 0255 01       		.byte	0x1
- 1089 0256 1801     		.2byte	0x118
- 1090 0258 00000000 		.4byte	.LFB48
- 1091 025c 54000000 		.4byte	.LFE48-.LFB48
- 1092 0260 01       		.uleb128 0x1
- 1093 0261 9C       		.byte	0x9c
- 1094 0262 8E020000 		.4byte	0x28e
- 1095 0266 0F       		.uleb128 0xf
- 1096 0267 7800     		.ascii	"x\000"
- 1097 0269 01       		.byte	0x1
- 1098 026a 1801     		.2byte	0x118
- 1099 026c 8E020000 		.4byte	0x28e
- 1100 0270 02       		.uleb128 0x2
- 1101 0271 91       		.byte	0x91
- 1102 0272 74       		.sleb128 -12
- 1103 0273 0F       		.uleb128 0xf
- 1104 0274 7900     		.ascii	"y\000"
- 1105 0276 01       		.byte	0x1
- 1106 0277 1801     		.2byte	0x118
- 1107 0279 8E020000 		.4byte	0x28e
-ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccy6hVZJ.s 			page 27
+ 1046 014b 01       		.byte	0x1
+ 1047 014c 76       		.byte	0x76
+ 1048 014d 81000000 		.4byte	0x81
+ 1049 0151 02       		.uleb128 0x2
+ 1050 0152 91       		.byte	0x91
+ 1051 0153 77       		.sleb128 -9
+ 1052 0154 00       		.byte	0
+ 1053 0155 0A       		.uleb128 0xa
+ 1054 0156 BE000000 		.4byte	.LASF26
+ 1055 015a 01       		.byte	0x1
+ 1056 015b 91       		.byte	0x91
+ 1057 015c 81000000 		.4byte	0x81
+ 1058 0160 00000000 		.4byte	.LFB39
+ 1059 0164 14000000 		.4byte	.LFE39-.LFB39
+ 1060 0168 01       		.uleb128 0x1
+ 1061 0169 9C       		.byte	0x9c
+ 1062 016a 06       		.uleb128 0x6
+ 1063 016b 30020000 		.4byte	.LASF27
+ 1064 016f 01       		.byte	0x1
+ 1065 0170 9D       		.byte	0x9d
+ 1066 0171 00000000 		.4byte	.LFB40
+ 1067 0175 12000000 		.4byte	.LFE40-.LFB40
+ 1068 0179 01       		.uleb128 0x1
+ 1069 017a 9C       		.byte	0x9c
+ 1070 017b 8E010000 		.4byte	0x18e
+ 1071 017f 07       		.uleb128 0x7
+ 1072 0180 64000000 		.4byte	.LASF28
+ 1073 0184 01       		.byte	0x1
+ 1074 0185 9D       		.byte	0x9d
+ 1075 0186 81000000 		.4byte	0x81
+ 1076 018a 02       		.uleb128 0x2
+ 1077 018b 91       		.byte	0x91
+ 1078 018c 77       		.sleb128 -9
+ 1079 018d 00       		.byte	0
+ 1080 018e 0A       		.uleb128 0xa
+ 1081 018f 45020000 		.4byte	.LASF29
+ 1082 0193 01       		.byte	0x1
+ 1083 0194 A7       		.byte	0xa7
+ 1084 0195 81000000 		.4byte	0x81
+ 1085 0199 00000000 		.4byte	.LFB41
+ 1086 019d 14000000 		.4byte	.LFE41-.LFB41
+ 1087 01a1 01       		.uleb128 0x1
+ 1088 01a2 9C       		.byte	0x9c
+ 1089 01a3 06       		.uleb128 0x6
+ 1090 01a4 39030000 		.4byte	.LASF30
+ 1091 01a8 01       		.byte	0x1
+ 1092 01a9 B2       		.byte	0xb2
+ 1093 01aa 00000000 		.4byte	.LFB42
+ 1094 01ae 14000000 		.4byte	.LFE42-.LFB42
+ 1095 01b2 01       		.uleb128 0x1
+ 1096 01b3 9C       		.byte	0x9c
+ 1097 01b4 C7010000 		.4byte	0x1c7
+ 1098 01b8 07       		.uleb128 0x7
+ 1099 01b9 FA020000 		.4byte	.LASF31
+ 1100 01bd 01       		.byte	0x1
+ 1101 01be B2       		.byte	0xb2
+ 1102 01bf 81000000 		.4byte	0x81
+ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccJjUaFv.s 			page 27
 
 
- 1108 027d 02       		.uleb128 0x2
- 1109 027e 91       		.byte	0x91
- 1110 027f 70       		.sleb128 -16
- 1111 0280 0F       		.uleb128 0xf
- 1112 0281 7A00     		.ascii	"z\000"
- 1113 0283 01       		.byte	0x1
- 1114 0284 1801     		.2byte	0x118
- 1115 0286 8E020000 		.4byte	0x28e
- 1116 028a 02       		.uleb128 0x2
- 1117 028b 91       		.byte	0x91
- 1118 028c 6C       		.sleb128 -20
- 1119 028d 00       		.byte	0
- 1120 028e 10       		.uleb128 0x10
- 1121 028f 04       		.byte	0x4
- 1122 0290 8C000000 		.4byte	0x8c
- 1123 0294 11       		.uleb128 0x11
- 1124 0295 AA030000 		.4byte	.LASF39
- 1125 0299 01       		.byte	0x1
- 1126 029a 2301     		.2byte	0x123
- 1127 029c 8C000000 		.4byte	0x8c
- 1128 02a0 00000000 		.4byte	.LFB49
- 1129 02a4 0A000000 		.4byte	.LFE49-.LFB49
- 1130 02a8 01       		.uleb128 0x1
- 1131 02a9 9C       		.byte	0x9c
- 1132 02aa 11       		.uleb128 0x11
- 1133 02ab BF030000 		.4byte	.LASF40
- 1134 02af 01       		.byte	0x1
- 1135 02b0 2E01     		.2byte	0x12e
- 1136 02b2 8C000000 		.4byte	0x8c
- 1137 02b6 00000000 		.4byte	.LFB50
- 1138 02ba 0A000000 		.4byte	.LFE50-.LFB50
- 1139 02be 01       		.uleb128 0x1
- 1140 02bf 9C       		.byte	0x9c
- 1141 02c0 11       		.uleb128 0x11
- 1142 02c1 D4030000 		.4byte	.LASF41
- 1143 02c5 01       		.byte	0x1
- 1144 02c6 3901     		.2byte	0x139
- 1145 02c8 8C000000 		.4byte	0x8c
- 1146 02cc 00000000 		.4byte	.LFB51
- 1147 02d0 0A000000 		.4byte	.LFE51-.LFB51
- 1148 02d4 01       		.uleb128 0x1
- 1149 02d5 9C       		.byte	0x9c
- 1150 02d6 11       		.uleb128 0x11
- 1151 02d7 35000000 		.4byte	.LASF42
- 1152 02db 01       		.byte	0x1
- 1153 02dc 4E01     		.2byte	0x14e
- 1154 02de 15010000 		.4byte	0x115
- 1155 02e2 00000000 		.4byte	.LFB52
- 1156 02e6 0A000000 		.4byte	.LFE52-.LFB52
- 1157 02ea 01       		.uleb128 0x1
- 1158 02eb 9C       		.byte	0x9c
- 1159 02ec 11       		.uleb128 0x11
- 1160 02ed D5010000 		.4byte	.LASF43
- 1161 02f1 01       		.byte	0x1
- 1162 02f2 5C01     		.2byte	0x15c
- 1163 02f4 15010000 		.4byte	0x115
- 1164 02f8 00000000 		.4byte	.LFB53
-ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccy6hVZJ.s 			page 28
+ 1103 01c3 02       		.uleb128 0x2
+ 1104 01c4 91       		.byte	0x91
+ 1105 01c5 77       		.sleb128 -9
+ 1106 01c6 00       		.byte	0
+ 1107 01c7 0A       		.uleb128 0xa
+ 1108 01c8 53000000 		.4byte	.LASF32
+ 1109 01cc 01       		.byte	0x1
+ 1110 01cd D0       		.byte	0xd0
+ 1111 01ce 81000000 		.4byte	0x81
+ 1112 01d2 00000000 		.4byte	.LFB43
+ 1113 01d6 14000000 		.4byte	.LFE43-.LFB43
+ 1114 01da 01       		.uleb128 0x1
+ 1115 01db 9C       		.byte	0x9c
+ 1116 01dc 0B       		.uleb128 0xb
+ 1117 01dd 92010000 		.4byte	.LASF33
+ 1118 01e1 01       		.byte	0x1
+ 1119 01e2 DB       		.byte	0xdb
+ 1120 01e3 00000000 		.4byte	.LFB44
+ 1121 01e7 2C000000 		.4byte	.LFE44-.LFB44
+ 1122 01eb 01       		.uleb128 0x1
+ 1123 01ec 9C       		.byte	0x9c
+ 1124 01ed 00020000 		.4byte	0x200
+ 1125 01f1 07       		.uleb128 0x7
+ 1126 01f2 D3000000 		.4byte	.LASF34
+ 1127 01f6 01       		.byte	0x1
+ 1128 01f7 DB       		.byte	0xdb
+ 1129 01f8 81000000 		.4byte	0x81
+ 1130 01fc 02       		.uleb128 0x2
+ 1131 01fd 91       		.byte	0x91
+ 1132 01fe 77       		.sleb128 -9
+ 1133 01ff 00       		.byte	0
+ 1134 0200 0C       		.uleb128 0xc
+ 1135 0201 B1010000 		.4byte	.LASF53
+ 1136 0205 01       		.byte	0x1
+ 1137 0206 FA       		.byte	0xfa
+ 1138 0207 81000000 		.4byte	0x81
+ 1139 020b 00000000 		.4byte	.LFB45
+ 1140 020f 14000000 		.4byte	.LFE45-.LFB45
+ 1141 0213 01       		.uleb128 0x1
+ 1142 0214 9C       		.byte	0x9c
+ 1143 0215 0D       		.uleb128 0xd
+ 1144 0216 DB020000 		.4byte	.LASF35
+ 1145 021a 01       		.byte	0x1
+ 1146 021b 0801     		.2byte	0x108
+ 1147 021d 00000000 		.4byte	.LFB46
+ 1148 0221 34000000 		.4byte	.LFE46-.LFB46
+ 1149 0225 01       		.uleb128 0x1
+ 1150 0226 9C       		.byte	0x9c
+ 1151 0227 3B020000 		.4byte	0x23b
+ 1152 022b 0E       		.uleb128 0xe
+ 1153 022c 4B000000 		.4byte	.LASF36
+ 1154 0230 01       		.byte	0x1
+ 1155 0231 0801     		.2byte	0x108
+ 1156 0233 81000000 		.4byte	0x81
+ 1157 0237 02       		.uleb128 0x2
+ 1158 0238 91       		.byte	0x91
+ 1159 0239 77       		.sleb128 -9
+ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccJjUaFv.s 			page 28
 
 
- 1165 02fc 0A000000 		.4byte	.LFE53-.LFB53
- 1166 0300 01       		.uleb128 0x1
- 1167 0301 9C       		.byte	0x9c
- 1168 0302 12       		.uleb128 0x12
- 1169 0303 F1000000 		.4byte	.LASF44
- 1170 0307 01       		.byte	0x1
- 1171 0308 6601     		.2byte	0x166
- 1172 030a 81000000 		.4byte	0x81
- 1173 030e 00000000 		.4byte	.LFB54
- 1174 0312 28000000 		.4byte	.LFE54-.LFB54
- 1175 0316 01       		.uleb128 0x1
- 1176 0317 9C       		.byte	0x9c
- 1177 0318 11       		.uleb128 0x11
- 1178 0319 01010000 		.4byte	.LASF45
- 1179 031d 01       		.byte	0x1
- 1180 031e 6D01     		.2byte	0x16d
- 1181 0320 81000000 		.4byte	0x81
- 1182 0324 00000000 		.4byte	.LFB55
- 1183 0328 0A000000 		.4byte	.LFE55-.LFB55
- 1184 032c 01       		.uleb128 0x1
- 1185 032d 9C       		.byte	0x9c
- 1186 032e 11       		.uleb128 0x11
- 1187 032f 25000000 		.4byte	.LASF46
- 1188 0333 01       		.byte	0x1
- 1189 0334 7401     		.2byte	0x174
- 1190 0336 81000000 		.4byte	0x81
- 1191 033a 00000000 		.4byte	.LFB56
- 1192 033e 0A000000 		.4byte	.LFE56-.LFB56
- 1193 0342 01       		.uleb128 0x1
- 1194 0343 9C       		.byte	0x9c
- 1195 0344 13       		.uleb128 0x13
- 1196 0345 3F030000 		.4byte	.LASF47
- 1197 0349 04       		.byte	0x4
- 1198 034a 90       		.byte	0x90
- 1199 034b 81000000 		.4byte	0x81
- 1200 034f 05       		.uleb128 0x5
- 1201 0350 03       		.byte	0x3
- 1202 0351 00000000 		.4byte	devAddr
- 1203 0355 14       		.uleb128 0x14
- 1204 0356 81000000 		.4byte	0x81
- 1205 035a 65030000 		.4byte	0x365
- 1206 035e 15       		.uleb128 0x15
- 1207 035f AC000000 		.4byte	0xac
- 1208 0363 05       		.byte	0x5
- 1209 0364 00       		.byte	0
- 1210 0365 13       		.uleb128 0x13
- 1211 0366 47030000 		.4byte	.LASF48
- 1212 036a 04       		.byte	0x4
- 1213 036b 91       		.byte	0x91
- 1214 036c 55030000 		.4byte	0x355
- 1215 0370 05       		.uleb128 0x5
- 1216 0371 03       		.byte	0x3
- 1217 0372 00000000 		.4byte	buffer
- 1218 0376 13       		.uleb128 0x13
- 1219 0377 BE020000 		.4byte	.LASF49
- 1220 037b 04       		.byte	0x4
- 1221 037c 92       		.byte	0x92
-ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccy6hVZJ.s 			page 29
+ 1160 023a 00       		.byte	0
+ 1161 023b 0D       		.uleb128 0xd
+ 1162 023c FF020000 		.4byte	.LASF37
+ 1163 0240 01       		.byte	0x1
+ 1164 0241 1D01     		.2byte	0x11d
+ 1165 0243 00000000 		.4byte	.LFB47
+ 1166 0247 80000000 		.4byte	.LFE47-.LFB47
+ 1167 024b 01       		.uleb128 0x1
+ 1168 024c 9C       		.byte	0x9c
+ 1169 024d 79020000 		.4byte	0x279
+ 1170 0251 0F       		.uleb128 0xf
+ 1171 0252 7800     		.ascii	"x\000"
+ 1172 0254 01       		.byte	0x1
+ 1173 0255 1D01     		.2byte	0x11d
+ 1174 0257 79020000 		.4byte	0x279
+ 1175 025b 02       		.uleb128 0x2
+ 1176 025c 91       		.byte	0x91
+ 1177 025d 74       		.sleb128 -12
+ 1178 025e 0F       		.uleb128 0xf
+ 1179 025f 7900     		.ascii	"y\000"
+ 1180 0261 01       		.byte	0x1
+ 1181 0262 1D01     		.2byte	0x11d
+ 1182 0264 79020000 		.4byte	0x279
+ 1183 0268 02       		.uleb128 0x2
+ 1184 0269 91       		.byte	0x91
+ 1185 026a 70       		.sleb128 -16
+ 1186 026b 0F       		.uleb128 0xf
+ 1187 026c 7A00     		.ascii	"z\000"
+ 1188 026e 01       		.byte	0x1
+ 1189 026f 1D01     		.2byte	0x11d
+ 1190 0271 79020000 		.4byte	0x279
+ 1191 0275 02       		.uleb128 0x2
+ 1192 0276 91       		.byte	0x91
+ 1193 0277 6C       		.sleb128 -20
+ 1194 0278 00       		.byte	0
+ 1195 0279 10       		.uleb128 0x10
+ 1196 027a 04       		.byte	0x4
+ 1197 027b 8C000000 		.4byte	0x8c
+ 1198 027f 11       		.uleb128 0x11
+ 1199 0280 95030000 		.4byte	.LASF38
+ 1200 0284 01       		.byte	0x1
+ 1201 0285 2801     		.2byte	0x128
+ 1202 0287 8C000000 		.4byte	0x8c
+ 1203 028b 00000000 		.4byte	.LFB48
+ 1204 028f 0A000000 		.4byte	.LFE48-.LFB48
+ 1205 0293 01       		.uleb128 0x1
+ 1206 0294 9C       		.byte	0x9c
+ 1207 0295 11       		.uleb128 0x11
+ 1208 0296 AA030000 		.4byte	.LASF39
+ 1209 029a 01       		.byte	0x1
+ 1210 029b 3301     		.2byte	0x133
+ 1211 029d 8C000000 		.4byte	0x8c
+ 1212 02a1 00000000 		.4byte	.LFB49
+ 1213 02a5 0A000000 		.4byte	.LFE49-.LFB49
+ 1214 02a9 01       		.uleb128 0x1
+ 1215 02aa 9C       		.byte	0x9c
+ 1216 02ab 11       		.uleb128 0x11
+ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccJjUaFv.s 			page 29
 
 
- 1222 037d 81000000 		.4byte	0x81
- 1223 0381 05       		.uleb128 0x5
- 1224 0382 03       		.byte	0x3
- 1225 0383 00000000 		.4byte	mode
- 1226 0387 00       		.byte	0
- 1227              		.section	.debug_abbrev,"",%progbits
- 1228              	.Ldebug_abbrev0:
- 1229 0000 01       		.uleb128 0x1
- 1230 0001 11       		.uleb128 0x11
- 1231 0002 01       		.byte	0x1
- 1232 0003 25       		.uleb128 0x25
- 1233 0004 0E       		.uleb128 0xe
- 1234 0005 13       		.uleb128 0x13
- 1235 0006 0B       		.uleb128 0xb
- 1236 0007 03       		.uleb128 0x3
- 1237 0008 0E       		.uleb128 0xe
- 1238 0009 1B       		.uleb128 0x1b
- 1239 000a 0E       		.uleb128 0xe
- 1240 000b 55       		.uleb128 0x55
- 1241 000c 17       		.uleb128 0x17
- 1242 000d 11       		.uleb128 0x11
- 1243 000e 01       		.uleb128 0x1
- 1244 000f 10       		.uleb128 0x10
- 1245 0010 17       		.uleb128 0x17
- 1246 0011 00       		.byte	0
- 1247 0012 00       		.byte	0
- 1248 0013 02       		.uleb128 0x2
- 1249 0014 24       		.uleb128 0x24
- 1250 0015 00       		.byte	0
- 1251 0016 0B       		.uleb128 0xb
- 1252 0017 0B       		.uleb128 0xb
- 1253 0018 3E       		.uleb128 0x3e
- 1254 0019 0B       		.uleb128 0xb
- 1255 001a 03       		.uleb128 0x3
- 1256 001b 0E       		.uleb128 0xe
- 1257 001c 00       		.byte	0
- 1258 001d 00       		.byte	0
- 1259 001e 03       		.uleb128 0x3
- 1260 001f 16       		.uleb128 0x16
- 1261 0020 00       		.byte	0
- 1262 0021 03       		.uleb128 0x3
- 1263 0022 0E       		.uleb128 0xe
- 1264 0023 3A       		.uleb128 0x3a
- 1265 0024 0B       		.uleb128 0xb
- 1266 0025 3B       		.uleb128 0x3b
- 1267 0026 0B       		.uleb128 0xb
- 1268 0027 49       		.uleb128 0x49
- 1269 0028 13       		.uleb128 0x13
- 1270 0029 00       		.byte	0
- 1271 002a 00       		.byte	0
- 1272 002b 04       		.uleb128 0x4
- 1273 002c 24       		.uleb128 0x24
- 1274 002d 00       		.byte	0
- 1275 002e 0B       		.uleb128 0xb
- 1276 002f 0B       		.uleb128 0xb
- 1277 0030 3E       		.uleb128 0x3e
- 1278 0031 0B       		.uleb128 0xb
-ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccy6hVZJ.s 			page 30
+ 1217 02ac BF030000 		.4byte	.LASF40
+ 1218 02b0 01       		.byte	0x1
+ 1219 02b1 3E01     		.2byte	0x13e
+ 1220 02b3 8C000000 		.4byte	0x8c
+ 1221 02b7 00000000 		.4byte	.LFB50
+ 1222 02bb 0A000000 		.4byte	.LFE50-.LFB50
+ 1223 02bf 01       		.uleb128 0x1
+ 1224 02c0 9C       		.byte	0x9c
+ 1225 02c1 11       		.uleb128 0x11
+ 1226 02c2 34000000 		.4byte	.LASF41
+ 1227 02c6 01       		.byte	0x1
+ 1228 02c7 5301     		.2byte	0x153
+ 1229 02c9 15010000 		.4byte	0x115
+ 1230 02cd 00000000 		.4byte	.LFB51
+ 1231 02d1 0A000000 		.4byte	.LFE51-.LFB51
+ 1232 02d5 01       		.uleb128 0x1
+ 1233 02d6 9C       		.byte	0x9c
+ 1234 02d7 12       		.uleb128 0x12
+ 1235 02d8 D4010000 		.4byte	.LASF42
+ 1236 02dc 01       		.byte	0x1
+ 1237 02dd 6101     		.2byte	0x161
+ 1238 02df 15010000 		.4byte	0x115
+ 1239 02e3 00000000 		.4byte	.LFB52
+ 1240 02e7 2C000000 		.4byte	.LFE52-.LFB52
+ 1241 02eb 01       		.uleb128 0x1
+ 1242 02ec 9C       		.byte	0x9c
+ 1243 02ed 12       		.uleb128 0x12
+ 1244 02ee F0000000 		.4byte	.LASF43
+ 1245 02f2 01       		.byte	0x1
+ 1246 02f3 6B01     		.2byte	0x16b
+ 1247 02f5 81000000 		.4byte	0x81
+ 1248 02f9 00000000 		.4byte	.LFB53
+ 1249 02fd 28000000 		.4byte	.LFE53-.LFB53
+ 1250 0301 01       		.uleb128 0x1
+ 1251 0302 9C       		.byte	0x9c
+ 1252 0303 12       		.uleb128 0x12
+ 1253 0304 00010000 		.4byte	.LASF44
+ 1254 0308 01       		.byte	0x1
+ 1255 0309 7201     		.2byte	0x172
+ 1256 030b 81000000 		.4byte	0x81
+ 1257 030f 00000000 		.4byte	.LFB54
+ 1258 0313 28000000 		.4byte	.LFE54-.LFB54
+ 1259 0317 01       		.uleb128 0x1
+ 1260 0318 9C       		.byte	0x9c
+ 1261 0319 12       		.uleb128 0x12
+ 1262 031a 24000000 		.4byte	.LASF45
+ 1263 031e 01       		.byte	0x1
+ 1264 031f 7901     		.2byte	0x179
+ 1265 0321 81000000 		.4byte	0x81
+ 1266 0325 00000000 		.4byte	.LFB55
+ 1267 0329 28000000 		.4byte	.LFE55-.LFB55
+ 1268 032d 01       		.uleb128 0x1
+ 1269 032e 9C       		.byte	0x9c
+ 1270 032f 13       		.uleb128 0x13
+ 1271 0330 2A030000 		.4byte	.LASF46
+ 1272 0334 04       		.byte	0x4
+ 1273 0335 90       		.byte	0x90
+ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccJjUaFv.s 			page 30
 
 
- 1279 0032 03       		.uleb128 0x3
- 1280 0033 08       		.uleb128 0x8
- 1281 0034 00       		.byte	0
- 1282 0035 00       		.byte	0
- 1283 0036 05       		.uleb128 0x5
- 1284 0037 2E       		.uleb128 0x2e
- 1285 0038 00       		.byte	0
- 1286 0039 3F       		.uleb128 0x3f
- 1287 003a 19       		.uleb128 0x19
- 1288 003b 03       		.uleb128 0x3
- 1289 003c 0E       		.uleb128 0xe
- 1290 003d 3A       		.uleb128 0x3a
- 1291 003e 0B       		.uleb128 0xb
- 1292 003f 3B       		.uleb128 0x3b
- 1293 0040 0B       		.uleb128 0xb
- 1294 0041 27       		.uleb128 0x27
- 1295 0042 19       		.uleb128 0x19
- 1296 0043 11       		.uleb128 0x11
- 1297 0044 01       		.uleb128 0x1
- 1298 0045 12       		.uleb128 0x12
- 1299 0046 06       		.uleb128 0x6
- 1300 0047 40       		.uleb128 0x40
- 1301 0048 18       		.uleb128 0x18
- 1302 0049 9742     		.uleb128 0x2117
- 1303 004b 19       		.uleb128 0x19
- 1304 004c 00       		.byte	0
- 1305 004d 00       		.byte	0
- 1306 004e 06       		.uleb128 0x6
- 1307 004f 2E       		.uleb128 0x2e
- 1308 0050 01       		.byte	0x1
- 1309 0051 3F       		.uleb128 0x3f
- 1310 0052 19       		.uleb128 0x19
- 1311 0053 03       		.uleb128 0x3
- 1312 0054 0E       		.uleb128 0xe
- 1313 0055 3A       		.uleb128 0x3a
- 1314 0056 0B       		.uleb128 0xb
- 1315 0057 3B       		.uleb128 0x3b
- 1316 0058 0B       		.uleb128 0xb
- 1317 0059 27       		.uleb128 0x27
- 1318 005a 19       		.uleb128 0x19
- 1319 005b 11       		.uleb128 0x11
- 1320 005c 01       		.uleb128 0x1
- 1321 005d 12       		.uleb128 0x12
- 1322 005e 06       		.uleb128 0x6
- 1323 005f 40       		.uleb128 0x40
- 1324 0060 18       		.uleb128 0x18
- 1325 0061 9742     		.uleb128 0x2117
- 1326 0063 19       		.uleb128 0x19
- 1327 0064 01       		.uleb128 0x1
- 1328 0065 13       		.uleb128 0x13
- 1329 0066 00       		.byte	0
- 1330 0067 00       		.byte	0
- 1331 0068 07       		.uleb128 0x7
- 1332 0069 05       		.uleb128 0x5
- 1333 006a 00       		.byte	0
- 1334 006b 03       		.uleb128 0x3
- 1335 006c 0E       		.uleb128 0xe
-ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccy6hVZJ.s 			page 31
+ 1274 0336 81000000 		.4byte	0x81
+ 1275 033a 05       		.uleb128 0x5
+ 1276 033b 03       		.byte	0x3
+ 1277 033c 00000000 		.4byte	devAddr
+ 1278 0340 14       		.uleb128 0x14
+ 1279 0341 81000000 		.4byte	0x81
+ 1280 0345 50030000 		.4byte	0x350
+ 1281 0349 15       		.uleb128 0x15
+ 1282 034a AC000000 		.4byte	0xac
+ 1283 034e 05       		.byte	0x5
+ 1284 034f 00       		.byte	0
+ 1285 0350 13       		.uleb128 0x13
+ 1286 0351 32030000 		.4byte	.LASF47
+ 1287 0355 04       		.byte	0x4
+ 1288 0356 91       		.byte	0x91
+ 1289 0357 40030000 		.4byte	0x340
+ 1290 035b 05       		.uleb128 0x5
+ 1291 035c 03       		.byte	0x3
+ 1292 035d 00000000 		.4byte	buffer
+ 1293 0361 13       		.uleb128 0x13
+ 1294 0362 A9020000 		.4byte	.LASF48
+ 1295 0366 04       		.byte	0x4
+ 1296 0367 92       		.byte	0x92
+ 1297 0368 81000000 		.4byte	0x81
+ 1298 036c 05       		.uleb128 0x5
+ 1299 036d 03       		.byte	0x3
+ 1300 036e 00000000 		.4byte	mode
+ 1301 0372 00       		.byte	0
+ 1302              		.section	.debug_abbrev,"",%progbits
+ 1303              	.Ldebug_abbrev0:
+ 1304 0000 01       		.uleb128 0x1
+ 1305 0001 11       		.uleb128 0x11
+ 1306 0002 01       		.byte	0x1
+ 1307 0003 25       		.uleb128 0x25
+ 1308 0004 0E       		.uleb128 0xe
+ 1309 0005 13       		.uleb128 0x13
+ 1310 0006 0B       		.uleb128 0xb
+ 1311 0007 03       		.uleb128 0x3
+ 1312 0008 0E       		.uleb128 0xe
+ 1313 0009 1B       		.uleb128 0x1b
+ 1314 000a 0E       		.uleb128 0xe
+ 1315 000b 55       		.uleb128 0x55
+ 1316 000c 17       		.uleb128 0x17
+ 1317 000d 11       		.uleb128 0x11
+ 1318 000e 01       		.uleb128 0x1
+ 1319 000f 10       		.uleb128 0x10
+ 1320 0010 17       		.uleb128 0x17
+ 1321 0011 00       		.byte	0
+ 1322 0012 00       		.byte	0
+ 1323 0013 02       		.uleb128 0x2
+ 1324 0014 24       		.uleb128 0x24
+ 1325 0015 00       		.byte	0
+ 1326 0016 0B       		.uleb128 0xb
+ 1327 0017 0B       		.uleb128 0xb
+ 1328 0018 3E       		.uleb128 0x3e
+ 1329 0019 0B       		.uleb128 0xb
+ 1330 001a 03       		.uleb128 0x3
+ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccJjUaFv.s 			page 31
 
 
- 1336 006d 3A       		.uleb128 0x3a
- 1337 006e 0B       		.uleb128 0xb
- 1338 006f 3B       		.uleb128 0x3b
- 1339 0070 0B       		.uleb128 0xb
- 1340 0071 49       		.uleb128 0x49
- 1341 0072 13       		.uleb128 0x13
- 1342 0073 02       		.uleb128 0x2
- 1343 0074 18       		.uleb128 0x18
- 1344 0075 00       		.byte	0
- 1345 0076 00       		.byte	0
- 1346 0077 08       		.uleb128 0x8
- 1347 0078 2E       		.uleb128 0x2e
- 1348 0079 00       		.byte	0
- 1349 007a 3F       		.uleb128 0x3f
- 1350 007b 19       		.uleb128 0x19
- 1351 007c 03       		.uleb128 0x3
- 1352 007d 0E       		.uleb128 0xe
- 1353 007e 3A       		.uleb128 0x3a
- 1354 007f 0B       		.uleb128 0xb
- 1355 0080 3B       		.uleb128 0x3b
- 1356 0081 0B       		.uleb128 0xb
- 1357 0082 11       		.uleb128 0x11
- 1358 0083 01       		.uleb128 0x1
- 1359 0084 12       		.uleb128 0x12
- 1360 0085 06       		.uleb128 0x6
- 1361 0086 40       		.uleb128 0x40
- 1362 0087 18       		.uleb128 0x18
- 1363 0088 9642     		.uleb128 0x2116
- 1364 008a 19       		.uleb128 0x19
- 1365 008b 00       		.byte	0
- 1366 008c 00       		.byte	0
- 1367 008d 09       		.uleb128 0x9
- 1368 008e 2E       		.uleb128 0x2e
- 1369 008f 00       		.byte	0
- 1370 0090 3F       		.uleb128 0x3f
- 1371 0091 19       		.uleb128 0x19
- 1372 0092 03       		.uleb128 0x3
- 1373 0093 0E       		.uleb128 0xe
- 1374 0094 3A       		.uleb128 0x3a
- 1375 0095 0B       		.uleb128 0xb
- 1376 0096 3B       		.uleb128 0x3b
- 1377 0097 0B       		.uleb128 0xb
- 1378 0098 49       		.uleb128 0x49
- 1379 0099 13       		.uleb128 0x13
- 1380 009a 11       		.uleb128 0x11
- 1381 009b 01       		.uleb128 0x1
- 1382 009c 12       		.uleb128 0x12
- 1383 009d 06       		.uleb128 0x6
- 1384 009e 40       		.uleb128 0x40
- 1385 009f 18       		.uleb128 0x18
- 1386 00a0 9742     		.uleb128 0x2117
- 1387 00a2 19       		.uleb128 0x19
- 1388 00a3 00       		.byte	0
- 1389 00a4 00       		.byte	0
- 1390 00a5 0A       		.uleb128 0xa
- 1391 00a6 2E       		.uleb128 0x2e
- 1392 00a7 01       		.byte	0x1
-ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccy6hVZJ.s 			page 32
+ 1331 001b 0E       		.uleb128 0xe
+ 1332 001c 00       		.byte	0
+ 1333 001d 00       		.byte	0
+ 1334 001e 03       		.uleb128 0x3
+ 1335 001f 16       		.uleb128 0x16
+ 1336 0020 00       		.byte	0
+ 1337 0021 03       		.uleb128 0x3
+ 1338 0022 0E       		.uleb128 0xe
+ 1339 0023 3A       		.uleb128 0x3a
+ 1340 0024 0B       		.uleb128 0xb
+ 1341 0025 3B       		.uleb128 0x3b
+ 1342 0026 0B       		.uleb128 0xb
+ 1343 0027 49       		.uleb128 0x49
+ 1344 0028 13       		.uleb128 0x13
+ 1345 0029 00       		.byte	0
+ 1346 002a 00       		.byte	0
+ 1347 002b 04       		.uleb128 0x4
+ 1348 002c 24       		.uleb128 0x24
+ 1349 002d 00       		.byte	0
+ 1350 002e 0B       		.uleb128 0xb
+ 1351 002f 0B       		.uleb128 0xb
+ 1352 0030 3E       		.uleb128 0x3e
+ 1353 0031 0B       		.uleb128 0xb
+ 1354 0032 03       		.uleb128 0x3
+ 1355 0033 08       		.uleb128 0x8
+ 1356 0034 00       		.byte	0
+ 1357 0035 00       		.byte	0
+ 1358 0036 05       		.uleb128 0x5
+ 1359 0037 2E       		.uleb128 0x2e
+ 1360 0038 00       		.byte	0
+ 1361 0039 3F       		.uleb128 0x3f
+ 1362 003a 19       		.uleb128 0x19
+ 1363 003b 03       		.uleb128 0x3
+ 1364 003c 0E       		.uleb128 0xe
+ 1365 003d 3A       		.uleb128 0x3a
+ 1366 003e 0B       		.uleb128 0xb
+ 1367 003f 3B       		.uleb128 0x3b
+ 1368 0040 0B       		.uleb128 0xb
+ 1369 0041 27       		.uleb128 0x27
+ 1370 0042 19       		.uleb128 0x19
+ 1371 0043 11       		.uleb128 0x11
+ 1372 0044 01       		.uleb128 0x1
+ 1373 0045 12       		.uleb128 0x12
+ 1374 0046 06       		.uleb128 0x6
+ 1375 0047 40       		.uleb128 0x40
+ 1376 0048 18       		.uleb128 0x18
+ 1377 0049 9742     		.uleb128 0x2117
+ 1378 004b 19       		.uleb128 0x19
+ 1379 004c 00       		.byte	0
+ 1380 004d 00       		.byte	0
+ 1381 004e 06       		.uleb128 0x6
+ 1382 004f 2E       		.uleb128 0x2e
+ 1383 0050 01       		.byte	0x1
+ 1384 0051 3F       		.uleb128 0x3f
+ 1385 0052 19       		.uleb128 0x19
+ 1386 0053 03       		.uleb128 0x3
+ 1387 0054 0E       		.uleb128 0xe
+ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccJjUaFv.s 			page 32
 
 
- 1393 00a8 3F       		.uleb128 0x3f
- 1394 00a9 19       		.uleb128 0x19
- 1395 00aa 03       		.uleb128 0x3
- 1396 00ab 0E       		.uleb128 0xe
- 1397 00ac 3A       		.uleb128 0x3a
- 1398 00ad 0B       		.uleb128 0xb
- 1399 00ae 3B       		.uleb128 0x3b
- 1400 00af 0B       		.uleb128 0xb
- 1401 00b0 27       		.uleb128 0x27
- 1402 00b1 19       		.uleb128 0x19
- 1403 00b2 11       		.uleb128 0x11
- 1404 00b3 01       		.uleb128 0x1
- 1405 00b4 12       		.uleb128 0x12
- 1406 00b5 06       		.uleb128 0x6
- 1407 00b6 40       		.uleb128 0x40
- 1408 00b7 18       		.uleb128 0x18
- 1409 00b8 9642     		.uleb128 0x2116
- 1410 00ba 19       		.uleb128 0x19
- 1411 00bb 01       		.uleb128 0x1
- 1412 00bc 13       		.uleb128 0x13
- 1413 00bd 00       		.byte	0
- 1414 00be 00       		.byte	0
- 1415 00bf 0B       		.uleb128 0xb
- 1416 00c0 2E       		.uleb128 0x2e
- 1417 00c1 00       		.byte	0
- 1418 00c2 3F       		.uleb128 0x3f
- 1419 00c3 19       		.uleb128 0x19
- 1420 00c4 03       		.uleb128 0x3
- 1421 00c5 0E       		.uleb128 0xe
- 1422 00c6 3A       		.uleb128 0x3a
- 1423 00c7 0B       		.uleb128 0xb
- 1424 00c8 3B       		.uleb128 0x3b
- 1425 00c9 0B       		.uleb128 0xb
- 1426 00ca 27       		.uleb128 0x27
- 1427 00cb 19       		.uleb128 0x19
- 1428 00cc 49       		.uleb128 0x49
- 1429 00cd 13       		.uleb128 0x13
- 1430 00ce 11       		.uleb128 0x11
- 1431 00cf 01       		.uleb128 0x1
- 1432 00d0 12       		.uleb128 0x12
- 1433 00d1 06       		.uleb128 0x6
- 1434 00d2 40       		.uleb128 0x40
- 1435 00d3 18       		.uleb128 0x18
- 1436 00d4 9742     		.uleb128 0x2117
- 1437 00d6 19       		.uleb128 0x19
- 1438 00d7 00       		.byte	0
- 1439 00d8 00       		.byte	0
- 1440 00d9 0C       		.uleb128 0xc
- 1441 00da 2E       		.uleb128 0x2e
- 1442 00db 01       		.byte	0x1
- 1443 00dc 3F       		.uleb128 0x3f
- 1444 00dd 19       		.uleb128 0x19
- 1445 00de 03       		.uleb128 0x3
- 1446 00df 0E       		.uleb128 0xe
- 1447 00e0 3A       		.uleb128 0x3a
- 1448 00e1 0B       		.uleb128 0xb
- 1449 00e2 3B       		.uleb128 0x3b
-ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccy6hVZJ.s 			page 33
+ 1388 0055 3A       		.uleb128 0x3a
+ 1389 0056 0B       		.uleb128 0xb
+ 1390 0057 3B       		.uleb128 0x3b
+ 1391 0058 0B       		.uleb128 0xb
+ 1392 0059 27       		.uleb128 0x27
+ 1393 005a 19       		.uleb128 0x19
+ 1394 005b 11       		.uleb128 0x11
+ 1395 005c 01       		.uleb128 0x1
+ 1396 005d 12       		.uleb128 0x12
+ 1397 005e 06       		.uleb128 0x6
+ 1398 005f 40       		.uleb128 0x40
+ 1399 0060 18       		.uleb128 0x18
+ 1400 0061 9742     		.uleb128 0x2117
+ 1401 0063 19       		.uleb128 0x19
+ 1402 0064 01       		.uleb128 0x1
+ 1403 0065 13       		.uleb128 0x13
+ 1404 0066 00       		.byte	0
+ 1405 0067 00       		.byte	0
+ 1406 0068 07       		.uleb128 0x7
+ 1407 0069 05       		.uleb128 0x5
+ 1408 006a 00       		.byte	0
+ 1409 006b 03       		.uleb128 0x3
+ 1410 006c 0E       		.uleb128 0xe
+ 1411 006d 3A       		.uleb128 0x3a
+ 1412 006e 0B       		.uleb128 0xb
+ 1413 006f 3B       		.uleb128 0x3b
+ 1414 0070 0B       		.uleb128 0xb
+ 1415 0071 49       		.uleb128 0x49
+ 1416 0072 13       		.uleb128 0x13
+ 1417 0073 02       		.uleb128 0x2
+ 1418 0074 18       		.uleb128 0x18
+ 1419 0075 00       		.byte	0
+ 1420 0076 00       		.byte	0
+ 1421 0077 08       		.uleb128 0x8
+ 1422 0078 2E       		.uleb128 0x2e
+ 1423 0079 00       		.byte	0
+ 1424 007a 3F       		.uleb128 0x3f
+ 1425 007b 19       		.uleb128 0x19
+ 1426 007c 03       		.uleb128 0x3
+ 1427 007d 0E       		.uleb128 0xe
+ 1428 007e 3A       		.uleb128 0x3a
+ 1429 007f 0B       		.uleb128 0xb
+ 1430 0080 3B       		.uleb128 0x3b
+ 1431 0081 0B       		.uleb128 0xb
+ 1432 0082 11       		.uleb128 0x11
+ 1433 0083 01       		.uleb128 0x1
+ 1434 0084 12       		.uleb128 0x12
+ 1435 0085 06       		.uleb128 0x6
+ 1436 0086 40       		.uleb128 0x40
+ 1437 0087 18       		.uleb128 0x18
+ 1438 0088 9642     		.uleb128 0x2116
+ 1439 008a 19       		.uleb128 0x19
+ 1440 008b 00       		.byte	0
+ 1441 008c 00       		.byte	0
+ 1442 008d 09       		.uleb128 0x9
+ 1443 008e 2E       		.uleb128 0x2e
+ 1444 008f 00       		.byte	0
+ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccJjUaFv.s 			page 33
 
 
- 1450 00e3 05       		.uleb128 0x5
- 1451 00e4 27       		.uleb128 0x27
- 1452 00e5 19       		.uleb128 0x19
- 1453 00e6 11       		.uleb128 0x11
- 1454 00e7 01       		.uleb128 0x1
- 1455 00e8 12       		.uleb128 0x12
- 1456 00e9 06       		.uleb128 0x6
- 1457 00ea 40       		.uleb128 0x40
- 1458 00eb 18       		.uleb128 0x18
- 1459 00ec 9642     		.uleb128 0x2116
- 1460 00ee 19       		.uleb128 0x19
- 1461 00ef 01       		.uleb128 0x1
- 1462 00f0 13       		.uleb128 0x13
- 1463 00f1 00       		.byte	0
- 1464 00f2 00       		.byte	0
- 1465 00f3 0D       		.uleb128 0xd
- 1466 00f4 05       		.uleb128 0x5
- 1467 00f5 00       		.byte	0
- 1468 00f6 03       		.uleb128 0x3
- 1469 00f7 0E       		.uleb128 0xe
- 1470 00f8 3A       		.uleb128 0x3a
- 1471 00f9 0B       		.uleb128 0xb
- 1472 00fa 3B       		.uleb128 0x3b
- 1473 00fb 05       		.uleb128 0x5
- 1474 00fc 49       		.uleb128 0x49
- 1475 00fd 13       		.uleb128 0x13
- 1476 00fe 02       		.uleb128 0x2
- 1477 00ff 18       		.uleb128 0x18
- 1478 0100 00       		.byte	0
- 1479 0101 00       		.byte	0
- 1480 0102 0E       		.uleb128 0xe
- 1481 0103 2E       		.uleb128 0x2e
- 1482 0104 01       		.byte	0x1
- 1483 0105 3F       		.uleb128 0x3f
- 1484 0106 19       		.uleb128 0x19
- 1485 0107 03       		.uleb128 0x3
- 1486 0108 0E       		.uleb128 0xe
- 1487 0109 3A       		.uleb128 0x3a
- 1488 010a 0B       		.uleb128 0xb
- 1489 010b 3B       		.uleb128 0x3b
- 1490 010c 05       		.uleb128 0x5
- 1491 010d 27       		.uleb128 0x27
- 1492 010e 19       		.uleb128 0x19
- 1493 010f 11       		.uleb128 0x11
- 1494 0110 01       		.uleb128 0x1
- 1495 0111 12       		.uleb128 0x12
- 1496 0112 06       		.uleb128 0x6
- 1497 0113 40       		.uleb128 0x40
- 1498 0114 18       		.uleb128 0x18
- 1499 0115 9742     		.uleb128 0x2117
- 1500 0117 19       		.uleb128 0x19
- 1501 0118 01       		.uleb128 0x1
- 1502 0119 13       		.uleb128 0x13
- 1503 011a 00       		.byte	0
- 1504 011b 00       		.byte	0
- 1505 011c 0F       		.uleb128 0xf
- 1506 011d 05       		.uleb128 0x5
-ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccy6hVZJ.s 			page 34
+ 1445 0090 3F       		.uleb128 0x3f
+ 1446 0091 19       		.uleb128 0x19
+ 1447 0092 03       		.uleb128 0x3
+ 1448 0093 0E       		.uleb128 0xe
+ 1449 0094 3A       		.uleb128 0x3a
+ 1450 0095 0B       		.uleb128 0xb
+ 1451 0096 3B       		.uleb128 0x3b
+ 1452 0097 0B       		.uleb128 0xb
+ 1453 0098 49       		.uleb128 0x49
+ 1454 0099 13       		.uleb128 0x13
+ 1455 009a 11       		.uleb128 0x11
+ 1456 009b 01       		.uleb128 0x1
+ 1457 009c 12       		.uleb128 0x12
+ 1458 009d 06       		.uleb128 0x6
+ 1459 009e 40       		.uleb128 0x40
+ 1460 009f 18       		.uleb128 0x18
+ 1461 00a0 9642     		.uleb128 0x2116
+ 1462 00a2 19       		.uleb128 0x19
+ 1463 00a3 00       		.byte	0
+ 1464 00a4 00       		.byte	0
+ 1465 00a5 0A       		.uleb128 0xa
+ 1466 00a6 2E       		.uleb128 0x2e
+ 1467 00a7 00       		.byte	0
+ 1468 00a8 3F       		.uleb128 0x3f
+ 1469 00a9 19       		.uleb128 0x19
+ 1470 00aa 03       		.uleb128 0x3
+ 1471 00ab 0E       		.uleb128 0xe
+ 1472 00ac 3A       		.uleb128 0x3a
+ 1473 00ad 0B       		.uleb128 0xb
+ 1474 00ae 3B       		.uleb128 0x3b
+ 1475 00af 0B       		.uleb128 0xb
+ 1476 00b0 49       		.uleb128 0x49
+ 1477 00b1 13       		.uleb128 0x13
+ 1478 00b2 11       		.uleb128 0x11
+ 1479 00b3 01       		.uleb128 0x1
+ 1480 00b4 12       		.uleb128 0x12
+ 1481 00b5 06       		.uleb128 0x6
+ 1482 00b6 40       		.uleb128 0x40
+ 1483 00b7 18       		.uleb128 0x18
+ 1484 00b8 9742     		.uleb128 0x2117
+ 1485 00ba 19       		.uleb128 0x19
+ 1486 00bb 00       		.byte	0
+ 1487 00bc 00       		.byte	0
+ 1488 00bd 0B       		.uleb128 0xb
+ 1489 00be 2E       		.uleb128 0x2e
+ 1490 00bf 01       		.byte	0x1
+ 1491 00c0 3F       		.uleb128 0x3f
+ 1492 00c1 19       		.uleb128 0x19
+ 1493 00c2 03       		.uleb128 0x3
+ 1494 00c3 0E       		.uleb128 0xe
+ 1495 00c4 3A       		.uleb128 0x3a
+ 1496 00c5 0B       		.uleb128 0xb
+ 1497 00c6 3B       		.uleb128 0x3b
+ 1498 00c7 0B       		.uleb128 0xb
+ 1499 00c8 27       		.uleb128 0x27
+ 1500 00c9 19       		.uleb128 0x19
+ 1501 00ca 11       		.uleb128 0x11
+ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccJjUaFv.s 			page 34
 
 
- 1507 011e 00       		.byte	0
- 1508 011f 03       		.uleb128 0x3
- 1509 0120 08       		.uleb128 0x8
- 1510 0121 3A       		.uleb128 0x3a
- 1511 0122 0B       		.uleb128 0xb
- 1512 0123 3B       		.uleb128 0x3b
- 1513 0124 05       		.uleb128 0x5
- 1514 0125 49       		.uleb128 0x49
- 1515 0126 13       		.uleb128 0x13
- 1516 0127 02       		.uleb128 0x2
- 1517 0128 18       		.uleb128 0x18
- 1518 0129 00       		.byte	0
- 1519 012a 00       		.byte	0
- 1520 012b 10       		.uleb128 0x10
- 1521 012c 0F       		.uleb128 0xf
- 1522 012d 00       		.byte	0
- 1523 012e 0B       		.uleb128 0xb
- 1524 012f 0B       		.uleb128 0xb
- 1525 0130 49       		.uleb128 0x49
- 1526 0131 13       		.uleb128 0x13
- 1527 0132 00       		.byte	0
- 1528 0133 00       		.byte	0
- 1529 0134 11       		.uleb128 0x11
- 1530 0135 2E       		.uleb128 0x2e
- 1531 0136 00       		.byte	0
- 1532 0137 3F       		.uleb128 0x3f
- 1533 0138 19       		.uleb128 0x19
- 1534 0139 03       		.uleb128 0x3
- 1535 013a 0E       		.uleb128 0xe
- 1536 013b 3A       		.uleb128 0x3a
- 1537 013c 0B       		.uleb128 0xb
- 1538 013d 3B       		.uleb128 0x3b
- 1539 013e 05       		.uleb128 0x5
- 1540 013f 49       		.uleb128 0x49
- 1541 0140 13       		.uleb128 0x13
- 1542 0141 11       		.uleb128 0x11
- 1543 0142 01       		.uleb128 0x1
- 1544 0143 12       		.uleb128 0x12
- 1545 0144 06       		.uleb128 0x6
- 1546 0145 40       		.uleb128 0x40
- 1547 0146 18       		.uleb128 0x18
- 1548 0147 9742     		.uleb128 0x2117
- 1549 0149 19       		.uleb128 0x19
- 1550 014a 00       		.byte	0
- 1551 014b 00       		.byte	0
- 1552 014c 12       		.uleb128 0x12
- 1553 014d 2E       		.uleb128 0x2e
- 1554 014e 00       		.byte	0
- 1555 014f 3F       		.uleb128 0x3f
- 1556 0150 19       		.uleb128 0x19
- 1557 0151 03       		.uleb128 0x3
- 1558 0152 0E       		.uleb128 0xe
- 1559 0153 3A       		.uleb128 0x3a
- 1560 0154 0B       		.uleb128 0xb
- 1561 0155 3B       		.uleb128 0x3b
- 1562 0156 05       		.uleb128 0x5
- 1563 0157 49       		.uleb128 0x49
-ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccy6hVZJ.s 			page 35
+ 1502 00cb 01       		.uleb128 0x1
+ 1503 00cc 12       		.uleb128 0x12
+ 1504 00cd 06       		.uleb128 0x6
+ 1505 00ce 40       		.uleb128 0x40
+ 1506 00cf 18       		.uleb128 0x18
+ 1507 00d0 9642     		.uleb128 0x2116
+ 1508 00d2 19       		.uleb128 0x19
+ 1509 00d3 01       		.uleb128 0x1
+ 1510 00d4 13       		.uleb128 0x13
+ 1511 00d5 00       		.byte	0
+ 1512 00d6 00       		.byte	0
+ 1513 00d7 0C       		.uleb128 0xc
+ 1514 00d8 2E       		.uleb128 0x2e
+ 1515 00d9 00       		.byte	0
+ 1516 00da 3F       		.uleb128 0x3f
+ 1517 00db 19       		.uleb128 0x19
+ 1518 00dc 03       		.uleb128 0x3
+ 1519 00dd 0E       		.uleb128 0xe
+ 1520 00de 3A       		.uleb128 0x3a
+ 1521 00df 0B       		.uleb128 0xb
+ 1522 00e0 3B       		.uleb128 0x3b
+ 1523 00e1 0B       		.uleb128 0xb
+ 1524 00e2 27       		.uleb128 0x27
+ 1525 00e3 19       		.uleb128 0x19
+ 1526 00e4 49       		.uleb128 0x49
+ 1527 00e5 13       		.uleb128 0x13
+ 1528 00e6 11       		.uleb128 0x11
+ 1529 00e7 01       		.uleb128 0x1
+ 1530 00e8 12       		.uleb128 0x12
+ 1531 00e9 06       		.uleb128 0x6
+ 1532 00ea 40       		.uleb128 0x40
+ 1533 00eb 18       		.uleb128 0x18
+ 1534 00ec 9742     		.uleb128 0x2117
+ 1535 00ee 19       		.uleb128 0x19
+ 1536 00ef 00       		.byte	0
+ 1537 00f0 00       		.byte	0
+ 1538 00f1 0D       		.uleb128 0xd
+ 1539 00f2 2E       		.uleb128 0x2e
+ 1540 00f3 01       		.byte	0x1
+ 1541 00f4 3F       		.uleb128 0x3f
+ 1542 00f5 19       		.uleb128 0x19
+ 1543 00f6 03       		.uleb128 0x3
+ 1544 00f7 0E       		.uleb128 0xe
+ 1545 00f8 3A       		.uleb128 0x3a
+ 1546 00f9 0B       		.uleb128 0xb
+ 1547 00fa 3B       		.uleb128 0x3b
+ 1548 00fb 05       		.uleb128 0x5
+ 1549 00fc 27       		.uleb128 0x27
+ 1550 00fd 19       		.uleb128 0x19
+ 1551 00fe 11       		.uleb128 0x11
+ 1552 00ff 01       		.uleb128 0x1
+ 1553 0100 12       		.uleb128 0x12
+ 1554 0101 06       		.uleb128 0x6
+ 1555 0102 40       		.uleb128 0x40
+ 1556 0103 18       		.uleb128 0x18
+ 1557 0104 9642     		.uleb128 0x2116
+ 1558 0106 19       		.uleb128 0x19
+ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccJjUaFv.s 			page 35
 
 
- 1564 0158 13       		.uleb128 0x13
- 1565 0159 11       		.uleb128 0x11
- 1566 015a 01       		.uleb128 0x1
- 1567 015b 12       		.uleb128 0x12
- 1568 015c 06       		.uleb128 0x6
- 1569 015d 40       		.uleb128 0x40
- 1570 015e 18       		.uleb128 0x18
- 1571 015f 9642     		.uleb128 0x2116
- 1572 0161 19       		.uleb128 0x19
- 1573 0162 00       		.byte	0
- 1574 0163 00       		.byte	0
- 1575 0164 13       		.uleb128 0x13
- 1576 0165 34       		.uleb128 0x34
- 1577 0166 00       		.byte	0
- 1578 0167 03       		.uleb128 0x3
- 1579 0168 0E       		.uleb128 0xe
- 1580 0169 3A       		.uleb128 0x3a
- 1581 016a 0B       		.uleb128 0xb
- 1582 016b 3B       		.uleb128 0x3b
- 1583 016c 0B       		.uleb128 0xb
- 1584 016d 49       		.uleb128 0x49
- 1585 016e 13       		.uleb128 0x13
- 1586 016f 3F       		.uleb128 0x3f
- 1587 0170 19       		.uleb128 0x19
- 1588 0171 02       		.uleb128 0x2
- 1589 0172 18       		.uleb128 0x18
- 1590 0173 00       		.byte	0
- 1591 0174 00       		.byte	0
- 1592 0175 14       		.uleb128 0x14
- 1593 0176 01       		.uleb128 0x1
- 1594 0177 01       		.byte	0x1
- 1595 0178 49       		.uleb128 0x49
- 1596 0179 13       		.uleb128 0x13
- 1597 017a 01       		.uleb128 0x1
- 1598 017b 13       		.uleb128 0x13
- 1599 017c 00       		.byte	0
- 1600 017d 00       		.byte	0
- 1601 017e 15       		.uleb128 0x15
- 1602 017f 21       		.uleb128 0x21
- 1603 0180 00       		.byte	0
- 1604 0181 49       		.uleb128 0x49
- 1605 0182 13       		.uleb128 0x13
- 1606 0183 2F       		.uleb128 0x2f
- 1607 0184 0B       		.uleb128 0xb
- 1608 0185 00       		.byte	0
- 1609 0186 00       		.byte	0
- 1610 0187 00       		.byte	0
- 1611              		.section	.debug_aranges,"",%progbits
- 1612 0000 D4000000 		.4byte	0xd4
- 1613 0004 0200     		.2byte	0x2
- 1614 0006 00000000 		.4byte	.Ldebug_info0
- 1615 000a 04       		.byte	0x4
- 1616 000b 00       		.byte	0
- 1617 000c 0000     		.2byte	0
- 1618 000e 0000     		.2byte	0
- 1619 0010 00000000 		.4byte	.LFB33
- 1620 0014 14000000 		.4byte	.LFE33-.LFB33
-ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccy6hVZJ.s 			page 36
+ 1559 0107 01       		.uleb128 0x1
+ 1560 0108 13       		.uleb128 0x13
+ 1561 0109 00       		.byte	0
+ 1562 010a 00       		.byte	0
+ 1563 010b 0E       		.uleb128 0xe
+ 1564 010c 05       		.uleb128 0x5
+ 1565 010d 00       		.byte	0
+ 1566 010e 03       		.uleb128 0x3
+ 1567 010f 0E       		.uleb128 0xe
+ 1568 0110 3A       		.uleb128 0x3a
+ 1569 0111 0B       		.uleb128 0xb
+ 1570 0112 3B       		.uleb128 0x3b
+ 1571 0113 05       		.uleb128 0x5
+ 1572 0114 49       		.uleb128 0x49
+ 1573 0115 13       		.uleb128 0x13
+ 1574 0116 02       		.uleb128 0x2
+ 1575 0117 18       		.uleb128 0x18
+ 1576 0118 00       		.byte	0
+ 1577 0119 00       		.byte	0
+ 1578 011a 0F       		.uleb128 0xf
+ 1579 011b 05       		.uleb128 0x5
+ 1580 011c 00       		.byte	0
+ 1581 011d 03       		.uleb128 0x3
+ 1582 011e 08       		.uleb128 0x8
+ 1583 011f 3A       		.uleb128 0x3a
+ 1584 0120 0B       		.uleb128 0xb
+ 1585 0121 3B       		.uleb128 0x3b
+ 1586 0122 05       		.uleb128 0x5
+ 1587 0123 49       		.uleb128 0x49
+ 1588 0124 13       		.uleb128 0x13
+ 1589 0125 02       		.uleb128 0x2
+ 1590 0126 18       		.uleb128 0x18
+ 1591 0127 00       		.byte	0
+ 1592 0128 00       		.byte	0
+ 1593 0129 10       		.uleb128 0x10
+ 1594 012a 0F       		.uleb128 0xf
+ 1595 012b 00       		.byte	0
+ 1596 012c 0B       		.uleb128 0xb
+ 1597 012d 0B       		.uleb128 0xb
+ 1598 012e 49       		.uleb128 0x49
+ 1599 012f 13       		.uleb128 0x13
+ 1600 0130 00       		.byte	0
+ 1601 0131 00       		.byte	0
+ 1602 0132 11       		.uleb128 0x11
+ 1603 0133 2E       		.uleb128 0x2e
+ 1604 0134 00       		.byte	0
+ 1605 0135 3F       		.uleb128 0x3f
+ 1606 0136 19       		.uleb128 0x19
+ 1607 0137 03       		.uleb128 0x3
+ 1608 0138 0E       		.uleb128 0xe
+ 1609 0139 3A       		.uleb128 0x3a
+ 1610 013a 0B       		.uleb128 0xb
+ 1611 013b 3B       		.uleb128 0x3b
+ 1612 013c 05       		.uleb128 0x5
+ 1613 013d 49       		.uleb128 0x49
+ 1614 013e 13       		.uleb128 0x13
+ 1615 013f 11       		.uleb128 0x11
+ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccJjUaFv.s 			page 36
 
 
- 1621 0018 00000000 		.4byte	.LFB34
- 1622 001c 20000000 		.4byte	.LFE34-.LFB34
- 1623 0020 00000000 		.4byte	.LFB35
- 1624 0024 28000000 		.4byte	.LFE35-.LFB35
- 1625 0028 00000000 		.4byte	.LFB36
- 1626 002c 0A000000 		.4byte	.LFE36-.LFB36
- 1627 0030 00000000 		.4byte	.LFB37
- 1628 0034 0A000000 		.4byte	.LFE37-.LFB37
- 1629 0038 00000000 		.4byte	.LFB38
- 1630 003c 14000000 		.4byte	.LFE38-.LFB38
- 1631 0040 00000000 		.4byte	.LFB39
- 1632 0044 14000000 		.4byte	.LFE39-.LFB39
- 1633 0048 00000000 		.4byte	.LFB40
- 1634 004c 14000000 		.4byte	.LFE40-.LFB40
- 1635 0050 00000000 		.4byte	.LFB41
- 1636 0054 12000000 		.4byte	.LFE41-.LFB41
- 1637 0058 00000000 		.4byte	.LFB42
- 1638 005c 14000000 		.4byte	.LFE42-.LFB42
- 1639 0060 00000000 		.4byte	.LFB43
- 1640 0064 14000000 		.4byte	.LFE43-.LFB43
- 1641 0068 00000000 		.4byte	.LFB44
- 1642 006c 14000000 		.4byte	.LFE44-.LFB44
- 1643 0070 00000000 		.4byte	.LFB45
- 1644 0074 2C000000 		.4byte	.LFE45-.LFB45
- 1645 0078 00000000 		.4byte	.LFB46
- 1646 007c 14000000 		.4byte	.LFE46-.LFB46
- 1647 0080 00000000 		.4byte	.LFB47
- 1648 0084 34000000 		.4byte	.LFE47-.LFB47
- 1649 0088 00000000 		.4byte	.LFB48
- 1650 008c 54000000 		.4byte	.LFE48-.LFB48
- 1651 0090 00000000 		.4byte	.LFB49
- 1652 0094 0A000000 		.4byte	.LFE49-.LFB49
- 1653 0098 00000000 		.4byte	.LFB50
- 1654 009c 0A000000 		.4byte	.LFE50-.LFB50
- 1655 00a0 00000000 		.4byte	.LFB51
- 1656 00a4 0A000000 		.4byte	.LFE51-.LFB51
- 1657 00a8 00000000 		.4byte	.LFB52
- 1658 00ac 0A000000 		.4byte	.LFE52-.LFB52
- 1659 00b0 00000000 		.4byte	.LFB53
- 1660 00b4 0A000000 		.4byte	.LFE53-.LFB53
- 1661 00b8 00000000 		.4byte	.LFB54
- 1662 00bc 28000000 		.4byte	.LFE54-.LFB54
- 1663 00c0 00000000 		.4byte	.LFB55
- 1664 00c4 0A000000 		.4byte	.LFE55-.LFB55
- 1665 00c8 00000000 		.4byte	.LFB56
- 1666 00cc 0A000000 		.4byte	.LFE56-.LFB56
- 1667 00d0 00000000 		.4byte	0
- 1668 00d4 00000000 		.4byte	0
- 1669              		.section	.debug_ranges,"",%progbits
- 1670              	.Ldebug_ranges0:
- 1671 0000 00000000 		.4byte	.LFB33
- 1672 0004 14000000 		.4byte	.LFE33
- 1673 0008 00000000 		.4byte	.LFB34
- 1674 000c 20000000 		.4byte	.LFE34
- 1675 0010 00000000 		.4byte	.LFB35
- 1676 0014 28000000 		.4byte	.LFE35
- 1677 0018 00000000 		.4byte	.LFB36
-ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccy6hVZJ.s 			page 37
+ 1616 0140 01       		.uleb128 0x1
+ 1617 0141 12       		.uleb128 0x12
+ 1618 0142 06       		.uleb128 0x6
+ 1619 0143 40       		.uleb128 0x40
+ 1620 0144 18       		.uleb128 0x18
+ 1621 0145 9742     		.uleb128 0x2117
+ 1622 0147 19       		.uleb128 0x19
+ 1623 0148 00       		.byte	0
+ 1624 0149 00       		.byte	0
+ 1625 014a 12       		.uleb128 0x12
+ 1626 014b 2E       		.uleb128 0x2e
+ 1627 014c 00       		.byte	0
+ 1628 014d 3F       		.uleb128 0x3f
+ 1629 014e 19       		.uleb128 0x19
+ 1630 014f 03       		.uleb128 0x3
+ 1631 0150 0E       		.uleb128 0xe
+ 1632 0151 3A       		.uleb128 0x3a
+ 1633 0152 0B       		.uleb128 0xb
+ 1634 0153 3B       		.uleb128 0x3b
+ 1635 0154 05       		.uleb128 0x5
+ 1636 0155 49       		.uleb128 0x49
+ 1637 0156 13       		.uleb128 0x13
+ 1638 0157 11       		.uleb128 0x11
+ 1639 0158 01       		.uleb128 0x1
+ 1640 0159 12       		.uleb128 0x12
+ 1641 015a 06       		.uleb128 0x6
+ 1642 015b 40       		.uleb128 0x40
+ 1643 015c 18       		.uleb128 0x18
+ 1644 015d 9642     		.uleb128 0x2116
+ 1645 015f 19       		.uleb128 0x19
+ 1646 0160 00       		.byte	0
+ 1647 0161 00       		.byte	0
+ 1648 0162 13       		.uleb128 0x13
+ 1649 0163 34       		.uleb128 0x34
+ 1650 0164 00       		.byte	0
+ 1651 0165 03       		.uleb128 0x3
+ 1652 0166 0E       		.uleb128 0xe
+ 1653 0167 3A       		.uleb128 0x3a
+ 1654 0168 0B       		.uleb128 0xb
+ 1655 0169 3B       		.uleb128 0x3b
+ 1656 016a 0B       		.uleb128 0xb
+ 1657 016b 49       		.uleb128 0x49
+ 1658 016c 13       		.uleb128 0x13
+ 1659 016d 3F       		.uleb128 0x3f
+ 1660 016e 19       		.uleb128 0x19
+ 1661 016f 02       		.uleb128 0x2
+ 1662 0170 18       		.uleb128 0x18
+ 1663 0171 00       		.byte	0
+ 1664 0172 00       		.byte	0
+ 1665 0173 14       		.uleb128 0x14
+ 1666 0174 01       		.uleb128 0x1
+ 1667 0175 01       		.byte	0x1
+ 1668 0176 49       		.uleb128 0x49
+ 1669 0177 13       		.uleb128 0x13
+ 1670 0178 01       		.uleb128 0x1
+ 1671 0179 13       		.uleb128 0x13
+ 1672 017a 00       		.byte	0
+ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccJjUaFv.s 			page 37
 
 
- 1678 001c 0A000000 		.4byte	.LFE36
- 1679 0020 00000000 		.4byte	.LFB37
- 1680 0024 0A000000 		.4byte	.LFE37
- 1681 0028 00000000 		.4byte	.LFB38
- 1682 002c 14000000 		.4byte	.LFE38
- 1683 0030 00000000 		.4byte	.LFB39
- 1684 0034 14000000 		.4byte	.LFE39
- 1685 0038 00000000 		.4byte	.LFB40
- 1686 003c 14000000 		.4byte	.LFE40
- 1687 0040 00000000 		.4byte	.LFB41
- 1688 0044 12000000 		.4byte	.LFE41
- 1689 0048 00000000 		.4byte	.LFB42
- 1690 004c 14000000 		.4byte	.LFE42
- 1691 0050 00000000 		.4byte	.LFB43
- 1692 0054 14000000 		.4byte	.LFE43
- 1693 0058 00000000 		.4byte	.LFB44
- 1694 005c 14000000 		.4byte	.LFE44
- 1695 0060 00000000 		.4byte	.LFB45
- 1696 0064 2C000000 		.4byte	.LFE45
- 1697 0068 00000000 		.4byte	.LFB46
- 1698 006c 14000000 		.4byte	.LFE46
- 1699 0070 00000000 		.4byte	.LFB47
- 1700 0074 34000000 		.4byte	.LFE47
- 1701 0078 00000000 		.4byte	.LFB48
- 1702 007c 54000000 		.4byte	.LFE48
- 1703 0080 00000000 		.4byte	.LFB49
- 1704 0084 0A000000 		.4byte	.LFE49
- 1705 0088 00000000 		.4byte	.LFB50
- 1706 008c 0A000000 		.4byte	.LFE50
- 1707 0090 00000000 		.4byte	.LFB51
- 1708 0094 0A000000 		.4byte	.LFE51
- 1709 0098 00000000 		.4byte	.LFB52
- 1710 009c 0A000000 		.4byte	.LFE52
- 1711 00a0 00000000 		.4byte	.LFB53
- 1712 00a4 0A000000 		.4byte	.LFE53
- 1713 00a8 00000000 		.4byte	.LFB54
- 1714 00ac 28000000 		.4byte	.LFE54
- 1715 00b0 00000000 		.4byte	.LFB55
- 1716 00b4 0A000000 		.4byte	.LFE55
- 1717 00b8 00000000 		.4byte	.LFB56
- 1718 00bc 0A000000 		.4byte	.LFE56
- 1719 00c0 00000000 		.4byte	0
- 1720 00c4 00000000 		.4byte	0
- 1721              		.section	.debug_line,"",%progbits
- 1722              	.Ldebug_line0:
- 1723 0000 E0020000 		.section	.debug_str,"MS",%progbits,1
- 1723      02003101 
- 1723      00000201 
- 1723      FB0E0D00 
- 1723      01010101 
- 1724              	.LASF2:
- 1725 0000 5F5F7569 		.ascii	"__uint8_t\000"
- 1725      6E74385F 
- 1725      7400
- 1726              	.LASF20:
- 1727 000a 5F426F6F 		.ascii	"_Bool\000"
- 1727      6C00
-ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccy6hVZJ.s 			page 38
+ 1673 017b 00       		.byte	0
+ 1674 017c 15       		.uleb128 0x15
+ 1675 017d 21       		.uleb128 0x21
+ 1676 017e 00       		.byte	0
+ 1677 017f 49       		.uleb128 0x49
+ 1678 0180 13       		.uleb128 0x13
+ 1679 0181 2F       		.uleb128 0x2f
+ 1680 0182 0B       		.uleb128 0xb
+ 1681 0183 00       		.byte	0
+ 1682 0184 00       		.byte	0
+ 1683 0185 00       		.byte	0
+ 1684              		.section	.debug_aranges,"",%progbits
+ 1685 0000 CC000000 		.4byte	0xcc
+ 1686 0004 0200     		.2byte	0x2
+ 1687 0006 00000000 		.4byte	.Ldebug_info0
+ 1688 000a 04       		.byte	0x4
+ 1689 000b 00       		.byte	0
+ 1690 000c 0000     		.2byte	0
+ 1691 000e 0000     		.2byte	0
+ 1692 0010 00000000 		.4byte	.LFB33
+ 1693 0014 14000000 		.4byte	.LFE33-.LFB33
+ 1694 0018 00000000 		.4byte	.LFB34
+ 1695 001c 20000000 		.4byte	.LFE34-.LFB34
+ 1696 0020 00000000 		.4byte	.LFB35
+ 1697 0024 28000000 		.4byte	.LFE35-.LFB35
+ 1698 0028 00000000 		.4byte	.LFB36
+ 1699 002c 40000000 		.4byte	.LFE36-.LFB36
+ 1700 0030 00000000 		.4byte	.LFB37
+ 1701 0034 14000000 		.4byte	.LFE37-.LFB37
+ 1702 0038 00000000 		.4byte	.LFB38
+ 1703 003c 14000000 		.4byte	.LFE38-.LFB38
+ 1704 0040 00000000 		.4byte	.LFB39
+ 1705 0044 14000000 		.4byte	.LFE39-.LFB39
+ 1706 0048 00000000 		.4byte	.LFB40
+ 1707 004c 12000000 		.4byte	.LFE40-.LFB40
+ 1708 0050 00000000 		.4byte	.LFB41
+ 1709 0054 14000000 		.4byte	.LFE41-.LFB41
+ 1710 0058 00000000 		.4byte	.LFB42
+ 1711 005c 14000000 		.4byte	.LFE42-.LFB42
+ 1712 0060 00000000 		.4byte	.LFB43
+ 1713 0064 14000000 		.4byte	.LFE43-.LFB43
+ 1714 0068 00000000 		.4byte	.LFB44
+ 1715 006c 2C000000 		.4byte	.LFE44-.LFB44
+ 1716 0070 00000000 		.4byte	.LFB45
+ 1717 0074 14000000 		.4byte	.LFE45-.LFB45
+ 1718 0078 00000000 		.4byte	.LFB46
+ 1719 007c 34000000 		.4byte	.LFE46-.LFB46
+ 1720 0080 00000000 		.4byte	.LFB47
+ 1721 0084 80000000 		.4byte	.LFE47-.LFB47
+ 1722 0088 00000000 		.4byte	.LFB48
+ 1723 008c 0A000000 		.4byte	.LFE48-.LFB48
+ 1724 0090 00000000 		.4byte	.LFB49
+ 1725 0094 0A000000 		.4byte	.LFE49-.LFB49
+ 1726 0098 00000000 		.4byte	.LFB50
+ 1727 009c 0A000000 		.4byte	.LFE50-.LFB50
+ 1728 00a0 00000000 		.4byte	.LFB51
+ 1729 00a4 0A000000 		.4byte	.LFE51-.LFB51
+ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccJjUaFv.s 			page 38
 
 
- 1728              	.LASF21:
- 1729 0010 484D4335 		.ascii	"HMC5883L_getDeviceID\000"
- 1729      3838334C 
- 1729      5F676574 
- 1729      44657669 
- 1729      63654944 
- 1730              	.LASF46:
- 1731 0025 484D4335 		.ascii	"HMC5883L_getIDC\000"
- 1731      3838334C 
- 1731      5F676574 
- 1731      49444300 
- 1732              	.LASF42:
- 1733 0035 484D4335 		.ascii	"HMC5883L_getLockStatus\000"
- 1733      3838334C 
- 1733      5F676574 
- 1733      4C6F636B 
- 1733      53746174 
- 1734              	.LASF37:
- 1735 004c 6E65774D 		.ascii	"newMode\000"
- 1735      6F646500 
- 1736              	.LASF33:
- 1737 0054 484D4335 		.ascii	"HMC5883L_getGain\000"
- 1737      3838334C 
- 1737      5F676574 
- 1737      4761696E 
- 1737      00
- 1738              	.LASF29:
- 1739 0065 72617465 		.ascii	"rate\000"
- 1739      00
- 1740              	.LASF52:
- 1741 006a 433A5C55 		.ascii	"C:\\Users\\Sam\\OneDrive\\Github\\PSoC-4-Compass-Se"
- 1741      73657273 
- 1741      5C53616D 
- 1741      5C4F6E65 
- 1741      44726976 
- 1742 0098 6E736F72 		.ascii	"nsor\\PSoC 4 Compass Modbus Slave.cydsn\000"
- 1742      5C50536F 
- 1742      43203420 
- 1742      436F6D70 
- 1742      61737320 
- 1743              	.LASF27:
- 1744 00bf 484D4335 		.ascii	"HMC5883L_getDataRate\000"
- 1744      3838334C 
- 1744      5F676574 
- 1744      44617461 
- 1744      52617465 
- 1745              	.LASF35:
- 1746 00d4 6761696E 		.ascii	"gain\000"
- 1746      00
- 1747              	.LASF19:
- 1748 00d9 484D4335 		.ascii	"HMC5883L_testConnection\000"
- 1748      3838334C 
- 1748      5F746573 
- 1748      74436F6E 
- 1748      6E656374 
- 1749              	.LASF44:
- 1750 00f1 484D4335 		.ascii	"HMC5883L_getIDA\000"
-ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccy6hVZJ.s 			page 39
+ 1730 00a8 00000000 		.4byte	.LFB52
+ 1731 00ac 2C000000 		.4byte	.LFE52-.LFB52
+ 1732 00b0 00000000 		.4byte	.LFB53
+ 1733 00b4 28000000 		.4byte	.LFE53-.LFB53
+ 1734 00b8 00000000 		.4byte	.LFB54
+ 1735 00bc 28000000 		.4byte	.LFE54-.LFB54
+ 1736 00c0 00000000 		.4byte	.LFB55
+ 1737 00c4 28000000 		.4byte	.LFE55-.LFB55
+ 1738 00c8 00000000 		.4byte	0
+ 1739 00cc 00000000 		.4byte	0
+ 1740              		.section	.debug_ranges,"",%progbits
+ 1741              	.Ldebug_ranges0:
+ 1742 0000 00000000 		.4byte	.LFB33
+ 1743 0004 14000000 		.4byte	.LFE33
+ 1744 0008 00000000 		.4byte	.LFB34
+ 1745 000c 20000000 		.4byte	.LFE34
+ 1746 0010 00000000 		.4byte	.LFB35
+ 1747 0014 28000000 		.4byte	.LFE35
+ 1748 0018 00000000 		.4byte	.LFB36
+ 1749 001c 40000000 		.4byte	.LFE36
+ 1750 0020 00000000 		.4byte	.LFB37
+ 1751 0024 14000000 		.4byte	.LFE37
+ 1752 0028 00000000 		.4byte	.LFB38
+ 1753 002c 14000000 		.4byte	.LFE38
+ 1754 0030 00000000 		.4byte	.LFB39
+ 1755 0034 14000000 		.4byte	.LFE39
+ 1756 0038 00000000 		.4byte	.LFB40
+ 1757 003c 12000000 		.4byte	.LFE40
+ 1758 0040 00000000 		.4byte	.LFB41
+ 1759 0044 14000000 		.4byte	.LFE41
+ 1760 0048 00000000 		.4byte	.LFB42
+ 1761 004c 14000000 		.4byte	.LFE42
+ 1762 0050 00000000 		.4byte	.LFB43
+ 1763 0054 14000000 		.4byte	.LFE43
+ 1764 0058 00000000 		.4byte	.LFB44
+ 1765 005c 2C000000 		.4byte	.LFE44
+ 1766 0060 00000000 		.4byte	.LFB45
+ 1767 0064 14000000 		.4byte	.LFE45
+ 1768 0068 00000000 		.4byte	.LFB46
+ 1769 006c 34000000 		.4byte	.LFE46
+ 1770 0070 00000000 		.4byte	.LFB47
+ 1771 0074 80000000 		.4byte	.LFE47
+ 1772 0078 00000000 		.4byte	.LFB48
+ 1773 007c 0A000000 		.4byte	.LFE48
+ 1774 0080 00000000 		.4byte	.LFB49
+ 1775 0084 0A000000 		.4byte	.LFE49
+ 1776 0088 00000000 		.4byte	.LFB50
+ 1777 008c 0A000000 		.4byte	.LFE50
+ 1778 0090 00000000 		.4byte	.LFB51
+ 1779 0094 0A000000 		.4byte	.LFE51
+ 1780 0098 00000000 		.4byte	.LFB52
+ 1781 009c 2C000000 		.4byte	.LFE52
+ 1782 00a0 00000000 		.4byte	.LFB53
+ 1783 00a4 28000000 		.4byte	.LFE53
+ 1784 00a8 00000000 		.4byte	.LFB54
+ 1785 00ac 28000000 		.4byte	.LFE54
+ 1786 00b0 00000000 		.4byte	.LFB55
+ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccJjUaFv.s 			page 39
 
 
- 1750      3838334C 
- 1750      5F676574 
- 1750      49444100 
- 1751              	.LASF45:
- 1752 0101 484D4335 		.ascii	"HMC5883L_getIDB\000"
- 1752      3838334C 
- 1752      5F676574 
- 1752      49444200 
- 1753              	.LASF13:
- 1754 0111 666C6F61 		.ascii	"float\000"
- 1754      7400
- 1755              	.LASF50:
- 1756 0117 474E5520 		.ascii	"GNU C 4.8.4 20140526 (release) [ARM/embedded-4_8-br"
- 1756      4320342E 
- 1756      382E3420 
- 1756      32303134 
- 1756      30353236 
- 1757 014a 616E6368 		.ascii	"anch revision 211358] -mcpu=cortex-m0 -mthumb -g -O"
- 1757      20726576 
- 1757      6973696F 
- 1757      6E203231 
- 1757      31333538 
- 1758 017d 30202D66 		.ascii	"0 -ffunction-sections\000"
- 1758      66756E63 
- 1758      74696F6E 
- 1758      2D736563 
- 1758      74696F6E 
- 1759              	.LASF34:
- 1760 0193 484D4335 		.ascii	"HMC5883L_setGain\000"
- 1760      3838334C 
- 1760      5F736574 
- 1760      4761696E 
- 1760      00
- 1761              	.LASF1:
- 1762 01a4 756E7369 		.ascii	"unsigned char\000"
- 1762      676E6564 
- 1762      20636861 
- 1762      7200
- 1763              	.LASF54:
- 1764 01b2 484D4335 		.ascii	"HMC5883L_getMode\000"
- 1764      3838334C 
- 1764      5F676574 
- 1764      4D6F6465 
- 1764      00
- 1765              	.LASF7:
- 1766 01c3 6C6F6E67 		.ascii	"long unsigned int\000"
- 1766      20756E73 
- 1766      69676E65 
- 1766      6420696E 
- 1766      7400
- 1767              	.LASF43:
- 1768 01d5 484D4335 		.ascii	"HMC5883L_getReadyStatus\000"
- 1768      3838334C 
- 1768      5F676574 
- 1768      52656164 
- 1768      79537461 
- 1769              	.LASF5:
-ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccy6hVZJ.s 			page 40
-
-
- 1770 01ed 73686F72 		.ascii	"short unsigned int\000"
- 1770      7420756E 
- 1770      7369676E 
- 1770      65642069 
- 1770      6E7400
- 1771              	.LASF22:
- 1772 0200 484D4335 		.ascii	"HMC5883L_getSampleAveraging\000"
- 1772      3838334C 
- 1772      5F676574 
- 1772      53616D70 
- 1772      6C654176 
- 1773              	.LASF18:
- 1774 021c 484D4335 		.ascii	"HMC5883L_Init\000"
- 1774      3838334C 
- 1774      5F496E69 
- 1774      7400
- 1775              	.LASF14:
- 1776 022a 646F7562 		.ascii	"double\000"
- 1776      6C6500
- 1777              	.LASF28:
- 1778 0231 484D4335 		.ascii	"HMC5883L_setDataRate\000"
- 1778      3838334C 
- 1778      5F736574 
- 1778      44617461 
- 1778      52617465 
- 1779              	.LASF30:
- 1780 0246 484D4335 		.ascii	"HMC5883L_getMeasurementBias\000"
- 1780      3838334C 
- 1780      5F676574 
- 1780      4D656173 
- 1780      7572656D 
- 1781              	.LASF3:
- 1782 0262 5F5F696E 		.ascii	"__int16_t\000"
- 1782      7431365F 
- 1782      7400
- 1783              	.LASF53:
- 1784 026c 484D4335 		.ascii	"HMC5883L_initialize\000"
- 1784      3838334C 
- 1784      5F696E69 
- 1784      7469616C 
- 1784      697A6500 
- 1785              	.LASF10:
- 1786 0280 756E7369 		.ascii	"unsigned int\000"
- 1786      676E6564 
- 1786      20696E74 
- 1786      00
- 1787              	.LASF25:
- 1788 028d 61646472 		.ascii	"address\000"
- 1788      65737300 
- 1789              	.LASF9:
- 1790 0295 6C6F6E67 		.ascii	"long long unsigned int\000"
- 1790      206C6F6E 
- 1790      6720756E 
- 1790      7369676E 
- 1790      65642069 
- 1791              	.LASF11:
- 1792 02ac 75696E74 		.ascii	"uint8_t\000"
-ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccy6hVZJ.s 			page 41
-
-
- 1792      385F7400 
- 1793              	.LASF26:
- 1794 02b4 61766572 		.ascii	"averaging\000"
- 1794      6167696E 
- 1794      6700
- 1795              	.LASF49:
- 1796 02be 6D6F6465 		.ascii	"mode\000"
- 1796      00
- 1797              	.LASF12:
- 1798 02c3 696E7431 		.ascii	"int16_t\000"
- 1798      365F7400 
- 1799              	.LASF24:
- 1800 02cb 484D4335 		.ascii	"HMC5883L_setSampleAveraging\000"
+ 1787 00b4 28000000 		.4byte	.LFE55
+ 1788 00b8 00000000 		.4byte	0
+ 1789 00bc 00000000 		.4byte	0
+ 1790              		.section	.debug_line,"",%progbits
+ 1791              	.Ldebug_line0:
+ 1792 0000 E9020000 		.section	.debug_str,"MS",%progbits,1
+ 1792      02003101 
+ 1792      00000201 
+ 1792      FB0E0D00 
+ 1792      01010101 
+ 1793              	.LASF2:
+ 1794 0000 5F5F7569 		.ascii	"__uint8_t\000"
+ 1794      6E74385F 
+ 1794      7400
+ 1795              	.LASF20:
+ 1796 000a 5F426F6F 		.ascii	"_Bool\000"
+ 1796      6C00
+ 1797              	.LASF52:
+ 1798 0010 484D4335 		.ascii	"HMC5883L_initialize\000"
+ 1798      3838334C 
+ 1798      5F696E69 
+ 1798      7469616C 
+ 1798      697A6500 
+ 1799              	.LASF45:
+ 1800 0024 484D4335 		.ascii	"HMC5883L_getIDC\000"
  1800      3838334C 
- 1800      5F736574 
- 1800      53616D70 
- 1800      6C654176 
- 1801              	.LASF16:
- 1802 02e7 73697A65 		.ascii	"sizetype\000"
- 1802      74797065 
- 1802      00
+ 1800      5F676574 
+ 1800      49444300 
+ 1801              	.LASF41:
+ 1802 0034 484D4335 		.ascii	"HMC5883L_getLockStatus\000"
+ 1802      3838334C 
+ 1802      5F676574 
+ 1802      4C6F636B 
+ 1802      53746174 
  1803              	.LASF36:
- 1804 02f0 484D4335 		.ascii	"HMC5883L_setMode\000"
- 1804      3838334C 
- 1804      5F736574 
- 1804      4D6F6465 
- 1804      00
- 1805              	.LASF8:
- 1806 0301 6C6F6E67 		.ascii	"long long int\000"
- 1806      206C6F6E 
- 1806      6720696E 
- 1806      7400
- 1807              	.LASF32:
- 1808 030f 62696173 		.ascii	"bias\000"
+ 1804 004b 6E65774D 		.ascii	"newMode\000"
+ 1804      6F646500 
+ 1805              	.LASF32:
+ 1806 0053 484D4335 		.ascii	"HMC5883L_getGain\000"
+ 1806      3838334C 
+ 1806      5F676574 
+ 1806      4761696E 
+ 1806      00
+ 1807              	.LASF28:
+ 1808 0064 72617465 		.ascii	"rate\000"
  1808      00
- 1809              	.LASF38:
- 1810 0314 484D4335 		.ascii	"HMC5883L_getHeading\000"
- 1810      3838334C 
- 1810      5F676574 
- 1810      48656164 
- 1810      696E6700 
- 1811              	.LASF51:
- 1812 0328 2E5C686D 		.ascii	".\\hmc5883l.c\000"
- 1812      63353838 
- 1812      336C2E63 
- 1812      00
- 1813              	.LASF4:
- 1814 0335 73686F72 		.ascii	"short int\000"
- 1814      7420696E 
- 1814      7400
- 1815              	.LASF47:
- 1816 033f 64657641 		.ascii	"devAddr\000"
- 1816      64647200 
- 1817              	.LASF48:
- 1818 0347 62756666 		.ascii	"buffer\000"
- 1818      657200
- 1819              	.LASF31:
-ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccy6hVZJ.s 			page 42
+ 1809              	.LASF51:
+ 1810 0069 433A5C55 		.ascii	"C:\\Users\\Sam\\OneDrive\\Github\\PSoC-4-Compass-Se"
+ 1810      73657273 
+ 1810      5C53616D 
+ 1810      5C4F6E65 
+ 1810      44726976 
+ 1811 0097 6E736F72 		.ascii	"nsor\\PSoC 4 Compass Modbus Slave.cydsn\000"
+ 1811      5C50536F 
+ 1811      43203420 
+ 1811      436F6D70 
+ 1811      61737320 
+ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccJjUaFv.s 			page 40
 
 
- 1820 034e 484D4335 		.ascii	"HMC5883L_setMeasurementBias\000"
- 1820      3838334C 
- 1820      5F736574 
- 1820      4D656173 
- 1820      7572656D 
- 1821              	.LASF23:
- 1822 036a 484D4335 		.ascii	"HMC5883L_SetCustomAddress\000"
- 1822      3838334C 
- 1822      5F536574 
- 1822      43757374 
- 1822      6F6D4164 
- 1823              	.LASF6:
- 1824 0384 6C6F6E67 		.ascii	"long int\000"
- 1824      20696E74 
- 1824      00
- 1825              	.LASF15:
- 1826 038d 63686172 		.ascii	"char\000"
- 1826      00
- 1827              	.LASF17:
- 1828 0392 6C6F6E67 		.ascii	"long double\000"
- 1828      20646F75 
- 1828      626C6500 
- 1829              	.LASF0:
- 1830 039e 7369676E 		.ascii	"signed char\000"
- 1830      65642063 
- 1830      68617200 
- 1831              	.LASF39:
- 1832 03aa 484D4335 		.ascii	"HMC5883L_getHeadingX\000"
- 1832      3838334C 
- 1832      5F676574 
- 1832      48656164 
- 1832      696E6758 
- 1833              	.LASF40:
- 1834 03bf 484D4335 		.ascii	"HMC5883L_getHeadingY\000"
- 1834      3838334C 
- 1834      5F676574 
- 1834      48656164 
- 1834      696E6759 
- 1835              	.LASF41:
- 1836 03d4 484D4335 		.ascii	"HMC5883L_getHeadingZ\000"
- 1836      3838334C 
- 1836      5F676574 
- 1836      48656164 
- 1836      696E675A 
- 1837              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.8.4 20140526 (release) [ARM/embedded-4_8-br
+ 1812              	.LASF26:
+ 1813 00be 484D4335 		.ascii	"HMC5883L_getDataRate\000"
+ 1813      3838334C 
+ 1813      5F676574 
+ 1813      44617461 
+ 1813      52617465 
+ 1814              	.LASF34:
+ 1815 00d3 6761696E 		.ascii	"gain\000"
+ 1815      00
+ 1816              	.LASF19:
+ 1817 00d8 484D4335 		.ascii	"HMC5883L_testConnection\000"
+ 1817      3838334C 
+ 1817      5F746573 
+ 1817      74436F6E 
+ 1817      6E656374 
+ 1818              	.LASF43:
+ 1819 00f0 484D4335 		.ascii	"HMC5883L_getIDA\000"
+ 1819      3838334C 
+ 1819      5F676574 
+ 1819      49444100 
+ 1820              	.LASF44:
+ 1821 0100 484D4335 		.ascii	"HMC5883L_getIDB\000"
+ 1821      3838334C 
+ 1821      5F676574 
+ 1821      49444200 
+ 1822              	.LASF13:
+ 1823 0110 666C6F61 		.ascii	"float\000"
+ 1823      7400
+ 1824              	.LASF49:
+ 1825 0116 474E5520 		.ascii	"GNU C 4.8.4 20140526 (release) [ARM/embedded-4_8-br"
+ 1825      4320342E 
+ 1825      382E3420 
+ 1825      32303134 
+ 1825      30353236 
+ 1826 0149 616E6368 		.ascii	"anch revision 211358] -mcpu=cortex-m0 -mthumb -g -O"
+ 1826      20726576 
+ 1826      6973696F 
+ 1826      6E203231 
+ 1826      31333538 
+ 1827 017c 30202D66 		.ascii	"0 -ffunction-sections\000"
+ 1827      66756E63 
+ 1827      74696F6E 
+ 1827      2D736563 
+ 1827      74696F6E 
+ 1828              	.LASF33:
+ 1829 0192 484D4335 		.ascii	"HMC5883L_setGain\000"
+ 1829      3838334C 
+ 1829      5F736574 
+ 1829      4761696E 
+ 1829      00
+ 1830              	.LASF1:
+ 1831 01a3 756E7369 		.ascii	"unsigned char\000"
+ 1831      676E6564 
+ 1831      20636861 
+ 1831      7200
+ 1832              	.LASF53:
+ 1833 01b1 484D4335 		.ascii	"HMC5883L_getMode\000"
+ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccJjUaFv.s 			page 41
+
+
+ 1833      3838334C 
+ 1833      5F676574 
+ 1833      4D6F6465 
+ 1833      00
+ 1834              	.LASF7:
+ 1835 01c2 6C6F6E67 		.ascii	"long unsigned int\000"
+ 1835      20756E73 
+ 1835      69676E65 
+ 1835      6420696E 
+ 1835      7400
+ 1836              	.LASF42:
+ 1837 01d4 484D4335 		.ascii	"HMC5883L_getReadyStatus\000"
+ 1837      3838334C 
+ 1837      5F676574 
+ 1837      52656164 
+ 1837      79537461 
+ 1838              	.LASF5:
+ 1839 01ec 73686F72 		.ascii	"short unsigned int\000"
+ 1839      7420756E 
+ 1839      7369676E 
+ 1839      65642069 
+ 1839      6E7400
+ 1840              	.LASF21:
+ 1841 01ff 484D4335 		.ascii	"HMC5883L_getSampleAveraging\000"
+ 1841      3838334C 
+ 1841      5F676574 
+ 1841      53616D70 
+ 1841      6C654176 
+ 1842              	.LASF18:
+ 1843 021b 484D4335 		.ascii	"HMC5883L_Init\000"
+ 1843      3838334C 
+ 1843      5F496E69 
+ 1843      7400
+ 1844              	.LASF14:
+ 1845 0229 646F7562 		.ascii	"double\000"
+ 1845      6C6500
+ 1846              	.LASF27:
+ 1847 0230 484D4335 		.ascii	"HMC5883L_setDataRate\000"
+ 1847      3838334C 
+ 1847      5F736574 
+ 1847      44617461 
+ 1847      52617465 
+ 1848              	.LASF29:
+ 1849 0245 484D4335 		.ascii	"HMC5883L_getMeasurementBias\000"
+ 1849      3838334C 
+ 1849      5F676574 
+ 1849      4D656173 
+ 1849      7572656D 
+ 1850              	.LASF3:
+ 1851 0261 5F5F696E 		.ascii	"__int16_t\000"
+ 1851      7431365F 
+ 1851      7400
+ 1852              	.LASF10:
+ 1853 026b 756E7369 		.ascii	"unsigned int\000"
+ 1853      676E6564 
+ 1853      20696E74 
+ 1853      00
+ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccJjUaFv.s 			page 42
+
+
+ 1854              	.LASF24:
+ 1855 0278 61646472 		.ascii	"address\000"
+ 1855      65737300 
+ 1856              	.LASF9:
+ 1857 0280 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 1857      206C6F6E 
+ 1857      6720756E 
+ 1857      7369676E 
+ 1857      65642069 
+ 1858              	.LASF11:
+ 1859 0297 75696E74 		.ascii	"uint8_t\000"
+ 1859      385F7400 
+ 1860              	.LASF25:
+ 1861 029f 61766572 		.ascii	"averaging\000"
+ 1861      6167696E 
+ 1861      6700
+ 1862              	.LASF48:
+ 1863 02a9 6D6F6465 		.ascii	"mode\000"
+ 1863      00
+ 1864              	.LASF12:
+ 1865 02ae 696E7431 		.ascii	"int16_t\000"
+ 1865      365F7400 
+ 1866              	.LASF23:
+ 1867 02b6 484D4335 		.ascii	"HMC5883L_setSampleAveraging\000"
+ 1867      3838334C 
+ 1867      5F736574 
+ 1867      53616D70 
+ 1867      6C654176 
+ 1868              	.LASF16:
+ 1869 02d2 73697A65 		.ascii	"sizetype\000"
+ 1869      74797065 
+ 1869      00
+ 1870              	.LASF35:
+ 1871 02db 484D4335 		.ascii	"HMC5883L_setMode\000"
+ 1871      3838334C 
+ 1871      5F736574 
+ 1871      4D6F6465 
+ 1871      00
+ 1872              	.LASF8:
+ 1873 02ec 6C6F6E67 		.ascii	"long long int\000"
+ 1873      206C6F6E 
+ 1873      6720696E 
+ 1873      7400
+ 1874              	.LASF31:
+ 1875 02fa 62696173 		.ascii	"bias\000"
+ 1875      00
+ 1876              	.LASF37:
+ 1877 02ff 484D4335 		.ascii	"HMC5883L_getHeading\000"
+ 1877      3838334C 
+ 1877      5F676574 
+ 1877      48656164 
+ 1877      696E6700 
+ 1878              	.LASF50:
+ 1879 0313 2E5C686D 		.ascii	".\\hmc5883l.c\000"
+ 1879      63353838 
+ 1879      336C2E63 
+ 1879      00
+ARM GAS  C:\Users\Sam\AppData\Local\Temp\ccJjUaFv.s 			page 43
+
+
+ 1880              	.LASF4:
+ 1881 0320 73686F72 		.ascii	"short int\000"
+ 1881      7420696E 
+ 1881      7400
+ 1882              	.LASF46:
+ 1883 032a 64657641 		.ascii	"devAddr\000"
+ 1883      64647200 
+ 1884              	.LASF47:
+ 1885 0332 62756666 		.ascii	"buffer\000"
+ 1885      657200
+ 1886              	.LASF30:
+ 1887 0339 484D4335 		.ascii	"HMC5883L_setMeasurementBias\000"
+ 1887      3838334C 
+ 1887      5F736574 
+ 1887      4D656173 
+ 1887      7572656D 
+ 1888              	.LASF22:
+ 1889 0355 484D4335 		.ascii	"HMC5883L_SetCustomAddress\000"
+ 1889      3838334C 
+ 1889      5F536574 
+ 1889      43757374 
+ 1889      6F6D4164 
+ 1890              	.LASF6:
+ 1891 036f 6C6F6E67 		.ascii	"long int\000"
+ 1891      20696E74 
+ 1891      00
+ 1892              	.LASF15:
+ 1893 0378 63686172 		.ascii	"char\000"
+ 1893      00
+ 1894              	.LASF17:
+ 1895 037d 6C6F6E67 		.ascii	"long double\000"
+ 1895      20646F75 
+ 1895      626C6500 
+ 1896              	.LASF0:
+ 1897 0389 7369676E 		.ascii	"signed char\000"
+ 1897      65642063 
+ 1897      68617200 
+ 1898              	.LASF38:
+ 1899 0395 484D4335 		.ascii	"HMC5883L_getHeadingX\000"
+ 1899      3838334C 
+ 1899      5F676574 
+ 1899      48656164 
+ 1899      696E6758 
+ 1900              	.LASF39:
+ 1901 03aa 484D4335 		.ascii	"HMC5883L_getHeadingY\000"
+ 1901      3838334C 
+ 1901      5F676574 
+ 1901      48656164 
+ 1901      696E6759 
+ 1902              	.LASF40:
+ 1903 03bf 484D4335 		.ascii	"HMC5883L_getHeadingZ\000"
+ 1903      3838334C 
+ 1903      5F676574 
+ 1903      48656164 
+ 1903      696E675A 
+ 1904              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.8.4 20140526 (release) [ARM/embedded-4_8-br
