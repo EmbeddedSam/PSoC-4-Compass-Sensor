@@ -55,6 +55,7 @@ double sx,sy,sz;
 double offsetsx,offsetsy;
 float scale = 0.92;
 double bearing = 0;
+double unchangedBearing = 0;
 bool compassOnline = 0;
 uint16 xoffset,yoffset;
 float pidSpeed;
@@ -114,7 +115,10 @@ int main()
                 offsetsx = ((double)((int16)holdingReg[4])) /10.0;
                 offsetsy = ((double)((int16)holdingReg[5])) /10.0;  
                 
-                bearing  = atan2(((sy/10.0) + offsetsy), ((sx/10.0) + offsetsx)); 
+                bearing  = atan2(((sy/10.0) + offsetsy), ((sx/10.0) + offsetsx));
+                unchangedBearing = bearing;
+                unchangedBearing = unchangedBearing*(180.0 / M_PI);//convert to degrees
+                holdingReg[11] = (int16)unchangedBearing; //store to -180 to 180 bearing;
                 
                 if (bearing < 0)
                     bearing += 2 * M_PI;
@@ -178,22 +182,29 @@ int calculatePID(float currentValue, float setpoint)
     int   control = 0;
     
     error = setpoint - currentValue;
+    
+    if(error > 360)
+        error = 360;
+    if(error < -360)
+        error = -360;
+    
+    //Clamping to correct for 0=360 errrors
+     if (error > 180) {
+       error -= 360;
+     }
+
+     if (error < -180) {
+       error += 360;
+     }
     integral = (integral + error);
     integral = 0.6 * integral; //damping integral 
 	derivative = (error - lastError);
 	fcontrol =  (mb.Kp * error); 
 	fcontrol += (mb.Kd * derivative);
 	fcontrol += (mb.Ki * integral);
-    control = (int)fcontrol;
-    if(control > 512)
-    {
-        control = 512;
-    }
-    else if (control < -512)
-    {
-        control = -512;
-    }
-    return control;   
+
+     control = (int)fcontrol;
+     return control;
 }
 
 

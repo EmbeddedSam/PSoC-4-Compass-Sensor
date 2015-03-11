@@ -825,7 +825,7 @@ END GROUP
                 0x00000080                CY_FLASH_ROW_SIZE = 0x80
                 0x00000001                CY_APPL_NUM = 0x1
                 0x00000040                CY_METADATA_SIZE = 0x40
-                0x20000380                PROVIDE (__cy_heap_start, _end)
+                0x20000388                PROVIDE (__cy_heap_start, _end)
                 0x00000001                PROVIDE (__cy_region_num, ((__cy_regions_end - __cy_regions) / 0x10))
                 0x20001000                PROVIDE (__cy_stack, (ORIGIN (ram) + 0x1000))
                 0x20000c00                PROVIDE (__cy_heap_end, (__cy_stack - 0x400))
@@ -836,7 +836,7 @@ END GROUP
                 0x00003f80                appl2_start = (appl1_start + ALIGN ((((0x8000 - appl1_start) - (0x2 * CY_FLASH_ROW_SIZE)) / 0x2), CY_FLASH_ROW_SIZE))
                 0x00000000                appl_start = (CY_APPL_NUM == 0x1)?appl1_start:appl2_start
 
-.text           0x00000000     0x6670
+.text           0x00000000     0x6700
  CREATE_OBJECT_SYMBOLS
                 0x00000000                PROVIDE (__cy_interrupt_vector, RomVectors)
  *(.romvectors)
@@ -855,398 +855,398 @@ END GROUP
                 0x00000320                . = MAX (., 0x100)
  *(.text .text.* .gnu.linkonce.t.*)
  .text          0x00000320       0x60 c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv6-m/crtbegin.o
- .text.main     0x00000380      0x3c0 .\CortexM0\ARM_GCC_484\Debug\main.o
+ .text.main     0x00000380      0x408 .\CortexM0\ARM_GCC_484\Debug\main.o
                 0x00000380                main
  .text.scaleModbusPIDConstants
-                0x00000740       0xa0 .\CortexM0\ARM_GCC_484\Debug\main.o
-                0x00000740                scaleModbusPIDConstants
+                0x00000788       0xa0 .\CortexM0\ARM_GCC_484\Debug\main.o
+                0x00000788                scaleModbusPIDConstants
  .text.calculatePID
-                0x000007e0      0x110 .\CortexM0\ARM_GCC_484\Debug\main.o
-                0x000007e0                calculatePID
+                0x00000828      0x158 .\CortexM0\ARM_GCC_484\Debug\main.o
+                0x00000828                calculatePID
  .text.messageReceived_isr
-                0x000008f0       0x30 .\CortexM0\ARM_GCC_484\Debug\interrupts.o
-                0x000008f0                messageReceived_isr
+                0x00000980       0x30 .\CortexM0\ARM_GCC_484\Debug\interrupts.o
+                0x00000980                messageReceived_isr
  .text.endOfMessage_isr
-                0x00000920       0x30 .\CortexM0\ARM_GCC_484\Debug\interrupts.o
-                0x00000920                endOfMessage_isr
+                0x000009b0       0x30 .\CortexM0\ARM_GCC_484\Debug\interrupts.o
+                0x000009b0                endOfMessage_isr
  .text.speed_isr
-                0x00000950       0x18 .\CortexM0\ARM_GCC_484\Debug\interrupts.o
-                0x00000950                speed_isr
+                0x000009e0       0x18 .\CortexM0\ARM_GCC_484\Debug\interrupts.o
+                0x000009e0                speed_isr
  .text.decodeMessage
-                0x00000968       0xd8 .\CortexM0\ARM_GCC_484\Debug\Modbus.o
-                0x00000968                decodeMessage
+                0x000009f8       0xd8 .\CortexM0\ARM_GCC_484\Debug\Modbus.o
+                0x000009f8                decodeMessage
  .text.checkIfEndOfMessage
-                0x00000a40       0xfc .\CortexM0\ARM_GCC_484\Debug\Modbus.o
-                0x00000a40                checkIfEndOfMessage
+                0x00000ad0       0xfc .\CortexM0\ARM_GCC_484\Debug\Modbus.o
+                0x00000ad0                checkIfEndOfMessage
  .text.processMessage
-                0x00000b3c       0x98 .\CortexM0\ARM_GCC_484\Debug\Modbus.o
-                0x00000b3c                processMessage
+                0x00000bcc       0x98 .\CortexM0\ARM_GCC_484\Debug\Modbus.o
+                0x00000bcc                processMessage
  .text.readCoil
-                0x00000bd4      0x298 .\CortexM0\ARM_GCC_484\Debug\Modbus.o
-                0x00000bd4                readCoil
+                0x00000c64      0x298 .\CortexM0\ARM_GCC_484\Debug\Modbus.o
+                0x00000c64                readCoil
  .text.readInputCoil
-                0x00000e6c      0x298 .\CortexM0\ARM_GCC_484\Debug\Modbus.o
-                0x00000e6c                readInputCoil
+                0x00000efc      0x298 .\CortexM0\ARM_GCC_484\Debug\Modbus.o
+                0x00000efc                readInputCoil
  .text.readInputReg
-                0x00001104      0x1ac .\CortexM0\ARM_GCC_484\Debug\Modbus.o
-                0x00001104                readInputReg
- .text.readReg  0x000012b0      0x1ac .\CortexM0\ARM_GCC_484\Debug\Modbus.o
-                0x000012b0                readReg
+                0x00001194      0x1ac .\CortexM0\ARM_GCC_484\Debug\Modbus.o
+                0x00001194                readInputReg
+ .text.readReg  0x00001340      0x1ac .\CortexM0\ARM_GCC_484\Debug\Modbus.o
+                0x00001340                readReg
  .text.writeReg
-                0x0000145c      0x100 .\CortexM0\ARM_GCC_484\Debug\Modbus.o
-                0x0000145c                writeReg
+                0x000014ec      0x100 .\CortexM0\ARM_GCC_484\Debug\Modbus.o
+                0x000014ec                writeReg
  .text.writeMultipleRegs
-                0x0000155c      0x188 .\CortexM0\ARM_GCC_484\Debug\Modbus.o
-                0x0000155c                writeMultipleRegs
+                0x000015ec      0x188 .\CortexM0\ARM_GCC_484\Debug\Modbus.o
+                0x000015ec                writeMultipleRegs
  .text.writeCoil
-                0x000016e4      0x110 .\CortexM0\ARM_GCC_484\Debug\Modbus.o
-                0x000016e4                writeCoil
+                0x00001774      0x110 .\CortexM0\ARM_GCC_484\Debug\Modbus.o
+                0x00001774                writeCoil
  .text.writeMultipleCoils
-                0x000017f4      0x264 .\CortexM0\ARM_GCC_484\Debug\Modbus.o
-                0x000017f4                writeMultipleCoils
+                0x00001884      0x264 .\CortexM0\ARM_GCC_484\Debug\Modbus.o
+                0x00001884                writeMultipleCoils
  .text.generateCRC
-                0x00001a58       0xac .\CortexM0\ARM_GCC_484\Debug\Modbus.o
-                0x00001a58                generateCRC
+                0x00001ae8       0xac .\CortexM0\ARM_GCC_484\Debug\Modbus.o
+                0x00001ae8                generateCRC
  .text.checkCRC
-                0x00001b04       0xc0 .\CortexM0\ARM_GCC_484\Debug\Modbus.o
-                0x00001b04                checkCRC
+                0x00001b94       0xc0 .\CortexM0\ARM_GCC_484\Debug\Modbus.o
+                0x00001b94                checkCRC
  .text.responseFinished
-                0x00001bc4       0x40 .\CortexM0\ARM_GCC_484\Debug\Modbus.o
-                0x00001bc4                responseFinished
+                0x00001c54       0x40 .\CortexM0\ARM_GCC_484\Debug\Modbus.o
+                0x00001c54                responseFinished
  .text.I2CReadBytes
-                0x00001c04       0x84 .\CortexM0\ARM_GCC_484\Debug\i2cfunctions.o
-                0x00001c04                I2CReadBytes
+                0x00001c94       0x84 .\CortexM0\ARM_GCC_484\Debug\i2cfunctions.o
+                0x00001c94                I2CReadBytes
  .text.I2CWriteBytes
-                0x00001c88       0x64 .\CortexM0\ARM_GCC_484\Debug\i2cfunctions.o
-                0x00001c88                I2CWriteBytes
+                0x00001d18       0x64 .\CortexM0\ARM_GCC_484\Debug\i2cfunctions.o
+                0x00001d18                I2CWriteBytes
  .text.I2CWriteByte
-                0x00001cec       0x2c .\CortexM0\ARM_GCC_484\Debug\i2cfunctions.o
-                0x00001cec                I2CWriteByte
+                0x00001d7c       0x2c .\CortexM0\ARM_GCC_484\Debug\i2cfunctions.o
+                0x00001d7c                I2CWriteByte
  .text.HMC5883L_Init
-                0x00001d18       0x14 .\CortexM0\ARM_GCC_484\Debug\hmc5883l.o
-                0x00001d18                HMC5883L_Init
+                0x00001da8       0x14 .\CortexM0\ARM_GCC_484\Debug\hmc5883l.o
+                0x00001da8                HMC5883L_Init
  .text.HMC5883L_initialize
-                0x00001d2c       0x28 .\CortexM0\ARM_GCC_484\Debug\hmc5883l.o
-                0x00001d2c                HMC5883L_initialize
+                0x00001dbc       0x28 .\CortexM0\ARM_GCC_484\Debug\hmc5883l.o
+                0x00001dbc                HMC5883L_initialize
  .text.HMC5883L_testConnection
-                0x00001d54       0x40 .\CortexM0\ARM_GCC_484\Debug\hmc5883l.o
-                0x00001d54                HMC5883L_testConnection
+                0x00001de4       0x40 .\CortexM0\ARM_GCC_484\Debug\hmc5883l.o
+                0x00001de4                HMC5883L_testConnection
  .text.HMC5883L_setGain
-                0x00001d94       0x2c .\CortexM0\ARM_GCC_484\Debug\hmc5883l.o
-                0x00001d94                HMC5883L_setGain
+                0x00001e24       0x2c .\CortexM0\ARM_GCC_484\Debug\hmc5883l.o
+                0x00001e24                HMC5883L_setGain
  .text.HMC5883L_setMode
-                0x00001dc0       0x34 .\CortexM0\ARM_GCC_484\Debug\hmc5883l.o
-                0x00001dc0                HMC5883L_setMode
+                0x00001e50       0x34 .\CortexM0\ARM_GCC_484\Debug\hmc5883l.o
+                0x00001e50                HMC5883L_setMode
  .text.HMC5883L_getHeading
-                0x00001df4       0x80 .\CortexM0\ARM_GCC_484\Debug\hmc5883l.o
-                0x00001df4                HMC5883L_getHeading
+                0x00001e84       0x80 .\CortexM0\ARM_GCC_484\Debug\hmc5883l.o
+                0x00001e84                HMC5883L_getHeading
  .text.IntDefaultHandler
-                0x00001e74        0x8 .\CortexM0\ARM_GCC_484\Debug\Cm0Start.o
-                0x00001e74                IntDefaultHandler
- .text.Start_c  0x00001e7c       0x98 .\CortexM0\ARM_GCC_484\Debug\Cm0Start.o
-                0x00001e7c                Start_c
+                0x00001f04        0x8 .\CortexM0\ARM_GCC_484\Debug\Cm0Start.o
+                0x00001f04                IntDefaultHandler
+ .text.Start_c  0x00001f0c       0x98 .\CortexM0\ARM_GCC_484\Debug\Cm0Start.o
+                0x00001f0c                Start_c
  .text.initialize_psoc
-                0x00001f14       0x64 .\CortexM0\ARM_GCC_484\Debug\Cm0Start.o
-                0x00001f14                initialize_psoc
+                0x00001fa4       0x64 .\CortexM0\ARM_GCC_484\Debug\Cm0Start.o
+                0x00001fa4                initialize_psoc
  .text.CYMEMZERO
-                0x00001f78       0x20 .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(cyfitter_cfg.o)
+                0x00002008       0x20 .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(cyfitter_cfg.o)
  .text.cfg_write_bytes32
-                0x00001f98       0x80 .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(cyfitter_cfg.o)
+                0x00002028       0x80 .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(cyfitter_cfg.o)
  .text.AnalogSetDefault
-                0x00002018        0x8 .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(cyfitter_cfg.o)
- .text          0x00002020       0x28 .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(CyBootAsmGnu.o)
-                0x00002020                CyDelayCycles
-                0x00002034                CyEnterCriticalSection
-                0x0000203c                CyExitCriticalSection
+                0x000020a8        0x8 .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(cyfitter_cfg.o)
+ .text          0x000020b0       0x28 .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(CyBootAsmGnu.o)
+                0x000020b0                CyDelayCycles
+                0x000020c4                CyEnterCriticalSection
+                0x000020cc                CyExitCriticalSection
  .text.CyIntSetVector
-                0x00002048       0x4c .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(CyLib.o)
-                0x00002048                CyIntSetVector
+                0x000020d8       0x4c .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(CyLib.o)
+                0x000020d8                CyIntSetVector
  .text.CyIntSetPriority
-                0x00002094       0xa8 .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(CyLib.o)
-                0x00002094                CyIntSetPriority
+                0x00002124       0xa8 .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(CyLib.o)
+                0x00002124                CyIntSetPriority
  .text.CyIntEnable
-                0x0000213c       0x2c .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(CyLib.o)
-                0x0000213c                CyIntEnable
+                0x000021cc       0x2c .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(CyLib.o)
+                0x000021cc                CyIntEnable
  .text.CyIntDisable
-                0x00002168       0x2c .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(CyLib.o)
-                0x00002168                CyIntDisable
- .text.CyHalt   0x00002194       0x14 .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(CyLib.o)
-                0x00002194                CyHalt
+                0x000021f8       0x2c .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(CyLib.o)
+                0x000021f8                CyIntDisable
+ .text.CyHalt   0x00002224       0x14 .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(CyLib.o)
+                0x00002224                CyHalt
  .text.CyDelayUs
-                0x000021a8       0x28 .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(CyLib.o)
-                0x000021a8                CyDelayUs
+                0x00002238       0x28 .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(CyLib.o)
+                0x00002238                CyDelayUs
  .text.MessageTimer_Init
-                0x000021d0       0x30 .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(MessageTimer.o)
-                0x000021d0                MessageTimer_Init
+                0x00002260       0x30 .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(MessageTimer.o)
+                0x00002260                MessageTimer_Init
  .text.MessageTimer_Enable
-                0x00002200       0x38 .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(MessageTimer.o)
-                0x00002200                MessageTimer_Enable
+                0x00002290       0x38 .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(MessageTimer.o)
+                0x00002290                MessageTimer_Enable
  .text.MessageTimer_Start
-                0x00002238       0x24 .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(MessageTimer.o)
-                0x00002238                MessageTimer_Start
+                0x000022c8       0x24 .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(MessageTimer.o)
+                0x000022c8                MessageTimer_Start
  .text.MessageTimer_Stop
-                0x0000225c       0x30 .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(MessageTimer.o)
-                0x0000225c                MessageTimer_Stop
+                0x000022ec       0x30 .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(MessageTimer.o)
+                0x000022ec                MessageTimer_Stop
  .text.MessageTimer_WriteCounter
-                0x0000228c       0x1c .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(MessageTimer.o)
-                0x0000228c                MessageTimer_WriteCounter
+                0x0000231c       0x1c .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(MessageTimer.o)
+                0x0000231c                MessageTimer_WriteCounter
  .text.MessageTimer_WritePeriod
-                0x000022a8       0x1c .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(MessageTimer.o)
-                0x000022a8                MessageTimer_WritePeriod
+                0x00002338       0x1c .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(MessageTimer.o)
+                0x00002338                MessageTimer_WritePeriod
  .text.MessageTimer_TriggerCommand
-                0x000022c4       0x3c .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(MessageTimer.o)
-                0x000022c4                MessageTimer_TriggerCommand
+                0x00002354       0x3c .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(MessageTimer.o)
+                0x00002354                MessageTimer_TriggerCommand
  .text.MessageTimer_SetInterruptMode
-                0x00002300       0x18 .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(MessageTimer.o)
-                0x00002300                MessageTimer_SetInterruptMode
+                0x00002390       0x18 .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(MessageTimer.o)
+                0x00002390                MessageTimer_SetInterruptMode
  .text.MessageTimer_GetInterruptSource
-                0x00002318       0x14 .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(MessageTimer.o)
-                0x00002318                MessageTimer_GetInterruptSource
+                0x000023a8       0x14 .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(MessageTimer.o)
+                0x000023a8                MessageTimer_GetInterruptSource
  .text.MessageTimer_ClearInterrupt
-                0x0000232c       0x18 .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(MessageTimer.o)
-                0x0000232c                MessageTimer_ClearInterrupt
+                0x000023bc       0x18 .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(MessageTimer.o)
+                0x000023bc                MessageTimer_ClearInterrupt
  .text.ModbusUART_Init
-                0x00002344        0xc .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(ModbusUART.o)
-                0x00002344                ModbusUART_Init
+                0x000023d4        0xc .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(ModbusUART.o)
+                0x000023d4                ModbusUART_Init
  .text.ModbusUART_Enable
-                0x00002350       0x20 .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(ModbusUART.o)
-                0x00002350                ModbusUART_Enable
+                0x000023e0       0x20 .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(ModbusUART.o)
+                0x000023e0                ModbusUART_Enable
  .text.ModbusUART_Start
-                0x00002370       0x24 .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(ModbusUART.o)
-                0x00002370                ModbusUART_Start
+                0x00002400       0x24 .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(ModbusUART.o)
+                0x00002400                ModbusUART_Start
  .text.ModbusUART_ScbEnableIntr
-                0x00002394        0x8 .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(ModbusUART.o)
+                0x00002424        0x8 .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(ModbusUART.o)
  .text.ModbusUART_SpiUartReadRxData
-                0x0000239c       0x20 .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(ModbusUART_SPI_UART.o)
-                0x0000239c                ModbusUART_SpiUartReadRxData
+                0x0000242c       0x20 .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(ModbusUART_SPI_UART.o)
+                0x0000242c                ModbusUART_SpiUartReadRxData
  .text.ModbusUART_SpiUartGetRxBufferSize
-                0x000023bc       0x20 .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(ModbusUART_SPI_UART.o)
-                0x000023bc                ModbusUART_SpiUartGetRxBufferSize
+                0x0000244c       0x20 .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(ModbusUART_SPI_UART.o)
+                0x0000244c                ModbusUART_SpiUartGetRxBufferSize
  .text.ModbusUART_SpiUartWriteTxData
-                0x000023dc       0x2c .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(ModbusUART_SPI_UART.o)
-                0x000023dc                ModbusUART_SpiUartWriteTxData
+                0x0000246c       0x2c .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(ModbusUART_SPI_UART.o)
+                0x0000246c                ModbusUART_SpiUartWriteTxData
  .text.ModbusUART_UartInit
-                0x00002408       0xac .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(ModbusUART_UART.o)
-                0x00002408                ModbusUART_UartInit
+                0x00002498       0xac .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(ModbusUART_UART.o)
+                0x00002498                ModbusUART_UartInit
  .text.ModbusUART_UartGetChar
-                0x000024b4       0x44 .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(ModbusUART_UART.o)
-                0x000024b4                ModbusUART_UartGetChar
+                0x00002544       0x44 .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(ModbusUART_UART.o)
+                0x00002544                ModbusUART_UartGetChar
  .text.MessageReceived_StartEx
-                0x000024f8       0x24 .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(MessageReceived.o)
-                0x000024f8                MessageReceived_StartEx
+                0x00002588       0x24 .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(MessageReceived.o)
+                0x00002588                MessageReceived_StartEx
  .text.MessageReceived_SetVector
-                0x0000251c       0x18 .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(MessageReceived.o)
-                0x0000251c                MessageReceived_SetVector
+                0x000025ac       0x18 .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(MessageReceived.o)
+                0x000025ac                MessageReceived_SetVector
  .text.MessageReceived_SetPriority
-                0x00002534       0x4c .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(MessageReceived.o)
-                0x00002534                MessageReceived_SetPriority
+                0x000025c4       0x4c .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(MessageReceived.o)
+                0x000025c4                MessageReceived_SetPriority
  .text.MessageReceived_Enable
-                0x00002580       0x14 .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(MessageReceived.o)
-                0x00002580                MessageReceived_Enable
+                0x00002610       0x14 .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(MessageReceived.o)
+                0x00002610                MessageReceived_Enable
  .text.MessageReceived_Disable
-                0x00002594       0x14 .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(MessageReceived.o)
-                0x00002594                MessageReceived_Disable
+                0x00002624       0x14 .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(MessageReceived.o)
+                0x00002624                MessageReceived_Disable
  .text.EndOfMessage_StartEx
-                0x000025a8       0x24 .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(EndOfMessage.o)
-                0x000025a8                EndOfMessage_StartEx
+                0x00002638       0x24 .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(EndOfMessage.o)
+                0x00002638                EndOfMessage_StartEx
  .text.EndOfMessage_Stop
-                0x000025cc       0x18 .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(EndOfMessage.o)
-                0x000025cc                EndOfMessage_Stop
+                0x0000265c       0x18 .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(EndOfMessage.o)
+                0x0000265c                EndOfMessage_Stop
  .text.EndOfMessage_SetVector
-                0x000025e4       0x1c .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(EndOfMessage.o)
-                0x000025e4                EndOfMessage_SetVector
+                0x00002674       0x1c .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(EndOfMessage.o)
+                0x00002674                EndOfMessage_SetVector
  .text.EndOfMessage_SetPriority
-                0x00002600       0x50 .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(EndOfMessage.o)
-                0x00002600                EndOfMessage_SetPriority
+                0x00002690       0x50 .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(EndOfMessage.o)
+                0x00002690                EndOfMessage_SetPriority
  .text.EndOfMessage_Enable
-                0x00002650       0x14 .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(EndOfMessage.o)
-                0x00002650                EndOfMessage_Enable
+                0x000026e0       0x14 .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(EndOfMessage.o)
+                0x000026e0                EndOfMessage_Enable
  .text.EndOfMessage_Disable
-                0x00002664       0x14 .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(EndOfMessage.o)
-                0x00002664                EndOfMessage_Disable
+                0x000026f4       0x14 .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(EndOfMessage.o)
+                0x000026f4                EndOfMessage_Disable
  .text.writeEnable_Write
-                0x00002678       0x48 .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(writeEnable.o)
-                0x00002678                writeEnable_Write
+                0x00002708       0x48 .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(writeEnable.o)
+                0x00002708                writeEnable_Write
  .text.SpeedTimer_Init
-                0x000026c0       0x4c .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(SpeedTimer.o)
-                0x000026c0                SpeedTimer_Init
+                0x00002750       0x4c .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(SpeedTimer.o)
+                0x00002750                SpeedTimer_Init
  .text.SpeedTimer_Enable
-                0x0000270c       0x20 .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(SpeedTimer.o)
-                0x0000270c                SpeedTimer_Enable
+                0x0000279c       0x20 .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(SpeedTimer.o)
+                0x0000279c                SpeedTimer_Enable
  .text.SpeedTimer_Start
-                0x0000272c       0x24 .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(SpeedTimer.o)
-                0x0000272c                SpeedTimer_Start
+                0x000027bc       0x24 .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(SpeedTimer.o)
+                0x000027bc                SpeedTimer_Start
  .text.SpeedTimer_SetInterruptMode
-                0x00002750       0x20 .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(SpeedTimer.o)
-                0x00002750                SpeedTimer_SetInterruptMode
+                0x000027e0       0x20 .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(SpeedTimer.o)
+                0x000027e0                SpeedTimer_SetInterruptMode
  .text.SpeedTimer_ReadStatusRegister
-                0x00002770       0x14 .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(SpeedTimer.o)
-                0x00002770                SpeedTimer_ReadStatusRegister
+                0x00002800       0x14 .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(SpeedTimer.o)
+                0x00002800                SpeedTimer_ReadStatusRegister
  .text.SpeedTimer_WritePeriod
-                0x00002784       0x20 .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(SpeedTimer.o)
-                0x00002784                SpeedTimer_WritePeriod
+                0x00002814       0x20 .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(SpeedTimer.o)
+                0x00002814                SpeedTimer_WritePeriod
  .text.SpeedTimer_ReadCapture
-                0x000027a4       0x14 .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(SpeedTimer.o)
-                0x000027a4                SpeedTimer_ReadCapture
+                0x00002834       0x14 .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(SpeedTimer.o)
+                0x00002834                SpeedTimer_ReadCapture
  .text.SpeedTimer_WriteCounter
-                0x000027b8       0x20 .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(SpeedTimer.o)
-                0x000027b8                SpeedTimer_WriteCounter
+                0x00002848       0x20 .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(SpeedTimer.o)
+                0x00002848                SpeedTimer_WriteCounter
  .text.SpeedTimer_ClearFIFO
-                0x000027d8       0x1c .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(SpeedTimer.o)
-                0x000027d8                SpeedTimer_ClearFIFO
+                0x00002868       0x1c .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(SpeedTimer.o)
+                0x00002868                SpeedTimer_ClearFIFO
  .text.SpeedInterrupt_StartEx
-                0x000027f4       0x24 .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(SpeedInterrupt.o)
-                0x000027f4                SpeedInterrupt_StartEx
+                0x00002884       0x24 .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(SpeedInterrupt.o)
+                0x00002884                SpeedInterrupt_StartEx
  .text.SpeedInterrupt_SetVector
-                0x00002818       0x18 .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(SpeedInterrupt.o)
-                0x00002818                SpeedInterrupt_SetVector
+                0x000028a8       0x18 .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(SpeedInterrupt.o)
+                0x000028a8                SpeedInterrupt_SetVector
  .text.SpeedInterrupt_SetPriority
-                0x00002830       0x50 .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(SpeedInterrupt.o)
-                0x00002830                SpeedInterrupt_SetPriority
+                0x000028c0       0x50 .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(SpeedInterrupt.o)
+                0x000028c0                SpeedInterrupt_SetPriority
  .text.SpeedInterrupt_Enable
-                0x00002880       0x14 .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(SpeedInterrupt.o)
-                0x00002880                SpeedInterrupt_Enable
+                0x00002910       0x14 .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(SpeedInterrupt.o)
+                0x00002910                SpeedInterrupt_Enable
  .text.SpeedInterrupt_Disable
-                0x00002894       0x14 .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(SpeedInterrupt.o)
-                0x00002894                SpeedInterrupt_Disable
+                0x00002924       0x14 .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(SpeedInterrupt.o)
+                0x00002924                SpeedInterrupt_Disable
  .text.I2C_MASTER_Init
-                0x000028a8        0xc .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(I2C_MASTER.o)
-                0x000028a8                I2C_MASTER_Init
+                0x00002938        0xc .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(I2C_MASTER.o)
+                0x00002938                I2C_MASTER_Init
  .text.I2C_MASTER_Enable
-                0x000028b4       0x20 .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(I2C_MASTER.o)
-                0x000028b4                I2C_MASTER_Enable
+                0x00002944       0x20 .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(I2C_MASTER.o)
+                0x00002944                I2C_MASTER_Enable
  .text.I2C_MASTER_Start
-                0x000028d4       0x24 .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(I2C_MASTER.o)
-                0x000028d4                I2C_MASTER_Start
+                0x00002964       0x24 .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(I2C_MASTER.o)
+                0x00002964                I2C_MASTER_Start
  .text.I2C_MASTER_ScbEnableIntr
-                0x000028f8       0x10 .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(I2C_MASTER.o)
+                0x00002988       0x10 .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(I2C_MASTER.o)
  .text.I2C_MASTER_I2CInit
-                0x00002908       0xe8 .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(I2C_MASTER_I2C.o)
-                0x00002908                I2C_MASTER_I2CInit
+                0x00002998       0xe8 .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(I2C_MASTER_I2C.o)
+                0x00002998                I2C_MASTER_I2CInit
  .text.I2C_MASTER_I2CMasterSendStart
-                0x000029f0      0x110 .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(I2C_MASTER_I2C_MASTER.o)
-                0x000029f0                I2C_MASTER_I2CMasterSendStart
+                0x00002a80      0x110 .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(I2C_MASTER_I2C_MASTER.o)
+                0x00002a80                I2C_MASTER_I2CMasterSendStart
  .text.I2C_MASTER_I2CMasterSendRestart
-                0x00002b00      0x108 .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(I2C_MASTER_I2C_MASTER.o)
-                0x00002b00                I2C_MASTER_I2CMasterSendRestart
+                0x00002b90      0x108 .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(I2C_MASTER_I2C_MASTER.o)
+                0x00002b90                I2C_MASTER_I2CMasterSendRestart
  .text.I2C_MASTER_I2CMasterSendStop
-                0x00002c08       0xbc .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(I2C_MASTER_I2C_MASTER.o)
-                0x00002c08                I2C_MASTER_I2CMasterSendStop
+                0x00002c98       0xbc .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(I2C_MASTER_I2C_MASTER.o)
+                0x00002c98                I2C_MASTER_I2CMasterSendStop
  .text.I2C_MASTER_I2CMasterWriteByte
-                0x00002cc4       0xcc .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(I2C_MASTER_I2C_MASTER.o)
-                0x00002cc4                I2C_MASTER_I2CMasterWriteByte
+                0x00002d54       0xcc .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(I2C_MASTER_I2C_MASTER.o)
+                0x00002d54                I2C_MASTER_I2CMasterWriteByte
  .text.I2C_MASTER_I2CMasterReadByte
-                0x00002d90       0xa8 .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(I2C_MASTER_I2C_MASTER.o)
-                0x00002d90                I2C_MASTER_I2CMasterReadByte
+                0x00002e20       0xa8 .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(I2C_MASTER_I2C_MASTER.o)
+                0x00002e20                I2C_MASTER_I2CMasterReadByte
  .text.I2C_MASTER_I2CReStartGeneration
-                0x00002e38       0xb0 .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(I2C_MASTER_I2C_MASTER.o)
-                0x00002e38                I2C_MASTER_I2CReStartGeneration
+                0x00002ec8       0xb0 .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(I2C_MASTER_I2C_MASTER.o)
+                0x00002ec8                I2C_MASTER_I2CReStartGeneration
  .text.I2C_MASTER_sda_Read
-                0x00002ee8       0x1c .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(I2C_MASTER_sda.o)
-                0x00002ee8                I2C_MASTER_sda_Read
+                0x00002f78       0x1c .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(I2C_MASTER_sda.o)
+                0x00002f78                I2C_MASTER_sda_Read
  .text.I2C_MASTER_scl_Write
-                0x00002f04       0x48 .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(I2C_MASTER_scl.o)
-                0x00002f04                I2C_MASTER_scl_Write
+                0x00002f94       0x48 .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(I2C_MASTER_scl.o)
+                0x00002f94                I2C_MASTER_scl_Write
  .text.I2C_MASTER_scl_Read
-                0x00002f4c       0x1c .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(I2C_MASTER_scl.o)
-                0x00002f4c                I2C_MASTER_scl_Read
+                0x00002fdc       0x1c .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(I2C_MASTER_scl.o)
+                0x00002fdc                I2C_MASTER_scl_Read
  .text.I2C_MASTER_I2C_ISR
-                0x00002f68      0x4ec .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(I2C_MASTER_I2C_INT.o)
-                0x00002f68                I2C_MASTER_I2C_ISR
- .text.atan2    0x00003454        0x8 c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m\libm.a(lib_a-w_atan2.o)
-                0x00003454                atan2
- *fill*         0x0000345c        0x4 
+                0x00002ff8      0x4ec .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(I2C_MASTER_I2C_INT.o)
+                0x00002ff8                I2C_MASTER_I2C_ISR
+ .text.atan2    0x000034e4        0x8 c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m\libm.a(lib_a-w_atan2.o)
+                0x000034e4                atan2
+ *fill*         0x000034ec        0x4 
  .text.__ieee754_atan2
-                0x00003460      0x208 c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m\libm.a(lib_a-e_atan2.o)
-                0x00003460                __ieee754_atan2
- .text.atan     0x00003668      0x350 c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m\libm.a(lib_a-s_atan.o)
-                0x00003668                atan
- .text.fabs     0x000039b8        0x8 c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m\libm.a(lib_a-s_fabs.o)
-                0x000039b8                fabs
- .text          0x000039c0       0x9c c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv6-m\libgcc.a(_udivsi3.o)
-                0x000039c0                __aeabi_uidiv
-                0x000039c0                __udivsi3
-                0x00003a48                __aeabi_uidivmod
- .text          0x00003a5c        0x4 c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv6-m\libgcc.a(_dvmd_tls.o)
-                0x00003a5c                __aeabi_idiv0
-                0x00003a5c                __aeabi_ldiv0
- .text          0x00003a60       0x7c c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv6-m\libgcc.a(_arm_cmpdf2.o)
-                0x00003a60                __aeabi_cdrcmple
-                0x00003a70                __aeabi_cdcmple
-                0x00003a70                __aeabi_cdcmpeq
-                0x00003a80                __aeabi_dcmpeq
-                0x00003a8c                __aeabi_dcmplt
-                0x00003aa0                __aeabi_dcmple
-                0x00003ab4                __aeabi_dcmpgt
-                0x00003ac8                __aeabi_dcmpge
- .text          0x00003adc       0x74 c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv6-m\libgcc.a(_arm_cmpsf2.o)
-                0x00003adc                __aeabi_cfrcmple
-                0x00003ae4                __aeabi_cfcmpeq
-                0x00003ae4                __aeabi_cfcmple
-                0x00003af4                __aeabi_fcmpeq
-                0x00003b00                __aeabi_fcmplt
-                0x00003b14                __aeabi_fcmple
-                0x00003b28                __aeabi_fcmpgt
-                0x00003b3c                __aeabi_fcmpge
- .text          0x00003b50       0x30 c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv6-m\libgcc.a(_fixunssfsi.o)
-                0x00003b50                __fixunssfsi
-                0x00003b50                __aeabi_f2uiz
- .text          0x00003b80       0x40 c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv6-m\libgcc.a(_fixunsdfsi.o)
-                0x00003b80                __aeabi_d2uiz
-                0x00003b80                __fixunsdfsi
- .text          0x00003bc0      0x2d8 c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv6-m\libgcc.a(addsf3.o)
-                0x00003bc0                __aeabi_fadd
- .text          0x00003e98      0x24c c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv6-m\libgcc.a(divsf3.o)
-                0x00003e98                __aeabi_fdiv
- .text          0x000040e4       0x54 c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv6-m\libgcc.a(eqsf2.o)
-                0x000040e4                __eqsf2
-                0x000040e4                __nesf2
- .text          0x00004138       0x90 c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv6-m\libgcc.a(gesf2.o)
-                0x00004138                __gesf2
-                0x00004138                __gtsf2
- .text          0x000041c8       0x98 c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv6-m\libgcc.a(lesf2.o)
-                0x000041c8                __ltsf2
-                0x000041c8                __lesf2
- .text          0x00004260      0x254 c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv6-m\libgcc.a(mulsf3.o)
-                0x00004260                __aeabi_fmul
- .text          0x000044b4      0x2ec c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv6-m\libgcc.a(subsf3.o)
-                0x000044b4                __aeabi_fsub
- .text          0x000047a0       0x40 c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv6-m\libgcc.a(fixsfsi.o)
-                0x000047a0                __aeabi_f2iz
- .text          0x000047e0       0xb8 c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv6-m\libgcc.a(floatsisf.o)
-                0x000047e0                __aeabi_i2f
- .text          0x00004898      0x644 c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv6-m\libgcc.a(adddf3.o)
-                0x00004898                __aeabi_dadd
- .text          0x00004edc      0x648 c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv6-m\libgcc.a(divdf3.o)
-                0x00004edc                __aeabi_ddiv
- .text          0x00005524       0x94 c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv6-m\libgcc.a(eqdf2.o)
-                0x00005524                __nedf2
-                0x00005524                __eqdf2
- .text          0x000055b8       0xfc c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv6-m\libgcc.a(gedf2.o)
-                0x000055b8                __gedf2
-                0x000055b8                __gtdf2
- .text          0x000056b4       0xfc c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv6-m\libgcc.a(ledf2.o)
-                0x000056b4                __ledf2
-                0x000056b4                __ltdf2
- .text          0x000057b0      0x520 c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv6-m\libgcc.a(muldf3.o)
-                0x000057b0                __aeabi_dmul
- .text          0x00005cd0      0x668 c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv6-m\libgcc.a(subdf3.o)
-                0x00005cd0                __aeabi_dsub
- .text          0x00006338       0x68 c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv6-m\libgcc.a(fixdfsi.o)
-                0x00006338                __aeabi_d2iz
- .text          0x000063a0       0x7c c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv6-m\libgcc.a(floatsidf.o)
-                0x000063a0                __aeabi_i2d
- .text          0x0000641c       0xa4 c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv6-m\libgcc.a(extendsfdf2.o)
-                0x0000641c                __aeabi_f2d
- .text          0x000064c0      0x118 c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv6-m\libgcc.a(truncdfsf2.o)
-                0x000064c0                __aeabi_d2f
- .text          0x000065d8       0x3c c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv6-m\libgcc.a(_clzsi2.o)
-                0x000065d8                __clzsi2
+                0x000034f0      0x208 c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m\libm.a(lib_a-e_atan2.o)
+                0x000034f0                __ieee754_atan2
+ .text.atan     0x000036f8      0x350 c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m\libm.a(lib_a-s_atan.o)
+                0x000036f8                atan
+ .text.fabs     0x00003a48        0x8 c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m\libm.a(lib_a-s_fabs.o)
+                0x00003a48                fabs
+ .text          0x00003a50       0x9c c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv6-m\libgcc.a(_udivsi3.o)
+                0x00003a50                __aeabi_uidiv
+                0x00003a50                __udivsi3
+                0x00003ad8                __aeabi_uidivmod
+ .text          0x00003aec        0x4 c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv6-m\libgcc.a(_dvmd_tls.o)
+                0x00003aec                __aeabi_idiv0
+                0x00003aec                __aeabi_ldiv0
+ .text          0x00003af0       0x7c c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv6-m\libgcc.a(_arm_cmpdf2.o)
+                0x00003af0                __aeabi_cdrcmple
+                0x00003b00                __aeabi_cdcmple
+                0x00003b00                __aeabi_cdcmpeq
+                0x00003b10                __aeabi_dcmpeq
+                0x00003b1c                __aeabi_dcmplt
+                0x00003b30                __aeabi_dcmple
+                0x00003b44                __aeabi_dcmpgt
+                0x00003b58                __aeabi_dcmpge
+ .text          0x00003b6c       0x74 c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv6-m\libgcc.a(_arm_cmpsf2.o)
+                0x00003b6c                __aeabi_cfrcmple
+                0x00003b74                __aeabi_cfcmpeq
+                0x00003b74                __aeabi_cfcmple
+                0x00003b84                __aeabi_fcmpeq
+                0x00003b90                __aeabi_fcmplt
+                0x00003ba4                __aeabi_fcmple
+                0x00003bb8                __aeabi_fcmpgt
+                0x00003bcc                __aeabi_fcmpge
+ .text          0x00003be0       0x30 c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv6-m\libgcc.a(_fixunssfsi.o)
+                0x00003be0                __fixunssfsi
+                0x00003be0                __aeabi_f2uiz
+ .text          0x00003c10       0x40 c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv6-m\libgcc.a(_fixunsdfsi.o)
+                0x00003c10                __aeabi_d2uiz
+                0x00003c10                __fixunsdfsi
+ .text          0x00003c50      0x2d8 c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv6-m\libgcc.a(addsf3.o)
+                0x00003c50                __aeabi_fadd
+ .text          0x00003f28      0x24c c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv6-m\libgcc.a(divsf3.o)
+                0x00003f28                __aeabi_fdiv
+ .text          0x00004174       0x54 c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv6-m\libgcc.a(eqsf2.o)
+                0x00004174                __eqsf2
+                0x00004174                __nesf2
+ .text          0x000041c8       0x90 c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv6-m\libgcc.a(gesf2.o)
+                0x000041c8                __gesf2
+                0x000041c8                __gtsf2
+ .text          0x00004258       0x98 c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv6-m\libgcc.a(lesf2.o)
+                0x00004258                __ltsf2
+                0x00004258                __lesf2
+ .text          0x000042f0      0x254 c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv6-m\libgcc.a(mulsf3.o)
+                0x000042f0                __aeabi_fmul
+ .text          0x00004544      0x2ec c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv6-m\libgcc.a(subsf3.o)
+                0x00004544                __aeabi_fsub
+ .text          0x00004830       0x40 c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv6-m\libgcc.a(fixsfsi.o)
+                0x00004830                __aeabi_f2iz
+ .text          0x00004870       0xb8 c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv6-m\libgcc.a(floatsisf.o)
+                0x00004870                __aeabi_i2f
+ .text          0x00004928      0x644 c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv6-m\libgcc.a(adddf3.o)
+                0x00004928                __aeabi_dadd
+ .text          0x00004f6c      0x648 c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv6-m\libgcc.a(divdf3.o)
+                0x00004f6c                __aeabi_ddiv
+ .text          0x000055b4       0x94 c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv6-m\libgcc.a(eqdf2.o)
+                0x000055b4                __nedf2
+                0x000055b4                __eqdf2
+ .text          0x00005648       0xfc c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv6-m\libgcc.a(gedf2.o)
+                0x00005648                __gedf2
+                0x00005648                __gtdf2
+ .text          0x00005744       0xfc c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv6-m\libgcc.a(ledf2.o)
+                0x00005744                __ledf2
+                0x00005744                __ltdf2
+ .text          0x00005840      0x520 c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv6-m\libgcc.a(muldf3.o)
+                0x00005840                __aeabi_dmul
+ .text          0x00005d60      0x668 c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv6-m\libgcc.a(subdf3.o)
+                0x00005d60                __aeabi_dsub
+ .text          0x000063c8       0x68 c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv6-m\libgcc.a(fixdfsi.o)
+                0x000063c8                __aeabi_d2iz
+ .text          0x00006430       0x7c c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv6-m\libgcc.a(floatsidf.o)
+                0x00006430                __aeabi_i2d
+ .text          0x000064ac       0xa4 c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv6-m\libgcc.a(extendsfdf2.o)
+                0x000064ac                __aeabi_f2d
+ .text          0x00006550      0x118 c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv6-m\libgcc.a(truncdfsf2.o)
+                0x00006550                __aeabi_d2f
+ .text          0x00006668       0x3c c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv6-m\libgcc.a(_clzsi2.o)
+                0x00006668                __clzsi2
  .text.__libc_init_array
-                0x00006614       0x4c c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m\libg_s.a(lib_a-init.o)
-                0x00006614                __libc_init_array
- .text.memset   0x00006660       0x10 c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m\libg_s.a(lib_a-memset.o)
-                0x00006660                memset
+                0x000066a4       0x4c c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m\libg_s.a(lib_a-init.o)
+                0x000066a4                __libc_init_array
+ .text.memset   0x000066f0       0x10 c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m\libg_s.a(lib_a-memset.o)
+                0x000066f0                memset
  *(.plt)
  *(.gnu.warning)
  *(.glue_7t)
@@ -1259,84 +1259,84 @@ END GROUP
  *(.ARM.extab* .gnu.linkonce.armextab.*)
  *(.gcc_except_table)
 
-.v4_bx          0x00006670        0x0
+.v4_bx          0x00006700        0x0
  .v4_bx         0x00000000        0x0 linker stubs
 
-.iplt           0x00006670        0x0
+.iplt           0x00006700        0x0
  .iplt          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv6-m/crtbegin.o
 
 .eh_frame_hdr
  *(.eh_frame_hdr)
 
-.eh_frame       0x00006670        0x4
+.eh_frame       0x00006700        0x4
  *(.eh_frame)
- .eh_frame      0x00006670        0x0 c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv6-m/crtbegin.o
- .eh_frame      0x00006670        0x4 c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv6-m/crtend.o
-                0x00006674                PROVIDE (__exidx_start, .)
+ .eh_frame      0x00006700        0x0 c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv6-m/crtbegin.o
+ .eh_frame      0x00006700        0x4 c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv6-m/crtend.o
+                0x00006704                PROVIDE (__exidx_start, .)
 
 .ARM.exidx
  *(.ARM.exidx* .gnu.linkonce.armexidx.*)
-                0x00006674                __exidx_end = .
+                0x00006704                __exidx_end = .
 
-.rodata         0x00006678      0x210
+.rodata         0x00006708      0x210
  *(.rodata .rodata.* .gnu.linkonce.r.*)
- .rodata        0x00006678       0x94 .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(cyfitter_cfg.o)
- *fill*         0x0000670c        0x4 
+ .rodata        0x00006708       0x94 .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(cyfitter_cfg.o)
+ *fill*         0x0000679c        0x4 
  .rodata.atanlo
-                0x00006710       0x20 c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m\libm.a(lib_a-s_atan.o)
+                0x000067a0       0x20 c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m\libm.a(lib_a-s_atan.o)
  .rodata.atanhi
-                0x00006730       0x20 c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m\libm.a(lib_a-s_atan.o)
- .rodata        0x00006750       0x40 c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv6-m\libgcc.a(divsf3.o)
- .rodata        0x00006790       0x40 c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv6-m\libgcc.a(mulsf3.o)
- .rodata        0x000067d0       0x40 c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv6-m\libgcc.a(divdf3.o)
- .rodata        0x00006810       0x40 c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv6-m\libgcc.a(muldf3.o)
-                0x00006850                . = ALIGN (0x4)
+                0x000067c0       0x20 c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m\libm.a(lib_a-s_atan.o)
+ .rodata        0x000067e0       0x40 c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv6-m\libgcc.a(divsf3.o)
+ .rodata        0x00006820       0x40 c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv6-m\libgcc.a(mulsf3.o)
+ .rodata        0x00006860       0x40 c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv6-m\libgcc.a(divdf3.o)
+ .rodata        0x000068a0       0x40 c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv6-m\libgcc.a(muldf3.o)
+                0x000068e0                . = ALIGN (0x4)
  *(.init)
- .init          0x00006850        0x4 c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv6-m/crti.o
-                0x00006850                _init
- .init          0x00006854        0x8 c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv6-m/crtn.o
-                0x0000685c                . = ALIGN (0x4)
-                0x0000685c                __preinit_array_start = .
+ .init          0x000068e0        0x4 c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv6-m/crti.o
+                0x000068e0                _init
+ .init          0x000068e4        0x8 c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv6-m/crtn.o
+                0x000068ec                . = ALIGN (0x4)
+                0x000068ec                __preinit_array_start = .
  *(.preinit_array)
-                0x0000685c                __preinit_array_end = .
-                0x0000685c                . = ALIGN (0x4)
-                0x0000685c                __init_array_start = .
+                0x000068ec                __preinit_array_end = .
+                0x000068ec                . = ALIGN (0x4)
+                0x000068ec                __init_array_start = .
  *(SORT(.init_array.*))
  *(.init_array)
- .init_array    0x0000685c        0x4 c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv6-m/crtbegin.o
- .init_array    0x00006860        0x4 .\CortexM0\ARM_GCC_484\Debug\Cm0Start.o
-                0x00006864                __init_array_end = .
-                0x00006864                . = ALIGN (0x4)
+ .init_array    0x000068ec        0x4 c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv6-m/crtbegin.o
+ .init_array    0x000068f0        0x4 .\CortexM0\ARM_GCC_484\Debug\Cm0Start.o
+                0x000068f4                __init_array_end = .
+                0x000068f4                . = ALIGN (0x4)
  *(.fini)
- .fini          0x00006864        0x4 c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv6-m/crti.o
-                0x00006864                _fini
- .fini          0x00006868        0x8 c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv6-m/crtn.o
-                0x00006870                . = ALIGN (0x4)
-                0x00006870                __fini_array_start = .
+ .fini          0x000068f4        0x4 c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv6-m/crti.o
+                0x000068f4                _fini
+ .fini          0x000068f8        0x8 c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv6-m/crtn.o
+                0x00006900                . = ALIGN (0x4)
+                0x00006900                __fini_array_start = .
  *(.fini_array)
- .fini_array    0x00006870        0x4 c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv6-m/crtbegin.o
+ .fini_array    0x00006900        0x4 c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv6-m/crtbegin.o
  *(SORT(.fini_array.*))
-                0x00006874                __fini_array_end = .
-                0x00006874                . = ALIGN (0x4)
+                0x00006904                __fini_array_end = .
+                0x00006904                . = ALIGN (0x4)
  *crtbegin.o(.ctors)
  *(EXCLUDE_FILE(*crtend.o) .ctors)
  *(SORT(.ctors.*))
  *crtend.o(.ctors)
-                0x00006874                . = ALIGN (0x4)
+                0x00006904                . = ALIGN (0x4)
  *crtbegin.o(.dtors)
  *(EXCLUDE_FILE(*crtend.o) .dtors)
  *(SORT(.dtors.*))
  *crtend.o(.dtors)
-                0x00006874                . = ALIGN (0x4)
-                0x00006874                __cy_regions = .
-                0x00006874        0x4 LONG 0x6888 __cy_region_init_ram
-                0x00006878        0x4 LONG 0x200000c8 __cy_region_start_data
-                0x0000687c        0x4 LONG 0x20 __cy_region_init_size_ram
-                0x00006880        0x4 LONG 0x298 __cy_region_zero_size_ram
-                0x00006884                __cy_regions_end = .
-                0x00006888                . = ALIGN (0x8)
- *fill*         0x00006884        0x4 
-                0x00006888                _etext = .
+                0x00006904                . = ALIGN (0x4)
+                0x00006904                __cy_regions = .
+                0x00006904        0x4 LONG 0x6918 __cy_region_init_ram
+                0x00006908        0x4 LONG 0x200000c8 __cy_region_start_data
+                0x0000690c        0x4 LONG 0x20 __cy_region_init_size_ram
+                0x00006910        0x4 LONG 0x2a0 __cy_region_zero_size_ram
+                0x00006914                __cy_regions_end = .
+                0x00006918                . = ALIGN (0x8)
+ *fill*         0x00006914        0x4 
+                0x00006918                _etext = .
 
 .ramvectors     0x20000000       0xc0
                 0x20000000                __cy_region_start_ram = .
@@ -1348,7 +1348,7 @@ END GROUP
  *(.noinit)
  .noinit        0x200000c0        0x4 .\CortexM0\ARM_GCC_484\Debug\Cm0Start.o
 
-.data           0x200000c8       0x20 load address 0x00006888
+.data           0x200000c8       0x20 load address 0x00006918
                 0x200000c8                __cy_region_start_data = .
  *(.jcr)
  .jcr           0x200000c8        0x0 c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv6-m/crtbegin.o
@@ -1372,99 +1372,100 @@ END GROUP
  *(.ram)
                 0x200000e8                _edata = .
 
-.igot.plt       0x200000e8        0x0 load address 0x000068a8
+.igot.plt       0x200000e8        0x0 load address 0x00006938
  .igot.plt      0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv6-m/crtbegin.o
 
-.bss            0x200000e8      0x298 load address 0x000068a8
+.bss            0x200000e8      0x2a0 load address 0x00006938
                 0x200000e8                PROVIDE (__bss_start__, .)
  *(.shbss)
  *(.bss .bss.* .gnu.linkonce.b.*)
  .bss           0x200000e8       0x1c c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv6-m/crtbegin.o
  *fill*         0x20000104        0x4 
- .bss           0x20000108       0x20 .\CortexM0\ARM_GCC_484\Debug\main.o
+ .bss           0x20000108       0x28 .\CortexM0\ARM_GCC_484\Debug\main.o
                 0x20000108                interruptCount
                 0x20000110                bearing
-                0x20000118                compassOnline
- .bss           0x20000128        0xb .\CortexM0\ARM_GCC_484\Debug\Modbus.o
-                0x20000128                middleOfMessage
-                0x20000129                z
-                0x2000012a                messageLengthNotChanged
-                0x2000012b                messageLength
-                0x2000012c                oldMessageLength
-                0x2000012d                timerCount
-                0x2000012e                middleMessageCount
-                0x2000012f                newMessageCount
-                0x20000130                oldPin
-                0x20000131                modbusMessage
-                0x20000132                turnLineAround
- .bss           0x20000133        0x1 .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(MessageTimer.o)
-                0x20000133                MessageTimer_initVar
- .bss           0x20000134        0x8 .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(ModbusUART.o)
-                0x20000134                ModbusUART_initVar
-                0x20000138                ModbusUART_customIntrHandler
- .bss           0x2000013c        0x1 .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(SpeedTimer.o)
-                0x2000013c                SpeedTimer_initVar
- *fill*         0x2000013d        0x3 
- .bss           0x20000140        0x8 .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(I2C_MASTER.o)
-                0x20000140                I2C_MASTER_initVar
-                0x20000144                I2C_MASTER_customIntrHandler
+                0x20000118                unchangedBearing
+                0x20000120                compassOnline
+ .bss           0x20000130        0xb .\CortexM0\ARM_GCC_484\Debug\Modbus.o
+                0x20000130                middleOfMessage
+                0x20000131                z
+                0x20000132                messageLengthNotChanged
+                0x20000133                messageLength
+                0x20000134                oldMessageLength
+                0x20000135                timerCount
+                0x20000136                middleMessageCount
+                0x20000137                newMessageCount
+                0x20000138                oldPin
+                0x20000139                modbusMessage
+                0x2000013a                turnLineAround
+ .bss           0x2000013b        0x1 .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(MessageTimer.o)
+                0x2000013b                MessageTimer_initVar
+ .bss           0x2000013c        0x8 .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(ModbusUART.o)
+                0x2000013c                ModbusUART_initVar
+                0x20000140                ModbusUART_customIntrHandler
+ .bss           0x20000144        0x1 .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(SpeedTimer.o)
+                0x20000144                SpeedTimer_initVar
+ *fill*         0x20000145        0x3 
+ .bss           0x20000148        0x8 .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(I2C_MASTER.o)
+                0x20000148                I2C_MASTER_initVar
+                0x2000014c                I2C_MASTER_customIntrHandler
  *(COMMON)
- COMMON         0x20000148       0x78 .\CortexM0\ARM_GCC_484\Debug\main.o
-                0x20000148                xoffset
-                0x20000150                offsetsy
-                0x20000158                cy
-                0x2000015a                cx
-                0x2000015c                mb
-                0x20000178                yoffset
-                0x2000017a                pidspeed
-                0x20000180                sx
-                0x20000188                mode
-                0x20000190                sz
-                0x20000198                buffer
-                0x200001a0                pidSpeed
-                0x200001a8                offsetsx
-                0x200001b0                cz
-                0x200001b2                devAddr
-                0x200001b8                sy
- COMMON         0x200001c0        0x4 .\CortexM0\ARM_GCC_484\Debug\interrupts.o
-                0x200001c0                speedInterruptFlag
-                0x200001c1                messageTimerFlag
-                0x200001c2                messageReceivedFlag
-                0x200001c3                encoderInterruptFlag
- COMMON         0x200001c4      0x195 .\CortexM0\ARM_GCC_484\Debug\Modbus.o
-                0x200001c4                response
-                0x20000244                coils
-                0x20000278                holdingReg
-                0x200002dc                received
- COMMON         0x20000359        0x1 .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(I2C_MASTER_I2C.o)
-                0x20000359                I2C_MASTER_state
- *fill*         0x2000035a        0x2 
- COMMON         0x2000035c       0x20 .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(I2C_MASTER_I2C_MASTER.o)
-                0x2000035c                I2C_MASTER_mstrRdBufPtr
-                0x20000360                I2C_MASTER_mstrRdBufIndex
-                0x20000364                I2C_MASTER_mstrWrBufIndex
-                0x20000368                I2C_MASTER_mstrWrBufIndexTmp
-                0x2000036c                I2C_MASTER_mstrWrBufSize
-                0x20000370                I2C_MASTER_mstrRdBufSize
-                0x20000374                I2C_MASTER_mstrControl
-                0x20000376                I2C_MASTER_mstrStatus
-                0x20000378                I2C_MASTER_mstrWrBufPtr
-                0x20000380                . = ALIGN (0x8)
- *fill*         0x2000037c        0x4 
+ COMMON         0x20000150       0x78 .\CortexM0\ARM_GCC_484\Debug\main.o
+                0x20000150                xoffset
+                0x20000158                offsetsy
+                0x20000160                cy
+                0x20000162                cx
+                0x20000164                mb
+                0x20000180                yoffset
+                0x20000182                pidspeed
+                0x20000188                sx
+                0x20000190                mode
+                0x20000198                sz
+                0x200001a0                buffer
+                0x200001a8                pidSpeed
+                0x200001b0                offsetsx
+                0x200001b8                cz
+                0x200001ba                devAddr
+                0x200001c0                sy
+ COMMON         0x200001c8        0x4 .\CortexM0\ARM_GCC_484\Debug\interrupts.o
+                0x200001c8                speedInterruptFlag
+                0x200001c9                messageTimerFlag
+                0x200001ca                messageReceivedFlag
+                0x200001cb                encoderInterruptFlag
+ COMMON         0x200001cc      0x195 .\CortexM0\ARM_GCC_484\Debug\Modbus.o
+                0x200001cc                response
+                0x2000024c                coils
+                0x20000280                holdingReg
+                0x200002e4                received
+ COMMON         0x20000361        0x1 .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(I2C_MASTER_I2C.o)
+                0x20000361                I2C_MASTER_state
+ *fill*         0x20000362        0x2 
+ COMMON         0x20000364       0x20 .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(I2C_MASTER_I2C_MASTER.o)
+                0x20000364                I2C_MASTER_mstrRdBufPtr
+                0x20000368                I2C_MASTER_mstrRdBufIndex
+                0x2000036c                I2C_MASTER_mstrWrBufIndex
+                0x20000370                I2C_MASTER_mstrWrBufIndexTmp
+                0x20000374                I2C_MASTER_mstrWrBufSize
+                0x20000378                I2C_MASTER_mstrRdBufSize
+                0x2000037c                I2C_MASTER_mstrControl
+                0x2000037e                I2C_MASTER_mstrStatus
+                0x20000380                I2C_MASTER_mstrWrBufPtr
+                0x20000388                . = ALIGN (0x8)
+ *fill*         0x20000384        0x4 
  *(.ram.b)
-                0x20000380                _end = .
-                0x20000380                __end = .
-                0x20000380                PROVIDE (end, .)
-                0x20000380                PROVIDE (__bss_end__, .)
-                0x00006888                __cy_region_init_ram = LOADADDR (.data)
+                0x20000388                _end = .
+                0x20000388                __end = .
+                0x20000388                PROVIDE (end, .)
+                0x20000388                PROVIDE (__bss_end__, .)
+                0x00006918                __cy_region_init_ram = LOADADDR (.data)
                 0x00000020                __cy_region_init_size_ram = (_edata - ADDR (.data))
-                0x00000298                __cy_region_zero_size_ram = (_end - _edata)
+                0x000002a0                __cy_region_zero_size_ram = (_end - _edata)
 
-.heap           0x20000380      0x100 load address 0x000068a8
-                0x20000380                . = _end
-                0x20000480                . = (. + 0x100)
- *fill*         0x20000380      0x100 
-                0x20000480                __cy_heap_limit = .
+.heap           0x20000388      0x100 load address 0x00006938
+                0x20000388                . = _end
+                0x20000488                . = (. + 0x100)
+ *fill*         0x20000388      0x100 
+                0x20000488                __cy_heap_limit = .
 
 .stack          0x20000c00      0x400
                 0x20000c00                __cy_stack_limit = .
@@ -1496,7 +1497,7 @@ END GROUP
                 0x90600000        0x4 .\CortexM0\ARM_GCC_484\Debug\cymetadata.o
                 0x90600000                cy_meta_chipprotect
 
-.rel.dyn        0x000068a8        0x0 load address 0x90600004
+.rel.dyn        0x00006938        0x0 load address 0x90600004
  .rel.iplt      0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv6-m/crtbegin.o
 
 .stab
@@ -1577,35 +1578,35 @@ END GROUP
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x00000000     0x54c3
+.debug_info     0x00000000     0x54d4
  *(.debug_info .gnu.linkonce.wi.*)
- .debug_info    0x00000000      0x3e3 .\CortexM0\ARM_GCC_484\Debug\main.o
- .debug_info    0x000003e3      0x151 .\CortexM0\ARM_GCC_484\Debug\interrupts.o
- .debug_info    0x00000534      0x7ca .\CortexM0\ARM_GCC_484\Debug\Modbus.o
- .debug_info    0x00000cfe      0x412 .\CortexM0\ARM_GCC_484\Debug\i2cfunctions.o
- .debug_info    0x00001110      0x373 .\CortexM0\ARM_GCC_484\Debug\hmc5883l.o
- .debug_info    0x00001483      0x53f .\CortexM0\ARM_GCC_484\Debug\HMC5883L-Compass.o
- .debug_info    0x000019c2      0x30e .\CortexM0\ARM_GCC_484\Debug\i2c.o
- .debug_info    0x00001cd0       0xfd .\CortexM0\ARM_GCC_484\Debug\cymetadata.o
- .debug_info    0x00001dcd      0x2ff .\CortexM0\ARM_GCC_484\Debug\Cm0Start.o
- .debug_info    0x000020cc      0x442 .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(cyfitter_cfg.o)
- .debug_info    0x0000250e       0xa5 .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(CyBootAsmGnu.o)
- .debug_info    0x000025b3      0xc5b .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(CyLib.o)
- .debug_info    0x0000320e      0x6f0 .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(MessageTimer.o)
- .debug_info    0x000038fe      0x1eb .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(ModbusUART.o)
- .debug_info    0x00003ae9      0x20d .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(ModbusUART_SPI_UART.o)
- .debug_info    0x00003cf6      0x1fe .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(ModbusUART_UART.o)
- .debug_info    0x00003ef4      0x241 .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(MessageReceived.o)
- .debug_info    0x00004135      0x241 .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(EndOfMessage.o)
- .debug_info    0x00004376      0x14c .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(writeEnable.o)
- .debug_info    0x000044c2      0x236 .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(SpeedTimer.o)
- .debug_info    0x000046f8      0x241 .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(SpeedInterrupt.o)
- .debug_info    0x00004939      0x1eb .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(I2C_MASTER.o)
- .debug_info    0x00004b24      0x119 .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(I2C_MASTER_I2C.o)
- .debug_info    0x00004c3d      0x466 .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(I2C_MASTER_I2C_MASTER.o)
- .debug_info    0x000050a3      0x14c .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(I2C_MASTER_sda.o)
- .debug_info    0x000051ef      0x14c .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(I2C_MASTER_scl.o)
- .debug_info    0x0000533b      0x188 .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(I2C_MASTER_I2C_INT.o)
+ .debug_info    0x00000000      0x3f4 .\CortexM0\ARM_GCC_484\Debug\main.o
+ .debug_info    0x000003f4      0x151 .\CortexM0\ARM_GCC_484\Debug\interrupts.o
+ .debug_info    0x00000545      0x7ca .\CortexM0\ARM_GCC_484\Debug\Modbus.o
+ .debug_info    0x00000d0f      0x412 .\CortexM0\ARM_GCC_484\Debug\i2cfunctions.o
+ .debug_info    0x00001121      0x373 .\CortexM0\ARM_GCC_484\Debug\hmc5883l.o
+ .debug_info    0x00001494      0x53f .\CortexM0\ARM_GCC_484\Debug\HMC5883L-Compass.o
+ .debug_info    0x000019d3      0x30e .\CortexM0\ARM_GCC_484\Debug\i2c.o
+ .debug_info    0x00001ce1       0xfd .\CortexM0\ARM_GCC_484\Debug\cymetadata.o
+ .debug_info    0x00001dde      0x2ff .\CortexM0\ARM_GCC_484\Debug\Cm0Start.o
+ .debug_info    0x000020dd      0x442 .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(cyfitter_cfg.o)
+ .debug_info    0x0000251f       0xa5 .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(CyBootAsmGnu.o)
+ .debug_info    0x000025c4      0xc5b .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(CyLib.o)
+ .debug_info    0x0000321f      0x6f0 .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(MessageTimer.o)
+ .debug_info    0x0000390f      0x1eb .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(ModbusUART.o)
+ .debug_info    0x00003afa      0x20d .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(ModbusUART_SPI_UART.o)
+ .debug_info    0x00003d07      0x1fe .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(ModbusUART_UART.o)
+ .debug_info    0x00003f05      0x241 .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(MessageReceived.o)
+ .debug_info    0x00004146      0x241 .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(EndOfMessage.o)
+ .debug_info    0x00004387      0x14c .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(writeEnable.o)
+ .debug_info    0x000044d3      0x236 .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(SpeedTimer.o)
+ .debug_info    0x00004709      0x241 .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(SpeedInterrupt.o)
+ .debug_info    0x0000494a      0x1eb .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(I2C_MASTER.o)
+ .debug_info    0x00004b35      0x119 .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(I2C_MASTER_I2C.o)
+ .debug_info    0x00004c4e      0x466 .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(I2C_MASTER_I2C_MASTER.o)
+ .debug_info    0x000050b4      0x14c .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(I2C_MASTER_sda.o)
+ .debug_info    0x00005200      0x14c .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(I2C_MASTER_scl.o)
+ .debug_info    0x0000534c      0x188 .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(I2C_MASTER_I2C_INT.o)
 
 .debug_abbrev   0x00000000     0x1c9f
  *(.debug_abbrev)
@@ -1637,35 +1638,35 @@ END GROUP
  .debug_abbrev  0x00001b53       0xb7 .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(I2C_MASTER_scl.o)
  .debug_abbrev  0x00001c0a       0x95 .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(I2C_MASTER_I2C_INT.o)
 
-.debug_line     0x00000000     0x3109
+.debug_line     0x00000000     0x3113
  *(.debug_line)
- .debug_line    0x00000000      0x1f4 .\CortexM0\ARM_GCC_484\Debug\main.o
- .debug_line    0x000001f4       0x90 .\CortexM0\ARM_GCC_484\Debug\interrupts.o
- .debug_line    0x00000284      0x443 .\CortexM0\ARM_GCC_484\Debug\Modbus.o
- .debug_line    0x000006c7      0x224 .\CortexM0\ARM_GCC_484\Debug\i2cfunctions.o
- .debug_line    0x000008eb      0x2ed .\CortexM0\ARM_GCC_484\Debug\hmc5883l.o
- .debug_line    0x00000bd8      0x356 .\CortexM0\ARM_GCC_484\Debug\HMC5883L-Compass.o
- .debug_line    0x00000f2e      0x20c .\CortexM0\ARM_GCC_484\Debug\i2c.o
- .debug_line    0x0000113a       0x53 .\CortexM0\ARM_GCC_484\Debug\cymetadata.o
- .debug_line    0x0000118d      0x1bb .\CortexM0\ARM_GCC_484\Debug\Cm0Start.o
- .debug_line    0x00001348      0x1b9 .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(cyfitter_cfg.o)
- .debug_line    0x00001501       0x69 .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(CyBootAsmGnu.o)
- .debug_line    0x0000156a      0x703 .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(CyLib.o)
- .debug_line    0x00001c6d      0x375 .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(MessageTimer.o)
- .debug_line    0x00001fe2      0x125 .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(ModbusUART.o)
- .debug_line    0x00002107      0x12b .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(ModbusUART_SPI_UART.o)
- .debug_line    0x00002232      0x107 .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(ModbusUART_UART.o)
- .debug_line    0x00002339      0x15e .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(MessageReceived.o)
- .debug_line    0x00002497      0x15b .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(EndOfMessage.o)
- .debug_line    0x000025f2       0xb1 .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(writeEnable.o)
- .debug_line    0x000026a3      0x179 .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(SpeedTimer.o)
- .debug_line    0x0000281c      0x14d .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(SpeedInterrupt.o)
- .debug_line    0x00002969      0x12d .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(I2C_MASTER.o)
- .debug_line    0x00002a96       0xab .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(I2C_MASTER_I2C.o)
- .debug_line    0x00002b41      0x2b2 .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(I2C_MASTER_I2C_MASTER.o)
- .debug_line    0x00002df3       0xb4 .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(I2C_MASTER_sda.o)
- .debug_line    0x00002ea7       0xb4 .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(I2C_MASTER_scl.o)
- .debug_line    0x00002f5b      0x1ae .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(I2C_MASTER_I2C_INT.o)
+ .debug_line    0x00000000      0x1fe .\CortexM0\ARM_GCC_484\Debug\main.o
+ .debug_line    0x000001fe       0x90 .\CortexM0\ARM_GCC_484\Debug\interrupts.o
+ .debug_line    0x0000028e      0x443 .\CortexM0\ARM_GCC_484\Debug\Modbus.o
+ .debug_line    0x000006d1      0x224 .\CortexM0\ARM_GCC_484\Debug\i2cfunctions.o
+ .debug_line    0x000008f5      0x2ed .\CortexM0\ARM_GCC_484\Debug\hmc5883l.o
+ .debug_line    0x00000be2      0x356 .\CortexM0\ARM_GCC_484\Debug\HMC5883L-Compass.o
+ .debug_line    0x00000f38      0x20c .\CortexM0\ARM_GCC_484\Debug\i2c.o
+ .debug_line    0x00001144       0x53 .\CortexM0\ARM_GCC_484\Debug\cymetadata.o
+ .debug_line    0x00001197      0x1bb .\CortexM0\ARM_GCC_484\Debug\Cm0Start.o
+ .debug_line    0x00001352      0x1b9 .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(cyfitter_cfg.o)
+ .debug_line    0x0000150b       0x69 .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(CyBootAsmGnu.o)
+ .debug_line    0x00001574      0x703 .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(CyLib.o)
+ .debug_line    0x00001c77      0x375 .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(MessageTimer.o)
+ .debug_line    0x00001fec      0x125 .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(ModbusUART.o)
+ .debug_line    0x00002111      0x12b .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(ModbusUART_SPI_UART.o)
+ .debug_line    0x0000223c      0x107 .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(ModbusUART_UART.o)
+ .debug_line    0x00002343      0x15e .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(MessageReceived.o)
+ .debug_line    0x000024a1      0x15b .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(EndOfMessage.o)
+ .debug_line    0x000025fc       0xb1 .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(writeEnable.o)
+ .debug_line    0x000026ad      0x179 .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(SpeedTimer.o)
+ .debug_line    0x00002826      0x14d .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(SpeedInterrupt.o)
+ .debug_line    0x00002973      0x12d .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(I2C_MASTER.o)
+ .debug_line    0x00002aa0       0xab .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(I2C_MASTER_I2C.o)
+ .debug_line    0x00002b4b      0x2b2 .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(I2C_MASTER_I2C_MASTER.o)
+ .debug_line    0x00002dfd       0xb4 .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(I2C_MASTER_sda.o)
+ .debug_line    0x00002eb1       0xb4 .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(I2C_MASTER_scl.o)
+ .debug_line    0x00002f65      0x1ae .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(I2C_MASTER_I2C_INT.o)
 
 .debug_frame    0x00000000     0x2e28
  *(.debug_frame)
@@ -1728,59 +1729,59 @@ END GROUP
  .debug_frame   0x00002de0       0x28 c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m\libg_s.a(lib_a-memcpy-stub.o)
  .debug_frame   0x00002e08       0x20 c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m\libg_s.a(lib_a-memset.o)
 
-.debug_str      0x00000000     0x2bc6
+.debug_str      0x00000000     0x2bd7
  *(.debug_str)
- .debug_str     0x00000000      0x2b7 .\CortexM0\ARM_GCC_484\Debug\main.o
-                                0x318 (size before relaxing)
- .debug_str     0x000002b7       0x8c .\CortexM0\ARM_GCC_484\Debug\interrupts.o
+ .debug_str     0x00000000      0x2c8 .\CortexM0\ARM_GCC_484\Debug\main.o
+                                0x329 (size before relaxing)
+ .debug_str     0x000002c8       0x8c .\CortexM0\ARM_GCC_484\Debug\interrupts.o
                                 0x215 (size before relaxing)
- .debug_str     0x00000343      0x339 .\CortexM0\ARM_GCC_484\Debug\Modbus.o
+ .debug_str     0x00000354      0x339 .\CortexM0\ARM_GCC_484\Debug\Modbus.o
                                 0x4f3 (size before relaxing)
- .debug_str     0x0000067c       0xc5 .\CortexM0\ARM_GCC_484\Debug\i2cfunctions.o
+ .debug_str     0x0000068d       0xc5 .\CortexM0\ARM_GCC_484\Debug\i2cfunctions.o
                                 0x258 (size before relaxing)
- .debug_str     0x00000741      0x21c .\CortexM0\ARM_GCC_484\Debug\hmc5883l.o
+ .debug_str     0x00000752      0x21c .\CortexM0\ARM_GCC_484\Debug\hmc5883l.o
                                 0x3d4 (size before relaxing)
- .debug_str     0x0000095d      0x1e4 .\CortexM0\ARM_GCC_484\Debug\HMC5883L-Compass.o
+ .debug_str     0x0000096e      0x1e4 .\CortexM0\ARM_GCC_484\Debug\HMC5883L-Compass.o
                                 0x3a5 (size before relaxing)
- .debug_str     0x00000b41       0x79 .\CortexM0\ARM_GCC_484\Debug\i2c.o
+ .debug_str     0x00000b52       0x79 .\CortexM0\ARM_GCC_484\Debug\i2c.o
                                 0x21c (size before relaxing)
- .debug_str     0x00000bba       0x5b .\CortexM0\ARM_GCC_484\Debug\cymetadata.o
+ .debug_str     0x00000bcb       0x5b .\CortexM0\ARM_GCC_484\Debug\cymetadata.o
                                 0x1d1 (size before relaxing)
- .debug_str     0x00000c15      0x124 .\CortexM0\ARM_GCC_484\Debug\Cm0Start.o
+ .debug_str     0x00000c26      0x124 .\CortexM0\ARM_GCC_484\Debug\Cm0Start.o
                                 0x2bf (size before relaxing)
- .debug_str     0x00000d39      0x18c .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(cyfitter_cfg.o)
+ .debug_str     0x00000d4a      0x18c .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(cyfitter_cfg.o)
                                 0x359 (size before relaxing)
- .debug_str     0x00000ec5      0x709 .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(CyLib.o)
+ .debug_str     0x00000ed6      0x709 .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(CyLib.o)
                                 0x8d8 (size before relaxing)
- .debug_str     0x000015ce      0x50e .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(MessageTimer.o)
+ .debug_str     0x000015df      0x50e .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(MessageTimer.o)
                                 0x6a1 (size before relaxing)
- .debug_str     0x00001adc      0x165 .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(ModbusUART.o)
+ .debug_str     0x00001aed      0x165 .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(ModbusUART.o)
                                 0x2f5 (size before relaxing)
- .debug_str     0x00001c41      0x173 .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(ModbusUART_SPI_UART.o)
+ .debug_str     0x00001c52      0x173 .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(ModbusUART_SPI_UART.o)
                                 0x301 (size before relaxing)
- .debug_str     0x00001db4      0x119 .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(ModbusUART_UART.o)
+ .debug_str     0x00001dc5      0x119 .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(ModbusUART_UART.o)
                                 0x2b3 (size before relaxing)
- .debug_str     0x00001ecd      0x183 .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(MessageReceived.o)
+ .debug_str     0x00001ede      0x183 .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(MessageReceived.o)
                                 0x340 (size before relaxing)
- .debug_str     0x00002050      0x14a .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(EndOfMessage.o)
+ .debug_str     0x00002061      0x14a .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(EndOfMessage.o)
                                 0x316 (size before relaxing)
- .debug_str     0x0000219a       0xa9 .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(writeEnable.o)
+ .debug_str     0x000021ab       0xa9 .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(writeEnable.o)
                                 0x22e (size before relaxing)
- .debug_str     0x00002243      0x1c8 .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(SpeedTimer.o)
+ .debug_str     0x00002254      0x1c8 .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(SpeedTimer.o)
                                 0x352 (size before relaxing)
- .debug_str     0x0000240b      0x166 .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(SpeedInterrupt.o)
+ .debug_str     0x0000241c      0x166 .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(SpeedInterrupt.o)
                                 0x332 (size before relaxing)
- .debug_str     0x00002571      0x144 .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(I2C_MASTER.o)
+ .debug_str     0x00002582      0x144 .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(I2C_MASTER.o)
                                 0x2f5 (size before relaxing)
- .debug_str     0x000026b5       0xab .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(I2C_MASTER_I2C.o)
+ .debug_str     0x000026c6       0xab .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(I2C_MASTER_I2C.o)
                                 0x235 (size before relaxing)
- .debug_str     0x00002760      0x2bf .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(I2C_MASTER_I2C_MASTER.o)
+ .debug_str     0x00002771      0x2bf .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(I2C_MASTER_I2C_MASTER.o)
                                 0x4b0 (size before relaxing)
- .debug_str     0x00002a1f       0xa8 .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(I2C_MASTER_sda.o)
+ .debug_str     0x00002a30       0xa8 .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(I2C_MASTER_sda.o)
                                 0x240 (size before relaxing)
- .debug_str     0x00002ac7       0xa8 .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(I2C_MASTER_scl.o)
+ .debug_str     0x00002ad8       0xa8 .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(I2C_MASTER_scl.o)
                                 0x240 (size before relaxing)
- .debug_str     0x00002b6f       0x57 .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(I2C_MASTER_I2C_INT.o)
+ .debug_str     0x00002b80       0x57 .\CortexM0\ARM_GCC_484\Debug\PSoC 4 Compass Modbus Slave.a(I2C_MASTER_I2C_INT.o)
                                 0x2fc (size before relaxing)
 
 .debug_loc
